@@ -4,7 +4,6 @@ import type {} from "redux-thunk/extend-redux";
 import { BrowserRouter } from "react-router-dom";
 
 import App from "./App";
-import GlobalStyles from "./styles/global";
 import { Provider } from "react-redux";
 import STORE from "./store/store";
 
@@ -14,7 +13,6 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={STORE}>
-      <GlobalStyles />
       <BrowserRouter>
         <App />
       </BrowserRouter>
