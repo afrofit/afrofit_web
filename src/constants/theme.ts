@@ -4,10 +4,28 @@ import { COLORS } from "./colors";
 const theme = createTheme({
   palette: {
     primary: {
-      main: COLORS.dark,
+      main: COLORS.dark_200,
+      light: COLORS.dark_100,
+      dark: COLORS.dark_300,
+      contrastText: COLORS.white,
     },
     secondary: {
-      main: COLORS.gray_300,
+      main: COLORS.orange_200,
+      light: COLORS.orange_200,
+      dark: COLORS.orange_300,
+      contrastText: COLORS.white,
+    },
+    success: {
+      main: COLORS.purple_200,
+      light: COLORS.purple_100,
+      dark: COLORS.purple_300,
+      contrastText: COLORS.white,
+    },
+    info: {
+      main: COLORS.pink_200,
+      light: COLORS.pink_100,
+      dark: COLORS.pink_300,
+      contrastText: COLORS.white,
     },
 
     contrastThreshold: 3,
