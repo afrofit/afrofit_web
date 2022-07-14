@@ -1,10 +1,26 @@
 import * as React from "react";
+import * as Yup from "yup";
 import { Stack, Typography } from "@mui/material";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+
 import { Card } from "../../components/Card/Card";
 import { COLORS } from "../../constants/colors";
 import { StyledLargeButton } from "../../components/elements/StyledLargeButton/StyledLargeButton";
 
+const loginSchema = Yup.object().shape({
+  email: Yup.string().email().required(),
+  password: Yup.string().min(6).max(32).required(),
+});
+
 const RegisterPage = () => {
+  const { handleSubmit, reset, control } = useForm({
+    resolver: yupResolver(loginSchema),
+    mode: "onBlur",
+  });
+
+  const onSubmit = (data: any) => console.log(data);
+
   return (
     <Stack display="flex" flexDirection="column" sx={{ width: "100%" }}>
       <Typography
