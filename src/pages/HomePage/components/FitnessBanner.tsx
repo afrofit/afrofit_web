@@ -42,7 +42,7 @@ export const FitnessBanner = () => {
       </Typography>
       <LargeLinkButton
         color="pink_100"
-        textColor="purple_300"
+        textcolor="purple_300"
         title="subscribe to your fitness"
         route="/subscription-benefits"
       />

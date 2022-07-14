@@ -1,14 +1,13 @@
-import { NavLink } from "react-router-dom";
 import styled from "@emotion/styled";
+import { Button, Typography } from "@mui/material";
 import { COLORS, ColorType } from "../../../constants/colors";
 import { CHAMFER } from "../../../constants/globals";
-import { Typography } from "@mui/material";
 
 interface LinkProps {
   color: ColorType;
 }
 
-export const StyledNavLink = styled(NavLink)<LinkProps>`
+export const StyledButtonElement = styled(Button)<LinkProps>`
   height: 300px;
   width: 400px;
   padding: 15px;
@@ -30,7 +29,7 @@ interface TextProps {
   textcolor?: ColorType;
 }
 
-export const StyledNavLinkText = styled(Typography)<TextProps>`
+export const ButtonText = styled(Typography)<TextProps>`
   font-size: 20px;
   color: ${({ textcolor }) => textcolor && COLORS[textcolor]};
   text-align: center;

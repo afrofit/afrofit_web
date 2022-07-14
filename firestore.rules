@@ -1,0 +1,37 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if isSignedIn()
+    }
+    
+    match /user-profiles/{userId} {
+    // users can read other users profiles but edit only theirs
+    	allow read: if isSignedIn();
+    	allow write: if isOwner(userId);
+    }
+    
+    match /played_chapter/{documentId}{
+    // a user cannot update another user's game records, but can read it #Marathon
+    	allow read: if isSignedIn();
+      allow write: if existingData().user_id == request.auth.uid
+    }
+    
+    // Functions 
+    // function incomingData(){
+    // 	return request.resource.data
+    // }
+    
+    function existingData(){
+    	return resource.data
+    }
+    
+    function isOwner(userId){
+    	return request.auth.uid == userId;
+    }
+    
+    function isSignedIn() {
+    	return request.auth != null;
+    }
+  }
+}

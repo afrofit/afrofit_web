@@ -19,13 +19,17 @@ export const NavLinkText = styled(Typography)`
   }
 `;
 
+interface AuthNavLinkProps {
+  outlined?: boolean;
+}
+
 export const AuthLinkText = styled(Typography)<AuthNavLinkProps>`
-  color: ${({ outlined }) => (!outlined ? COLORS.white : "inherit")};
+  color: ${({ outlined }) => !outlined && COLORS.white};
   font-size: 16px;
   transition: 0.2s ease-in-out;
   letter-spacing: 1px;
   font-weight: ${({ outlined }) => (outlined ? 300 : 500)};
-  text-decoration: "none";
+  text-decoration: none;
   text-align: center;
 
   &:hover {
@@ -33,15 +37,10 @@ export const AuthLinkText = styled(Typography)<AuthNavLinkProps>`
   }
 `;
 
-interface AuthNavLinkProps {
-  outlined?: boolean;
-}
-
 export const AuthNavLink = styled(NavLink)<AuthNavLinkProps>`
   background-image: ${({ outlined }) =>
-    outlined
-      ? "none"
-      : `linear-gradient(45deg, ${COLORS.orange_200}, ${COLORS.hilite_purpink})`};
+    !outlined &&
+    `linear-gradient(45deg, ${COLORS.orange_200}, ${COLORS.hilite_purpink})`};
 
   min-width: 110px;
   text-decoration: "none";
@@ -52,12 +51,10 @@ export const AuthNavLink = styled(NavLink)<AuthNavLinkProps>`
   align-items: center;
   border-radius: ${CHAMFER};
   transition: 0.2s ease-in-out;
-  border: ${({ outlined }) =>
-    !outlined ? "none" : `1px solid ${COLORS.whiteblue}`};
+  border: ${({ outlined }) => outlined && `1px solid ${COLORS.whiteblue}`};
 
   &:hover {
     min-width: 113px;
-    border: ${({ outlined }) =>
-      !outlined ? "none" : `1px solid ${COLORS.fuschia}`};
+    border: ${({ outlined }) => outlined && `1px solid ${COLORS.fuschia}`};
   }
 `;

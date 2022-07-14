@@ -4,8 +4,10 @@ import logo from "../../../assets/img/logofull_nobg.png";
 import { CHAMFER } from "../../../constants/globals";
 import { NavLinks } from "./NavLinks";
 import { NavAuthLinks } from "./NavAuthLinks";
+import { useNavigate } from "react-router-dom";
 
 export const AppHeader = () => {
+  const navigate = useNavigate();
   return (
     <Box
       sx={{
@@ -20,7 +22,10 @@ export const AppHeader = () => {
         justifyContent: "space-between",
       }}
     >
-      <Box sx={{ height: "65px" }}>
+      <Box
+        sx={{ height: "65px", cursor: "pointer" }}
+        onClick={() => navigate("/")}
+      >
         <img src={logo} alt="the Afrofit logo" height={"100%"} />
       </Box>
       <NavLinks />

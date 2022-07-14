@@ -41,7 +41,7 @@ export const RhythmBanner = () => {
       </Typography>
       <LargeLinkButton
         color="purple_200"
-        textColor="fuschia"
+        textcolor="fuschia"
         title="join the club now"
         route="/join-us"
       />

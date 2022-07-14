@@ -8,7 +8,7 @@ interface Props {
   children: React.ReactNode;
 }
 
-export const AppLayout: React.FC<Props> = ({ children }) => {
+export const NoAuthLayout: React.FC<Props> = ({ children }) => {
   return (
     <Box
       sx={{
@@ -21,9 +21,19 @@ export const AppLayout: React.FC<Props> = ({ children }) => {
         backgroundColor: COLORS.dark_400,
       }}
     >
-      <Container sx={{ paddingTop: 5, paddingBottom: 5 }}>
-        <AppHeader />
-        {children} <AppFooter />
+      <Container
+        maxWidth="sm"
+        sx={{
+          paddingTop: 5,
+          paddingBottom: 5,
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+          //   backgroundColor: "red",
+        }}
+      >
+        {children}
       </Container>
     </Box>
   );
