@@ -3,44 +3,37 @@ import { UserProfileModel } from "../../../models/UserProfile.model";
 import { RootState } from "../../store";
 
 export interface AuthState {
-  currentUser: any;
-  currentUserProfile: UserProfileModel | null;
+	currentUser: any;
+	currentUserProfile: UserProfileModel | null;
 }
 
 const initialState: AuthState = {
-  currentUser: null,
-  currentUserProfile: null,
+	currentUser: null,
+	currentUserProfile: null,
 };
 
 const authSlice = createSlice({
-  name: "auth",
-  initialState,
-  reducers: {
-    setCurrentUser(state, action: PayloadAction<any>) {
-      state.currentUser = action.payload;
-    },
-    setCurrentUserProfile(state, action: PayloadAction<UserProfileModel>) {
-      state.currentUserProfile = action.payload;
-    },
+	name: "auth",
+	initialState,
+	reducers: {
+		setCurrentUser(state, action: PayloadAction<any>) {
+			state.currentUser = action.payload;
+		},
+		setCurrentUserProfile(state, action: PayloadAction<UserProfileModel>) {
+			state.currentUserProfile = action.payload;
+		},
 
-    unsetCurrentUser(state) {
-      state.currentUser = null;
-    },
-    unsetCurrentUserProfile(state) {
-      state.currentUser = null;
-    },
-  },
+		unsetCurrentUser(state) {
+			return initialState;
+		},
+	},
 });
 
-export const {
-  setCurrentUser,
-  setCurrentUserProfile,
-  unsetCurrentUser,
-  unsetCurrentUserProfile,
-} = authSlice.actions;
+export const { setCurrentUser, setCurrentUserProfile, unsetCurrentUser } =
+	authSlice.actions;
 
 export const selectCurrentUser = (state: RootState) => state.auth.currentUser;
 export const selectCurrentUserProfile = (state: RootState) =>
-  state.auth.currentUserProfile;
+	state.auth.currentUserProfile;
 
 export default authSlice.reducer;

@@ -8,13 +8,24 @@ import { StyledLargeButton } from "../../components/elements/StyledLargeButton/S
 import { CustomInput } from "../../components/forms/CustomInput";
 import { StyledClearButton } from "../../components/elements/StyledClearButton/StyledClearButton";
 import { useNavigate } from "react-router-dom";
+import { LogIn } from "../../store/reducers/auth/thunks/login.thunks";
+import { useDispatch } from "react-redux";
 
 const LoginPage = () => {
 	const navigation = useNavigate();
+	const dispatch = useDispatch();
 
 	const { handleSubmit, control, reset } = useForm({
 		mode: "onBlur",
 	});
+
+	const onSubmit = (data: any) => {
+		console.log(data);
+		const { email, password } = data;
+
+		const loginData = { password, email };
+		dispatch(LogIn(loginData));
+	};
 
 	return (
 		<Stack display="flex" flexDirection="column" sx={{ width: "100%" }}>
@@ -56,7 +67,11 @@ const LoginPage = () => {
 				title="I forgot my password"
 				color="fuschia"
 			/>
-			<StyledLargeButton onClick={() => null} title="Log in" color="fuschia" />
+			<StyledLargeButton
+				onClick={handleSubmit(onSubmit)}
+				title="Log in"
+				color="fuschia"
+			/>
 			<StyledClearButton
 				onClick={() => navigation("/register")}
 				title="Create an account instead"

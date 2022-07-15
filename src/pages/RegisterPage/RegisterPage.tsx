@@ -10,21 +10,37 @@ import { StyledLargeButton } from "../../components/elements/StyledLargeButton/S
 import { CustomInput } from "../../components/forms/CustomInput";
 import { StyledClearButton } from "../../components/elements/StyledClearButton/StyledClearButton";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { RegisterAccount } from "../../store/reducers/auth/thunks/register.thunks";
 
-const loginSchema = Yup.object().shape({
+const registerSchema = Yup.object().shape({
 	email: Yup.string().email().required(),
 	password: Yup.string().min(6).max(32).required(),
+	username: Yup.string().min(6).max(32).required(),
+	first_name: Yup.string().min(6).max(32).required(),
+	last_name: Yup.string().min(6).max(32).required(),
+	confirm_password: Yup.string().oneOf(
+		[Yup.ref("password"), null],
+		"Passwords must match"
+	),
 });
 
 const RegisterPage = () => {
 	const navigation = useNavigate();
+	const dispatch = useDispatch();
 
 	const { handleSubmit, reset, control } = useForm({
-		resolver: yupResolver(loginSchema),
+		resolver: yupResolver(registerSchema),
 		mode: "onBlur",
 	});
 
-	const onSubmit = (data: any) => console.log(data);
+	const onSubmit = (data: any) => {
+		console.log(data);
+		const { username, password, last_name, first_name, email } = data;
+
+		const registerData = { username, password, last_name, first_name, email };
+		dispatch(RegisterAccount(registerData));
+	};
 
 	return (
 		<Stack display="flex" flexDirection="column" sx={{ width: "100%" }}>
@@ -54,13 +70,13 @@ const RegisterPage = () => {
 					>
 						<CustomInput
 							label="First Name"
-							name="firstName"
+							name="first_name"
 							control={control}
 							placeholder="Your secure password"
 						/>
 						<CustomInput
 							label="Last Name"
-							name="lastName"
+							name="last_name"
 							control={control}
 							placeholder="Your secure password"
 						/>
@@ -91,7 +107,7 @@ const RegisterPage = () => {
 						/>
 						<CustomInput
 							label="Confirm Password"
-							name="confirmPassword"
+							name="confirm_password"
 							control={control}
 							placeholder="Your secure password"
 						/>
@@ -100,7 +116,7 @@ const RegisterPage = () => {
 			</Card>
 
 			<StyledLargeButton
-				onClick={() => null}
+				onClick={handleSubmit(onSubmit)}
 				title="Create Account"
 				color="fuschia"
 			/>
