@@ -8,7 +8,6 @@ import {
 	newRequest,
 	showGenericErrorDialog,
 } from "../../ui/ui.slice";
-import { setCurrentUser } from "../auth.slice";
 
 export function ResetPassword(userEmail: string): AppThunk {
 	return (dispatch) => {
@@ -16,14 +15,8 @@ export function ResetPassword(userEmail: string): AppThunk {
 		dispatch(hideGenericErrorDialog());
 
 		sendPasswordResetEmail(auth, userEmail)
-			.then((userCredential: any) => {
-				// const { user } = userCredential;
-				// const { email, uid } = user;
-				// // Here just go and fetch current user profile and set it on state
-
-				// const join_date = new Date().toUTCString();
-				// const loggedInUser = { ...(email && { email }), id: uid, join_date };
-				// dispatch(setCurrentUser(loggedInUser));
+			.then(() => {
+				console.log("Password reset sent!");
 				dispatch(finishedRequest());
 			})
 			.catch((error) => {

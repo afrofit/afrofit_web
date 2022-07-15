@@ -1,4 +1,7 @@
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+	createUserWithEmailAndPassword,
+	sendEmailVerification,
+} from "firebase/auth";
 import { auth, db, storage } from "../../../../config/firebase";
 import { UserCredentials } from "../../../../types/user.type";
 
@@ -30,6 +33,12 @@ export function RegisterAccount(userCredentials: UserCredentials): AppThunk {
 				const loggedInUser = { ...(email && { email }), id: uid, join_date };
 
 				//Now create user profile details
+				if (auth.currentUser) {
+					sendEmailVerification(auth.currentUser).then(() => {
+						console.log("Email verification sent!");
+						// ...
+					});
+				}
 
 				dispatch(setCurrentUser(loggedInUser));
 				dispatch(finishedRequest());
