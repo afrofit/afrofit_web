@@ -1,6 +1,7 @@
 import { TextField, Typography } from "@mui/material";
 import { Controller } from "react-hook-form";
 import { COLORS } from "../../constants/colors";
+import { StyledTextField } from "./StyledTextField";
 
 interface Props {
 	name: string;
@@ -42,7 +43,7 @@ export const CustomInput: React.FC<Props> = ({
 					fieldState: { error },
 				}) => (
 					<>
-						<TextField
+						<StyledTextField
 							// variant="filled"
 							onChange={onChange}
 							onBlur={onBlur}

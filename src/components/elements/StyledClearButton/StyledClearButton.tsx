@@ -27,8 +27,7 @@ export const StyledClearButton: React.FC<Props> = ({
 					height: "60px",
 					width: "100%",
 					padding: 2,
-					borderRadius: CHAMFER,
-					marginTop: 1,
+
 					display: "flex",
 					alignItems: "center",
 					justifyContent: "center",
@@ -36,7 +35,6 @@ export const StyledClearButton: React.FC<Props> = ({
 				{
 					"&:hover": {
 						color: COLORS[hoverColorText],
-						backgroundColor: COLORS[hoverColorBg],
 					},
 				},
 			]}

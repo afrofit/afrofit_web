@@ -28,7 +28,7 @@ interface TextProps {
 }
 
 export const ButtonText = styled(Typography)<TextProps>`
-	font-size: 20px;
+	font-size: 16px;
 	color: ${({ textcolor }) => textcolor && COLORS[textcolor]};
 	text-align: center;
 	margin-right: auto;
