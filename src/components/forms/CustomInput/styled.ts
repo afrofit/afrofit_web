@@ -6,6 +6,15 @@ interface Props {
 	focused: boolean;
 }
 
+export const IconWrapper = styled.div`
+	height: 100%;
+	width: 35px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transition: 0.2s ease-in-out;
+`;
+
 export const StyledInput = styled.input`
 	border: none;
 	background: none;
@@ -16,7 +25,6 @@ export const StyledInput = styled.input`
 	width: 100%;
 	margin-left: 15px;
 	height: 100%;
-	background-clip: text;
 `;
 
 export const StyledInputWrapper = styled.div<Props>`

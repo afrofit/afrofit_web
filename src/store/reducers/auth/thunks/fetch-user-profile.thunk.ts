@@ -21,40 +21,37 @@ export function FetchUserUserProfle(currentUserId: string): AppThunk {
 		getDoc(docRef)
 			.then((docSnapshot) => {
 				if (docSnapshot.exists()) {
-					const imageRef = ref(storage, `profile_pics/${currentUserId}.png`);
-					getDownloadURL(imageRef)
-						.then((url) => {
-							const {
-								email,
-								join_date,
-								name_first,
-								name_last,
-								user_id,
-								username,
-							} = docSnapshot.data();
+					const {
+						email,
+						join_date,
+						name_first,
+						name_last,
+						user_id,
+						username,
+						profile_pic,
+					} = docSnapshot.data();
 
-							const userData: UserProfileModel = {
-								email,
-								join_date,
-								name_first,
-								name_last,
-								user_id,
-								username,
-								profile_pic: url,
-							};
+					const userData: UserProfileModel = {
+						email,
+						join_date,
+						name_first,
+						name_last,
+						user_id,
+						username,
+						profile_pic,
+					};
 
-							console.log("Profile fetched!");
+					console.log("Profile fetched!", {
+						email,
+						join_date,
+						name_first,
+						name_last,
+						user_id,
+						username,
+					});
 
-							dispatch(setCurrentUserProfile(userData));
-							dispatch(finishedRequest());
-						})
-						.catch((error) => {
-							dispatch(finishedRequest());
-							console.error(error);
-							dispatch(
-								showGenericErrorDialog("Error! An unknown error occurred.")
-							);
-						});
+					dispatch(setCurrentUserProfile(userData));
+					dispatch(finishedRequest());
 				} else {
 					dispatch(finishedRequest());
 					throw new Error("Error fetching your profile!");

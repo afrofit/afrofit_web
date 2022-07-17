@@ -1,6 +1,11 @@
 import * as React from "react";
-import { StyledInput, StyledInputWrapper, StyledWrapper } from "./styled";
-import { Mail } from "react-feather";
+import {
+	IconWrapper,
+	StyledInput,
+	StyledInputWrapper,
+	StyledWrapper,
+} from "./styled";
+import { Mail, Lock, User } from "react-feather";
 import { COLORS } from "../../../constants/colors";
 import { Typography } from "@mui/material";
 import { Controller } from "react-hook-form";
@@ -11,6 +16,7 @@ interface Props {
 	label?: string;
 	control: any;
 	placeholder?: string;
+	icon?: string;
 }
 
 export const CustomInputElement: React.FC<Props> = ({
@@ -19,12 +25,15 @@ export const CustomInputElement: React.FC<Props> = ({
 	label,
 	control,
 	placeholder,
+	icon = "user",
 }) => {
 	const [focused, setFocused] = React.useState(false);
 
 	React.useEffect(() => {
 		console.log("Focused", focused);
 	}, [focused]);
+
+	const IconComponent = icon === "mail" ? Mail : "lock" ? Lock : User;
 
 	return (
 		<Controller
@@ -49,19 +58,38 @@ export const CustomInputElement: React.FC<Props> = ({
 						</Typography>
 					)}
 					<StyledInputWrapper focused={focused}>
-						<Mail
-							color={focused ? COLORS.gold : COLORS.whiteblue}
-							size={focused ? 30 : 25}
-						/>
+						<IconWrapper>
+							<IconComponent
+								color={focused ? COLORS.gold : COLORS.whiteblue}
+								size={focused ? 30 : 25}
+							/>
+						</IconWrapper>
 						<StyledInput
 							onFocus={() => setFocused(true)}
-							onBlur={() => setFocused(false)}
+							onBlur={() => {
+								setFocused(false);
+								return onBlur();
+							}}
 							type={type}
 							name={name}
 							placeholder={placeholder}
 							autoComplete={"off"}
+							value={value}
+							onChange={onChange}
 						/>
 					</StyledInputWrapper>
+					{error && (
+						<Typography
+							sx={{
+								fontSize: "14px",
+								fontWeight: 500,
+								marginTop: "5px",
+								color: COLORS.orange_200,
+							}}
+						>
+							{error.message}
+						</Typography>
+					)}
 				</StyledWrapper>
 			)}
 		/>

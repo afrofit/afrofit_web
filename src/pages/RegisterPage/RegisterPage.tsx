@@ -1,7 +1,7 @@
 import * as React from "react";
-import * as Yup from "yup";
 import { Stack, Typography } from "@mui/material";
 import { useForm } from "react-hook-form";
+import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import { Card } from "../../components/Card/Card";

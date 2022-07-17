@@ -1,6 +1,8 @@
 import * as React from "react";
 import { useForm } from "react-hook-form";
 import { Stack, Typography } from "@mui/material";
+import * as Yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 import { Card } from "../../components/Card/Card";
 import { COLORS } from "../../constants/colors";
@@ -11,6 +13,11 @@ import { LogIn } from "../../store/reducers/auth/thunks/login.thunks";
 import { useDispatch } from "react-redux";
 import { CustomInputElement } from "../../components/forms/CustomInput/CustomInputElement";
 
+const loginSchema = Yup.object().shape({
+	email: Yup.string().email().required(),
+	password: Yup.string().min(6).max(32).required(),
+});
+// resolver: yupResolver(loginSchema),
 const LoginPage = () => {
 	const navigation = useNavigate();
 	const dispatch = useDispatch();
@@ -20,7 +27,7 @@ const LoginPage = () => {
 	});
 
 	const onSubmit = (data: any) => {
-		console.log(data);
+		console.log("data", data);
 		const { email, password } = data;
 
 		const loginData = { password, email };
@@ -53,6 +60,7 @@ const LoginPage = () => {
 						control={control}
 						placeholder="Your email.."
 						type="text"
+						icon="mail"
 					/>
 					<CustomInputElement
 						name="password"
@@ -60,6 +68,7 @@ const LoginPage = () => {
 						control={control}
 						placeholder="Your password..."
 						type="password"
+						icon="lock"
 					/>
 				</Stack>
 			</Card>
