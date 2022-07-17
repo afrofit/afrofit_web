@@ -7,7 +7,9 @@ export const StyledTextField = styled(TextField)(({ theme }) => ({
 	input: {
 		borderColor: "red",
 		borderRadius: 8,
-		backgroundColor: COLORS.dark_100,
+		"&::placeholder": {
+			color: "red",
+		},
 	},
 }));
 

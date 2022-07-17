@@ -3,8 +3,8 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ErrorDialog } from "../components/dialogs/ErrorDialog";
 import { FullPageLoadingSpinner } from "../components/elements/FullPageLoadingSpinner";
-import { auth } from "../config/firebase";
 import { theme } from "../constants/theme";
+import { useAuth } from "../hooks/useAuth";
 import {
 	hideGenericErrorDialog,
 	selectShowGenericErrorDialog,
@@ -15,10 +15,10 @@ import { AppRouter } from "./AppRouter";
 const App: React.FC = () => {
 	const dispatch = useDispatch();
 
+	useAuth();
+
 	const isLoading = useSelector(selectUiIsLoading);
 	const errorMessage = useSelector(selectShowGenericErrorDialog);
-
-	console.log("auth", auth);
 
 	return (
 		<ThemeProvider theme={theme}>

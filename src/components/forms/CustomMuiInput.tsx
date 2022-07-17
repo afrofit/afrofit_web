@@ -18,7 +18,7 @@ interface Props {
 	handleInputFocus?: () => void;
 }
 
-export const CustomInput: React.FC<Props> = ({
+export const CustomMuiInput: React.FC<Props> = ({
 	name,
 	control,
 	label,
