@@ -2,6 +2,7 @@ import {
 	createUserWithEmailAndPassword,
 	sendEmailVerification,
 } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
 import { auth, db, storage } from "../../../../config/firebase";
 import { UserCredentials } from "../../../../types/user.type";
 
@@ -16,7 +17,7 @@ import { setCurrentUser } from "../auth.slice";
 
 export function RegisterAccount(userCredentials: UserCredentials): AppThunk {
 	console.log("userCredentials", userCredentials);
-	const { email, password, first_name, last_name, username } = userCredentials;
+	const { email, password, name_first, name_last, username } = userCredentials;
 	return (dispatch) => {
 		dispatch(newRequest());
 		dispatch(hideGenericErrorDialog());
@@ -39,6 +40,20 @@ export function RegisterAccount(userCredentials: UserCredentials): AppThunk {
 						// ...
 					});
 				}
+
+				setDoc(doc(db, "user-profiles", user.uid), {
+					profile_pic: "profilepiclink.com",
+					join_date,
+					name_last,
+					name_first,
+					email,
+					username,
+					user_id: user.uid,
+				})
+					.then(() => console.log("User profile created!"))
+					.catch((error) =>
+						console.error("There was an error creating profile", error)
+					);
 
 				dispatch(setCurrentUser(loggedInUser));
 				dispatch(finishedRequest());

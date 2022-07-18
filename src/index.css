@@ -1,0 +1,24 @@
+input:autofill{
+    filter:none;
+}
+
+
+input:-webkit-autofill {
+    -webkit-text-fill-color: white !important;
+    /* -webkit-text-font-size: 20px !important; */
+    -webkit-box-shadow: 0 0 0 1rem #1d1f2e inset !important;
+    background-clip: content-box !important;
+    font-family: "Roboto", sans-serif !important;
+    -webkit-text-size-adjust: auto;
+    font-size: 24px;
+}
+
+input:-webkit-autofill::first-line {
+    -webkit-text-fill-color: white !important;
+    -webkit-text-font-size: 20px !important;
+    -webkit-box-shadow: 0 0 0 1rem #1d1f2e inset !important;
+    font-family: "Roboto", sans-serif !important;
+    font-size: 24px;
+    background-clip: content-box !important;
+}
+

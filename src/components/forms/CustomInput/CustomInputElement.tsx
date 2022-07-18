@@ -29,11 +29,8 @@ export const CustomInputElement: React.FC<Props> = ({
 }) => {
 	const [focused, setFocused] = React.useState(false);
 
-	React.useEffect(() => {
-		console.log("Focused", focused);
-	}, [focused]);
-
-	const IconComponent = icon === "mail" ? Mail : "lock" ? Lock : User;
+	const IconComponent =
+		icon === "person" ? User : "mail" ? Mail : "lock" ? Lock : User;
 
 	return (
 		<Controller
@@ -73,9 +70,10 @@ export const CustomInputElement: React.FC<Props> = ({
 							type={type}
 							name={name}
 							placeholder={placeholder}
-							autoComplete={"off"}
+							autoComplete="new-password"
 							value={value}
 							onChange={onChange}
+							autoFocus={false}
 						/>
 					</StyledInputWrapper>
 					{error && (

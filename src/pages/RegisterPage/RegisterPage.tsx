@@ -7,18 +7,18 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Card } from "../../components/Card/Card";
 import { COLORS } from "../../constants/colors";
 import { StyledLargeButton } from "../../components/elements/StyledLargeButton/StyledLargeButton";
-import { CustomInput } from "../../components/forms/CustomInput";
 import { StyledClearButton } from "../../components/elements/StyledClearButton/StyledClearButton";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { RegisterAccount } from "../../store/reducers/auth/thunks/register.thunks";
+import { CustomInputElement } from "../../components/forms/CustomInput/CustomInputElement";
 
 const registerSchema = Yup.object().shape({
 	email: Yup.string().email().required(),
 	password: Yup.string().min(6).max(32).required(),
 	username: Yup.string().min(6).max(32).required(),
-	first_name: Yup.string().min(6).max(32).required(),
-	last_name: Yup.string().min(6).max(32).required(),
+	name_first: Yup.string().min(2).max(32).required(),
+	name_last: Yup.string().min(2).max(32).required(),
 	confirm_password: Yup.string().oneOf(
 		[Yup.ref("password"), null],
 		"Passwords must match"
@@ -36,10 +36,10 @@ const RegisterPage = () => {
 
 	const onSubmit = (data: any) => {
 		console.log(data);
-		const { username, password, last_name, first_name, email } = data;
+		const { username, password, name_last, name_first, email } = data;
 
-		const registerData = { username, password, last_name, first_name, email };
-		dispatch(RegisterAccount(registerData));
+		// const registerData = { username, password, name_last, name_first, email };
+		// dispatch(RegisterAccount(registerData));
 	};
 
 	return (
@@ -68,48 +68,69 @@ const RegisterPage = () => {
 						columnGap={2}
 						width="100%"
 					>
-						<CustomInput
+						<CustomInputElement
+							name="name_first"
 							label="First Name"
-							name="first_name"
 							control={control}
-							placeholder="Your secure password"
+							// placeholder="Unique username..."
+							type="text"
+							icon="person"
 						/>
-						<CustomInput
+
+						<CustomInputElement
+							name="namne_last"
 							label="Last Name"
-							name="last_name"
 							control={control}
-							placeholder="Your secure password"
+							// placeholder="Unique username..."
+							type="text"
+							icon="person"
 						/>
 					</Stack>
-					<CustomInput
-						label="Username"
-						name="username"
-						control={control}
-						placeholder="Username"
-					/>
-					<CustomInput
-						label="Email"
-						name="email"
-						control={control}
-						placeholder="Your email"
-					/>
 					<Stack
 						display={"flex"}
 						flexDirection="row"
 						columnGap={2}
 						width="100%"
 					>
-						<CustomInput
-							label="Password"
-							name="password"
+						<CustomInputElement
+							name="username"
+							label="Username"
 							control={control}
-							placeholder="Your secure password"
+							placeholder="Unique username..."
+							type="text"
+							icon="lock"
 						/>
-						<CustomInput
-							label="Confirm Password"
-							name="confirm_password"
+
+						<CustomInputElement
+							name="email"
+							label="Email"
 							control={control}
-							placeholder="Your secure password"
+							placeholder="Your email..."
+							type="email"
+							icon="mail"
+						/>
+					</Stack>
+					<Stack
+						display={"flex"}
+						flexDirection="row"
+						columnGap={2}
+						width="100%"
+					>
+						<CustomInputElement
+							name="password"
+							label="Password"
+							control={control}
+							// placeholder="Your password..."
+							type="password"
+							icon="lock"
+						/>
+						<CustomInputElement
+							name="confirm_password"
+							label="Confirm Password"
+							control={control}
+							// placeholder="Confirm password..."
+							type="password"
+							icon="lock"
 						/>
 					</Stack>
 				</Stack>
@@ -117,6 +138,7 @@ const RegisterPage = () => {
 
 			<StyledLargeButton
 				onClick={handleSubmit(onSubmit)}
+				// onClick={() => console.log("Register clicked!")}
 				title="Create Account"
 				color="fuschia"
 			/>

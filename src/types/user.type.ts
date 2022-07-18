@@ -1,7 +1,7 @@
 export type UserCredentials = {
 	email: string;
 	password: string;
-	first_name: string;
-	last_name: string;
+	name_first: string;
+	name_last: string;
 	username: string;
 };

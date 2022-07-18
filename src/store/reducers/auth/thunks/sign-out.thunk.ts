@@ -20,6 +20,7 @@ export function SignOut(): AppThunk {
 			.then(() => {
 				console.log("User signed out!");
 				dispatch(unsetCurrentUser());
+				dispatch(finishedRequest());
 			})
 			.catch((error) => {
 				dispatch(finishedRequest());

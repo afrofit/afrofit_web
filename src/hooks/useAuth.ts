@@ -4,14 +4,6 @@ import { auth } from "../config/firebase";
 import { FetchUserUserProfle } from "../store/reducers/auth/thunks/fetch-user-profile.thunk";
 import React from "react";
 
-export const useAuth2 = () => {
-	const checkUserAuth = () => {
-		return onAuthStateChanged(auth, (user) => {});
-	};
-
-	return { checkUserAuth };
-};
-
 export const useAuth = () => {
 	const dispatch = useDispatch();
 

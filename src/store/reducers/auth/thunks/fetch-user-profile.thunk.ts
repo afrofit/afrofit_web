@@ -48,6 +48,7 @@ export function FetchUserUserProfle(currentUserId: string): AppThunk {
 						name_last,
 						user_id,
 						username,
+						profile_pic,
 					});
 
 					dispatch(setCurrentUserProfile(userData));

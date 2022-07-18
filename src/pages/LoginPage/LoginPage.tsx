@@ -32,6 +32,7 @@ const LoginPage = () => {
 
 		const loginData = { password, email };
 		dispatch(LogIn(loginData));
+		reset();
 	};
 
 	return (
