@@ -1,19 +1,19 @@
+import * as React from "react";
 import { Stack, Typography } from "@mui/material";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { zodResolver } from "@hookform/resolvers/zod";
-
-import * as Yup from "yup";
-import * as z from "zod";
-
 import { useForm } from "react-hook-form";
-import { StyledLargeButton } from "../../components/elements/StyledLargeButton/StyledLargeButton";
-import { CustomInputElement } from "../../components/forms/CustomInput/CustomInputElement";
-import { COLORS } from "../../constants/colors";
-import { Card } from "../../components/Card/Card";
-import { RegisterAccount } from "../../store/reducers/auth/thunks/register.thunks";
-import { useDispatch } from "react-redux";
+import * as Yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 
-const registerSchema2 = Yup.object().shape({
+import { Card } from "../../components/Card/Card";
+import { COLORS } from "../../constants/colors";
+import { StyledLargeButton } from "../../components/elements/StyledLargeButton/StyledLargeButton";
+import { StyledClearButton } from "../../components/elements/StyledClearButton/StyledClearButton";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { RegisterAccount } from "../../store/reducers/auth/thunks/register.thunks";
+import { CustomInputElement } from "../../components/forms/CustomInput/CustomInputElement";
+
+const registerSchema = Yup.object().shape({
   email: Yup.string().email().required(),
   password: Yup.string().min(6).max(32).required(),
   username: Yup.string().min(6).max(32).required(),
@@ -25,42 +25,13 @@ const registerSchema2 = Yup.object().shape({
   ),
 });
 
-interface RegisterProps {
-  name_last: string;
-  name_first: string;
-  email?: string;
-  password?: string;
-  confirm_password?: string;
-  username?: string;
-}
-
-const registerSchema = Yup.object().shape({
-  //   name_last: Yup.string().min(2).max(32).required(),
-  name_first: Yup.string().min(2).max(32).required(),
-});
-
-const schema = z
-  .object({
-    name_first: z.string().min(1, { message: "Required" }),
-    name_last: z.string().min(1, { message: "Required" }),
-    username: z.string().min(1, { message: "Required" }),
-    email: z.string({ required_error: "Valid email required" }).email(),
-    password: z.string().min(1, { message: "Required" }),
-    confirm_password: z.string().min(1, { message: "Required" }),
-  })
-  .refine((data) => data.password === data.confirm_password, {
-    message: "Passwords must match",
-    path: ["confirm_password"],
-  });
-
 const RegisterPage = () => {
+  const navigation = useNavigate();
   const dispatch = useDispatch();
 
-  const { handleSubmit, control, reset } = useForm<RegisterProps>({
-    resolver: zodResolver(schema),
-    mode: "all",
-    reValidateMode: "onChange",
-    criteriaMode: "firstError",
+  const { handleSubmit, reset, control } = useForm({
+    resolver: yupResolver(registerSchema),
+    mode: "onBlur",
   });
 
   const onSubmit = (data: any) => {
@@ -105,6 +76,7 @@ const RegisterPage = () => {
               type="text"
               icon="person"
             />
+
             <CustomInputElement
               name="name_last"
               label="Last Name"
@@ -158,9 +130,16 @@ const RegisterPage = () => {
           </Stack>
         </Stack>
       </Card>
+
       <StyledLargeButton
-        onClick={handleSubmit(onSubmit)}
+        onClick={() => handleSubmit(onSubmit)}
         title="Create Account"
+        color="fuschia"
+      />
+
+      <StyledClearButton
+        onClick={() => navigation("/login")}
+        title="I already have an account"
         color="fuschia"
       />
     </Stack>
