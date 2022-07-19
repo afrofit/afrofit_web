@@ -1,8 +1,6 @@
 import { Stack, Typography } from "@mui/material";
-import { yupResolver } from "@hookform/resolvers/yup";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import * as Yup from "yup";
 import * as z from "zod";
 
 import { useForm } from "react-hook-form";
@@ -12,18 +10,8 @@ import { COLORS } from "../../constants/colors";
 import { Card } from "../../components/Card/Card";
 import { RegisterAccount } from "../../store/reducers/auth/thunks/register.thunks";
 import { useDispatch } from "react-redux";
-
-const registerSchema2 = Yup.object().shape({
-  email: Yup.string().email().required(),
-  password: Yup.string().min(6).max(32).required(),
-  username: Yup.string().min(6).max(32).required(),
-  name_first: Yup.string().min(2).max(32).required(),
-  name_last: Yup.string().min(2).max(32).required(),
-  confirm_password: Yup.string().oneOf(
-    [Yup.ref("password"), null],
-    "Passwords must match"
-  ),
-});
+import { StyledClearButton } from "../../components/elements/StyledClearButton/StyledClearButton";
+import { useNavigate } from "react-router-dom";
 
 interface RegisterProps {
   name_last: string;
@@ -33,11 +21,6 @@ interface RegisterProps {
   confirm_password?: string;
   username?: string;
 }
-
-const registerSchema = Yup.object().shape({
-  //   name_last: Yup.string().min(2).max(32).required(),
-  name_first: Yup.string().min(2).max(32).required(),
-});
 
 const schema = z
   .object({
@@ -55,6 +38,7 @@ const schema = z
 
 const RegisterPage = () => {
   const dispatch = useDispatch();
+  const navigation = useNavigate();
 
   const { handleSubmit, control, reset } = useForm<RegisterProps>({
     resolver: zodResolver(schema),
@@ -161,6 +145,11 @@ const RegisterPage = () => {
       <StyledLargeButton
         onClick={handleSubmit(onSubmit)}
         title="Create Account"
+        color="fuschia"
+      />
+      <StyledClearButton
+        onClick={() => navigation("/login")}
+        title="I already have an account"
         color="fuschia"
       />
     </Stack>

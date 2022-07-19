@@ -12,6 +12,7 @@ import { selectCurrentUserProfile } from "../store/reducers/auth/auth.slice";
 const HomePage = lazy(() => import("../pages/HomePage/HomePage"));
 const LoginPage = lazy(() => import("../pages/LoginPage/LoginPage"));
 const RegisterPage = lazy(() => import("../pages/RegisterPage/RegisterPage"));
+const NotFoundPage = lazy(() => import("../pages/NotFoundPage/NotFoundPage"));
 
 const ForgotPasswordPage = lazy(
   () => import("../pages/ForgotPasswordPage/ForgotPasswordPage")
@@ -26,6 +27,7 @@ export const AppRouter: React.FC = () => {
         <AppLayout>
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </AppLayout>
       ) : (
