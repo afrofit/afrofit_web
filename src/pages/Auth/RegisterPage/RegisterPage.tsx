@@ -4,13 +4,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 
 import { useForm } from "react-hook-form";
-import { StyledLargeButton } from "../../components/elements/StyledLargeButton/StyledLargeButton";
-import { CustomInputElement } from "../../components/forms/CustomInput/CustomInputElement";
-import { COLORS } from "../../constants/colors";
-import { Card } from "../../components/Card/Card";
-import { RegisterAccount } from "../../store/reducers/auth/thunks/register.thunks";
+import { StyledLargeButton } from "../../../components/elements/StyledLargeButton/StyledLargeButton";
+import { CustomInputElement } from "../../../components/forms/CustomInput/CustomInputElement";
+import { COLORS } from "../../../constants/colors";
+import { Card } from "../../../components/Card/Card";
+import { RegisterAccount } from "../../../store/reducers/auth/thunks/register.thunks";
 import { useDispatch } from "react-redux";
-import { StyledClearButton } from "../../components/elements/StyledClearButton/StyledClearButton";
+import { StyledClearButton } from "../../../components/elements/StyledClearButton/StyledClearButton";
 import { useNavigate } from "react-router-dom";
 
 interface RegisterProps {

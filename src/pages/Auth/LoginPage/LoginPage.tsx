@@ -3,14 +3,14 @@ import { Stack, Typography } from "@mui/material";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { Card } from "../../components/Card/Card";
-import { COLORS } from "../../constants/colors";
-import { StyledLargeButton } from "../../components/elements/StyledLargeButton/StyledLargeButton";
-import { StyledClearButton } from "../../components/elements/StyledClearButton/StyledClearButton";
+import { Card } from "../../../components/Card/Card";
+import { COLORS } from "../../../constants/colors";
+import { StyledLargeButton } from "../../../components/elements/StyledLargeButton/StyledLargeButton";
+import { StyledClearButton } from "../../../components/elements/StyledClearButton/StyledClearButton";
 import { useNavigate } from "react-router-dom";
-import { LogIn } from "../../store/reducers/auth/thunks/login.thunks";
+import { LogIn } from "../../../store/reducers/auth/thunks/login.thunks";
 import { useDispatch } from "react-redux";
-import { CustomInputElement } from "../../components/forms/CustomInput/CustomInputElement";
+import { CustomInputElement } from "../../../components/forms/CustomInput/CustomInputElement";
 
 const schema = z.object({
   email: z.string({ required_error: "Valid email required" }).email(),

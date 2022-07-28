@@ -5,18 +5,27 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import { AppLayout } from "../components/layout/AppLayout/AppLayout";
 
 import { FullPageLoadingSpinner } from "../components/elements/FullPageLoadingSpinner";
-import { NoAuthLayout } from "../components/layout/AppLayout/NoAuthLayout";
 import { useSelector } from "react-redux";
 import { selectCurrentUserProfile } from "../store/reducers/auth/auth.slice";
 
 const HomePage = lazy(() => import("../pages/HomePage/HomePage"));
-const LoginPage = lazy(() => import("../pages/LoginPage/LoginPage"));
-const RegisterPage = lazy(() => import("../pages/RegisterPage/RegisterPage"));
-const NotFoundPage = lazy(() => import("../pages/NotFoundPage/NotFoundPage"));
-
-const ForgotPasswordPage = lazy(
-  () => import("../pages/ForgotPasswordPage/ForgotPasswordPage")
+const LoginPage = lazy(() => import("../pages/Auth/LoginPage/LoginPage"));
+const RegisterPage = lazy(
+  () => import("../pages/Auth/RegisterPage/RegisterPage")
 );
+const ForgotPasswordPage = lazy(
+  () => import("../pages/Auth/ForgotPasswordPage/ForgotPasswordPage")
+);
+const NotFoundPage = lazy(
+  () => import("../pages/Shared/NotFoundPage/NotFoundPage")
+);
+
+// App pages
+const EventsPage = lazy(() => import("../pages/App/EventsPage"));
+const MusicPage = lazy(() => import("../pages/App/MusicPage"));
+const ProfilePage = lazy(() => import("../pages/App/ProfilePage"));
+const ShopPage = lazy(() => import("../pages/App/ShopPage"));
+const ClassesPage = lazy(() => import("../pages/App/ClassesPage"));
 
 export const AppRouter: React.FC = () => {
   const currentUser = useSelector(selectCurrentUserProfile);
@@ -27,11 +36,11 @@ export const AppRouter: React.FC = () => {
       {userExists ? (
         <AppLayout authorized={userExists}>
           <Routes>
-            <Route path="/classes" element={<HomePage />} />
-            <Route path="/events" element={<HomePage />} />
-            <Route path="/shop" element={<HomePage />} />
-            <Route path="/music" element={<HomePage />} />
-            <Route path="/profile" element={<HomePage />} />
+            <Route path="/classes" element={<ClassesPage />} />
+            <Route path="/events" element={<EventsPage />} />
+            <Route path="/shop" element={<ShopPage />} />
+            <Route path="/music" element={<MusicPage />} />
+            <Route path="/profile" element={<ProfilePage />} />
             <Route path="/*/*" element={<NotFoundPage />} />
             <Route path="/" element={<HomePage />} />
             <Route path="*" element={<Navigate to="/" />} />

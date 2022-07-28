@@ -1,8 +1,8 @@
 import { Box, Typography } from "@mui/material";
 import * as React from "react";
-import { COLORS } from "../../constants/colors";
+import { COLORS } from "../../../constants/colors";
 import Lottie from "react-lottie";
-import * as Animation from "../../assets/animations/not-found.json";
+import * as Animation from "../../../assets/animations/not-found.json";
 
 const NotFoundPage: React.FC = () => {
   const defaultOptions = {

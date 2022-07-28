@@ -24,7 +24,14 @@ export const AppLayout: React.FC<Props> = ({ children, authorized }) => {
       }}
     >
       <AppHeader authorized={authorized} />
-      <Container maxWidth="lg" sx={{ paddingTop: 5, paddingBottom: 5 }}>
+      <Container
+        maxWidth="lg"
+        sx={{
+          paddingTop: 5,
+          paddingBottom: 5,
+          flex: 1,
+        }}
+      >
         {children}
       </Container>
       <AppFooter authorized={authorized} />
