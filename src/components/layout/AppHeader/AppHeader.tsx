@@ -96,7 +96,8 @@ export const AppHeader: React.FC<Props> = ({ authorized }) => {
               </Box>
               <SmallButton
                 title="Sign out"
-                onClick={() => console.log("Button clicked!")}
+                onClick={() => console.log("Signing you out...")}
+                color="purple_100"
               />
             </Box>
           </Stack>

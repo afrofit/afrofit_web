@@ -1,10 +1,15 @@
 import { CHAMFER } from "./../../constants/globals";
-import { COLORS } from "./../../constants/colors";
+import { COLORS, ColorType } from "./../../constants/colors";
 import styled from "@emotion/styled";
 
-export const CustomButton = styled.button`
+interface Props {
+  color: ColorType;
+  textColor: ColorType;
+}
+export const CustomButton = styled.button<Props>`
   padding: 12px 20px;
-  color: ${COLORS.white};
+  color: ${({ textColor }) => COLORS[textColor]};
+  background-color: ${({ color }) => COLORS[color]};
   font-size: 12px;
   font-weight: 500;
   letter-spacing: 2px;
@@ -13,6 +18,6 @@ export const CustomButton = styled.button`
   text-decoration: none;
   text-align: center;
   display: inline-block;
-  background-color: ${COLORS.fuschia};
   cursor: pointer;
+  border: none;
 `;
