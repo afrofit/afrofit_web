@@ -7,7 +7,7 @@ interface LinkProps {
   color: ColorType;
 }
 
-export const StyledButtonElement = styled(Button)<LinkProps>`
+export const StyledButtonElement = styled.button<LinkProps>`
   height: 300px;
   width: 400px;
   padding: 15px;

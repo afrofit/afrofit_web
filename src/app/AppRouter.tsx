@@ -27,7 +27,8 @@ export const AppRouter: React.FC = () => {
         <AppLayout>
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="*" element={<NotFoundPage />} />
+            <Route path="/*/*" element={<NotFoundPage />} />
+            <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </AppLayout>
       ) : (
