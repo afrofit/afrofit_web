@@ -22,8 +22,8 @@ export const AppLayoutOld: React.FC<Props> = ({ children }) => {
       }}
     >
       <Container sx={{ paddingTop: 5, paddingBottom: 5 }}>
-        <AppHeader />
-        {children} <AppFooter />
+        <AppHeader authorized />
+        {children} <AppFooter authorized />
       </Container>
     </Box>
   );

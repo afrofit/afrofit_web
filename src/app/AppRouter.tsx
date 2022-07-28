@@ -20,52 +20,33 @@ const ForgotPasswordPage = lazy(
 
 export const AppRouter: React.FC = () => {
   const currentUser = useSelector(selectCurrentUserProfile);
+  const userExists = true;
 
   return (
     <Suspense fallback={<FullPageLoadingSpinner isLoading />}>
-      {currentUser ? (
-        <AppLayout>
+      {userExists ? (
+        <AppLayout authorized={userExists}>
           <Routes>
-            <Route path="/" element={<HomePage />} />
+            <Route path="/classes" element={<HomePage />} />
+            <Route path="/events" element={<HomePage />} />
+            <Route path="/shop" element={<HomePage />} />
+            <Route path="/music" element={<HomePage />} />
+            <Route path="/profile" element={<HomePage />} />
             <Route path="/*/*" element={<NotFoundPage />} />
+            <Route path="/" element={<HomePage />} />
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </AppLayout>
       ) : (
-        <Routes>
-          <Route
-            path="/login"
-            element={
-              <NoAuthLayout>
-                <LoginPage />
-              </NoAuthLayout>
-            }
-          />
-          <Route
-            path="/register"
-            element={
-              <NoAuthLayout>
-                <RegisterPage />
-              </NoAuthLayout>
-            }
-          />
-          <Route
-            path="/forgot-password"
-            element={
-              <NoAuthLayout>
-                <ForgotPasswordPage />
-              </NoAuthLayout>
-            }
-          />
-          <Route
-            path="/"
-            element={
-              <AppLayout>
-                <HomePage />
-              </AppLayout>
-            }
-          />
-        </Routes>
+        <AppLayout authorized={userExists}>
+          <Routes>
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+            <Route path="/" element={<HomePage />} />
+            <Route path="*" element={<Navigate to="/" />} />
+          </Routes>
+        </AppLayout>
       )}
     </Suspense>
   );
