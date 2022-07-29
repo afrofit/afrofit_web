@@ -6,6 +6,7 @@ import { StatsCard } from "./components/StatsCard";
 import { IdentCard } from "./components/IdentCard";
 import { RankCard } from "./components/RankCard";
 import { Card } from "../../components/Card/Card";
+import { SubscriptionCard } from "./components/SubscriptionCard";
 
 interface Props {}
 
@@ -14,7 +15,7 @@ const ProfilePage: React.FC<Props> = () => {
     <PageLayout title="Your Profile">
       <Grid container spacing={2} display="flex" alignItems={"stretch"} mb={5}>
         <IdentCard />
-        <RankCard />
+        <RankCard rank="Field Marshal" />
       </Grid>
       <Typography
         sx={{
@@ -30,7 +31,7 @@ const ProfilePage: React.FC<Props> = () => {
         <StatsCard title="Calories Burned" value="101.1k" />
         <StatsCard title="Minutes Danced" value="101.2k" />
         <StatsCard title="Days Active" value="12" />
-        <StatsCard
+        <SubscriptionCard
           color="purple_300"
           title="Subscription Status"
           value="Active"

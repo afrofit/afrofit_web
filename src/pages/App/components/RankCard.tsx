@@ -7,7 +7,11 @@ import { StyledImage } from "../../../components/StyledImage/StyledImage";
 import { COLORS } from "../../../constants/colors";
 import { CardTitle } from "./font.styled";
 
-export const RankCard = () => {
+interface Props {
+  rank: string;
+}
+
+export const RankCard: React.FC<Props> = ({ rank }) => {
   return (
     <Grid item xs={4}>
       <Card height={100} padding={4} justifyContent="center">
@@ -23,14 +27,15 @@ export const RankCard = () => {
           >
             Your Current Rank
           </CardTitle>
-          <Stack
+          <Box
             display="flex"
-            flexDirection="row"
             alignItems="center"
             justifyContent="center"
             width="100%"
+            height="100%"
+            sx={{ marginTop: 2 }}
           >
-            <StyledImage src={RankImage} size={175} mr={5} ml={2} />
+            <StyledImage src={RankImage} size={150} mr={5} ml={2} />
             <Typography
               sx={{
                 color: COLORS.gold,
@@ -40,9 +45,9 @@ export const RankCard = () => {
                 width: "70%",
               }}
             >
-              Field Marshall
+              {rank}
             </Typography>
-          </Stack>
+          </Box>
         </Box>
       </Card>
     </Grid>
