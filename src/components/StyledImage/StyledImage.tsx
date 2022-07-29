@@ -11,7 +11,7 @@ interface Props {
   m?: number;
 }
 
-export const StyledRank: React.FC<Props> = ({
+export const StyledImage: React.FC<Props> = ({
   src,
   size,
   mb,
@@ -24,10 +24,8 @@ export const StyledRank: React.FC<Props> = ({
     <Box
       sx={{
         height: size,
-        width: size,
+        width: "auto",
         cursor: "pointer",
-        borderRadius: 100,
-        overflow: "hidden",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",

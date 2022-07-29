@@ -1,14 +1,34 @@
-import { Grid, Typography } from "@mui/material";
+import { Grid, Stack, Typography } from "@mui/material";
 import { Card } from "../../../components/Card/Card";
-import { COLORS } from "../../../constants/colors";
+import { COLORS, ColorType } from "../../../constants/colors";
+import { CardTitle, StatNumberText } from "./font.styled";
 
-export const StatsCard = () => {
+interface Props {
+  title: string;
+  value: string | number;
+  color?: ColorType;
+}
+export const StatsCard: React.FC<Props> = ({ title, value, color }) => {
   return (
     <Grid item xs={3}>
-      <Card height={100} padding={6}>
-        <Typography sx={{ color: COLORS.white, fontSize: 25, fontWeight: 300 }}>
-          Field Marshall
-        </Typography>
+      <Card height={100} padding={4} justifyContent="center" color={color}>
+        <Stack display="flex" flexDirection={"column"}>
+          <CardTitle
+            sx={{
+              color: COLORS.whiteblue,
+            }}
+          >
+            {title}
+          </CardTitle>
+
+          <StatNumberText
+            sx={{
+              color: COLORS.gold,
+            }}
+          >
+            {value}
+          </StatNumberText>
+        </Stack>
       </Card>
     </Grid>
   );

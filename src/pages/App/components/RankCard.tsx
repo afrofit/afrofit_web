@@ -1,22 +1,49 @@
-import { Grid, Typography } from "@mui/material";
+import { Box, Grid, Stack, Typography } from "@mui/material";
 
 import RankImage from "../../../assets/img/ranks/field_marshall.png";
 
 import { Card } from "../../../components/Card/Card";
-import { StyledRank } from "../../../components/StyledRank/StyledRank";
+import { StyledImage } from "../../../components/StyledImage/StyledImage";
 import { COLORS } from "../../../constants/colors";
+import { CardTitle } from "./font.styled";
 
 export const RankCard = () => {
   return (
     <Grid item xs={4}>
-      <Card height={100} padding={6}>
-        <Typography sx={{ color: COLORS.white, fontSize: 25, fontWeight: 300 }}>
-          Your Current Rank
-        </Typography>
-        <StyledRank src={RankImage} size={150} mb={0} mr={6} />
-        <Typography sx={{ color: COLORS.white, fontSize: 25, fontWeight: 300 }}>
-          Field Marshall
-        </Typography>
+      <Card height={100} padding={4} justifyContent="center">
+        <Box
+          display={"flex"}
+          flexDirection="column"
+          sx={{ height: "100%", alignItems: "center" }}
+        >
+          <CardTitle
+            sx={{
+              color: COLORS.whiteblue,
+            }}
+          >
+            Your Current Rank
+          </CardTitle>
+          <Stack
+            display="flex"
+            flexDirection="row"
+            alignItems="center"
+            justifyContent="center"
+            width="100%"
+          >
+            <StyledImage src={RankImage} size={175} mr={5} ml={2} />
+            <Typography
+              sx={{
+                color: COLORS.gold,
+                fontSize: 35,
+                fontWeight: 300,
+                lineHeight: 1.2,
+                width: "70%",
+              }}
+            >
+              Field Marshall
+            </Typography>
+          </Stack>
+        </Box>
       </Card>
     </Grid>
   );

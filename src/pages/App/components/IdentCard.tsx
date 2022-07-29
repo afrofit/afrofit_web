@@ -7,15 +7,20 @@ import AppLogo from "../../../assets/img/dp.jpg";
 export const IdentCard = () => {
   return (
     <Grid item xs={8}>
-      <Card height={100} padding={6}>
+      <Card
+        height={100}
+        padding={6}
+        justifyContent="center"
+        alignItems="center"
+      >
         <StyledAvatar src={AppLogo} size={250} mb={0} mr={6} />
         <Stack
           sx={{
             display: "flex",
             flexDirection: "column",
             alignItems: "flex-start",
+            justifyContent: "center",
             flex: 1,
-            height: "100%",
             color: COLORS.white,
           }}
         >
@@ -24,13 +29,23 @@ export const IdentCard = () => {
               fontSize: 45,
               fontWeight: 400,
               color: COLORS.orange_200,
-              marginBottom: 3,
+              marginBottom: -1,
+            }}
+          >
+            Olasupo Odebiyi
+          </Typography>
+          <Typography
+            sx={{
+              fontSize: 25,
+              fontWeight: 300,
+              color: COLORS.orange_100,
+              marginBottom: 2,
             }}
           >
             @olasupoodebiyi
           </Typography>
-          <Typography sx={{ fontSize: 25, fontWeight: 300 }}>
-            Olasupo Odebiyi
+          <Typography sx={{ fontSize: 20, fontWeight: 400, marginBottom: 1 }}>
+            olasupoodebiyi@yahoo.com
           </Typography>
           <Typography
             sx={{
@@ -41,7 +56,7 @@ export const IdentCard = () => {
               textTransform: "uppercase",
             }}
           >
-            Joined since 24th June 2021
+            Member since 24th June 2021
           </Typography>
         </Stack>
       </Card>

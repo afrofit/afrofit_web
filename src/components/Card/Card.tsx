@@ -8,6 +8,7 @@ interface Props {
   color?: ColorType;
   outlineColor?: ColorType;
   justifyContent?: "center" | "flex-start" | "flex-end";
+  alignItems?: "center" | "flex-start" | "flex-end";
   padding?: number;
   height?: number;
 }
@@ -17,6 +18,7 @@ export const Card: React.FC<Props> = ({
   color = "dark_300",
   outlineColor = "dark_200",
   justifyContent = "flex-start",
+  alignItems = "flex-start",
   padding = 4,
   height = 50,
 }) => {
@@ -30,7 +32,7 @@ export const Card: React.FC<Props> = ({
         marginBottom: 1,
         overflow: "hidden",
         display: "flex",
-        alignItems: "center",
+        alignItems,
         justifyContent,
         position: "relative",
         padding,
