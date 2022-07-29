@@ -7,17 +7,23 @@ interface Props {
   children: React.ReactNode;
   color?: ColorType;
   outlineColor?: ColorType;
+  justifyContent?: "center" | "flex-start" | "flex-end";
+  padding?: number;
+  height?: number;
 }
 
 export const Card: React.FC<Props> = ({
   children,
   color = "dark_300",
   outlineColor = "dark_200",
+  justifyContent = "flex-start",
+  padding = 4,
+  height = 50,
 }) => {
   return (
     <Box
       sx={{
-        minHeight: 50,
+        minHeight: `${height}%`,
         borderRadius: CHAMFER,
         width: "100%",
         backgroundColor: COLORS[color],
@@ -25,9 +31,9 @@ export const Card: React.FC<Props> = ({
         overflow: "hidden",
         display: "flex",
         alignItems: "center",
-        justifyContent: "flex-start",
+        justifyContent,
         position: "relative",
-        padding: 4,
+        padding,
         boxShadow: `box-shadow: 1px 1px 15px -3px ${COLORS.black}`,
         border: `1px solid ${COLORS[outlineColor]}`,
       }}
