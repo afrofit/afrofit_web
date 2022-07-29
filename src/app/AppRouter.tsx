@@ -8,7 +8,8 @@ import { FullPageLoadingSpinner } from "../components/elements/FullPageLoadingSp
 import { useSelector } from "react-redux";
 import { selectCurrentUserProfile } from "../store/reducers/auth/auth.slice";
 
-const HomePage = lazy(() => import("../pages/HomePage/HomePage"));
+// No auth pages
+const WelcomePage = lazy(() => import("../pages/Auth/WelcomePage/WelcomePage"));
 const LoginPage = lazy(() => import("../pages/Auth/LoginPage/LoginPage"));
 const RegisterPage = lazy(
   () => import("../pages/Auth/RegisterPage/RegisterPage")
@@ -29,7 +30,7 @@ const ClassesPage = lazy(() => import("../pages/App/ClassesPage"));
 
 export const AppRouter: React.FC = () => {
   const currentUser = useSelector(selectCurrentUserProfile);
-  const userExists = true;
+  const userExists = false;
 
   return (
     <Suspense fallback={<FullPageLoadingSpinner isLoading />}>
@@ -42,7 +43,7 @@ export const AppRouter: React.FC = () => {
             <Route path="/music" element={<MusicPage />} />
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/*/*" element={<NotFoundPage />} />
-            <Route path="/" element={<HomePage />} />
+            <Route path="/" element={<ProfilePage />} />
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </AppLayout>
@@ -52,7 +53,7 @@ export const AppRouter: React.FC = () => {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/forgot-password" element={<ForgotPasswordPage />} />
-            <Route path="/" element={<HomePage />} />
+            <Route path="/" element={<WelcomePage />} />
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </AppLayout>
