@@ -3,7 +3,7 @@ import * as React from "react";
 import { LinkButton } from "../../../components/Buttons/LinkButton";
 import { COLORS } from "../../../constants/colors";
 import { StatsCard } from "../../App/components/StatsCard";
-import { HomeBensCard } from "../components/HomeBensCard";
+import { WelcomeCard } from "../components/WelcomeCard";
 
 const titleFontStyles: React.CSSProperties = {
   fontSize: 90,
@@ -60,7 +60,7 @@ const WelcomePage: React.FC = () => {
         mb={5}
       >
         <LinkButton
-          color="purple_200"
+          color="pink_200"
           textColor="fuschia"
           title="existing member?"
           route="/join-us"
@@ -72,10 +72,38 @@ const WelcomePage: React.FC = () => {
           route="/join-us"
         />
       </Stack>
-      <Grid container spacing={2} display="flex" alignItems={"stretch"} mb={5}>
-        <HomeBensCard title="Calories Burned" value="101.1k" />
-        <HomeBensCard title="Minutes Danced" value="101.2k" />
-        <HomeBensCard title="Days Active" value="12" />
+
+      <Typography
+        sx={{
+          fontSize: 20,
+          color: COLORS.whiteblue,
+          marginBottom: 3,
+          marginTop: 2,
+          textTransform: "uppercase",
+          letterSpacing: 2,
+        }}
+      >
+        A few membership benefits
+      </Typography>
+      <Grid container spacing={2} display="flex" alignItems="stretch" mb={0}>
+        <WelcomeCard
+          image="one"
+          color="orange_200"
+          title="Fitness Programs"
+          subtitle="Join fitness programs and track your activity from our app"
+        />
+        <WelcomeCard
+          image="two"
+          color="hilite_purpink"
+          title="MealPlan plus"
+          subtitle="Follow expert-curated meal plans for your fitness goals"
+        />
+        <WelcomeCard
+          image="three"
+          color="pink_200"
+          title="Exclusive events"
+          subtitle="Get invited to  members-only social events"
+        />
       </Grid>
     </Box>
   );
