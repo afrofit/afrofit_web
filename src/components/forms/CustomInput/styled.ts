@@ -1,48 +1,51 @@
 import styled from "@emotion/styled";
+import { Box } from "@mui/material";
 import { COLORS } from "../../../constants/colors";
 import { CHAMFER } from "../../../constants/globals";
 
 interface Props {
-	focused: boolean;
+  focused: boolean;
 }
 
 export const IconWrapper = styled.div`
-	height: 100%;
-	width: 35px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	transition: 0.2s ease-in-out;
+  height: 100%;
+  width: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.2s ease-in-out;
 `;
 
 export const StyledInput = styled.input`
-	border: none;
-	background: none;
-	background-color: transparent;
-	outline: none;
-	font-size: 20px;
-	color: ${COLORS.white};
-	width: 100%;
-	margin-left: 15px;
-	height: 100%;
+  border: none;
+  background: none;
+  background-color: transparent;
+  outline: none;
+  font-size: 20px;
+  color: ${COLORS.white};
+  width: 100%;
+  margin-left: 15px;
+  height: 100%;
 `;
 
 export const StyledInputWrapper = styled.div<Props>`
-	height: ${({ focused }) => (focused ? "65px" : "60px")};
-	border-radius: 10px;
-	border-width: ${({ focused }) => (focused ? "3px" : "2px")};
-	border-style: solid;
-	border-color: ${COLORS.hilite_purpink};
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;
-	padding: 15px;
-	margin: 0;
-	transition: 0.2s ease-in-out;
+  height: ${({ focused }) => (focused ? "65px" : "60px")};
+  border-radius: 10px;
+  border-width: ${({ focused }) => (focused ? "3px" : "2px")};
+  border-style: solid;
+  border-color: ${COLORS.hilite_purpink};
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  margin: 0;
+  transition: 0.2s ease-in-out;
+  flex: 1;
 `;
 
-export const StyledWrapper = styled.div`
-	display: flex;
-	flex-direction: column;
+export const StyledWrapper = styled(Box)`
+  display: flex;
+  width: 100%;
+  flex-direction: column;
 `;

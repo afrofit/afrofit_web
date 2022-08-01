@@ -1,4 +1,4 @@
-import { Stack, Typography } from "@mui/material";
+import { Box, Container, Stack, Typography } from "@mui/material";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import * as z from "zod";
@@ -57,102 +57,104 @@ const RegisterPage = () => {
   };
 
   return (
-    <Stack display="flex" flexDirection="column" sx={{ width: "100%" }}>
-      <Typography
-        sx={{
-          fontSize: 50,
-          fontWeight: 400,
-          lineHeight: 1.2,
-          color: COLORS.white,
-          textAlign: "center",
-          backgroundImage: `linear-gradient(45deg, ${COLORS.orange_200}, ${COLORS.hilite_purpink})`,
-          WebkitBackgroundClip: "text",
-          WebkitTextFillColor: "transparent",
-          borderRadius: 2,
-          marginBottom: 5,
-        }}
-      >
-        Register an account
-      </Typography>
-      <Card>
-        <Stack display="flex" flexDirection="column" width="100%" spacing={3}>
-          <Stack
-            display={"flex"}
-            flexDirection="row"
-            columnGap={2}
-            width="100%"
-          >
-            <CustomInputElement
-              name="name_first"
-              label="First Name"
-              control={control}
-              type="text"
-              icon="person"
-            />
-            <CustomInputElement
-              name="name_last"
-              label="Last Name"
-              control={control}
-              type="text"
-              icon="person"
-            />
-          </Stack>
-          <Stack
-            display={"flex"}
-            flexDirection="row"
-            columnGap={2}
-            width="100%"
-          >
-            <CustomInputElement
-              name="username"
-              label="Username"
-              control={control}
-              type="text"
-              icon="lock"
-            />
+    <Container maxWidth="md">
+      <Stack display="flex" flexDirection="column" sx={{ width: "100%" }}>
+        <Typography
+          sx={{
+            fontSize: 50,
+            fontWeight: 400,
+            lineHeight: 1.2,
+            color: COLORS.white,
+            textAlign: "center",
+            backgroundImage: `linear-gradient(45deg, ${COLORS.orange_200}, ${COLORS.hilite_purpink})`,
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            borderRadius: 2,
+            marginBottom: 5,
+          }}
+        >
+          Register an account
+        </Typography>
+        <Card>
+          <Stack display="flex" flexDirection="column" width="100%" spacing={3}>
+            <Stack
+              display={"flex"}
+              flexDirection="row"
+              columnGap={2}
+              width="100%"
+            >
+              <CustomInputElement
+                name="name_first"
+                label="First Name"
+                control={control}
+                type="text"
+                icon="person"
+              />
+              <CustomInputElement
+                name="name_last"
+                label="Last Name"
+                control={control}
+                type="text"
+                icon="person"
+              />
+            </Stack>
+            <Stack
+              display={"flex"}
+              flexDirection="row"
+              columnGap={2}
+              width="100%"
+            >
+              <CustomInputElement
+                name="username"
+                label="Username"
+                control={control}
+                type="text"
+                icon="lock"
+              />
 
-            <CustomInputElement
-              name="email"
-              label="Email"
-              control={control}
-              type="email"
-              icon="mail"
-            />
+              <CustomInputElement
+                name="email"
+                label="Email"
+                control={control}
+                type="email"
+                icon="mail"
+              />
+            </Stack>
+            <Stack
+              display={"flex"}
+              flexDirection="row"
+              columnGap={2}
+              width="100%"
+            >
+              <CustomInputElement
+                name="password"
+                label="Password"
+                control={control}
+                type="password"
+                icon="lock"
+              />
+              <CustomInputElement
+                name="confirm_password"
+                label="Confirm Password"
+                control={control}
+                type="password"
+                icon="lock"
+              />
+            </Stack>
           </Stack>
-          <Stack
-            display={"flex"}
-            flexDirection="row"
-            columnGap={2}
-            width="100%"
-          >
-            <CustomInputElement
-              name="password"
-              label="Password"
-              control={control}
-              type="password"
-              icon="lock"
-            />
-            <CustomInputElement
-              name="confirm_password"
-              label="Confirm Password"
-              control={control}
-              type="password"
-              icon="lock"
-            />
-          </Stack>
-        </Stack>
-      </Card>
-      <StyledLargeButton
-        onClick={handleSubmit(onSubmit)}
-        title="Create Account"
-        color="fuschia"
-      />
-      <StyledClearButton
-        onClick={() => navigation("/login")}
-        title="I already have an account"
-        color="fuschia"
-      />
-    </Stack>
+        </Card>
+        <StyledLargeButton
+          onClick={handleSubmit(onSubmit)}
+          title="Create Account"
+          color="fuschia"
+        />
+        <StyledClearButton
+          onClick={() => navigation("/login")}
+          title="I already have an account"
+          color="fuschia"
+        />
+      </Stack>
+    </Container>
   );
 };
 

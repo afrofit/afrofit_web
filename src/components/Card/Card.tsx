@@ -11,6 +11,7 @@ interface Props {
   alignItems?: "center" | "flex-start" | "flex-end";
   padding?: number;
   height?: number;
+  minHeight?: number;
 }
 
 export const Card: React.FC<Props> = ({
@@ -20,12 +21,14 @@ export const Card: React.FC<Props> = ({
   justifyContent = "flex-start",
   alignItems = "flex-start",
   padding = 4,
-  height = 50,
+  minHeight = 50,
+  height,
 }) => {
   return (
     <Box
       sx={{
-        minHeight: `${height}%`,
+        minHeight: `${minHeight}%`,
+        ...(height && { height: height }),
         borderRadius: CHAMFER,
         width: "100%",
         backgroundColor: COLORS[color],

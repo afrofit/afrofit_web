@@ -117,7 +117,11 @@ export const AppHeader: React.FC<Props> = ({ authorized }) => {
       <Container maxWidth="xl" sx={{ paddingTop: 5, paddingBottom: 5 }}>
         <Stack sx={{}}>
           <Box
-            sx={{ height: "85px", cursor: "pointer" }}
+            sx={{
+              height: "85px",
+              width: "300px",
+              cursor: "pointer",
+            }}
             onClick={() => navigate("/")}
           >
             <img src={AppLogo} alt="the Afrofit logo" height={"100%"} />

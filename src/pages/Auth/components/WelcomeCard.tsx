@@ -23,13 +23,13 @@ export const WelcomeCard: React.FC<Props> = ({
 
   return (
     <Grid item xs={4}>
-      <Card height={100} padding={0} color={color}>
+      <Card height={320} padding={0} color={color}>
         <Box sx={{ position: "relative", height: 320, padding: 2 }}>
-          <Box sx={{ position: "absolute", top: 0, left: 0 }}>
+          <Box sx={{ position: "absolute", top: 0, left: -10 }}>
             <StyledImage size={350} src={heroImage} />
           </Box>
 
-          <Box sx={{ position: "absolute", top: 100, left: 180 }}>
+          <Box sx={{ position: "absolute", top: 30, left: 180 }}>
             <Typography
               sx={{
                 color: COLORS.dark_200,
@@ -37,7 +37,7 @@ export const WelcomeCard: React.FC<Props> = ({
                 fontSize: 45,
                 zIndex: 10,
                 lineHeight: 1,
-                marginBottom: 2,
+                marginBottom: 3,
               }}
             >
               {title}
@@ -46,9 +46,9 @@ export const WelcomeCard: React.FC<Props> = ({
               sx={{
                 color: COLORS.white,
                 fontWeight: 400,
-                fontSize: 20,
+                fontSize: 18,
                 zIndex: 10,
-                lineHeight: 1.2,
+                lineHeight: 1.3,
               }}
             >
               {subtitle}

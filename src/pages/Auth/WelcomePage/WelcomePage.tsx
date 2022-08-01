@@ -63,7 +63,7 @@ const WelcomePage: React.FC = () => {
           color="pink_200"
           textColor="fuschia"
           title="existing member?"
-          route="/join-us"
+          route="/login"
         />
         <LinkButton
           color="purple_200"
@@ -87,13 +87,13 @@ const WelcomePage: React.FC = () => {
       </Typography>
       <Grid container spacing={2} display="flex" alignItems="stretch" mb={0}>
         <WelcomeCard
-          image="one"
+          image="two"
           color="orange_200"
           title="Fitness Programs"
           subtitle="Join fitness programs and track your activity from our app"
         />
         <WelcomeCard
-          image="two"
+          image="one"
           color="hilite_purpink"
           title="MealPlan plus"
           subtitle="Follow expert-curated meal plans for your fitness goals"

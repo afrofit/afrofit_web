@@ -10,6 +10,7 @@ import { selectCurrentUserProfile } from "../store/reducers/auth/auth.slice";
 
 // No auth pages
 const WelcomePage = lazy(() => import("../pages/Auth/WelcomePage/WelcomePage"));
+const JoinUsPage = lazy(() => import("../pages/Auth/JoinUsPage/JoinUsPage"));
 const LoginPage = lazy(() => import("../pages/Auth/LoginPage/LoginPage"));
 const RegisterPage = lazy(
   () => import("../pages/Auth/RegisterPage/RegisterPage")
@@ -51,6 +52,7 @@ export const AppRouter: React.FC = () => {
         <AppLayout authorized={userExists}>
           <Routes>
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/join-us" element={<JoinUsPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/forgot-password" element={<ForgotPasswordPage />} />
             <Route path="/" element={<WelcomePage />} />

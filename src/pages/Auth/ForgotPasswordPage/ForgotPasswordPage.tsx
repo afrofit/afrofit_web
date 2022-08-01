@@ -5,11 +5,11 @@ import { Stack, Typography } from "@mui/material";
 import { Card } from "../../../components/Card/Card";
 import { COLORS } from "../../../constants/colors";
 import { StyledLargeButton } from "../../../components/elements/StyledLargeButton/StyledLargeButton";
-import { CustomInput } from "../../../components/forms/CustomInput";
 import { StyledClearButton } from "../../../components/elements/StyledClearButton/StyledClearButton";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { ResetPassword } from "../../../store/reducers/auth/thunks/forgot-password.thunk";
+import { CustomInputElement } from "../../../components/forms/CustomInput/CustomInputElement";
 
 const ForgotPasswordPage = () => {
   const navigation = useNavigate();
@@ -46,11 +46,13 @@ const ForgotPasswordPage = () => {
       </Typography>
       <Card>
         <Stack display="flex" flexDirection="column" width="100%" spacing={3}>
-          <CustomInput
-            label="Email"
+          <CustomInputElement
             name="email"
+            label="Email"
             control={control}
-            placeholder="Username"
+            placeholder="Your email.."
+            type="text"
+            icon="mail"
           />
         </Stack>
       </Card>
