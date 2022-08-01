@@ -8,7 +8,7 @@ export const IdentCard = () => {
   return (
     <Grid item xs={8}>
       <Card
-        height={100}
+        height={300}
         padding={6}
         justifyContent="center"
         alignItems="center"

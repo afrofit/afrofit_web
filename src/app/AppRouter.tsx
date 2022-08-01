@@ -5,8 +5,13 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import { AppLayout } from "../components/layout/AppLayout/AppLayout";
 
 import { FullPageLoadingSpinner } from "../components/elements/FullPageLoadingSpinner";
-import { useSelector } from "react-redux";
-import { selectCurrentUserProfile } from "../store/reducers/auth/auth.slice";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  selectCurrentUserProfile,
+  setCurrentUser,
+} from "../store/reducers/auth/auth.slice";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../config/firebase";
 
 // No auth pages
 const WelcomePage = lazy(() => import("../pages/Auth/WelcomePage/WelcomePage"));
@@ -30,8 +35,25 @@ const ShopPage = lazy(() => import("../pages/App/ShopPage"));
 const ClassesPage = lazy(() => import("../pages/App/ClassesPage"));
 
 export const AppRouter: React.FC = () => {
+  const dispatch = useDispatch();
+  const [userExists, setUserExists] = React.useState(false);
   const currentUser = useSelector(selectCurrentUserProfile);
-  const userExists = false;
+
+  React.useEffect(() => {
+    const subbedUser = onAuthStateChanged(auth, (user) => {
+      if (user != null) {
+        // There's a user
+        console.log("user", user);
+        setUserExists(true);
+      } else {
+        // There's no user
+        console.log("There's no user");
+        setUserExists(false);
+      }
+    });
+
+    return () => subbedUser();
+  }, []);
 
   return (
     <Suspense fallback={<FullPageLoadingSpinner isLoading />}>

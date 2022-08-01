@@ -15,7 +15,7 @@ interface Props {
 export const SubscriptionCard: React.FC<Props> = ({ title, value, color }) => {
   return (
     <Grid item xs={3}>
-      <Card height={100} padding={4} justifyContent="center" color={color}>
+      <Card height={250} padding={4} justifyContent="center" color={color}>
         <Stack display="flex" flexDirection={"column"}>
           <CardTitle
             sx={{

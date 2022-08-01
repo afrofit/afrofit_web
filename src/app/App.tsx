@@ -3,10 +3,7 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ErrorDialog } from "../components/dialogs/ErrorDialog";
 import { FullPageLoadingSpinner } from "../components/elements/FullPageLoadingSpinner";
-import { USER_STORAGE_KEY } from "../constants.config";
 import { theme } from "../constants/theme";
-import { useAuth } from "../hooks/useAuth";
-import { setCurrentUser } from "../store/reducers/auth/auth.slice";
 import {
   hideGenericErrorDialog,
   selectShowGenericErrorDialog,
@@ -16,16 +13,6 @@ import { AppRouter } from "./AppRouter";
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
-
-  React.useEffect(() => {
-    dispatch(
-      setCurrentUser(() =>
-        JSON.parse(localStorage.getItem(USER_STORAGE_KEY) || "{}")
-      )
-    );
-  }, [dispatch]);
-
-  useAuth();
 
   const isLoading = useSelector(selectUiIsLoading);
   const errorMessage = useSelector(selectShowGenericErrorDialog);
