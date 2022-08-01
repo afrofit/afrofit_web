@@ -31,13 +31,13 @@ const JoinUsPage = () => {
       <Container maxWidth="md">
         <Stack display={"flex"} flexDirection="row" columnGap={2} mb={1}>
           <BenefitsCard
-            title="Benefit Card Title 1"
+            title="Healthy Customized Meal Plans"
             subtitle="Benefit Card Title 1"
             color="purple_100"
             src={Image}
           />
           <BenefitsCard
-            title="Benefit Card Title 2"
+            title="Fantastic App for Android and IOS"
             subtitle="Benefit Card Title 1"
             color="purple_200"
             src={Image}
@@ -45,13 +45,13 @@ const JoinUsPage = () => {
         </Stack>
         <Stack display={"flex"} flexDirection="row" columnGap={2} mb={4}>
           <BenefitsCard
-            title="Benefit Card Title 3"
+            title="Unforgettable Year-Round Events"
             subtitle="Benefit Card Title 1"
             color="orange_100"
             src={Image}
           />
           <BenefitsCard
-            title="Benefit Card Title 4"
+            title="Heavily Discounted Marketplace"
             subtitle="Benefit Card Title 1"
             color="orange_200"
             src={Image}

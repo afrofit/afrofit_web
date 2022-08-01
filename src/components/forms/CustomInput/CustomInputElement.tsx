@@ -16,7 +16,7 @@ interface Props {
   label?: string;
   control: any;
   placeholder?: string;
-  icon?: string;
+  icon?: "person" | "mail" | "lock" | "user";
 }
 
 export const CustomInputElement: React.FC<Props> = ({
@@ -29,8 +29,35 @@ export const CustomInputElement: React.FC<Props> = ({
 }) => {
   const [focused, setFocused] = React.useState(false);
 
-  const IconComponent =
-    icon === "person" ? User : "mail" ? Mail : "lock" ? Lock : User;
+  const getIcon = React.useCallback(() => {
+    if (icon === "user")
+      return (
+        <User
+          color={focused ? COLORS.gold : COLORS.whiteblue}
+          size={focused ? 30 : 25}
+        />
+      );
+    if (icon === "mail")
+      return (
+        <Mail
+          color={focused ? COLORS.gold : COLORS.whiteblue}
+          size={focused ? 30 : 25}
+        />
+      );
+    if (icon === "lock")
+      return (
+        <Lock
+          color={focused ? COLORS.gold : COLORS.whiteblue}
+          size={focused ? 30 : 25}
+        />
+      );
+    return (
+      <User
+        color={focused ? COLORS.gold : COLORS.whiteblue}
+        size={focused ? 30 : 25}
+      />
+    );
+  }, [icon, focused]);
 
   return (
     <Controller
@@ -55,12 +82,7 @@ export const CustomInputElement: React.FC<Props> = ({
             </Typography>
           )}
           <StyledInputWrapper focused={focused}>
-            <IconWrapper>
-              <IconComponent
-                color={focused ? COLORS.gold : COLORS.whiteblue}
-                size={focused ? 30 : 25}
-              />
-            </IconWrapper>
+            <IconWrapper>{getIcon()}</IconWrapper>
             <StyledInput
               onFocus={() => setFocused(true)}
               onBlur={() => {
