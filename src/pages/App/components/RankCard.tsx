@@ -7,11 +7,20 @@ import { StyledImage } from "../../../components/StyledImage/StyledImage";
 import { COLORS } from "../../../constants/colors";
 import { CardTitle } from "./font.styled";
 
+const RANKS_DATA: { [key: number]: string } = {
+  1: "General",
+  2: "Major",
+  3: "Captain",
+  4: "Officer",
+  5: "Recruit",
+};
+
 interface Props {
-  rank: string;
+  rank: number;
 }
 
 export const RankCard: React.FC<Props> = ({ rank }) => {
+  const image = require(`../../../assets/img/ranks/${rank}.png`);
   return (
     <Grid item xs={4}>
       <Card height={300} padding={4} justifyContent="center">
@@ -35,7 +44,7 @@ export const RankCard: React.FC<Props> = ({ rank }) => {
             height="100%"
             sx={{ marginTop: 2 }}
           >
-            <StyledImage src={RankImage} size={150} mr={5} ml={2} />
+            <StyledImage src={image} size={150} mr={5} ml={2} />
             <Typography
               sx={{
                 color: COLORS.gold,
@@ -45,7 +54,7 @@ export const RankCard: React.FC<Props> = ({ rank }) => {
                 width: "70%",
               }}
             >
-              {rank}
+              {RANKS_DATA[rank]}
             </Typography>
           </Box>
         </Box>

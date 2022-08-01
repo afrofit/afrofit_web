@@ -15,7 +15,7 @@ const ProfilePage: React.FC<Props> = () => {
     <PageLayout title="Your Profile">
       <Grid container spacing={2} display="flex" alignItems={"stretch"} mb={5}>
         <IdentCard />
-        <RankCard rank="Field Marshal" />
+        <RankCard rank={1} />
       </Grid>
       <Typography
         sx={{

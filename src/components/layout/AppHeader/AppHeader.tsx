@@ -1,8 +1,10 @@
 import { Box, Container, Divider, Stack, Typography } from "@mui/material";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import AppLogo from "../../../assets/img/logofull_nobg.png";
 import { COLORS } from "../../../constants/colors";
+import { SignOut } from "../../../store/reducers/auth/thunks/sign-out.thunk";
 import { SmallButton } from "../../Buttons/SmallButton";
 import { StyledNavLink } from "./StyledNavLink";
 
@@ -11,6 +13,7 @@ interface Props {
 }
 
 export const AppHeader: React.FC<Props> = ({ authorized }) => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   if (authorized)
@@ -96,7 +99,7 @@ export const AppHeader: React.FC<Props> = ({ authorized }) => {
               </Box>
               <SmallButton
                 title="Sign out"
-                onClick={() => console.log("Signing you out...")}
+                onClick={() => dispatch(SignOut())}
                 color="purple_100"
               />
             </Box>
