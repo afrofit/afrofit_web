@@ -9,7 +9,7 @@ import { SmallButton } from "../../Buttons/SmallButton";
 import { StyledNavLink } from "./StyledNavLink";
 
 interface Props {
-  authorized: boolean;
+  authorized: boolean | null;
 }
 
 export const AppHeader: React.FC<Props> = ({ authorized }) => {

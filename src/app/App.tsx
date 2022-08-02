@@ -1,9 +1,11 @@
-import { CssBaseline, ThemeProvider } from "@mui/material";
+import { CssBaseline, ThemeProvider, Typography } from "@mui/material";
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ErrorDialog } from "../components/dialogs/ErrorDialog";
 import { FullPageLoadingSpinner } from "../components/elements/FullPageLoadingSpinner";
+import { AppLayout } from "../components/layout/AppLayout/AppLayout";
 import { theme } from "../constants/theme";
+import { useAuth } from "../hooks/useAuth";
 import {
   hideGenericErrorDialog,
   selectShowGenericErrorDialog,
@@ -16,6 +18,18 @@ const App: React.FC = () => {
 
   const isLoading = useSelector(selectUiIsLoading);
   const errorMessage = useSelector(selectShowGenericErrorDialog);
+
+  const { pending } = useAuth();
+
+  // if (pending) {
+  //   return (
+  //     <AppLayout authorized={false}>
+  //       <Typography sx={{ fontSize: 100, color: "white" }}>
+  //         Loading...
+  //       </Typography>
+  //     </AppLayout>
+  //   );
+  // }
 
   return (
     <ThemeProvider theme={theme}>

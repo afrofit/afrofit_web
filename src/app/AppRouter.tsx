@@ -6,12 +6,9 @@ import { AppLayout } from "../components/layout/AppLayout/AppLayout";
 
 import { FullPageLoadingSpinner } from "../components/elements/FullPageLoadingSpinner";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  selectCurrentUserProfile,
-  setCurrentUser,
-} from "../store/reducers/auth/auth.slice";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../config/firebase";
+import { selectCurrentUser } from "../store/reducers/auth/auth.slice";
+import { useAuth } from "../hooks/useAuth";
+import { Typography } from "@mui/material";
 
 // No auth pages
 const WelcomePage = lazy(() => import("../pages/Auth/WelcomePage/WelcomePage"));
@@ -35,30 +32,13 @@ const ShopPage = lazy(() => import("../pages/App/ShopPage"));
 const ClassesPage = lazy(() => import("../pages/App/ClassesPage"));
 
 export const AppRouter: React.FC = () => {
-  const dispatch = useDispatch();
-  const [userExists, setUserExists] = React.useState(false);
-  const currentUser = useSelector(selectCurrentUserProfile);
-
-  React.useEffect(() => {
-    const subbedUser = onAuthStateChanged(auth, (user) => {
-      if (user != null) {
-        // There's a user
-        console.log("user", user);
-        setUserExists(true);
-      } else {
-        // There's no user
-        console.log("There's no user");
-        setUserExists(false);
-      }
-    });
-
-    return () => subbedUser();
-  }, []);
+  const currentUser = useSelector(selectCurrentUser);
+  const subscribed = false;
 
   return (
     <Suspense fallback={<FullPageLoadingSpinner isLoading />}>
-      {userExists ? (
-        <AppLayout authorized={userExists}>
+      {currentUser ? (
+        <AppLayout authorized={true}>
           <Routes>
             <Route path="/classes" element={<ClassesPage />} />
             <Route path="/events" element={<EventsPage />} />
@@ -66,12 +46,12 @@ export const AppRouter: React.FC = () => {
             <Route path="/music" element={<MusicPage />} />
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/*/*" element={<NotFoundPage />} />
-            <Route path="/" element={<ProfilePage />} />
+            <Route path="/" element={<Navigate to="/profile" />} />
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </AppLayout>
       ) : (
-        <AppLayout authorized={userExists}>
+        <AppLayout authorized={false}>
           <Routes>
             <Route path="/login" element={<LoginPage />} />
             <Route path="/join-us" element={<JoinUsPage />} />

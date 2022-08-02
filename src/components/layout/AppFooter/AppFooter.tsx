@@ -1,11 +1,9 @@
 import { Box, Typography } from "@mui/material";
 import { COLORS } from "../../../constants/colors";
-import { CHAMFER } from "../../../constants/globals";
 import logo from "../../../assets/img/logofull_nobg.png";
-import { NavLinks } from "../AppHeader/NavLinks";
 
 interface Props {
-  authorized: boolean;
+  authorized: boolean | null;
 }
 
 export const AppFooter: React.FC<Props> = ({ authorized }) => {
