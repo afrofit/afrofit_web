@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Box, Grid, Typography } from "@mui/material";
 import { PageLayout } from "../../components/layout/PageLayout/PageLayout";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { COLORS } from "../../constants/colors";
 import { StatsCard } from "./components/StatsCard";
@@ -11,12 +11,24 @@ import { Card } from "../../components/Card/Card";
 import { SubscriptionCard } from "./components/SubscriptionCard";
 import { selectCurrentUserProfile } from "../../store/reducers/auth/auth.slice";
 import { NotificationBackdrop } from "../../components/elements/NotificationBackdrop";
+import { GetUserPerformance } from "../../store/reducers/app/thunks/get-user-performance.thunk";
+import { selectUserPerformance } from "../../store/reducers/app/performance.slice";
 
 interface Props {}
 
 const ProfilePage: React.FC<Props> = () => {
+  const dispatch = useDispatch();
   const user = useSelector(selectCurrentUserProfile);
+  const userPerformance = useSelector(selectUserPerformance);
   const [showNotification, setShowNotification] = React.useState(false);
+
+  React.useEffect(() => {
+    user && dispatch(GetUserPerformance(user.user_id));
+  }, [user, dispatch]);
+
+  React.useEffect(() => {
+    console.log("userPerformance", userPerformance);
+  }, [userPerformance]);
 
   return (
     <>
@@ -52,9 +64,18 @@ const ProfilePage: React.FC<Props> = () => {
           alignItems={"stretch"}
           mb={5}
         >
-          <StatsCard title="Calories Burned" value="101.1k" />
-          <StatsCard title="Minutes Danced" value="101.2k" />
-          <StatsCard title="Days Active" value="12" />
+          <StatsCard
+            title="Total Dance Moves"
+            value={userPerformance?.danceMoves}
+          />
+          <StatsCard
+            title="Minutes Danced"
+            value={userPerformance?.minutesDanced}
+          />
+          <StatsCard
+            title="Calories Burned"
+            value={userPerformance?.caloriesBurned}
+          />
           <SubscriptionCard
             color="purple_300"
             title="Subscription Status"

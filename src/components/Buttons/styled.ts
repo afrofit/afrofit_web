@@ -6,11 +6,11 @@ import { NavLink } from "react-router-dom";
 
 interface Props {
   color?: ColorType;
-  textColor?: ColorType;
+  textcolor?: ColorType;
 }
 export const CustomButton = styled.button<Props>`
   padding: 12px 20px;
-  color: ${({ textColor }) => textColor && COLORS[textColor]};
+  color: ${({ textcolor }) => textcolor && COLORS[textcolor]};
   background-color: ${({ color }) => color && COLORS[color]};
   font-size: 12px;
   font-weight: 500;
@@ -43,7 +43,7 @@ export const StyledNavLink = styled(NavLink)<Props>`
 
 export const LinkButtonText = styled(Typography)<Props>`
   font-size: 20px;
-  color: ${({ textColor }) => textColor && COLORS[textColor]};
+  color: ${({ textcolor }) => textcolor && COLORS[textcolor]};
   text-align: center;
   margin-right: auto;
   letter-spacing: 1px;

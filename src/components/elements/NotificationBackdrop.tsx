@@ -37,13 +37,13 @@ export const NotificationBackdrop: React.FC<Props> = ({
         <Stack display="flex" flexDirection="row" columnGap={2}>
           <SmallButton
             color="purple_200"
-            textColor="fuschia"
+            textcolor="fuschia"
             title="Find out more"
             onClick={() => null}
           />
           <SmallButton
             color="purple_200"
-            textColor="fuschia"
+            textcolor="fuschia"
             title="Dismiss"
             onClick={onClose}
           />

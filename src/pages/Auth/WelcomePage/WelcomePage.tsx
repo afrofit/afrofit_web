@@ -61,13 +61,13 @@ const WelcomePage: React.FC = () => {
       >
         <LinkButton
           color="pink_200"
-          textColor="fuschia"
+          textcolor="fuschia"
           title="existing member?"
           route="/login"
         />
         <LinkButton
           color="purple_200"
-          textColor="fuschia"
+          textcolor="fuschia"
           title="Find out more"
           route="/join-us"
         />

@@ -6,7 +6,7 @@ interface Props {
   title: string;
   route: string;
   color: ColorType;
-  textColor?: ColorType;
+  textcolor?: ColorType;
   onClick?: () => void;
 }
 
@@ -17,7 +17,7 @@ export const LinkButton: React.FC<Props> = ({
   route,
   onClick,
   color,
-  textColor = "white",
+  textcolor = "white",
 }) => {
   return (
     <StyledNavLink
@@ -26,8 +26,8 @@ export const LinkButton: React.FC<Props> = ({
       style={({ isActive }) => activeLinkStyle}
       color={color}
     >
-      <LinkButtonText textColor={textColor}>{title}</LinkButtonText>
-      <ArrowForwardIcon sx={{ color: COLORS[textColor] }} />
+      <LinkButtonText textcolor={textcolor}>{title}</LinkButtonText>
+      <ArrowForwardIcon sx={{ color: COLORS[textcolor] }} />
     </StyledNavLink>
   );
 };

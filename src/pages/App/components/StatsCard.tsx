@@ -1,11 +1,12 @@
-import { Grid, Stack, Typography } from "@mui/material";
+import { Box, CircularProgress, Grid, Stack, Typography } from "@mui/material";
 import { Card } from "../../../components/Card/Card";
 import { COLORS, ColorType } from "../../../constants/colors";
+import { formattedStat } from "../../../utils/formatters";
 import { CardTitle, StatNumberText } from "./font.styled";
 
 interface Props {
   title: string;
-  value: string | number;
+  value?: number;
   color?: ColorType;
 }
 export const StatsCard: React.FC<Props> = ({ title, value, color }) => {
@@ -21,13 +22,27 @@ export const StatsCard: React.FC<Props> = ({ title, value, color }) => {
             {title}
           </CardTitle>
 
-          <StatNumberText
-            sx={{
-              color: COLORS.gold,
-            }}
-          >
-            {value}
-          </StatNumberText>
+          {value != null ? (
+            <StatNumberText
+              sx={{
+                color: COLORS.gold,
+              }}
+            >
+              {formattedStat(value)}
+            </StatNumberText>
+          ) : (
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                width: "100%",
+                height: "100%",
+                marginTop: 5,
+              }}
+            >
+              <CircularProgress color="secondary" />
+            </Box>
+          )}
         </Stack>
       </Card>
     </Grid>

@@ -1,4 +1,4 @@
-import { Grid, Stack, Typography } from "@mui/material";
+import { CircularProgress, Grid, Stack, Typography } from "@mui/material";
 import { Card } from "../../../components/Card/Card";
 import { StyledAvatar } from "../../../components/StyledAvatar/StyledAvatar";
 import { COLORS } from "../../../constants/colors";
@@ -20,7 +20,14 @@ export const IdentCard: React.FC<Props> = ({}) => {
         alignItems="center"
       >
         {!user ? (
-          <Typography>No user information found!</Typography>
+          <>
+            <CircularProgress />
+            <Typography
+              sx={{ color: COLORS.white, fontSize: 20, fontWeight: 500 }}
+            >
+              No user information found!
+            </Typography>
+          </>
         ) : (
           <>
             <StyledAvatar src={AppLogo} size={250} mb={0} mr={6} />

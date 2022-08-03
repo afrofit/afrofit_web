@@ -60,7 +60,6 @@ export function LogIn(
             };
 
             dispatch(setCurrentUserProfile(userData));
-            console.log("loggedInUser", loggedInUser, "userProfile", userData);
           }
         });
 

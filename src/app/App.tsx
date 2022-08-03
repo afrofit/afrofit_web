@@ -1,11 +1,14 @@
 import { CssBaseline, ThemeProvider, Typography } from "@mui/material";
+import { onAuthStateChanged } from "firebase/auth";
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ErrorDialog } from "../components/dialogs/ErrorDialog";
 import { FullPageLoadingSpinner } from "../components/elements/FullPageLoadingSpinner";
 import { AppLayout } from "../components/layout/AppLayout/AppLayout";
+import { auth } from "../config/firebase";
 import { theme } from "../constants/theme";
 import { useAuth } from "../hooks/useAuth";
+import { GetUserPerformance } from "../store/reducers/app/thunks/get-user-performance.thunk";
 import {
   hideGenericErrorDialog,
   selectShowGenericErrorDialog,
@@ -19,17 +22,14 @@ const App: React.FC = () => {
   const isLoading = useSelector(selectUiIsLoading);
   const errorMessage = useSelector(selectShowGenericErrorDialog);
 
-  const { pending } = useAuth();
+  // const { pending } = useAuth();
 
-  // if (pending) {
-  //   return (
-  //     <AppLayout authorized={false}>
-  //       <Typography sx={{ fontSize: 100, color: "white" }}>
-  //         Loading...
-  //       </Typography>
-  //     </AppLayout>
-  //   );
-  // }
+  React.useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      console.log(user);
+      console.log("auth.currentUser", auth.currentUser);
+    });
+  }, []);
 
   return (
     <ThemeProvider theme={theme}>

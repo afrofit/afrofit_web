@@ -5,17 +5,17 @@ interface Props {
   title: string;
   onClick: () => void;
   color: ColorType;
-  textColor?: ColorType;
+  textcolor?: ColorType;
 }
 
 export const SmallButton: React.FC<Props> = ({
   title,
   onClick,
   color = "purple_100",
-  textColor = "white",
+  textcolor = "white",
 }) => {
   return (
-    <CustomButton onClick={onClick} color={color} textColor={textColor}>
+    <CustomButton onClick={onClick} color={color} textcolor={textcolor}>
       {title}
     </CustomButton>
   );
