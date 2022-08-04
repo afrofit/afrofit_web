@@ -1,15 +1,23 @@
+import * as React from "react";
 import { CircularProgress, Grid, Stack, Typography } from "@mui/material";
 import { Card } from "../../../components/Card/Card";
 import { StyledAvatar } from "../../../components/StyledAvatar/StyledAvatar";
 import { COLORS } from "../../../constants/colors";
-import AppLogo from "../../../assets/img/dp.jpg";
-import { useSelector } from "react-redux";
-import { selectCurrentUserProfile } from "../../../store/reducers/auth/auth.slice";
 
-interface Props {}
+import { UserModel } from "../../../types/UserModel";
+import { formatDate } from "../../../utils/formatters";
 
-export const IdentCard: React.FC<Props> = ({}) => {
-  const user = useSelector(selectCurrentUserProfile);
+interface Props {
+  currentUser?: UserModel;
+  onChangeDp: () => void;
+}
+
+export const IdentCard: React.FC<Props> = ({ currentUser, onChangeDp }) => {
+  React.useEffect(() => {
+    console.log("currentUser", currentUser);
+  }, [currentUser]);
+
+  const picId = currentUser?.displayPicId ? currentUser.displayPicId : 1;
 
   return (
     <Grid item xs={8}>
@@ -19,7 +27,7 @@ export const IdentCard: React.FC<Props> = ({}) => {
         justifyContent="center"
         alignItems="center"
       >
-        {!user ? (
+        {!currentUser ? (
           <>
             <CircularProgress />
             <Typography
@@ -30,7 +38,14 @@ export const IdentCard: React.FC<Props> = ({}) => {
           </>
         ) : (
           <>
-            <StyledAvatar src={AppLogo} size={250} mb={0} mr={6} />
+            <StyledAvatar
+              src={require(`../../../assets/img/dp/${picId}.png`)}
+              size={250}
+              mb={0}
+              mr={6}
+              onClick={onChangeDp}
+            />
+
             <Stack
               sx={{
                 display: "flex",
@@ -49,7 +64,7 @@ export const IdentCard: React.FC<Props> = ({}) => {
                   marginBottom: -1,
                 }}
               >
-                {user.name_first} {user.name_last}
+                {currentUser.firstName} {currentUser.lastName}
               </Typography>
               <Typography
                 sx={{
@@ -59,12 +74,12 @@ export const IdentCard: React.FC<Props> = ({}) => {
                   marginBottom: 2,
                 }}
               >
-                @{user.username}
+                @{currentUser.username}
               </Typography>
               <Typography
                 sx={{ fontSize: 20, fontWeight: 400, marginBottom: 1 }}
               >
-                {user.email}
+                {currentUser.email}
               </Typography>
               <Typography
                 sx={{
@@ -75,7 +90,7 @@ export const IdentCard: React.FC<Props> = ({}) => {
                   textTransform: "uppercase",
                 }}
               >
-                Member since {user.join_date}
+                Member since {formatDate(currentUser.joinDate)}
               </Typography>
             </Stack>
           </>

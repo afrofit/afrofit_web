@@ -5,10 +5,8 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import { AppLayout } from "../components/layout/AppLayout/AppLayout";
 
 import { FullPageLoadingSpinner } from "../components/elements/FullPageLoadingSpinner";
-import { useDispatch, useSelector } from "react-redux";
-import { selectCurrentUser } from "../store/reducers/auth/auth.slice";
-import { useAuth } from "../hooks/useAuth";
-import { Typography } from "@mui/material";
+import { useSelector } from "react-redux";
+import { selectUserIsLoggedIn } from "../store/reducers/auth/auth.slice";
 
 // No auth pages
 const WelcomePage = lazy(() => import("../pages/Auth/WelcomePage/WelcomePage"));
@@ -31,8 +29,16 @@ const ProfilePage = lazy(() => import("../pages/App/ProfilePage"));
 const ShopPage = lazy(() => import("../pages/App/ShopPage"));
 const ClassesPage = lazy(() => import("../pages/App/ClassesPage"));
 
+// Payment Pages
+const PaymentSuccessPage = lazy(
+  () => import("../pages/Shared/PaymentSuccessPage")
+);
+const PaymentFailurePage = lazy(
+  () => import("../pages/Shared/PaymentFailurePage")
+);
+
 export const AppRouter: React.FC = () => {
-  const currentUser = useSelector(selectCurrentUser);
+  const currentUser = useSelector(selectUserIsLoggedIn);
   const subscribed = false;
 
   return (
@@ -40,6 +46,8 @@ export const AppRouter: React.FC = () => {
       {currentUser ? (
         <AppLayout authorized={true}>
           <Routes>
+            <Route path="/pay/success" element={<PaymentSuccessPage />} />
+            <Route path="/pay/failure" element={<PaymentFailurePage />} />
             <Route path="/classes" element={<ClassesPage />} />
             <Route path="/events" element={<EventsPage />} />
             <Route path="/shop" element={<ShopPage />} />

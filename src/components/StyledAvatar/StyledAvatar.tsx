@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import { COLORS } from "../../constants/colors";
+import { COLORS, ColorType } from "../../constants/colors";
 
 interface Props {
   src: any;
@@ -9,6 +9,8 @@ interface Props {
   ml?: number;
   mt?: number;
   m?: number;
+  bgColor?: ColorType;
+  onClick: () => void;
 }
 
 export const StyledAvatar: React.FC<Props> = ({
@@ -19,14 +21,17 @@ export const StyledAvatar: React.FC<Props> = ({
   mr,
   ml,
   m,
+  bgColor = "whiteblue",
+  onClick,
 }) => {
   return (
     <Box
+      onClick={onClick}
       sx={{
         height: size,
         width: size,
         cursor: "pointer",
-        backgroundColor: COLORS.fuschia,
+        backgroundColor: COLORS[bgColor],
         borderRadius: 100,
         overflow: "hidden",
         display: "flex",

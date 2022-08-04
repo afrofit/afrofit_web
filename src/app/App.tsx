@@ -1,35 +1,45 @@
-import { CssBaseline, ThemeProvider, Typography } from "@mui/material";
-import { onAuthStateChanged } from "firebase/auth";
 import * as React from "react";
+import "@stripe/stripe-js";
+import { CssBaseline, ThemeProvider } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { ErrorDialog } from "../components/dialogs/ErrorDialog";
 import { FullPageLoadingSpinner } from "../components/elements/FullPageLoadingSpinner";
-import { AppLayout } from "../components/layout/AppLayout/AppLayout";
-import { auth } from "../config/firebase";
 import { theme } from "../constants/theme";
-import { useAuth } from "../hooks/useAuth";
-import { GetUserPerformance } from "../store/reducers/app/thunks/get-user-performance.thunk";
 import {
   hideGenericErrorDialog,
   selectShowGenericErrorDialog,
   selectUiIsLoading,
 } from "../store/reducers/ui/ui.slice";
 import { AppRouter } from "./AppRouter";
+import {
+  selectUserToken,
+  storeUser,
+  storeUserToken,
+} from "../store/reducers/auth/auth.slice";
+import { DECODE_TOKEN, GET_TOKEN } from "../api/storage";
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
 
   const isLoading = useSelector(selectUiIsLoading);
   const errorMessage = useSelector(selectShowGenericErrorDialog);
+  const userToken = useSelector(selectUserToken);
 
-  // const { pending } = useAuth();
+  const memoToken = React.useMemo(() => GET_TOKEN(), []);
+
+  const putTokenInStore = React.useCallback(() => {
+    memoToken && dispatch(storeUserToken(memoToken));
+  }, [memoToken, dispatch]);
 
   React.useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      console.log(user);
-      console.log("auth.currentUser", auth.currentUser);
-    });
-  }, []);
+    putTokenInStore();
+    const user = DECODE_TOKEN();
+    if (user) {
+      dispatch(storeUser(user));
+    } else {
+      dispatch(storeUser(undefined));
+    }
+  }, [dispatch, userToken, putTokenInStore]);
 
   return (
     <ThemeProvider theme={theme}>

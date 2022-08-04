@@ -1,4 +1,5 @@
-import { millisecondsToMinutes } from "date-fns";
+import { millisecondsToMinutes, format } from "date-fns";
+
 // export const CALORIE_MULTPLIER = 0.00175;
 export const CALORIE_MULTPLIER = 1.75;
 
@@ -32,4 +33,12 @@ export const calculateDanceTimeFromBodyMovements = (bodyMoves: number) => {
 export const calculateCaloriesFromBodyMovements = (bodyMoves: number) => {
   const calories = bodyMoves * CALORIE_MULTPLIER;
   return formattedStat(calories, true);
+};
+
+export const formatDate = (rawDate: string) => {
+  return format(new Date(rawDate), "eeee, do 'of' LLLL yyyy");
+};
+
+export const generateRandomNumber = (min: number, max: number) => {
+  return Math.floor(Math.random() * (max - min)) + min;
 };

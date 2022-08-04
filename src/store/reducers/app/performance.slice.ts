@@ -1,19 +1,25 @@
-import { CALORIE_MULTPLIER } from "./../../../utils/formatters";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../store";
 
-type PerformanceType = {
+export type PerformanceType = {
   danceMoves: number;
   minutesDanced: number;
   caloriesBurned: number;
 };
 
+export type TodaysActivityType = {
+  caloriesBurned: number;
+  bodyMovements: number;
+};
+
 export interface PerformanceState {
   performance: PerformanceType | null;
+  todaysActivity: TodaysActivityType | null;
 }
 
 const initialState: PerformanceState = {
   performance: null,
+  todaysActivity: null,
 };
 
 const performanceSlice = createSlice({
@@ -23,6 +29,10 @@ const performanceSlice = createSlice({
     setUserPerformance(state, action: PayloadAction<PerformanceType>) {
       const { danceMoves, minutesDanced, caloriesBurned } = action.payload;
       state.performance = { danceMoves, minutesDanced, caloriesBurned };
+    },
+    setUserTodaysActivity(state, action: PayloadAction<TodaysActivityType>) {
+      const { bodyMovements, caloriesBurned } = action.payload;
+      state.todaysActivity = { bodyMovements, caloriesBurned };
     },
 
     unsetUserPerformance() {
@@ -36,5 +46,8 @@ export const { setUserPerformance, unsetUserPerformance } =
 
 export const selectUserPerformance = (state: RootState) =>
   state.performance.performance;
+
+export const selectUserTodaysActivity = (state: RootState) =>
+  state.performance.todaysActivity;
 
 export default performanceSlice.reducer;

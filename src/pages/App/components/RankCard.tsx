@@ -1,6 +1,4 @@
-import { Box, Grid, Stack, Typography } from "@mui/material";
-
-import RankImage from "../../../assets/img/ranks/field_marshall.png";
+import { Box, Grid, Typography } from "@mui/material";
 
 import { Card } from "../../../components/Card/Card";
 import { StyledImage } from "../../../components/StyledImage/StyledImage";
@@ -20,7 +18,6 @@ interface Props {
 }
 
 export const RankCard: React.FC<Props> = ({ rank }) => {
-  const image = require(`../../../assets/img/ranks/${rank}.png`);
   return (
     <Grid item xs={4}>
       <Card height={300} padding={4} justifyContent="center">
@@ -44,7 +41,12 @@ export const RankCard: React.FC<Props> = ({ rank }) => {
             height="100%"
             sx={{ marginTop: 2 }}
           >
-            <StyledImage src={image} size={150} mr={5} ml={2} />
+            <StyledImage
+              src={require(`../../../assets/img/ranks/${rank}.png`)}
+              size={150}
+              mr={5}
+              ml={2}
+            />
             <Typography
               sx={{
                 color: COLORS.gold,

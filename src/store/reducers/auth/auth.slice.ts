@@ -1,39 +1,46 @@
+import { UserModel } from "./../../../types/UserModel";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { UserProfileModel } from "../../../models/UserProfile.model";
 import { RootState } from "../../store";
 
 export interface AuthState {
-	currentUser: any;
-	currentUserProfile: UserProfileModel | null;
+  currentUser?: UserModel;
+  token: string | null;
 }
 
 const initialState: AuthState = {
-	currentUser: null,
-	currentUserProfile: null,
+  token: null,
 };
 
 const authSlice = createSlice({
-	name: "auth",
-	initialState,
-	reducers: {
-		setCurrentUser(state, action: PayloadAction<any>) {
-			state.currentUser = action.payload;
-		},
-		setCurrentUserProfile(state, action: PayloadAction<UserProfileModel>) {
-			state.currentUserProfile = action.payload;
-		},
-
-		unsetCurrentUser(state) {
-			return initialState;
-		},
-	},
+  name: "auth",
+  initialState,
+  reducers: {
+    storeUser(state, action: PayloadAction<UserModel | undefined>) {
+      state.currentUser = action.payload;
+    },
+    storeUserToken(state, action: PayloadAction<string>) {
+      state.token = action.payload;
+    },
+    updateUserDisplayPic(state, action: PayloadAction<number>) {
+      if (state.currentUser) {
+        state.currentUser = {
+          ...state.currentUser,
+          displayPicId: action.payload,
+        };
+      }
+    },
+    logout() {
+      return initialState;
+    },
+  },
 });
 
-export const { setCurrentUser, setCurrentUserProfile, unsetCurrentUser } =
-	authSlice.actions;
+export const { storeUser, storeUserToken, updateUserDisplayPic, logout } =
+  authSlice.actions;
 
-export const selectCurrentUser = (state: RootState) => state.auth.currentUser;
-export const selectCurrentUserProfile = (state: RootState) =>
-	state.auth.currentUserProfile;
+export const selectUserIsLoggedIn = (state: RootState) =>
+  !!state.auth.currentUser;
+export const selectUser = (state: RootState) => state.auth.currentUser;
+export const selectUserToken = (state: RootState) => state.auth.token;
 
 export default authSlice.reducer;

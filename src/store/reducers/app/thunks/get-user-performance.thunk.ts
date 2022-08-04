@@ -1,57 +1,88 @@
-import { doc, getDoc } from "firebase/firestore";
-import { auth, db, storage } from "../../../../config/firebase";
+import API_CLIENT from "../../../../api/client";
 
-import { AppThunk } from "../../../store";
 import {
   finishedRequest,
   hideGenericErrorDialog,
   newRequest,
   showGenericErrorDialog,
 } from "../../ui/ui.slice";
+import { AxiosError } from "axios";
+import { AppThunk } from "../../../store";
 import { setUserPerformance } from "../performance.slice";
 
-export function GetUserPerformance(userId: string): AppThunk {
-  return (dispatch) => {
-    dispatch(newRequest());
-    dispatch(hideGenericErrorDialog());
-    console.log("Let's fetch your data!");
+const fetchUserPerformanceApi = async (userId: string) => {
+  return await API_CLIENT.get(`performance/overall/${userId}`);
+};
 
-    const userDocRef = doc(db, "performances", userId);
+const fetchUserTodaysActivityApi = async (userId: string) => {
+  return await API_CLIENT.get(`performance/overall/${userId}`);
+};
 
-    getDoc(userDocRef)
-      .then((docSnapshot) => {
-        if (docSnapshot.exists()) {
-          console.log("UserPerfData", docSnapshot.data());
-          const { total_user_time, total_user_steps, calories_burned } =
-            docSnapshot.data();
+export function GetUserPerformanceData(userId: string): AppThunk {
+  return async (dispatch) => {
+    try {
+      dispatch(newRequest());
+      dispatch(hideGenericErrorDialog());
 
-          dispatch(
-            setUserPerformance({
-              danceMoves: total_user_steps,
-              minutesDanced: total_user_time,
-              caloriesBurned: calories_burned,
-            })
-          );
-        }
+      const response = await fetchUserPerformanceApi(userId);
+      console.log("Responses from getUserPerformanceThunk", response);
+      if (response && response.data) {
+        const { totalUserSteps, totalUserTime, caloriesBurned } =
+          response.data.performance;
+
+        dispatch(
+          setUserPerformance({
+            danceMoves: totalUserSteps,
+            minutesDanced: totalUserTime,
+            caloriesBurned: caloriesBurned,
+          })
+        );
+      } else {
         dispatch(finishedRequest());
-      })
-      .catch((error) => {
+        return showGenericErrorDialog(
+          `An error occured fetching your performance data.`
+        );
+      }
+      dispatch(finishedRequest());
+    } catch (error: any) {
+      console.log("Error!", error.response.data);
+      const err = error as AxiosError;
+      dispatch(showGenericErrorDialog(` ${err.response?.data as string}`));
+      dispatch(finishedRequest());
+    }
+  };
+}
+
+export function GetUserTodaysActivityData(userId: string): AppThunk {
+  return async (dispatch) => {
+    try {
+      dispatch(newRequest());
+      dispatch(hideGenericErrorDialog());
+
+      const response = await fetchUserTodaysActivityApi(userId);
+      console.log("Responses from getUserPerformanceThunk", response);
+      if (response && response.data) {
+        // dispatch(storeUserToken(response.data.token));
+        // STORE_TOKEN(response.data.token);
+        // dispatch(
+        //     setUserPerformance({
+        //       danceMoves: totalUserSteps,
+        //       minutesDanced: totalUserTime,
+        //       caloriesBurned: caloriesBurned,
+        //     })
+        //   );
+      } else {
         dispatch(finishedRequest());
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log("errorMessage", errorMessage);
-        if (errorCode === "auth/user-not-found") {
-          dispatch(showGenericErrorDialog("Error! User not found."));
-          return;
-        }
-        if (errorCode === "auth/wrong-password") {
-          dispatch(
-            showGenericErrorDialog("Error! Your credentials don't match.")
-          );
-          return;
-        }
-        dispatch(showGenericErrorDialog("Error! An unknown error occurred."));
-        return;
-      });
+        return showGenericErrorDialog(
+          `An error occured fetching your performance data.`
+        );
+      }
+      dispatch(finishedRequest());
+    } catch (error: any) {
+      console.log("Error!", error.response.data);
+      const err = error as AxiosError;
+      dispatch(showGenericErrorDialog(` ${err.response?.data as string}`));
+      dispatch(finishedRequest());
+    }
   };
 }
