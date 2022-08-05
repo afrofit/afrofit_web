@@ -25,7 +25,6 @@ export function GetUserPerformanceData(userId: string): AppThunk {
       dispatch(hideGenericErrorDialog());
 
       const response = await fetchUserPerformanceApi(userId);
-      console.log("Responses from getUserPerformanceThunk", response);
       if (response && response.data) {
         const { totalUserSteps, totalUserTime, caloriesBurned } =
           response.data.performance;
@@ -60,7 +59,7 @@ export function GetUserTodaysActivityData(userId: string): AppThunk {
       dispatch(hideGenericErrorDialog());
 
       const response = await fetchUserTodaysActivityApi(userId);
-      console.log("Responses from getUserPerformanceThunk", response);
+      console.log("Responses from fetch todays activity thunk", response);
       if (response && response.data) {
         // dispatch(storeUserToken(response.data.token));
         // STORE_TOKEN(response.data.token);

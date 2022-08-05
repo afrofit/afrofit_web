@@ -9,7 +9,7 @@ import {
 
 interface Props {
   title: string;
-  value: string | number;
+  value: boolean;
   color?: ColorType;
 }
 export const SubscriptionCard: React.FC<Props> = ({ title, value, color }) => {
@@ -30,11 +30,8 @@ export const SubscriptionCard: React.FC<Props> = ({ title, value, color }) => {
               color: COLORS.gold,
             }}
           >
-            {value}
+            {value ? "Active" : "Inactive"}
           </StatNumberText>
-          <SubscriptionNotificationText>
-            Renews 24 October, 2021
-          </SubscriptionNotificationText>
         </Stack>
       </Card>
     </Grid>

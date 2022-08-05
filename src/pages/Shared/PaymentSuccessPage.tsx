@@ -1,12 +1,25 @@
 import { Box, Stack, Typography } from "@mui/material";
 import * as React from "react";
 import Lottie from "react-lottie";
+import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import * as Animation from "../../assets/animations/success.json";
 import { LinkButton } from "../../components/Buttons/LinkButton";
 import { COLORS } from "../../constants/colors";
+import {
+  selectUser,
+  selectUserStripeSession,
+} from "../../store/reducers/auth/auth.slice";
+import { RetrieveStripeSession } from "../../store/reducers/payments/thunks/retrieve-stripe-session.thunk";
 
 const PaymentSuccessPage: React.FC = () => {
+  const dispatch = useDispatch();
+  const [searchParams] = useSearchParams();
+  const sessionId = searchParams.get("id");
+
+  const currentUser = useSelector(selectUser);
+  const currentStripeSession = useSelector(selectUserStripeSession);
+
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -16,10 +29,19 @@ const PaymentSuccessPage: React.FC = () => {
     },
   };
 
-  const [searchParams] = useSearchParams();
-  const params = searchParams.get("id");
+  const handleFetchStripeSession = React.useCallback(() => {
+    if (sessionId && currentUser) {
+      dispatch(RetrieveStripeSession(currentUser.userId, sessionId));
+    }
+  }, [dispatch, sessionId, currentUser]);
 
-  console.log("params: ", params);
+  React.useEffect(() => {
+    handleFetchStripeSession();
+  }, [handleFetchStripeSession]);
+
+  React.useEffect(() => {
+    console.log("currentStripeSession", currentStripeSession);
+  }, [currentStripeSession]);
 
   return (
     <Box sx={{}}>
@@ -34,7 +56,9 @@ const PaymentSuccessPage: React.FC = () => {
           marginBottom: 2,
         }}
       >
-        Success! You're all subscribed to Afrofit! club
+        {!currentStripeSession
+          ? "Loading content..."
+          : "Success! You're all subscribed to the Afrofit! club"}
       </Typography>
       <Typography
         sx={{
@@ -43,8 +67,11 @@ const PaymentSuccessPage: React.FC = () => {
           textAlign: "center",
         }}
       >
-        You will be charged monthly £5 Pound sterling monthly until you decide
-        to cancel. Terms and conditions apply.
+        {!currentStripeSession
+          ? "Loading content..."
+          : `You will be charged monthly £${
+              currentStripeSession.totalAmount / 100
+            } Pound sterling monthly until you decide to cancel. Terms and conditions apply.`}
       </Typography>
       <Stack
         display={"flex"}

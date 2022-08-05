@@ -1,6 +1,12 @@
 import * as React from "react";
 
-import { Box, Grid, Typography } from "@mui/material";
+import {
+  Box,
+  breadcrumbsClasses,
+  Grid,
+  Stack,
+  Typography,
+} from "@mui/material";
 import { PageLayout } from "../../components/layout/PageLayout/PageLayout";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -15,13 +21,18 @@ import { selectUserPerformance } from "../../store/reducers/app/performance.slic
 import { SmallButton } from "../../components/Buttons/SmallButton";
 import { useNavigate } from "react-router-dom";
 
-import { selectUser } from "../../store/reducers/auth/auth.slice";
+import {
+  selectUser,
+  selectUserIsSubscribed,
+} from "../../store/reducers/auth/auth.slice";
 import { GetUserPerformanceData } from "../../store/reducers/app/thunks/get-user-performance.thunk";
 import { formatDate } from "../../utils/formatters";
 import { DisplayPicturePicker } from "../../components/elements/DisplayPicturePicker";
 import { finishedRequest, newRequest } from "../../store/reducers/ui/ui.slice";
 import { UpdateUserDp } from "../../store/reducers/auth/thunks/update-user-dp.thunk";
 import { CreateStripeSession } from "../../store/reducers/payments/thunks/create-stripe-session.thunk";
+import { RetrieveUserSubscription } from "../../store/reducers/payments/thunks/retrieve-user-subscription.thunk";
+import { CancelUserSubscription } from "../../store/reducers/payments/thunks/cancel-user-subscription.thunk";
 
 interface Props {}
 
@@ -31,23 +42,32 @@ const ProfilePage: React.FC<Props> = () => {
 
   const currentUser = useSelector(selectUser);
   const userPerformance = useSelector(selectUserPerformance);
+  const isSubscribed = useSelector(selectUserIsSubscribed);
+
   const [showNotification, setShowNotification] = React.useState(false);
   const [showDpPicker, setShowDpPicker] = React.useState(false);
   const [selectedDp, setSelectedDp] = React.useState(
     currentUser?.displayPicId ?? 1
   );
 
-  React.useEffect(() => {
-    console.log("currentUser", currentUser);
-  }, [currentUser]);
+  const handleCreateCheckoutSession = () => {
+    if (currentUser) {
+      const { email, userId } = currentUser;
+      dispatch(CreateStripeSession(userId, email));
+    }
+  };
+
+  const handleRetrieveUserSubscriptionInfo = React.useCallback(() => {
+    currentUser && dispatch(RetrieveUserSubscription(currentUser.userId));
+  }, [currentUser, dispatch]);
 
   React.useEffect(() => {
     currentUser && dispatch(GetUserPerformanceData(currentUser.userId));
   }, [currentUser, dispatch]);
 
   React.useEffect(() => {
-    console.log("userPerformance", userPerformance);
-  }, [userPerformance]);
+    currentUser && handleRetrieveUserSubscriptionInfo();
+  }, [currentUser, handleRetrieveUserSubscriptionInfo]);
 
   const handleSelectDp = (dpId: number) => {
     setSelectedDp(dpId);
@@ -59,10 +79,9 @@ const ProfilePage: React.FC<Props> = () => {
     }, 200);
   };
 
-  const handleCreateCheckoutSession = () => {
+  const handleCancelSubscription = () => {
     if (currentUser) {
-      const { email, userId } = currentUser;
-      dispatch(CreateStripeSession(userId, email));
+      return dispatch(CancelUserSubscription(currentUser.userId));
     }
   };
 
@@ -82,11 +101,26 @@ const ProfilePage: React.FC<Props> = () => {
         title="Your Profile"
         showButton={true}
         buttonComponent={
-          <SmallButton
-            title="Buy Subscription Now"
-            onClick={handleCreateCheckoutSession}
-            color="orange_200"
-          />
+          <Stack
+            display={"flex"}
+            flexDirection="row"
+            columnGap={2}
+            alignItems="center"
+          >
+            {!isSubscribed ? (
+              <SmallButton
+                title={"Purchase Subscription"}
+                onClick={handleCreateCheckoutSession}
+                color="purple_200"
+              />
+            ) : (
+              <SmallButton
+                title={"Cancel Subscription"}
+                onClick={handleCancelSubscription}
+                color="dark_400"
+              />
+            )}
+          </Stack>
         }
       >
         <Grid
@@ -134,7 +168,7 @@ const ProfilePage: React.FC<Props> = () => {
           <SubscriptionCard
             color="purple_300"
             title="Subscription Status"
-            value="Active"
+            value={isSubscribed}
           />
         </Grid>
         <Grid container display="flex" alignItems={"stretch"}>
