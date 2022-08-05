@@ -1,7 +1,9 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import * as React from "react";
 import Lottie from "react-lottie";
-import * as Animation from "../../assets/animations/not-found.json";
+import { useSearchParams } from "react-router-dom";
+import * as Animation from "../../assets/animations/success.json";
+import { LinkButton } from "../../components/Buttons/LinkButton";
 import { COLORS } from "../../constants/colors";
 
 const PaymentSuccessPage: React.FC = () => {
@@ -14,8 +16,16 @@ const PaymentSuccessPage: React.FC = () => {
     },
   };
 
+  const [searchParams] = useSearchParams();
+  const params = searchParams.get("id");
+
+  console.log("params: ", params);
+
   return (
-    <Box sx={{ padding: 10 }}>
+    <Box sx={{}}>
+      <Box sx={{ margin: 2 }}>
+        <Lottie options={defaultOptions} height={200} width={200} />
+      </Box>
       <Typography
         sx={{
           fontSize: 30,
@@ -24,7 +34,7 @@ const PaymentSuccessPage: React.FC = () => {
           marginBottom: 2,
         }}
       >
-        Success! You've successfully created a subscription
+        Success! You're all subscribed to Afrofit! club
       </Typography>
       <Typography
         sx={{
@@ -33,10 +43,25 @@ const PaymentSuccessPage: React.FC = () => {
           textAlign: "center",
         }}
       >
-        You will be charged monthly until you decide to cancel. Hopefully not!
-        Terms and conditions apply.
+        You will be charged monthly £5 Pound sterling monthly until you decide
+        to cancel. Terms and conditions apply.
       </Typography>
-      <Lottie options={defaultOptions} height={400} width={400} />
+      <Stack
+        display={"flex"}
+        flexDirection="row"
+        width="100%"
+        alignItems="center"
+        justifyContent="center"
+        columnGap={3}
+        mt={10}
+      >
+        <LinkButton
+          color="purple_200"
+          textcolor="fuschia"
+          title="Continue on to site"
+          route="/"
+        />
+      </Stack>
     </Box>
   );
 };

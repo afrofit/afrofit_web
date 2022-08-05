@@ -1,7 +1,7 @@
 import { Box, Stack, Typography } from "@mui/material";
 import * as React from "react";
 import Lottie from "react-lottie";
-import * as Animation from "../../assets/animations/not-found.json";
+import * as Animation from "../../assets/animations/failed.json";
 import { LinkButton } from "../../components/Buttons/LinkButton";
 import { COLORS } from "../../constants/colors";
 
@@ -16,7 +16,10 @@ const PaymentFailurePage: React.FC = () => {
   };
 
   return (
-    <Box sx={{ padding: 10 }}>
+    <Box sx={{}}>
+      <Box sx={{ margin: 2 }}>
+        <Lottie options={defaultOptions} height={200} width={200} />
+      </Box>
       <Typography
         sx={{
           fontSize: 30,
@@ -37,7 +40,7 @@ const PaymentFailurePage: React.FC = () => {
         Click the button below to go to your profile page. There, you can
         restart process.
       </Typography>
-      <Lottie options={defaultOptions} height={400} width={400} />
+
       <Stack
         display={"flex"}
         flexDirection="row"
@@ -45,7 +48,7 @@ const PaymentFailurePage: React.FC = () => {
         alignItems="center"
         justifyContent="center"
         columnGap={3}
-        mb={5}
+        mt={10}
       >
         <LinkButton
           color="pink_200"

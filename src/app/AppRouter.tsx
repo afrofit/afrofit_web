@@ -39,34 +39,33 @@ const PaymentFailurePage = lazy(
 
 export const AppRouter: React.FC = () => {
   const currentUser = useSelector(selectUserIsLoggedIn);
-  const subscribed = false;
 
   return (
     <Suspense fallback={<FullPageLoadingSpinner isLoading />}>
       {currentUser ? (
         <AppLayout authorized={true}>
           <Routes>
-            <Route path="/pay/success" element={<PaymentSuccessPage />} />
-            <Route path="/pay/failure" element={<PaymentFailurePage />} />
-            <Route path="/classes" element={<ClassesPage />} />
-            <Route path="/events" element={<EventsPage />} />
-            <Route path="/shop" element={<ShopPage />} />
-            <Route path="/music" element={<MusicPage />} />
-            <Route path="/profile" element={<ProfilePage />} />
-            <Route path="/*/*" element={<NotFoundPage />} />
-            <Route path="/" element={<Navigate to="/profile" />} />
-            <Route path="*" element={<Navigate to="/" />} />
+            <Route path="classes" element={<ClassesPage />} />
+            <Route path="events" element={<EventsPage />} />
+            <Route path="shop" element={<ShopPage />} />
+            <Route path="music" element={<MusicPage />} />
+            <Route path="profile" element={<ProfilePage />} />
+            <Route path="*/*" element={<NotFoundPage />} />
+            <Route path="payments">
+              <Route path="success" element={<PaymentSuccessPage />} />
+              <Route path="cancel" element={<PaymentFailurePage />} />
+            </Route>
+            <Route path="/*" element={<Navigate replace to="profile" />} />
           </Routes>
         </AppLayout>
       ) : (
         <AppLayout authorized={false}>
           <Routes>
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/join-us" element={<JoinUsPage />} />
-            <Route path="/register" element={<RegisterPage />} />
-            <Route path="/forgot-password" element={<ForgotPasswordPage />} />
-            <Route path="/" element={<WelcomePage />} />
-            <Route path="*" element={<Navigate to="/" />} />
+            <Route path="login" element={<LoginPage />} />
+            <Route path="join-us" element={<JoinUsPage />} />
+            <Route path="register" element={<RegisterPage />} />
+            <Route path="forgot-password" element={<ForgotPasswordPage />} />
+            <Route path="/*" element={<WelcomePage />} />
           </Routes>
         </AppLayout>
       )}
