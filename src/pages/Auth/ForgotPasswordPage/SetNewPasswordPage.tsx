@@ -1,36 +1,47 @@
 import * as React from "react";
 import * as Yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { Stack, Typography } from "@mui/material";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 import { Card } from "../../../components/Card/Card";
 import { COLORS } from "../../../constants/colors";
 import { StyledLargeButton } from "../../../components/elements/StyledLargeButton/StyledLargeButton";
 import { StyledClearButton } from "../../../components/elements/StyledClearButton/StyledClearButton";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { CustomInputElement } from "../../../components/forms/CustomInput/CustomInputElement";
-import { SendPasswordResetLink } from "../../../store/reducers/auth/thunks/send-password-reset-link.thunk";
+import { SetNewPassword } from "../../../store/reducers/auth/thunks/set-new-password.thunk";
 
-const resetPassword = Yup.object().shape({
-  email: Yup.string().email().required(),
+const changePassword = Yup.object().shape({
+  password: Yup.string().min(6).max(32).required(),
+  confirmPassword: Yup.string().oneOf(
+    [Yup.ref("password"), null],
+    "Passwords must match"
+  ),
 });
 
-const ForgotPasswordPage = () => {
+const SetNewPasswordPage = () => {
   const navigation = useNavigate();
+  const { hash, userId } = useParams();
   const dispatch = useDispatch();
 
+  console.log(hash, userId);
+
   const { handleSubmit, control, reset } = useForm({
-    resolver: yupResolver(resetPassword),
+    resolver: yupResolver(changePassword),
     mode: "onBlur",
   });
 
-  const onSubmit = (data: any) => {
-    console.log(data);
-    const { email } = data;
+  if (!hash || !userId) return null;
 
-    dispatch(SendPasswordResetLink(email));
+  const onSubmit = (data: any) => {
+    const expandedData = {
+      password: data.password,
+      hash,
+    };
+    dispatch(SetNewPassword(userId, expandedData));
+    // return reset();
   };
 
   return (
@@ -49,17 +60,25 @@ const ForgotPasswordPage = () => {
           marginBottom: 5,
         }}
       >
-        Reset your password
+        Enter your new password
       </Typography>
       <Card>
         <Stack display="flex" flexDirection="column" width="100%" spacing={3}>
           <CustomInputElement
-            name="email"
-            label="Email"
+            name="password"
+            label="Password"
             control={control}
-            placeholder="Your email.."
-            type="text"
-            icon="mail"
+            placeholder="Your password.."
+            type="password"
+            icon="lock"
+          />
+          <CustomInputElement
+            name="confirmPassword"
+            label="Confirm Password"
+            control={control}
+            placeholder="Confirm the password.."
+            type="password"
+            icon="lock"
           />
         </Stack>
       </Card>
@@ -78,4 +97,4 @@ const ForgotPasswordPage = () => {
   );
 };
 
-export default ForgotPasswordPage;
+export default SetNewPasswordPage;

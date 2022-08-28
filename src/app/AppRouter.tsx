@@ -18,6 +18,9 @@ const RegisterPage = lazy(
 const ForgotPasswordPage = lazy(
   () => import("../pages/Auth/ForgotPasswordPage/ForgotPasswordPage")
 );
+const SetNewPasswordPage = lazy(
+  () => import("../pages/Auth/ForgotPasswordPage/SetNewPasswordPage")
+);
 const NotFoundPage = lazy(
   () => import("../pages/Shared/NotFoundPage/NotFoundPage")
 );
@@ -65,6 +68,10 @@ export const AppRouter: React.FC = () => {
             <Route path="join-us" element={<JoinUsPage />} />
             <Route path="register" element={<RegisterPage />} />
             <Route path="forgot-password" element={<ForgotPasswordPage />} />
+            <Route
+              path="set-new-password/:userId/:hash"
+              element={<SetNewPasswordPage />}
+            />
             <Route path="/*" element={<WelcomePage />} />
           </Routes>
         </AppLayout>

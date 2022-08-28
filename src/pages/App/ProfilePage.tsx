@@ -69,6 +69,10 @@ const ProfilePage: React.FC<Props> = () => {
     currentUser && handleRetrieveUserSubscriptionInfo();
   }, [currentUser, handleRetrieveUserSubscriptionInfo]);
 
+  React.useEffect(() => {
+    console.log("userPerformance", userPerformance);
+  }, [userPerformance]);
+
   const handleSelectDp = (dpId: number) => {
     setSelectedDp(dpId);
     currentUser && dispatch(UpdateUserDp(currentUser.userId, dpId));
@@ -84,6 +88,8 @@ const ProfilePage: React.FC<Props> = () => {
       return dispatch(CancelUserSubscription(currentUser.userId));
     }
   };
+
+  if (!userPerformance) return null;
 
   return (
     <>
@@ -159,7 +165,7 @@ const ProfilePage: React.FC<Props> = () => {
           />
           <StatsCard
             title="Minutes Danced"
-            value={userPerformance?.minutesDanced}
+            value={userPerformance.minutesDanced / 1000 / 60}
           />
           <StatsCard
             title="Calories Burned"
