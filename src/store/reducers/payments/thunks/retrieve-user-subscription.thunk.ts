@@ -33,7 +33,10 @@ export function RetrieveUserSubscription(userId: string): AppThunk {
       dispatch(finishedRequest());
     } catch (error: any) {
       const err = error as AxiosError;
-      dispatch(showGenericErrorDialog(err.response?.data as string));
+      const errorMessage =
+        (err.response?.data as string) ??
+        "An error occured trying to retrieve your subscription.";
+      dispatch(showGenericErrorDialog(errorMessage));
       dispatch(finishedRequest());
     }
   };

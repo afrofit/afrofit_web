@@ -78,7 +78,10 @@ export function RetrieveStripeSession(
       dispatch(finishedRequest());
     } catch (error: any) {
       const err = error as AxiosError;
-      dispatch(showGenericErrorDialog(err.response?.data as string));
+      const errorMessage =
+        (err.response?.data as string) ??
+        "An error occured trying to retrieve your stripe session.";
+      dispatch(showGenericErrorDialog(errorMessage));
       dispatch(finishedRequest());
     }
   };

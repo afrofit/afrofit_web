@@ -27,15 +27,17 @@ export function LogIn(userData: LoginUserDataType): AppThunk {
       if (response && response.data) {
         dispatch(storeUserToken(response.data.token));
         STORE_TOKEN(response.data.token);
-      } else {
+      } else if (!response || !response.data) {
         dispatch(finishedRequest());
         return showGenericErrorDialog(`An error occured logging in.`);
       }
       dispatch(finishedRequest());
     } catch (error: any) {
-      console.log("Error!", error.response.data);
       const err = error as AxiosError;
-      dispatch(showGenericErrorDialog(` ${err.response?.data as string}`));
+      const errorMessage =
+        (err.response?.data as string) ??
+        "An error occured trying to log you in.";
+      dispatch(showGenericErrorDialog(errorMessage));
       dispatch(finishedRequest());
     }
   };
