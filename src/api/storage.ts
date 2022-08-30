@@ -1,8 +1,7 @@
-import { STORAGE_TOKEN_KEY } from "./../constants.config";
 import jwtDecode from "jwt-decode";
 import { UserModel } from "../types/UserModel";
 
-const TOKEN_KEY = STORAGE_TOKEN_KEY || "STORAGE_TOKEN_KEY_standin";
+const TOKEN_KEY = process.env.STORAGE_TOKEN_KEY || "STORAGE_TOKEN_KEY_standin";
 
 export const GET_TOKEN = (): string | null => {
   const token = localStorage.getItem(TOKEN_KEY);
