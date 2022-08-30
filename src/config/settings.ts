@@ -6,13 +6,13 @@ type SettingsType = {
 
 const settings: SettingsType = {
   development: {
-    apiUrl: "http://localhost:9099/",
+    apiUrl: "shark-app-y5ox6.ondigitalocean.app/api/",
   },
   test: {
-    apiUrl: "http://localhost:9099/",
+    apiUrl: "shark-app-y5ox6.ondigitalocean.app/api/",
   },
   production: {
-    apiUrl: "https://somwhere.com/",
+    apiUrl: "shark-app-y5ox6.ondigitalocean.app/api/",
   },
 };
 

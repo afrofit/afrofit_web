@@ -31,6 +31,7 @@ const ForgotPasswordPage = () => {
     const { email } = data;
 
     dispatch(SendPasswordResetLink(email));
+    reset();
   };
 
   return (
