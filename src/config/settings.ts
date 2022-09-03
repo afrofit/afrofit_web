@@ -1,3 +1,5 @@
+import { NODE_ENV } from "../constants.config";
+
 type SettingsKeyType = typeof process.env.NODE_ENV;
 
 type SettingsType = {
@@ -6,10 +8,10 @@ type SettingsType = {
 
 const settings: SettingsType = {
   development: {
-    apiUrl: "https://shark-app-y5ox6.ondigitalocean.app/api/",
+    apiUrl: "http://localhost:9099/api/",
   },
   test: {
-    apiUrl: "https://shark-app-y5ox6.ondigitalocean.app/api/",
+    apiUrl: "http://localhost:9099/api/",
   },
   production: {
     apiUrl: "https://shark-app-y5ox6.ondigitalocean.app/api/",
@@ -17,8 +19,10 @@ const settings: SettingsType = {
 };
 
 const getCurrentSettings = () => {
-  if (process.env.NODE_ENV === "development") return settings.development;
-  if (process.env.NODE_ENV === "test") return settings.test;
+  if (NODE_ENV === "development") return settings.development;
+  // if (process.env.NODE_ENV === "development") return settings.development;
+  // if (process.env.NODE_ENV === "test") return settings.test;
+  if (NODE_ENV === "test") return settings.test;
   return settings.production;
 };
 
