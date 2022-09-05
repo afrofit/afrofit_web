@@ -9,7 +9,6 @@ import {
   showGenericErrorDialog,
 } from "../../ui/ui.slice";
 import API_CLIENT from "../../../../api/client";
-import { STRIPE_PUBLISHABLE_KEY } from "../../../../constants.config";
 
 const createStripeSessionApi = async (userId: string, email: string) => {
   return await API_CLIENT.post(`payments/create-stripe-session/${userId}`, {
@@ -19,19 +18,15 @@ const createStripeSessionApi = async (userId: string, email: string) => {
 
 let stripePromise: Promise<Stripe | null>;
 const getStripe = async () => {
-  if (!stripePromise) {
-    stripePromise = loadStripe(
-      process.env.STRIPE_PUBLISHABLE_KEY ?? STRIPE_PUBLISHABLE_KEY
-    );
+  if (!stripePromise && process.env.STRIPE_PUBLISHABLE_KEY) {
+    stripePromise = loadStripe(process.env.STRIPE_PUBLISHABLE_KEY);
   }
   return stripePromise;
 };
 
 console.log(
   "process.env.STRIPE_PUBLISHABLE_KEY",
-  process.env.STRIPE_PUBLISHABLE_KEY,
-  "STRIPE_PUBLISHABLE_KEY",
-  STRIPE_PUBLISHABLE_KEY
+  process.env.STRIPE_PUBLISHABLE_KEY
 );
 
 export function CreateStripeSession(userId: string, email: string): AppThunk {
