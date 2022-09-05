@@ -31,7 +31,8 @@ console.log(
   "process.env.STRIPE_PUBLISHABLE_KEY",
   process.env.STRIPE_PUBLISHABLE_KEY,
   "STRIPE_PUBLISHABLE_KEY",
-  STRIPE_PUBLISHABLE_KEY
+  STRIPE_PUBLISHABLE_KEY,
+  "!"
 );
 
 export function CreateStripeSession(userId: string, email: string): AppThunk {
