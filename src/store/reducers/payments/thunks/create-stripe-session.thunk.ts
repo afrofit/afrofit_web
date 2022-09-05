@@ -16,18 +16,16 @@ const createStripeSessionApi = async (userId: string, email: string) => {
   });
 };
 
+const STRIPE_PUBLISHABLE_KEY =
+  "pk_live_51LND6dG7Ijvv33NL0x0geQt3CMvxFgb787YfgUUdrIueMOCh51eUfOGxCYmYS2XWkFZPmL98rb77PcTUhyirgCN9004jfaKgGU";
+
 let stripePromise: Promise<Stripe | null>;
 const getStripe = async () => {
-  if (!stripePromise && process.env.STRIPE_PUBLISHABLE_KEY) {
-    stripePromise = loadStripe(process.env.STRIPE_PUBLISHABLE_KEY);
+  if (!stripePromise) {
+    stripePromise = loadStripe(STRIPE_PUBLISHABLE_KEY);
   }
   return stripePromise;
 };
-
-console.log(
-  "process.env.STRIPE_PUBLISHABLE_KEY",
-  process.env.STRIPE_PUBLISHABLE_KEY
-);
 
 export function CreateStripeSession(userId: string, email: string): AppThunk {
   return async (dispatch) => {
