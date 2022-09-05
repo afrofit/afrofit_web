@@ -1,5 +1,3 @@
-import { NODE_ENV } from "../constants.config";
-
 type SettingsKeyType = typeof process.env.NODE_ENV;
 
 type SettingsType = {
@@ -19,10 +17,8 @@ const settings: SettingsType = {
 };
 
 const getCurrentSettings = () => {
-  if (NODE_ENV === "development") return settings.development;
-  // if (process.env.NODE_ENV === "development") return settings.development;
-  // if (process.env.NODE_ENV === "test") return settings.test;
-  if (NODE_ENV === "test") return settings.test;
+  if (process.env.NODE_ENV === "development") return settings.development;
+  if (process.env.NODE_ENV === "test") return settings.test;
   return settings.production;
 };
 
