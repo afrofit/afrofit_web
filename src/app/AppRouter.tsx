@@ -31,6 +31,7 @@ const MusicPage = lazy(() => import("../pages/App/MusicPage"));
 const ProfilePage = lazy(() => import("../pages/App/ProfilePage"));
 const ShopPage = lazy(() => import("../pages/App/ShopPage"));
 const ClassesPage = lazy(() => import("../pages/App/ClassesPage"));
+const PrivacyPage = lazy(() => import("../pages/App/PrivacyPage"));
 
 // Payment Pages
 const PaymentSuccessPage = lazy(
@@ -53,6 +54,7 @@ export const AppRouter: React.FC = () => {
             <Route path="shop" element={<ShopPage />} />
             <Route path="music" element={<MusicPage />} />
             <Route path="profile" element={<ProfilePage />} />
+            <Route path="privacy" element={<PrivacyPage />} />
             <Route path="*/*" element={<NotFoundPage />} />
             <Route path="payments">
               <Route path="success" element={<PaymentSuccessPage />} />
@@ -64,15 +66,17 @@ export const AppRouter: React.FC = () => {
       ) : (
         <AppLayout authorized={false}>
           <Routes>
+            <Route path="welcome" element={<WelcomePage />} />
             <Route path="login" element={<LoginPage />} />
             <Route path="join-us" element={<JoinUsPage />} />
             <Route path="register" element={<RegisterPage />} />
+            <Route path="privacy" element={<PrivacyPage />} />
             <Route path="forgot-password" element={<ForgotPasswordPage />} />
             <Route
               path="set-new-password/:userId/:hash"
               element={<SetNewPasswordPage />}
             />
-            <Route path="/*" element={<WelcomePage />} />
+            <Route path="/*" element={<Navigate replace to="welcome" />} />
           </Routes>
         </AppLayout>
       )}
