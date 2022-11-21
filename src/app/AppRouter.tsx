@@ -32,6 +32,7 @@ const ProfilePage = lazy(() => import("../pages/App/ProfilePage"));
 const ShopPage = lazy(() => import("../pages/App/ShopPage"));
 const ClassesPage = lazy(() => import("../pages/App/ClassesPage"));
 const PrivacyPage = lazy(() => import("../pages/App/PrivacyPage"));
+const BlogPage = lazy(() => import("../pages/App/BlogPage"));
 
 // Payment Pages
 const PaymentSuccessPage = lazy(
@@ -52,9 +53,10 @@ export const AppRouter: React.FC = () => {
             <Route path="classes" element={<ClassesPage />} />
             <Route path="events" element={<EventsPage />} />
             <Route path="shop" element={<ShopPage />} />
-            <Route path="music" element={<MusicPage />} />
+            <Route path="about" element={<MusicPage />} />
             <Route path="profile" element={<ProfilePage />} />
             <Route path="privacy" element={<PrivacyPage />} />
+            <Route path="blog" element={<BlogPage />} />
             <Route path="*/*" element={<NotFoundPage />} />
             <Route path="payments">
               <Route path="success" element={<PaymentSuccessPage />} />

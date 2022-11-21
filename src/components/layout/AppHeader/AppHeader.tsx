@@ -65,6 +65,7 @@ export const AppHeader: React.FC<Props> = ({ authorized }) => {
                   />
                 }
               >
+                <StyledNavLink title="Blog" route="blog" onClick={() => null} />
                 <StyledNavLink
                   title="Classes"
                   route="classes"
@@ -77,8 +78,8 @@ export const AppHeader: React.FC<Props> = ({ authorized }) => {
                 />
                 <StyledNavLink title="Shop" route="shop" onClick={() => null} />
                 <StyledNavLink
-                  title="Music"
-                  route="music"
+                  title="About"
+                  route="about"
                   onClick={() => null}
                 />
               </Stack>

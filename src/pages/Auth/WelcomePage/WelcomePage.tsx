@@ -60,16 +60,16 @@ const WelcomePage: React.FC = () => {
         mb={5}
       >
         <LinkButton
-          color="pink_200"
-          textcolor="fuschia"
-          title="existing member?"
-          route="/login"
-        />
-        <LinkButton
           color="purple_200"
           textcolor="fuschia"
           title="Find out more"
           route="/join-us"
+        />
+        <LinkButton
+          color="pink_200"
+          textcolor="fuschia"
+          title="existing member?"
+          route="/login"
         />
       </Stack>
 
