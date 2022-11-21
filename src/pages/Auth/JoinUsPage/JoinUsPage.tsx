@@ -51,7 +51,15 @@ const JoinUsPage = () => {
           for Members, their friends and family to come together for a dance
           marathon competition.
         </Typography>
-        <Stack display={"flex"} flexDirection="row" columnGap={2} mb={1}>
+        <Stack
+          display={"flex"}
+          sx={{
+            display: { xs: "flex" },
+            flexDirection: { xs: "column", md: "row" },
+          }}
+          columnGap={2}
+          mb={1}
+        >
           <BenefitsCard
             title="Massive Discounts!"
             subtitle="Only for members, enjoy discounts on Health and fitness products from our partners"
@@ -65,7 +73,15 @@ const JoinUsPage = () => {
             src={Image}
           />
         </Stack>
-        <Stack display={"flex"} flexDirection="row" columnGap={2} mb={4}>
+        <Stack
+          display={"flex"}
+          sx={{
+            display: { xs: "flex" },
+            flexDirection: { xs: "column", md: "row" },
+          }}
+          columnGap={2}
+          mb={4}
+        >
           <BenefitsCard
             title="Weekly Online Fitness Classes"
             subtitle="Classes are taught by highly qualified fitness instructors."

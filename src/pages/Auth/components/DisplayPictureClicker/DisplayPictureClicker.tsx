@@ -41,12 +41,13 @@ export const DisplayPictureClicker: React.FC<Props> = ({
         />
       </Box>
     );
+
   return (
     <Box
       width={"100%"}
       sx={{
-        display: "flex",
-        flexDirection: "row",
+        display: { xs: "flex" },
+        flexDirection: { xs: "column", md: "row" },
         alignItems: "center",
         justifyContent: "center",
       }}
@@ -79,6 +80,8 @@ export const DisplayPictureClicker: React.FC<Props> = ({
           textTransform: "uppercase",
           fontSize: 15,
           letterSpacing: 1,
+          textAlign: { xs: "center", md: "left" },
+          marginTop: { xs: 2, md: 0 },
         }}
       >
         Tap on the image to choose your display picture

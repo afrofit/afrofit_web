@@ -129,7 +129,10 @@ const RegisterPage = () => {
               />
               <Stack
                 display={"flex"}
-                flexDirection="row"
+                sx={{
+                  display: { xs: "flex" },
+                  flexDirection: { xs: "column", md: "row" },
+                }}
                 columnGap={2}
                 width="100%"
               >
@@ -150,7 +153,10 @@ const RegisterPage = () => {
               </Stack>
               <Stack
                 display={"flex"}
-                flexDirection="row"
+                sx={{
+                  display: { xs: "flex" },
+                  flexDirection: { xs: "column", md: "row" },
+                }}
                 columnGap={2}
                 width="100%"
               >
@@ -172,7 +178,10 @@ const RegisterPage = () => {
               </Stack>
               <Stack
                 display={"flex"}
-                flexDirection="row"
+                sx={{
+                  display: { xs: "flex" },
+                  flexDirection: { xs: "column", md: "row" },
+                }}
                 columnGap={2}
                 width="100%"
               >

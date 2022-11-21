@@ -5,13 +5,13 @@ import { COLORS } from "../../../constants/colors";
 import { StatsCard } from "../../App/components/StatsCard";
 import { WelcomeCard } from "../components/WelcomeCard";
 
-const titleFontStyles: React.CSSProperties = {
-  fontSize: 90,
+const titleFontStyles = {
+  fontSize: { xs: 60, md: 90 },
   fontWeight: 900,
   marginBottom: -3,
   color: COLORS.white,
   letterSpacing: 0.2,
-  lineHeight: 1.3,
+  lineHeight: { xs: 1.4, md: 1.3 },
   textAlign: "center",
   backgroundImage: `linear-gradient(45deg, ${COLORS.purple_100}, ${COLORS.orange_200})`,
   WebkitBackgroundClip: "text",
@@ -19,13 +19,14 @@ const titleFontStyles: React.CSSProperties = {
   borderRadius: 2,
 };
 
-const subtitleFontStyles: React.CSSProperties = {
-  fontSize: 45,
-  fontWeight: 400,
+const subtitleFontStyles = {
+  fontSize: { xs: 25, md: 45 },
+  fontWeight: { md: 400 },
   textAlign: "center",
   color: COLORS.white,
 };
 
+//xs, sm, md, lg, xl
 const WelcomePage: React.FC = () => {
   return (
     <Box
@@ -50,6 +51,38 @@ const WelcomePage: React.FC = () => {
         Physically. Mentally. Sexually.
       </Typography>
       <Stack
+        sx={{
+          display: { xs: "flex", md: "none" },
+          width: "100%",
+        }}
+        flexDirection="column"
+        alignItems="center"
+        justifyContent="center"
+        columnGap={3}
+        mt={5}
+        mb={5}
+      >
+        <LinkButton
+          color="purple_200"
+          textcolor="fuschia"
+          title="Find out more"
+          route="/join-us"
+          mb={20}
+        />
+
+        <LinkButton
+          color="pink_200"
+          textcolor="fuschia"
+          title="existing member?"
+          route="/login"
+        />
+      </Stack>
+      <Stack
+        sx={{
+          display: { xs: "none", md: "flex" },
+          marginBottom: 5,
+          marginTop: 5,
+        }}
         display={"flex"}
         flexDirection="row"
         width="100%"
@@ -85,24 +118,33 @@ const WelcomePage: React.FC = () => {
       >
         A few membership benefits
       </Typography>
-      <Grid container spacing={2} display="flex" alignItems="stretch" mb={0}>
+      <Grid
+        container
+        spacing={2}
+        alignItems="stretch"
+        mb={0}
+        sx={{
+          display: { xs: "flex" },
+          flexDirection: { xs: "column", md: "row" },
+        }}
+      >
         <WelcomeCard
           image="two"
           color="orange_200"
-          title="Fitness Programs"
-          subtitle="Join fitness programs and track your activity from our app"
+          title="Dance Exercise App"
+          subtitle="Dance and lose weight quickly with our free DAILY DANCE EXERCISE APP"
         />
         <WelcomeCard
           image="one"
           color="hilite_purpink"
-          title="MealPlan plus"
-          subtitle="Follow expert-curated meal plans for your fitness goals"
+          title="Dance Fitness Programmes"
+          subtitle="FULL ACCESS TO WEEKLY ONLINE DANCE FITNESS PROGRAME CLASSES by highly qualified fitness instructors"
         />
         <WelcomeCard
           image="three"
           color="pink_200"
-          title="Exclusive events"
-          subtitle="Get invited to  members-only social events"
+          title="Amazing DJ Mixes"
+          subtitle="ACCESS TO UNLIMITED WORKOUT/PARTY DJ MIXES by top DJs around the world"
         />
       </Grid>
     </Box>

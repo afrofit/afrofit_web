@@ -8,6 +8,7 @@ interface Props {
   color: ColorType;
   textcolor?: ColorType;
   onClick?: () => void;
+  mb?: number;
 }
 
 const activeLinkStyle = {};
@@ -18,6 +19,7 @@ export const LinkButton: React.FC<Props> = ({
   onClick,
   color,
   textcolor = "white",
+  mb,
 }) => {
   return (
     <StyledNavLink
@@ -25,6 +27,7 @@ export const LinkButton: React.FC<Props> = ({
       onClick={onClick}
       style={({ isActive }) => activeLinkStyle}
       color={color}
+      mb={mb}
     >
       <LinkButtonText textcolor={textcolor}>{title}</LinkButtonText>
       <ArrowForwardIcon sx={{ color: COLORS[textcolor] }} />

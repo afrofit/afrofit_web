@@ -7,6 +7,7 @@ import { NavLink } from "react-router-dom";
 interface Props {
   color?: ColorType;
   textcolor?: ColorType;
+  mb?: number;
 }
 export const CustomButton = styled.button<Props>`
   padding: 12px 20px;
@@ -26,7 +27,8 @@ export const CustomButton = styled.button<Props>`
 
 export const StyledNavLink = styled(NavLink)<Props>`
   height: 65px;
-  width: 500px;
+  max-width: 500px;
+  width: 100%;
   padding: 15px;
   border-radius: ${CHAMFER};
   background-color: ${({ color }) => color && COLORS[color]};
@@ -35,6 +37,7 @@ export const StyledNavLink = styled(NavLink)<Props>`
   align-items: center;
   justify-content: center;
   transition: 0.5s ease-in-out;
+  margin-bottom: ${({ mb }) => (mb ? `${mb}px` : 0)};
 
   &:hover {
     padding-right: 20px;
