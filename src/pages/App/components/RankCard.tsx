@@ -19,7 +19,7 @@ interface Props {
 
 export const RankCard: React.FC<Props> = ({ rank }) => {
   return (
-    <Grid item xs={4}>
+    <Grid item xs={12} md={4}>
       <Card height={300} padding={4} justifyContent="center">
         <Box
           display={"flex"}

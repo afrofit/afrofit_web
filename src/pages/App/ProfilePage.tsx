@@ -132,9 +132,12 @@ const ProfilePage: React.FC<Props> = () => {
         <Grid
           container
           spacing={2}
-          display="flex"
           alignItems={"stretch"}
           mb={5}
+          sx={{
+            display: { xs: "flex", md: "flex" },
+            flexDirection: { xs: "column", md: "row" },
+          }}
         >
           <IdentCard
             currentUser={currentUser}
@@ -155,7 +158,10 @@ const ProfilePage: React.FC<Props> = () => {
         <Grid
           container
           spacing={2}
-          display="flex"
+          sx={{
+            display: { xs: "flex", md: "flex" },
+            flexDirection: { xs: "column", md: "row" },
+          }}
           alignItems={"stretch"}
           mb={5}
         >

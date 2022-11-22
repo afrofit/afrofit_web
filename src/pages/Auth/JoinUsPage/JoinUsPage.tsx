@@ -1,15 +1,19 @@
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
-import { Container, Stack, Typography } from "@mui/material";
+import { Container, Grid, Stack, Typography } from "@mui/material";
 
 import { COLORS } from "../../../constants/colors";
 import { BenefitsCard } from "./components/BenefitsCard";
 import { StyledLargeButton } from "../../../components/elements/StyledLargeButton/StyledLargeButton";
 import { StyledClearButton } from "../../../components/elements/StyledClearButton/StyledClearButton";
 import Image from "../../../assets/img/model_female.png";
+import { RankCard } from "../../App/components/RankCard";
+import { IdentCard } from "../../App/components/IdentCard";
+import { UserModel } from "../../../types/UserModel";
 
 const JoinUsPage = () => {
   const navigation = useNavigate();
+
   return (
     <React.Fragment>
       <Typography
@@ -24,6 +28,7 @@ const JoinUsPage = () => {
           WebkitTextFillColor: "transparent",
           borderRadius: 2,
           marginBottom: 5,
+          marginTop: 5,
         }}
       >
         Why you should join Afrofit

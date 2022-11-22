@@ -1,13 +1,19 @@
-import { Box, Container, Divider, Stack, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Container,
+  Divider,
+  Stack,
+  Typography,
+} from "@mui/material";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { EXPIRE_TOKEN } from "../../../api/storage";
 
 import AppLogo from "../../../assets/img/logofull_nobg.png";
 import { COLORS } from "../../../constants/colors";
 import { storeUser } from "../../../store/reducers/auth/auth.slice";
 
-import { SmallButton } from "../../Buttons/SmallButton";
 import { StyledNavLink } from "./StyledNavLink";
 
 interface Props {
@@ -57,6 +63,13 @@ export const AppHeader: React.FC<Props> = ({ authorized }) => {
           >
             <img src={AppLogo} alt="the Afrofit logo" height={"100%"} />
           </Box>
+          <Box marginRight={0} marginBottom={2}>
+            <StyledNavLink
+              title="My Profile"
+              route="profile"
+              onClick={() => null}
+            />
+          </Box>
           <Stack
             direction="row"
             spacing={0.2}
@@ -84,27 +97,35 @@ export const AppHeader: React.FC<Props> = ({ authorized }) => {
             <StyledNavLink title="Shop" route="shop" onClick={() => null} />
             <StyledNavLink title="About" route="about" onClick={() => null} />
           </Stack>
-          <Box
-            width={400}
+          <Stack
             sx={{
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
+              flexDirection: "row",
             }}
           >
-            <Box marginRight={3}>
-              <StyledNavLink
-                title="My Profile"
-                route="profile"
-                onClick={() => null}
-              />
-            </Box>
-            <SmallButton
-              title="Sign out"
+            <Box marginRight={3}></Box>
+            <Button
+              sx={{
+                backgroundColor: COLORS.purple_100,
+                paddingLeft: 2,
+                paddingRight: 2,
+                paddingTop: 1.1,
+                paddingBottom: 1.1,
+                borderRadius: 10,
+                letterSpacing: 2,
+                fontSize: 13,
+                fontWeight: 300,
+                "&:hover": {
+                  backgroundColor: COLORS.purple_200,
+                },
+              }}
               onClick={handleLogout}
-              color="purple_100"
-            />
-          </Box>
+            >
+              Sign out
+            </Button>
+          </Stack>
         </Container>
         <Container
           maxWidth="xl"
@@ -185,11 +206,25 @@ export const AppHeader: React.FC<Props> = ({ authorized }) => {
                   onClick={() => null}
                 />
               </Box>
-              <SmallButton
-                title="Sign out"
+              <Button
+                sx={{
+                  backgroundColor: COLORS.purple_100,
+                  paddingLeft: 2,
+                  paddingRight: 2,
+                  paddingTop: 1.1,
+                  paddingBottom: 1.1,
+                  borderRadius: 10,
+                  letterSpacing: 2,
+                  fontSize: 13,
+                  fontWeight: 300,
+                  "&:hover": {
+                    backgroundColor: COLORS.purple_200,
+                  },
+                }}
                 onClick={handleLogout}
-                color="purple_100"
-              />
+              >
+                Sign out
+              </Button>
             </Box>
           </Stack>
         </Container>

@@ -11,7 +11,7 @@ interface Props {
 }
 export const StatsCard: React.FC<Props> = ({ title, value, color }) => {
   return (
-    <Grid item xs={3}>
+    <Grid item xs={6} md={3}>
       <Card height={250} padding={4} justifyContent="center" color={color}>
         <Stack display="flex" flexDirection={"column"}>
           <CardTitle

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { CircularProgress, Grid, Stack, Typography } from "@mui/material";
+import { Box, CircularProgress, Grid, Stack, Typography } from "@mui/material";
 import { Card } from "../../../components/Card/Card";
 import { StyledAvatar } from "../../../components/StyledAvatar/StyledAvatar";
 import { COLORS } from "../../../constants/colors";
@@ -19,30 +19,100 @@ export const IdentCard: React.FC<Props> = ({ currentUser, onChangeDp }) => {
 
   const picId = currentUser?.displayPicId ? currentUser.displayPicId : 1;
 
+  if (!currentUser)
+    return (
+      <>
+        <CircularProgress />
+        <Typography sx={{ color: COLORS.white, fontSize: 20, fontWeight: 500 }}>
+          No user information found!
+        </Typography>
+      </>
+    );
+
   return (
-    <Grid item xs={8}>
-      <Card
-        height={300}
-        padding={6}
-        justifyContent="center"
-        alignItems="center"
-      >
-        {!currentUser ? (
-          <>
-            <CircularProgress />
+    <Grid item xs={12} md={8}>
+      <Box sx={{ display: { xs: "none", md: "flex" } }}>
+        <Card
+          height={300}
+          padding={6}
+          justifyContent="center"
+          alignItems="center"
+        >
+          <StyledAvatar
+            src={require(`../../../assets/img/dp/${picId}.png`)}
+            size={250}
+            mb={0}
+            mr={6}
+            onClick={onChangeDp}
+          />
+
+          <Stack
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "flex-start",
+              justifyContent: "center",
+              flex: 1,
+              color: COLORS.white,
+            }}
+          >
             <Typography
-              sx={{ color: COLORS.white, fontSize: 20, fontWeight: 500 }}
+              sx={{
+                fontSize: 45,
+                fontWeight: 400,
+                color: COLORS.orange_200,
+                marginBottom: -1,
+              }}
             >
-              No user information found!
+              {currentUser.firstName} {currentUser.lastName}
             </Typography>
-          </>
-        ) : (
-          <>
+            <Typography
+              sx={{
+                fontSize: 25,
+                fontWeight: 300,
+                color: COLORS.orange_100,
+                marginBottom: 2,
+              }}
+            >
+              @{currentUser.username}
+            </Typography>
+            <Typography sx={{ fontSize: 20, fontWeight: 400, marginBottom: 1 }}>
+              {currentUser.email}
+            </Typography>
+            <Typography
+              sx={{
+                fontSize: 15,
+                fontWeight: 500,
+                letterSpacing: 3,
+                color: COLORS.whiteblue,
+                textTransform: "uppercase",
+              }}
+            >
+              Member since {formatDate(currentUser.joinDate)}
+            </Typography>
+          </Stack>
+        </Card>
+      </Box>
+
+      <Box sx={{ display: { xs: "flex", md: "none" } }}>
+        <Card
+          height={400}
+          padding={6}
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
             <StyledAvatar
               src={require(`../../../assets/img/dp/${picId}.png`)}
-              size={250}
+              size={150}
               mb={0}
-              mr={6}
+              mr={0}
               onClick={onChangeDp}
             />
 
@@ -50,15 +120,16 @@ export const IdentCard: React.FC<Props> = ({ currentUser, onChangeDp }) => {
               sx={{
                 display: "flex",
                 flexDirection: "column",
-                alignItems: "flex-start",
+                alignItems: "center",
                 justifyContent: "center",
                 flex: 1,
                 color: COLORS.white,
+                marginTop: 2,
               }}
             >
               <Typography
                 sx={{
-                  fontSize: 45,
+                  fontSize: 35,
                   fontWeight: 400,
                   color: COLORS.orange_200,
                   marginBottom: -1,
@@ -68,7 +139,7 @@ export const IdentCard: React.FC<Props> = ({ currentUser, onChangeDp }) => {
               </Typography>
               <Typography
                 sx={{
-                  fontSize: 25,
+                  fontSize: 20,
                   fontWeight: 300,
                   color: COLORS.orange_100,
                   marginBottom: 2,
@@ -77,25 +148,26 @@ export const IdentCard: React.FC<Props> = ({ currentUser, onChangeDp }) => {
                 @{currentUser.username}
               </Typography>
               <Typography
-                sx={{ fontSize: 20, fontWeight: 400, marginBottom: 1 }}
+                sx={{ fontSize: 15, fontWeight: 400, marginBottom: 1 }}
               >
                 {currentUser.email}
               </Typography>
               <Typography
                 sx={{
-                  fontSize: 15,
+                  fontSize: 12,
                   fontWeight: 500,
                   letterSpacing: 3,
                   color: COLORS.whiteblue,
                   textTransform: "uppercase",
+                  textAlign: "center",
                 }}
               >
                 Member since {formatDate(currentUser.joinDate)}
               </Typography>
             </Stack>
-          </>
-        )}
-      </Card>
+          </Box>
+        </Card>
+      </Box>
     </Grid>
   );
 };
