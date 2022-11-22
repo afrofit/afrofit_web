@@ -16,16 +16,16 @@ export const BenefitsCard: React.FC<Props> = ({
   src,
 }) => {
   return (
-    <Card color={color} height={300}>
-      <Stack display="flex" flexDirection={"row"} columnGap={2}>
-        <StyledImage size={230} src={src} />
+    <Card color={color} height={275}>
+      <Stack display="flex" flexDirection={"column"} columnGap={2}>
+        {/* <StyledImage size={100} src={src} /> */}
         <Box sx={{ color: COLORS.white }}>
           <Typography
             sx={{
-              fontSize: 30,
+              fontSize: 25,
               fontWeight: 500,
               lineHeight: 1.2,
-              marginBottom: 1,
+              marginBottom: 2,
             }}
           >
             {title}

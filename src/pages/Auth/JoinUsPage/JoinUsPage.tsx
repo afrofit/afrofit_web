@@ -31,7 +31,7 @@ const JoinUsPage = () => {
           WebkitTextFillColor: "transparent",
           borderRadius: 2,
           marginBottom: 5,
-          marginTop: 5,
+          // marginTop: 5,
         }}
       >
         Why you should join Afrofit
