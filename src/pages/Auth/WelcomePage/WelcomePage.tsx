@@ -4,6 +4,8 @@ import { LinkButton } from "../../../components/Buttons/LinkButton";
 import { COLORS } from "../../../constants/colors";
 import { StatsCard } from "../../App/components/StatsCard";
 import { WelcomeCard } from "../components/WelcomeCard";
+import PlayStoreLogo from "../../../assets/img/playstore.png";
+import AppStoreLogo from "../../../assets/img/appstore.png";
 
 const titleFontStyles = {
   fontSize: { xs: 60, md: 90 },
@@ -146,6 +148,59 @@ const WelcomePage: React.FC = () => {
           title="Amazing DJ Mixes"
           subtitle="ACCESS TO UNLIMITED WORKOUT/PARTY DJ MIXES by top DJs around the world"
         />
+      </Grid>
+
+      <Typography
+        sx={{
+          fontSize: 20,
+          color: COLORS.whiteblue,
+          marginTop: 5,
+          textTransform: "uppercase",
+          letterSpacing: 2,
+        }}
+      >
+        GET THE SUPER FUN APP!
+      </Typography>
+      <Grid
+        container
+        spacing={2}
+        alignItems="stretch"
+        mb={0}
+        sx={{
+          display: { xs: "flex" },
+          flexDirection: { xs: "column", md: "row" },
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Box
+          sx={{
+            height: "100px",
+            cursor: "pointer",
+            marginBottom: 2,
+            marginTop: 5,
+            marginLeft: 2,
+            marginRight: 2,
+          }}
+        >
+          <a href="https://play.google.com/store/apps/details?id=com.djminddgap.afrofit&gl=GB">
+            <img src={PlayStoreLogo} alt="the Afrofit logo" height={"100%"} />
+          </a>
+        </Box>
+        <Box
+          sx={{
+            height: "100px",
+            cursor: "pointer",
+            marginBottom: 2,
+            marginTop: 5,
+            marginLeft: 2,
+            marginRight: 2,
+          }}
+        >
+          <a href="https://apps.apple.com/us/app/afrofit-app/id1643761809">
+            <img src={AppStoreLogo} alt="the Afrofit logo" height={"100%"} />
+          </a>
+        </Box>
       </Grid>
     </Box>
   );
