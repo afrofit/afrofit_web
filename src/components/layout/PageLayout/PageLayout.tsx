@@ -24,7 +24,12 @@ export const PageLayout: React.FC<Props> = ({
           justifyContent: "space-between",
         }}
       >
-        <StyledFont variant="title">{title}</StyledFont>
+        <Box sx={{ display: { xs: "none", md: "block" } }}>
+          <StyledFont variant="title">{title}</StyledFont>
+        </Box>
+        <Box sx={{ display: { xs: "block", md: "none" } }}>
+          <StyledFont variant="bold">{title}</StyledFont>
+        </Box>
         {buttonComponent && showButton && <Box>{buttonComponent}</Box>}
       </Box>
       <Box>{children}</Box>

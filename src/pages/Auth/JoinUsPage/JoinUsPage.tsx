@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
-import { Container, Grid, Stack, Typography } from "@mui/material";
+import { Container, Grid, Box, Stack, Typography } from "@mui/material";
 
 import { COLORS } from "../../../constants/colors";
 import { BenefitsCard } from "./components/BenefitsCard";
@@ -12,6 +12,7 @@ import { IdentCard } from "../../App/components/IdentCard";
 import { UserModel } from "../../../types/UserModel";
 import { SubscriptionCard } from "../../App/components/SubscriptionCard";
 import { StatsCard } from "../../App/components/StatsCard";
+import { StyledFont } from "../../../components/StyledFont/StyledFont";
 
 const JoinUsPage = () => {
   const navigation = useNavigate();
