@@ -110,6 +110,7 @@ export const AppHeader: React.FC<Props> = ({ authorized }) => {
                 letterSpacing: 2,
                 fontSize: 13,
                 fontWeight: 300,
+                marginBottom: 4,
                 "&:hover": {
                   backgroundColor: COLORS.purple_200,
                 },
