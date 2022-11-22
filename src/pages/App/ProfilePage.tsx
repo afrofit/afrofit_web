@@ -160,7 +160,7 @@ const ProfilePage: React.FC<Props> = () => {
           spacing={2}
           sx={{
             display: { xs: "flex", md: "flex" },
-            flexDirection: { xs: "column", md: "row" },
+            flexWrap: "wrap",
           }}
           alignItems={"stretch"}
           mb={5}

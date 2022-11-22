@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import { COLORS } from "../../../constants/colors";
 
 export const CardTitle = styled(Typography)`
-  font-size: 25px;
+  font-size: 22px;
   font-weight: 300;
   margin-bottom: 20px;
 `;
