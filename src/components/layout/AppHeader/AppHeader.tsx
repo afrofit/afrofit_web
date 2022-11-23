@@ -47,79 +47,77 @@ export const AppHeader: React.FC<Props> = ({ authorized }) => {
         >
           <Box
             sx={{
-              height: "60px",
+              height: "50px",
               cursor: "pointer",
-              marginBottom: 2,
-              marginTop: 5,
+              // marginBottom: 1,
+              marginTop: 12,
             }}
             onClick={() => navigate("/")}
           >
             <img src={AppLogo} alt="the Afrofit logo" height={"100%"} />
           </Box>
-          <Box marginRight={0} marginBottom={2}>
-            <StyledNavLink
-              title="My Profile"
-              route="profile"
-              onClick={() => null}
-            />
-          </Box>
-          <Stack
-            direction="row"
-            spacing={0.2}
-            mb={2}
-            divider={
-              <Divider
-                orientation="vertical"
-                color={COLORS.white}
-                sx={{
-                  opacity: 0.2,
-                  height: 0.3,
-                  alignSelf: "center",
-                }}
-                flexItem
-              />
-            }
-          >
-            <StyledNavLink title="Blog" route="blog" onClick={() => null} />
-            <StyledNavLink
-              title="Classes"
-              route="classes"
-              onClick={() => null}
-            />
-            <StyledNavLink title="Events" route="events" onClick={() => null} />
-            <StyledNavLink title="Shop" route="shop" onClick={() => null} />
-            <StyledNavLink title="About" route="about" onClick={() => null} />
-          </Stack>
-          <Stack
+          <Box marginRight={0} marginBottom={2}></Box>
+          <Box
             sx={{
               display: "flex",
+              width: "70%",
+              flexWrap: "wrap",
               justifyContent: "center",
-              alignItems: "center",
-              flexDirection: "row",
             }}
           >
-            <Box marginRight={3}></Box>
-            <Button
-              sx={{
-                backgroundColor: COLORS.purple_100,
-                paddingLeft: 2,
-                paddingRight: 2,
-                paddingTop: 1.1,
-                paddingBottom: 1.1,
-                borderRadius: 10,
-                letterSpacing: 2,
-                fontSize: 13,
-                fontWeight: 300,
-                marginBottom: 4,
-                "&:hover": {
-                  backgroundColor: COLORS.purple_200,
-                },
-              }}
-              onClick={handleLogout}
-            >
-              Sign out
-            </Button>
-          </Stack>
+            <Box>
+              <StyledNavLink title="Blog" route="blog" onClick={() => null} />
+            </Box>
+            <Box>
+              <StyledNavLink
+                title="Classes"
+                route="classes"
+                onClick={() => null}
+              />
+            </Box>
+            <Box>
+              <StyledNavLink
+                title="Events"
+                route="events"
+                onClick={() => null}
+              />
+            </Box>
+            <Box>
+              <StyledNavLink title="Shop" route="shop" onClick={() => null} />
+            </Box>
+            <Box>
+              <StyledNavLink title="About" route="about" onClick={() => null} />
+            </Box>
+            <Box>
+              <StyledNavLink
+                title="My Profile"
+                route="profile"
+                onClick={() => null}
+              />
+            </Box>
+            <Box>
+              <Button
+                sx={{
+                  backgroundColor: COLORS.purple_100,
+                  paddingLeft: 2,
+                  paddingRight: 2,
+                  paddingTop: 1.1,
+                  paddingBottom: 1.1,
+                  borderRadius: 10,
+                  letterSpacing: 2,
+                  fontSize: 13,
+                  fontWeight: 300,
+                  marginBottom: 4,
+                  "&:hover": {
+                    backgroundColor: COLORS.purple_200,
+                  },
+                }}
+                onClick={handleLogout}
+              >
+                Sign out
+              </Button>
+            </Box>
+          </Box>
         </Container>
         <Container
           maxWidth="xl"

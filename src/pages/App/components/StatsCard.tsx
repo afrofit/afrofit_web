@@ -9,6 +9,7 @@ interface Props {
   value?: number;
   color?: ColorType;
 }
+
 export const StatsCard: React.FC<Props> = ({ title, value, color }) => {
   return (
     <Grid item xs={6} md={3}>
