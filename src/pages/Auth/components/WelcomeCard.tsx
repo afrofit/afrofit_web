@@ -24,31 +24,53 @@ export const WelcomeCard: React.FC<Props> = ({
   return (
     <Grid item xs={11.5} sm={8} md={4}>
       <Card height={320} padding={0} color={color}>
-        <Box sx={{ position: "relative", height: 320, padding: 2 }}>
-          <Box sx={{ position: "absolute", top: 0, left: -10 }}>
-            <StyledImage size={350} src={heroImage} />
+        <Box
+          sx={{ position: "relative", height: 320, padding: 2, width: "100%" }}
+        >
+          <Box sx={{ position: "absolute", top: 0, left: 0, zIndex: 1 }}>
+            <StyledImage size={550} src={heroImage} />
           </Box>
 
-          <Box sx={{ position: "absolute", top: 30, left: 180 }}>
+          <Box
+            // sx={{ zIndex: 300 }}
+            sx={{
+              position: "absolute",
+              top: 0,
+              left: { xs: 0, md: 0 },
+              width: "inherit",
+              zIndex: 300,
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+              alignItems: "center",
+              height: "100%",
+              padding: 1,
+            }}
+          >
             <Typography
               sx={{
-                color: COLORS.dark_200,
+                padding: 1,
+                color: COLORS.white,
                 fontWeight: 600,
-                fontSize: 35,
+                fontSize: 25,
                 zIndex: 10,
                 lineHeight: 1,
-                marginBottom: 3,
+                // backgroundColor: COLORS.black,
+                textAlign: "center",
               }}
             >
               {title}
             </Typography>
             <Typography
               sx={{
+                padding: 1,
                 color: COLORS.white,
-                fontWeight: 400,
-                fontSize: 18,
+                fontWeight: 500,
+                fontSize: 16,
                 zIndex: 10,
-                lineHeight: 1.3,
+                lineHeight: 1.5,
+                backgroundColor: COLORS.black,
+                borderRadius: 2,
               }}
             >
               {subtitle}

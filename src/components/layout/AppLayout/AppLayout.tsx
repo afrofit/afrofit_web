@@ -23,7 +23,8 @@ export const AppLayout: React.FC<Props> = ({ children, authorized }) => {
         postion: "relative",
       }}
     >
-      <AppHeader authorized={authorized} />
+      {/* <AppHeader authorized={authorized} /> */}
+      <AppHeader authorized={true} />
       <Container
         maxWidth="lg"
         sx={{

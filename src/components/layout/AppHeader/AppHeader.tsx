@@ -43,6 +43,8 @@ export const AppHeader: React.FC<Props> = ({ authorized }) => {
             alignItems: "center",
             width: "100%",
             flexDirection: "column",
+            marginBottom: 5,
+            minHeight: "50px",
           }}
         >
           <Box
@@ -56,7 +58,6 @@ export const AppHeader: React.FC<Props> = ({ authorized }) => {
           >
             <img src={AppLogo} alt="the Afrofit logo" height={"100%"} />
           </Box>
-          <Box marginRight={0} marginBottom={2}></Box>
           <Box
             sx={{
               display: "flex",
@@ -95,7 +96,7 @@ export const AppHeader: React.FC<Props> = ({ authorized }) => {
                 onClick={() => null}
               />
             </Box>
-            <Box>
+            <Box sx={{ marginBottom: 0 }}>
               <Button
                 sx={{
                   backgroundColor: COLORS.purple_100,
@@ -108,6 +109,7 @@ export const AppHeader: React.FC<Props> = ({ authorized }) => {
                   fontSize: 13,
                   fontWeight: 300,
                   marginBottom: 4,
+                  marginTop: 1,
                   "&:hover": {
                     backgroundColor: COLORS.purple_200,
                   },

@@ -155,8 +155,10 @@ const WelcomePage: React.FC = () => {
           fontSize: 20,
           color: COLORS.whiteblue,
           marginTop: 5,
+          marginBottom: 2,
           textTransform: "uppercase",
           letterSpacing: 2,
+          textAlign: "center",
         }}
       >
         GET THE SUPER FUN APP!
@@ -175,10 +177,10 @@ const WelcomePage: React.FC = () => {
       >
         <Box
           sx={{
-            height: "100px",
+            height: { xs: "70px", md: "100px" },
             cursor: "pointer",
-            marginBottom: 2,
-            marginTop: 5,
+            marginBottom: { xs: 0, md: 2 },
+            marginTop: { xs: 1, md: 2 },
             marginLeft: 2,
             marginRight: 2,
           }}
@@ -189,10 +191,10 @@ const WelcomePage: React.FC = () => {
         </Box>
         <Box
           sx={{
-            height: "100px",
+            height: { xs: "70px", md: "100px" },
             cursor: "pointer",
-            marginBottom: 2,
-            marginTop: 5,
+            marginBottom: { xs: 0, md: 2 },
+            marginTop: { xs: 1, md: 2 },
             marginLeft: 2,
             marginRight: 2,
           }}
