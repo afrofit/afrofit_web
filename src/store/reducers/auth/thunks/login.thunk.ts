@@ -17,16 +17,18 @@ const logInApi = async (userData: LoginUserDataType) => {
   return await API_CLIENT.post("users/login", { email, password });
 };
 
-export function LogIn(userData: LoginUserDataType): AppThunk {
+export function LogIn(userData: LoginUserDataType,navigate:any): AppThunk {
   return async (dispatch) => {
     try {
       dispatch(newRequest());
       dispatch(hideGenericErrorDialog());
 
       const response = await logInApi(userData);
+      console.log('response :>> ', response);
       if (response && response.data) {
         dispatch(storeUserToken(response.data.token));
         STORE_TOKEN(response.data.token);
+        navigate()
       } else if (!response || !response.data) {
         dispatch(finishedRequest());
         return showGenericErrorDialog(`An error occured logging in.`);

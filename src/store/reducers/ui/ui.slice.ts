@@ -4,6 +4,7 @@ import { RootState } from "../../store";
 export interface UIState {
 	requestsLoading: number;
 	showGenericErrorDialog: string;
+	successMessageDialog:string;
 	isSubmitting: boolean;
 	loaderMessage: string;
 	actionCompleted: boolean;
@@ -12,6 +13,7 @@ export interface UIState {
 const initialState: UIState = {
 	requestsLoading: 0,
 	showGenericErrorDialog: "",
+	successMessageDialog:"",
 	isSubmitting: false,
 	loaderMessage: "Loading...",
 	actionCompleted: false,
@@ -30,6 +32,9 @@ const uiSlice = createSlice({
 		showGenericErrorDialog(state, action: PayloadAction<string>) {
 			state.showGenericErrorDialog = action.payload;
 		},
+		showGenericSuccessDialog(state, action: PayloadAction<string>) {
+			state.successMessageDialog = action.payload;
+		},
 
 		setLoaderMessage(state, action: PayloadAction<string>) {
 			state.loaderMessage = action.payload;
@@ -40,6 +45,9 @@ const uiSlice = createSlice({
 
 		hideGenericErrorDialog(state) {
 			state.showGenericErrorDialog = "";
+		},
+		hideGenericSuccessDialog(state) {
+			state.successMessageDialog = "";
 		},
 		setIsSubmitting(state, action: PayloadAction<boolean>) {
 			state.isSubmitting = action.payload;
@@ -59,6 +67,8 @@ export const {
 	setLoaderMessage,
 	unsetLoaderMessage,
 	triggerActionCompleted,
+	showGenericSuccessDialog,
+	hideGenericSuccessDialog
 } = uiSlice.actions;
 
 export const selectUiIsLoading = (state: RootState) =>
@@ -73,5 +83,5 @@ export const selectIsSubmitting = (state: RootState) => state.ui.isSubmitting;
 
 export const selectedActionCompleted = (state: RootState) =>
 	state.ui.actionCompleted;
-
+export const selectedShowSuccessMessage=(state: RootState) => state.ui.successMessageDialog;
 export default uiSlice.reducer;

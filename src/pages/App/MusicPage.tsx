@@ -95,6 +95,8 @@ const MusicPage: React.FC<Props> = () => {
       >
         <a
           href="https://youtu.be/pMC3ibZhvIc"
+          target="_blank"
+          rel="noreferrer"
           style={{
             textDecoration: "none",
             color: COLORS.gold,

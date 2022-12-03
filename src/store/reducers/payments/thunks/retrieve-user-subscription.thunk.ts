@@ -23,7 +23,7 @@ export function RetrieveUserSubscription(userId: string): AppThunk {
       const response = await retrieveUserSubscription(userId);
 
       if (response && response.data) {
-        console.log("response", response.data);
+        // console.log("response", response.data);
         const { activeSubscription } = response.data;
 
         dispatch(setIsSubscribed(activeSubscription));

@@ -1,70 +1,80 @@
-import * as React from "react";
+import * as React from 'react'
 import {
   IconWrapper,
   StyledInput,
   StyledInputWrapper,
   StyledWrapper,
-} from "./styled";
-import { Mail, Lock, User } from "react-feather";
-import { COLORS } from "../../../constants/colors";
-import { Typography } from "@mui/material";
-import { Controller } from "react-hook-form";
+} from './styled'
+import { Mail, Lock, User, Eye, EyeOff } from 'react-feather'
+import { COLORS } from '../../../constants/colors'
+import { Typography } from '@mui/material'
+import { Controller } from 'react-hook-form'
 
 interface Props {
-  name: string;
-  type?: "text" | "email" | "password";
-  label?: string;
-  control: any;
-  placeholder?: string;
-  icon?: "person" | "mail" | "lock" | "user";
+  name: string
+  type?: 'text' | 'email' | 'password'
+  label?: string
+  control: any
+  placeholder?: string
+  icon?: 'person' | 'mail' | 'lock' | 'user'
+  showpassIcon?: 'eye'
+  hidepassIcon?: 'eyeOff'
+  showPassword?: any
+  setShowPassword?: any
+  cShowPassword?: any
+  setCShowPassword?: any
 }
 
 export const CustomInputElement: React.FC<Props> = ({
   name,
-  type = "text",
+  type = 'text',
   label,
   control,
   placeholder,
-  icon = "user",
+  icon = 'user',
+  showPassword,
+  setShowPassword,
+  cShowPassword,
+  setCShowPassword,
 }) => {
-  const [focused, setFocused] = React.useState(false);
+  const [focused, setFocused] = React.useState(false)
 
   const getIcon = React.useCallback(() => {
-    if (icon === "user")
+    if (icon === 'user')
       return (
         <User
           color={focused ? COLORS.gold : COLORS.whiteblue}
           size={focused ? 30 : 25}
         />
-      );
-    if (icon === "mail")
+      )
+    if (icon === 'mail')
       return (
         <Mail
           color={focused ? COLORS.gold : COLORS.whiteblue}
           size={focused ? 30 : 25}
         />
-      );
-    if (icon === "lock")
+      )
+    if (icon === 'lock')
       return (
         <Lock
           color={focused ? COLORS.gold : COLORS.whiteblue}
           size={focused ? 30 : 25}
         />
-      );
+      )
     return (
       <User
         color={focused ? COLORS.gold : COLORS.whiteblue}
         size={focused ? 30 : 25}
       />
-    );
-  }, [icon, focused]);
+    )
+  }, [icon, focused])
 
   return (
     <Controller
       name={name}
       control={control}
       render={({
-        field: { onBlur, onChange, value = "", name },
+        field: { onBlur, onChange, value = '', name },
         fieldState: { error },
       }) => (
         <StyledWrapper>
@@ -73,7 +83,7 @@ export const CustomInputElement: React.FC<Props> = ({
               sx={{
                 color: COLORS.hilite_purpink,
                 marginBottom: 1,
-                textTransform: "uppercase",
+                textTransform: 'uppercase',
                 fontSize: 15,
                 letterSpacing: 1,
               }}
@@ -86,8 +96,8 @@ export const CustomInputElement: React.FC<Props> = ({
             <StyledInput
               onFocus={() => setFocused(true)}
               onBlur={() => {
-                setFocused(false);
-                return onBlur();
+                setFocused(false)
+                return onBlur()
               }}
               type={type}
               name={name}
@@ -97,13 +107,50 @@ export const CustomInputElement: React.FC<Props> = ({
               onChange={onChange}
               autoFocus={false}
             />
+            {name === 'password' || name === 'confirm_password' ? (
+              <IconWrapper
+                onClick={(e) => {
+                  if (name === 'password') {
+                    setShowPassword(!showPassword)
+                  }
+                  if (name === 'confirm_password') {
+                    setCShowPassword(!cShowPassword)
+                  }
+                }}
+              >
+                {name === 'password' &&
+                  (!showPassword ? (
+                    <Eye
+                      color={focused ? COLORS.gold : COLORS.whiteblue}
+                      size={focused ? 30 : 25}
+                    />
+                  ) : (
+                    <EyeOff
+                      color={focused ? COLORS.gold : COLORS.whiteblue}
+                      size={focused ? 30 : 25}
+                    />
+                  ))}
+                {name === 'confirm_password' &&
+                  (cShowPassword ? (
+                    <EyeOff
+                      color={focused ? COLORS.gold : COLORS.whiteblue}
+                      size={focused ? 30 : 25}
+                    />
+                  ) : (
+                    <Eye
+                      color={focused ? COLORS.gold : COLORS.whiteblue}
+                      size={focused ? 30 : 25}
+                    />
+                  ))}
+              </IconWrapper>
+            ) : null}
           </StyledInputWrapper>
           {error && (
             <Typography
               sx={{
-                fontSize: "14px",
+                fontSize: '14px',
                 fontWeight: 500,
-                marginTop: "5px",
+                marginTop: '5px',
                 color: COLORS.orange_200,
               }}
             >
@@ -113,5 +160,5 @@ export const CustomInputElement: React.FC<Props> = ({
         </StyledWrapper>
       )}
     />
-  );
-};
+  )
+}

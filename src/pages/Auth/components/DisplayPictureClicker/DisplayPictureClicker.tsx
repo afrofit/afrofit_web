@@ -6,7 +6,7 @@ import { CHAMFER } from "../../../../constants/globals";
 interface Props {
   onClick: () => void;
   dpId: number;
-  size?: number;
+  size?: number | string;
   imageOnly?: boolean;
   selected?: boolean;
 }
@@ -14,7 +14,7 @@ interface Props {
 export const DisplayPictureClicker: React.FC<Props> = ({
   onClick,
   dpId,
-  size = 100,
+  size = 95,
   imageOnly = false,
   selected = false,
 }) => {
@@ -32,6 +32,7 @@ export const DisplayPictureClicker: React.FC<Props> = ({
           borderStyle: "solid",
           borderColor: !selected ? COLORS.purple_100 : COLORS.hilite_purpink,
           overflow: "hidden",
+          
         }}
       >
         <img

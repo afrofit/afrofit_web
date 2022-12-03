@@ -7,6 +7,8 @@ import { FullPageLoadingSpinner } from "../components/elements/FullPageLoadingSp
 import { theme } from "../constants/theme";
 import {
   hideGenericErrorDialog,
+  hideGenericSuccessDialog,
+  selectedShowSuccessMessage,
   selectShowGenericErrorDialog,
   selectUiIsLoading,
 } from "../store/reducers/ui/ui.slice";
@@ -17,12 +19,16 @@ import {
   storeUserToken,
 } from "../store/reducers/auth/auth.slice";
 import { DECODE_TOKEN, GET_TOKEN } from "../api/storage";
+import { SuccessDialog } from "../components/dialogs/SuccessDialog";
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
 
   const isLoading = useSelector(selectUiIsLoading);
   const errorMessage = useSelector(selectShowGenericErrorDialog);
+  const successMessage = useSelector(selectedShowSuccessMessage);
+  // console.log("🚀 ~ file: App.tsx:28 ~ successMessage", successMessage)
+
   const userToken = useSelector(selectUserToken);
 
   const memoToken = React.useMemo(() => GET_TOKEN(), []);
@@ -44,6 +50,13 @@ const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
+      {successMessage && (
+        <SuccessDialog
+          open={!!successMessage}
+          message={successMessage}
+          onClose={() => dispatch(hideGenericSuccessDialog())}
+        />
+      )}
       {errorMessage && (
         <ErrorDialog
           open={!!errorMessage}

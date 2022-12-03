@@ -7,15 +7,18 @@ import { BenefitsCard } from "./components/BenefitsCard";
 import { StyledLargeButton } from "../../../components/elements/StyledLargeButton/StyledLargeButton";
 import { StyledClearButton } from "../../../components/elements/StyledClearButton/StyledClearButton";
 import Image from "../../../assets/img/model_female.png";
-import { RankCard } from "../../App/components/RankCard";
-import { IdentCard } from "../../App/components/IdentCard";
-import { UserModel } from "../../../types/UserModel";
-import { SubscriptionCard } from "../../App/components/SubscriptionCard";
-import { StatsCard } from "../../App/components/StatsCard";
-import { StyledFont } from "../../../components/StyledFont/StyledFont";
+// import { RankCard } from "../../App/components/RankCard";
+// import { IdentCard } from "../../App/components/IdentCard";
+// import { UserModel } from "../../../types/UserModel";
+// import { SubscriptionCard } from "../../App/components/SubscriptionCard";
+// import { StatsCard } from "../../App/components/StatsCard";
+// import { StyledFont } from "../../../components/StyledFont/StyledFont";
 
 const JoinUsPage = () => {
   const navigation = useNavigate();
+
+const token = localStorage.getItem('STORAGE_TOKEN_KEY_standin')
+
 
   return (
     <React.Fragment>
@@ -108,11 +111,14 @@ const JoinUsPage = () => {
           title="Join Afrofit now"
           color="fuschia"
         />
+
+          {token ? "" :
         <StyledClearButton
-          onClick={() => navigation("/login")}
-          title="I already have an account"
-          color="fuschia"
+        onClick={() => navigation("/login")}
+        title="I already have an account"
+        color="fuschia"
         />
+      }
       </Container>
     </React.Fragment>
   );

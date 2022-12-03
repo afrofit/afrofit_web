@@ -6,8 +6,8 @@ type SettingsType = {
 
 const settings: SettingsType = {
   development: {
-    apiUrl: "http://localhost:9099/api/",
-    // apiUrl: "https://shark-app-y5ox6.ondigitalocean.app/api/",
+    // apiUrl: "http://localhost:9099/api/",
+    apiUrl: "https://shark-app-y5ox6.ondigitalocean.app/api/",
   },
   test: {
     apiUrl: "http://localhost:9099/api/",

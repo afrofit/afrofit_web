@@ -10,6 +10,7 @@ import {
 import { AppThunk } from "../../../store";
 
 const sendPasswordResetLinkApi = async (email: string) => {
+  console.log('email==>', email)
   return await API_CLIENT.post("users/send-password-reset-link", {
     email,
   });

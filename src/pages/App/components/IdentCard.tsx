@@ -14,7 +14,7 @@ interface Props {
 
 export const IdentCard: React.FC<Props> = ({ currentUser, onChangeDp }) => {
   React.useEffect(() => {
-    console.log("currentUser", currentUser);
+    // console.log("currentUser", currentUser);
   }, [currentUser]);
 
   const picId = currentUser?.displayPicId ? currentUser.displayPicId : 1;

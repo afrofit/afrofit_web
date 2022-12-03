@@ -6,6 +6,7 @@ import { StatsCard } from "../../App/components/StatsCard";
 import { WelcomeCard } from "../components/WelcomeCard";
 import PlayStoreLogo from "../../../assets/img/playstore.png";
 import AppStoreLogo from "../../../assets/img/appstore.png";
+import { useNavigate } from "react-router-dom";
 
 const titleFontStyles = {
   fontSize: { xs: 60, md: 90 },
@@ -30,6 +31,9 @@ const subtitleFontStyles = {
 
 //xs, sm, md, lg, xl
 const WelcomePage: React.FC = () => {
+
+  const navigate = useNavigate()
+  
   return (
     <Box
       sx={{
@@ -124,7 +128,7 @@ const WelcomePage: React.FC = () => {
         container
         spacing={2}
         alignItems="stretch"
-        mb={0}
+        // mb={0}
         sx={{
           display: { xs: "flex" },
           flexDirection: { xs: "column", md: "row" },
@@ -176,6 +180,7 @@ const WelcomePage: React.FC = () => {
         }}
       >
         <Box
+            onClick={() => navigate('/register')}
           sx={{
             height: { xs: "70px", md: "100px" },
             cursor: "pointer",
@@ -185,11 +190,12 @@ const WelcomePage: React.FC = () => {
             marginRight: 2,
           }}
         >
-          <a href="https://play.google.com/store/apps/details?id=com.djminddgap.afrofit&gl=GB">
+          {/* <a  href="https://play.google.com/store/apps/details?id=com.djminddgap.afrofit&gl=GB" target='_blank' rel="noreferrer"> */}
             <img src={PlayStoreLogo} alt="the Afrofit logo" height={"100%"} />
-          </a>
+          {/* </a> */}
         </Box>
         <Box
+            onClick={() => navigate('/register')}
           sx={{
             height: { xs: "70px", md: "100px" },
             cursor: "pointer",
@@ -199,9 +205,9 @@ const WelcomePage: React.FC = () => {
             marginRight: 2,
           }}
         >
-          <a href="https://apps.apple.com/us/app/afrofit-app/id1643761809">
+          {/* <a href="https://apps.apple.com/us/app/afrofit-app/id1643761809" target='_blank' rel="noreferrer"> */}
             <img src={AppStoreLogo} alt="the Afrofit logo" height={"100%"} />
-          </a>
+          {/* </a> */}
         </Box>
       </Grid>
     </Box>

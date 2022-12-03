@@ -22,7 +22,7 @@ export const WelcomeCard: React.FC<Props> = ({
     image === "one" ? ModelMale : image === "two" ? ModelFemale : ModelFemale2;
 
   return (
-    <Grid item xs={11.5} sm={8} md={4}>
+    <Grid item xs={12} sm={12} md={4} lg={4}>
       <Card height={320} padding={0} color={color}>
         <Box
           sx={{ position: "relative", height: 320, padding: 2, width: "100%" }}
