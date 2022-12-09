@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { Box,Grid, Stack, Typography } from '@mui/material'
+import { Box,Button,Grid, Stack, Typography } from '@mui/material'
 import { PageLayout } from '../../components/layout/PageLayout/PageLayout'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -27,8 +27,6 @@ import { UpdateUserDp } from '../../store/reducers/auth/thunks/update-user-dp.th
 import { CreateStripeSession } from '../../store/reducers/payments/thunks/create-stripe-session.thunk'
 import { RetrieveUserSubscription } from '../../store/reducers/payments/thunks/retrieve-user-subscription.thunk'
 import { CancelUserSubscription } from '../../store/reducers/payments/thunks/cancel-user-subscription.thunk'
-import PlayStoreLogo from '../../assets/img/playstore.png'
-import AppStoreLogo from '../../assets/img/appstore.png'
 
 interface Props {}
 
@@ -46,10 +44,13 @@ const ProfilePage: React.FC<Props> = () => {
     currentUser?.displayPicId ?? 1,
   )
 
+  const handleNavigate =() => {
+    navigate('/plan')
+  }
+
   const handleCreateCheckoutSession = () => {
     if (currentUser) {
       const { email, userId } = currentUser
-      console.log('user', email + 'dskfhakdh' + userId)
       dispatch(CreateStripeSession(userId, email))
     }
   }
@@ -67,7 +68,6 @@ const ProfilePage: React.FC<Props> = () => {
   }, [currentUser, handleRetrieveUserSubscriptionInfo])
 
   React.useEffect(() => {
-    console.log('userPerformance', userPerformance)
   }, [userPerformance])
 
   const handleSelectDp = (dpId: number) => {
@@ -110,6 +110,12 @@ const ProfilePage: React.FC<Props> = () => {
             columnGap={2}
             alignItems="center"
           >
+            <SmallButton
+                title={'Start Free Trial'}
+                onClick={handleNavigate}
+                color="purple_200"
+              />
+
             {!isSubscribed ? (
               <SmallButton
                 title={'Purchase Subscription'}
@@ -181,65 +187,6 @@ const ProfilePage: React.FC<Props> = () => {
           />
         </Grid>
         <Grid container display="flex" alignItems={'stretch'}>
-          <Grid
-            container
-            spacing={2}
-            alignItems="stretch"
-            mt={1}
-            mb={3}
-            sx={{
-              display: { xs: 'flex' },
-              flexDirection: { xs: 'column', md: 'row' },
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
-            <Box
-              sx={{
-                height: { xs: '70px', md: '100px' },
-                cursor: 'pointer',
-                marginBottom: { xs: 0, md: 2 },
-                marginTop: { xs: 1, md: 2 },
-                marginLeft: 2,
-                marginRight: 2,
-              }}
-            >
-              <a
-                href="https://play.google.com/store/apps/details?id=com.djminddgap.afrofit&gl=GB"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <img
-                  src={PlayStoreLogo}
-                  alt="the Afrofit logo"
-                  height={'100%'}
-                />
-              </a>
-            </Box>
-            <Box
-              sx={{
-                height: { xs: '70px', md: '100px' },
-                cursor: 'pointer',
-                marginBottom: { xs: 0, md: 2 },
-                marginTop: { xs: 1, md: 2 },
-                marginLeft: 2,
-                marginRight: 2,
-              }}
-            >
-              <a
-                href="https://apps.apple.com/us/app/afrofit-app/id1643761809"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <img
-                  src={AppStoreLogo}
-                  alt="the Afrofit logo"
-                  height={'100%'}
-                />
-              </a>
-            </Box>
-          </Grid>
-
           <Card justifyContent="center" alignItems="center" color="black">
             <Box
               sx={{

@@ -23,7 +23,7 @@ export const AppHeader: React.FC<Props> = ({ authorized }) => {
   const handleLogout = () => {
     EXPIRE_TOKEN()
     dispatch(storeUser(undefined))
-    navigate('/welcome')
+    navigate('/Afrofit')
   }
 
   if (authorized)
@@ -66,11 +66,11 @@ export const AppHeader: React.FC<Props> = ({ authorized }) => {
             }}
             onClick={() => navigate('/')}
           >
-            <Link to="/welcome">
+            {/* <Link to="/welcome"> */}
               <a title="Afrofit">
                 <img src={AppLogo} alt="the Afrofit logo" height={'100%'} />
               </a>
-            </Link>
+            {/* </Link> */}
           </Box>
           <Box
             sx={{
@@ -171,15 +171,19 @@ export const AppHeader: React.FC<Props> = ({ authorized }) => {
             paddingBottom: 2,
           }}
         >
+        
           <Box
-            sx={{ height: '85px', cursor: 'pointer' }}
-            // onClick={() => navigate('/')}
+            sx={{
+              height: '85px',
+              cursor: 'pointer',
+            }}
+            onClick={() => navigate('/')}
           >
-            <a href="Afrofit">
-              <Link title="Afrofit" to="/welcome">
+            {/* <Link to="/welcome"> */}
+              <a title="Afrofit">
                 <img src={AppLogo} alt="the Afrofit logo" height={'100%'} />
-              </Link>
-            </a>
+              </a>
+            {/* </Link> */}
           </Box>
           <Stack
             width="100%"

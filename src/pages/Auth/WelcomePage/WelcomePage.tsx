@@ -64,12 +64,33 @@ const WelcomePage: React.FC = () => {
         flexDirection="column"
         alignItems="center"
         justifyContent="center"
-        columnGap={3}
-        mt={5}
-        mb={5}
+        columnGap={1}
+        mt={2}
+        // mb={5}
       >
         <LinkButton
           color="purple_200"
+          textcolor="fuschia"
+          title="Start Free Trial"
+          route="/plan"
+          // mb={5}
+        />
+
+      </Stack>
+      <Stack
+        sx={{
+          display: { xs: "flex", md: "none" },
+          width: "100%",
+        }}
+        flexDirection="column"
+        alignItems="center"
+        justifyContent="center"
+        columnGap={3}
+        mt={3}
+        mb={5}
+      >
+        <LinkButton
+          color="hilite_purpink"
           textcolor="fuschia"
           title="Find out more"
           route="/join-us"
@@ -83,6 +104,32 @@ const WelcomePage: React.FC = () => {
           route="/login"
         />
       </Stack>
+
+      <Stack
+        sx={{
+          display: { xs: "none", md: "flex" },
+          // marginBottom: 2,
+          marginTop: 2,
+        }}
+        display={"flex"}
+        flexDirection="row"
+        width="100%"
+        alignItems="center"
+        justifyContent="center"
+        columnGap={3}
+        // mt={5}
+        // mb={5}
+      >
+        <LinkButton
+          color="purple_200"
+          textcolor="fuschia"
+          title="Start Free Trial"
+          route="/plan"
+          // mb={5}
+        />
+        
+      </Stack>
+      
       <Stack
         sx={{
           display: { xs: "none", md: "flex" },
@@ -99,7 +146,7 @@ const WelcomePage: React.FC = () => {
         mb={5}
       >
         <LinkButton
-          color="purple_200"
+          color="hilite_purpink"
           textcolor="fuschia"
           title="Find out more"
           route="/join-us"

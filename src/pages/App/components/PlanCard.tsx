@@ -1,65 +1,105 @@
-import { Box, Card, Grid, Stack, Typography } from '@mui/material'
-import { COLORS, ColorType } from '../../../constants/colors'
-// import { Card } from "../../../../components/Card/Card";
-// import { StyledImage } from "../../../../components/StyledImage/StyledImage";
-// import { COLORS, ColorType } from "../../../../constants/colors";
+import { Box, Card, Grid, Typography } from '@mui/material'
+import { COLORS } from '../../../constants/colors'
+import VerifiedIcon from '@mui/icons-material/Verified'
 
 interface Props {
-  color: ColorType
-  maintitle: string
-  title: string
-  subtitle: string
-  src: any
-  trial: any
-  bestvalue: any
+  item: any
+  onChangeSelectItem: any
+  setApiId: any
 }
 export const PlanCard: React.FC<Props> = ({
-  color,
-  title,
-  subtitle,
-  src,
-  maintitle,
-  trial,
-  bestvalue,
+  item,
+  onChangeSelectItem,
+  setApiId,
 }) => {
+  const changeStyle = () => {
+    onChangeSelectItem(!item.isSelected)
+    setApiId(item.apiid)
+  }
+
   return (
-    <Grid item xs={12} sm={12} md={4} lg={6}>
-      <Card
-        sx={{
-          width: '80%',
-          height: '100%',
-          margin: 'auto',
-          backgroundColor: COLORS.dark_100,
-          overflow: 'hidden',
-          marginBottom: '30px',
-          cursor: 'pointer',
-          // borderColor:'white',
-          borderWidth: '2px',
-          borderColor: 'transparent',
-          borderStyle: 'solid',
-          '&:hover': {
-            borderColor: COLORS.pink_200,
-          },
-        }}
-      >
-        <div style={{ display: 'flex', alignItems: 'center' }}>
+    <>
+      <Grid item xs={12} sm={12} md={4} lg={6}>
+        <Card
+          onClick={changeStyle}
+          sx={{
+            width: '80%',
+            height: '100%',
+            margin: 'auto',
+            backgroundColor: COLORS.dark_100,
+            overflow: 'hidden',
+            marginBottom: '30px',
+            cursor: 'pointer',
+            borderWidth: '2px',
+            borderColor: item.isSelected ? COLORS.pink_200 : 'transparent',
+            borderStyle: 'solid',
+          }}
+        >
+          <div
+            style={{ float: 'right', marginTop: '20px', marginRight: '20px' }}
+          >
+            {item.isSelected ? (
+              <VerifiedIcon sx={{ color: COLORS.pink_200 }} />
+            ) : (
+              ''
+            )}
+          </div>
+
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <Typography
+              sx={{
+                marginLeft: '30px',
+                marginTop: '10px',
+                color: 'white',
+                display: 'block',
+              }}
+            >
+              {item.maintitle}
+            </Typography>
+
+            <Box
+              sx={{
+                float: 'right',
+                marginLeft: '10px',
+                width: '110px',
+                marginTop: '6px',
+              }}
+            >
+              <Typography
+                sx={{
+                  fontSize: '15px',
+                  fontWeight: 'bold',
+                  borderRadius: '8px',
+                  backgroundColor: COLORS.pink_200,
+                  margin: 'auto',
+                  width: '100px',
+                  textAlign: 'center',
+                }}
+              >
+                {item.bestvalue}
+              </Typography>
+            </Box>
+          </div>
+
           <Typography
             sx={{
-              marginLeft: '30px',
-              marginTop: '10px',
-              color: 'white',
-              display: 'block',
+              fontSize: '20px',
+              fontWeight: 'bold',
+              paddingLeft: '30px',
+              marginTop: '5px',
+              color: COLORS.fuschia,
             }}
           >
-            {maintitle}
+            {item.title}
           </Typography>
 
           <Box
             sx={{
-              float: 'right',
-              marginLeft: '10px',
-              width: '110px',
-              marginTop: '6px',
+              width: '153px',
+              borderRadius: '8px',
+              paddingLeft: '30px',
+              marginTop: '10px',
+              height: '20px',
             }}
           >
             <Typography
@@ -67,65 +107,29 @@ export const PlanCard: React.FC<Props> = ({
                 fontSize: '15px',
                 fontWeight: 'bold',
                 borderRadius: '8px',
+                paddingLeft: '10px',
                 backgroundColor: COLORS.pink_200,
-                margin: 'auto',
-                width: '100px',
-                textAlign: 'center',
+                overflow: 'hidden',
               }}
             >
-              {bestvalue}
+              {item.trial}
             </Typography>
           </Box>
-        </div>
 
-        <Typography
-          sx={{
-            fontSize: '20px',
-            fontWeight: 'bold',
-            paddingLeft: '30px',
-            marginTop: '5px',
-            color: COLORS.fuschia,
-          }}
-        >
-          {title}
-        </Typography>
-
-        <Box
-          sx={{
-            width: '153px',
-            borderRadius: '8px',
-            paddingLeft: '30px',
-            marginTop: '10px',
-            height: '20px',
-          }}
-        >
-          <Typography
+          <Box
             sx={{
-              fontSize: '15px',
-              fontWeight: 'bold',
-              borderRadius: '8px',
-              paddingLeft: '10px',
-              backgroundColor: COLORS.pink_200,
-              overflow: 'hidden',
+              marginLeft: '30px',
+              marginTop: '10px',
+              color: 'white',
+              paddingRight: '20px',
             }}
           >
-            {trial}
-          </Typography>
-        </Box>
-
-        <Box
-          sx={{
-            marginLeft: '30px',
-            marginTop: '10px',
-            color: 'white',
-            paddingRight: '20px',
-          }}
-        >
-          <Typography sx={{ marginBottom: '20px', marginTop: '10px' }}>
-            {subtitle}
-          </Typography>
-        </Box>
-      </Card>
-    </Grid>
+            <Typography sx={{ marginBottom: '20px', marginTop: '10px' }}>
+              {item.subtitle}
+            </Typography>
+          </Box>
+        </Card>
+      </Grid>
+    </>
   )
 }

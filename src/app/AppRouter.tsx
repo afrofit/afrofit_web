@@ -45,7 +45,6 @@ const PaymentFailurePage = lazy(() =>
 
 const PrivateRoute = ({ children }: any) => {
   const currentUser = useSelector(selectUserIsLoggedIn)
-  // const token = localStorage.getItem('STORAGE_TOKEN_KEY_standin')
 
   return currentUser ? children : <Navigate to="/login" />
 }
@@ -94,12 +93,12 @@ export const AppRouter: React.FC = () => {
             <Route path="success" element={<PaymentSuccessPage />} />
             <Route path="cancel" element={<PaymentFailurePage />} />
           </Route>
-          {token ? (
+          {/* {token ? ( */}
             <Route path="/*" element={<Navigate replace to="profile" />} />
-          ) : (
-            ''
-          )}
-          <Route path="welcome" element={<WelcomePage />} />
+          {/* ) : (  */}
+            {/* ''  */}
+          {/* )}  */}
+          <Route path="Afrofit" element={<WelcomePage />} />
           {token ? '' : <Route path="login" element={<LoginPage />} />}
           <Route path="join-us" element={<JoinUsPage />} />
           {token ? '' : <Route path="register" element={<RegisterPage />} />}
@@ -109,7 +108,7 @@ export const AppRouter: React.FC = () => {
             path="set-new-password/:userId/:hash"
             element={<SetNewPasswordPage />}
           />
-          <Route path="/" element={<Navigate replace to="welcome" />} />
+          <Route path="/" element={<Navigate replace to="Afrofit" />} />
         </Routes>
       </AppLayout>
     </Suspense>

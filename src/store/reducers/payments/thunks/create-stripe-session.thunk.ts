@@ -32,26 +32,19 @@ export function CreateStripeSession(userId: string, email: string): AppThunk {
     try {
       dispatch(newRequest());
       dispatch(hideGenericErrorDialog());
-      debugger
-      // console.log('userId==>', userId)
-      // console.log('email==>', email)
       const response = await createStripeSessionApi(userId, email);
-      console.log('response====>',response);
       
       if (response && response.data) {
-        console.log("SessionID", response.data);
+        console.log(`response: ${JSON.stringify(response.data)}`);
         const { sessionId } = response.data;
-        console.log("SessionID111", sessionId);
         const redirectToCheckout = async () => {
           try {
             const stripe = await getStripe();
             console.log('stripe',stripe);
-            
             if (stripe) {
               const result = stripe.redirectToCheckout({
                 sessionId: sessionId,
               });
-
               console.log("result", result);
               return result;
             }

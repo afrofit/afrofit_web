@@ -21,7 +21,7 @@ const schema = z.object({
 const LoginPage = () => {
   const token = localStorage.getItem('STORAGE_TOKEN_KEY_standin')
 
-  const navigation = useNavigate()
+  const navigate = useNavigate()
   const dispatch = useDispatch()
   const [showPassword, setShowPassword] = useState(false)
 
@@ -37,7 +37,7 @@ const LoginPage = () => {
     const loginData = { password, email }
     console.log('logindata', loginData)
     const handleNavigate = () => {
-      navigation('/profile')
+      navigate('/profile')
     }
     dispatch(LogIn(loginData, handleNavigate))
     reset()
@@ -86,7 +86,7 @@ const LoginPage = () => {
         </Card>
 
         <StyledClearButton
-          onClick={() => navigation('/forgot-password')}
+          onClick={() => navigate('/forgot-password')}
           title="I forgot my password"
           color="fuschia"
         />
@@ -100,7 +100,7 @@ const LoginPage = () => {
           ''
         ) : (
           <StyledClearButton
-            onClick={() => navigation('/register')}
+            onClick={() => navigate('/register')}
             title="Create an account instead"
             color="fuschia"
           />

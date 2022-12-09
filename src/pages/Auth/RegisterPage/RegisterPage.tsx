@@ -46,7 +46,7 @@ const schema = z
 
 const RegisterPage = () => {
   const dispatch = useDispatch()
-  const navigation = useNavigate()
+  const navigate = useNavigate()
   const [showPassword, setShowPassword] = React.useState(false)
   const [cShowPassword, setCShowPassword] = React.useState(false)
   const memoDpId = React.useMemo(() => {
@@ -80,8 +80,10 @@ const RegisterPage = () => {
     }
 
     // console.log('registerData', registerData)
-
-    dispatch(CreateUser(registerData))
+    const handleNavigate = () => {
+      navigate('/about')
+    }
+    dispatch(CreateUser(registerData, handleNavigate))
     reset()
   }
 
@@ -223,7 +225,7 @@ const RegisterPage = () => {
             color="fuschia"
           />
           <StyledClearButton
-            onClick={() => navigation('/login')}
+            onClick={() => navigate('/login')}
             title="I already have an account"
             color="fuschia"
           />
