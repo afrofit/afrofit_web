@@ -1,13 +1,24 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { Box, Button, Container, Divider, Stack } from '@mui/material'
+import {
+  Box,
+  Button,
+  Container,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Divider,
+  Stack,
+} from '@mui/material'
+import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { EXPIRE_TOKEN } from '../../../api/storage'
 
 import AppLogo from '../../../assets/img/logofull_nobg.png'
 import { COLORS } from '../../../constants/colors'
 import { storeUser } from '../../../store/reducers/auth/auth.slice'
-
 import { StyledNavLink } from './StyledNavLink'
 
 interface Props {
@@ -15,15 +26,25 @@ interface Props {
 }
 
 export const AppHeader: React.FC<Props> = ({ authorized }) => {
+  const [open, setOpen] = useState(false)
+
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
   const token = localStorage.getItem('STORAGE_TOKEN_KEY_standin')
 
   const handleLogout = () => {
+    setOpen(false)
     EXPIRE_TOKEN()
     dispatch(storeUser(undefined))
     navigate('/Afrofit')
+  }
+  const handleClickOpen = () => {
+    setOpen(true)
+  }
+
+  const handleClose = () => {
+    setOpen(false)
   }
 
   if (authorized)
@@ -53,7 +74,6 @@ export const AppHeader: React.FC<Props> = ({ authorized }) => {
             alignItems: 'center',
             width: '100%',
             flexDirection: 'column',
-            // marginBottom: 5,
             minHeight: '50px',
           }}
         >
@@ -61,16 +81,12 @@ export const AppHeader: React.FC<Props> = ({ authorized }) => {
             sx={{
               height: '50px',
               cursor: 'pointer',
-              // marginBottom: 1,
-              // marginTop: 12,
             }}
             onClick={() => navigate('/')}
           >
-            {/* <Link to="/welcome"> */}
-              <a title="Afrofit">
-                <img src={AppLogo} alt="the Afrofit logo" height={'100%'} />
-              </a>
-            {/* </Link> */}
+            <a title="Afrofit">
+              <img src={AppLogo} alt="the Afrofit logo" height={'100%'} />
+            </a>
           </Box>
           <Box
             sx={{
@@ -131,7 +147,7 @@ export const AppHeader: React.FC<Props> = ({ authorized }) => {
                       backgroundColor: COLORS.purple_200,
                     },
                   }}
-                  onClick={handleLogout}
+                  onClick={handleClickOpen}
                 >
                   Sign out
                 </Button>
@@ -159,6 +175,53 @@ export const AppHeader: React.FC<Props> = ({ authorized }) => {
             </Box>
           </Box>
         </Container>
+
+        <div>
+          {open ? (
+            <Dialog
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+            >
+              <DialogTitle id="alert-dialog-title">
+                {'Are You Sure?'}
+              </DialogTitle>
+              <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                  Are you sure you want to Sign out ?
+                </DialogContentText>
+              </DialogContent>
+              <DialogActions
+                sx={{ textAlign: 'center', margin: 'auto', padding: '15px' }}
+              >
+                <Button
+                  onClick={handleClose}
+                  sx={{
+                    backgroundColor: COLORS.dark_200,
+                    '&:hover': {
+                      backgroundColor: COLORS.dark_200,
+                    },
+                  }}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  onClick={handleLogout}
+                  sx={{
+                    backgroundColor: COLORS.dark_200,
+                    '&:hover': {
+                      backgroundColor: COLORS.dark_200,
+                    },
+                  }}
+                >
+                  Yes
+                </Button>
+              </DialogActions>
+            </Dialog>
+          ) : null}
+        </div>
+
         {/* mobile navbar end */}
 
         {/* web navbar start */}
@@ -171,7 +234,6 @@ export const AppHeader: React.FC<Props> = ({ authorized }) => {
             paddingBottom: 2,
           }}
         >
-        
           <Box
             sx={{
               height: '85px',
@@ -179,11 +241,9 @@ export const AppHeader: React.FC<Props> = ({ authorized }) => {
             }}
             onClick={() => navigate('/')}
           >
-            {/* <Link to="/welcome"> */}
-              <a title="Afrofit">
-                <img src={AppLogo} alt="the Afrofit logo" height={'100%'} />
-              </a>
-            {/* </Link> */}
+            <a title="Afrofit">
+              <img src={AppLogo} alt="the Afrofit logo" height={'100%'} />
+            </a>
           </Box>
           <Stack
             width="100%"
@@ -255,7 +315,7 @@ export const AppHeader: React.FC<Props> = ({ authorized }) => {
                       backgroundColor: COLORS.purple_200,
                     },
                   }}
-                  onClick={handleLogout}
+                  onClick={handleClickOpen}
                 >
                   Sign out
                 </Button>
@@ -283,6 +343,52 @@ export const AppHeader: React.FC<Props> = ({ authorized }) => {
             </Box>
           </Stack>
         </Container>
+
+        <div>
+          {open ? (
+            <Dialog
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+            >
+              <DialogTitle id="alert-dialog-title">
+                {'Are You Sure?'}
+              </DialogTitle>
+              <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                  Are you sure you want to Sign out ?
+                </DialogContentText>
+              </DialogContent>
+              <DialogActions
+                sx={{ textAlign: 'center', margin: 'auto', padding: '15px' }}
+              >
+                <Button
+                  onClick={handleClose}
+                  sx={{
+                    backgroundColor: COLORS.dark_200,
+                    '&:hover': {
+                      backgroundColor: COLORS.dark_200,
+                    },
+                  }}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  onClick={handleLogout}
+                  sx={{
+                    backgroundColor: COLORS.dark_200,
+                    '&:hover': {
+                      backgroundColor: COLORS.dark_200,
+                    },
+                  }}
+                >
+                  Yes
+                </Button>
+              </DialogActions>
+            </Dialog>
+          ) : null}
+        </div>
 
         {/* web navbar end */}
       </Box>

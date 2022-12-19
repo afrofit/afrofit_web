@@ -5,16 +5,16 @@ import VerifiedIcon from '@mui/icons-material/Verified'
 interface Props {
   item: any
   onChangeSelectItem: any
-  setApiId: any
+  setPriceId: any
 }
 export const PlanCard: React.FC<Props> = ({
   item,
   onChangeSelectItem,
-  setApiId,
+  setPriceId,
 }) => {
   const changeStyle = () => {
     onChangeSelectItem(!item.isSelected)
-    setApiId(item.apiid)
+    setPriceId(item.priceId)
   }
 
   return (
@@ -81,6 +81,7 @@ export const PlanCard: React.FC<Props> = ({
             </Box>
           </div>
 
+
           <Typography
             sx={{
               fontSize: '20px',
@@ -90,7 +91,11 @@ export const PlanCard: React.FC<Props> = ({
               color: COLORS.fuschia,
             }}
           >
-            {item.title}
+            <del style={{color:'#F73E3E'}}>
+            {item.title1}
+            </del>
+              
+            {" " +item.title}
           </Typography>
 
           <Box
@@ -124,8 +129,11 @@ export const PlanCard: React.FC<Props> = ({
               paddingRight: '20px',
             }}
           >
-            <Typography sx={{ marginBottom: '20px', marginTop: '10px' }}>
+            <Typography sx={{ marginBottom: 'px', marginTop: '10px' }}>
               {item.subtitle}
+            </Typography>
+            <Typography sx={{ marginBottom: '20px', marginTop: '5px' }}>
+              {item.subtitle1}
             </Typography>
           </Box>
         </Card>

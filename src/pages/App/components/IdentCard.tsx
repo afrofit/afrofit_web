@@ -19,9 +19,12 @@ export const IdentCard: React.FC<Props> = ({ currentUser, onChangeDp }) => {
 
   const picId = currentUser?.displayPicId ? currentUser.displayPicId : 1;
 
+
   if (!currentUser)
-    return (
-      <>
+
+  
+  return (
+    <>
         <CircularProgress />
         <Typography sx={{ color: COLORS.white, fontSize: 20, fontWeight: 500 }}>
           No user information found!
@@ -29,6 +32,15 @@ export const IdentCard: React.FC<Props> = ({ currentUser, onChangeDp }) => {
       </>
     );
 
+    let url = ''
+    if(currentUser.imageUrl){
+      url = `http://192.168.1.27:9090/`+ currentUser.imageUrl
+    }
+    if(typeof currentUser.displayPicId !== 'object' && !currentUser.imageUrl){
+      url = require(`../../../assets/img/dp/${picId}.png`)
+    }
+
+     
   return (
     <Grid item xs={12} md={8}>
       <Box sx={{ display: { xs: "none", md: "flex" } }}>
@@ -39,7 +51,7 @@ export const IdentCard: React.FC<Props> = ({ currentUser, onChangeDp }) => {
           alignItems="center"
         >
           <StyledAvatar
-            src={require(`../../../assets/img/dp/${picId}.png`)}
+            src={url}
             size={250}
             mb={0}
             mr={6}
@@ -114,7 +126,7 @@ export const IdentCard: React.FC<Props> = ({ currentUser, onChangeDp }) => {
               mb={0}
               mr={0}
               onClick={onChangeDp}
-            />
+            /> 
 
             <Stack
               sx={{

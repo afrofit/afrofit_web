@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { lazy, Suspense } from 'react'
-import { Route, Routes, Navigate } from 'react-router-dom'
+import { Route, Routes, Navigate, useNavigate } from 'react-router-dom'
 
 import { AppLayout } from '../components/layout/AppLayout/AppLayout'
 
@@ -45,8 +45,13 @@ const PaymentFailurePage = lazy(() =>
 
 const PrivateRoute = ({ children }: any) => {
   const currentUser = useSelector(selectUserIsLoggedIn)
+  const navigate = useNavigate()
 
-  return currentUser ? children : <Navigate to="/login" />
+  if (currentUser) {
+    return children
+  } else {
+    return <Navigate to="/login" />
+  }
 }
 
 export const AppRouter: React.FC = () => {
@@ -60,8 +65,7 @@ export const AppRouter: React.FC = () => {
           <Route path="blog" element={<BlogPage />} />
           <Route path="shop" element={<ShopPage />} />
           <Route path="about" element={<MusicPage />} />
-          <Route path="plan" element={<Plan/>} />
-
+          <Route path="plan" element={<Plan />} />
 
           <Route
             path="classes"
@@ -93,11 +97,7 @@ export const AppRouter: React.FC = () => {
             <Route path="success" element={<PaymentSuccessPage />} />
             <Route path="cancel" element={<PaymentFailurePage />} />
           </Route>
-          {/* {token ? ( */}
-            <Route path="/*" element={<Navigate replace to="profile" />} />
-          {/* ) : (  */}
-            {/* ''  */}
-          {/* )}  */}
+          <Route path="/profile" element={<Navigate to="profile" />} />
           <Route path="Afrofit" element={<WelcomePage />} />
           {token ? '' : <Route path="login" element={<LoginPage />} />}
           <Route path="join-us" element={<JoinUsPage />} />

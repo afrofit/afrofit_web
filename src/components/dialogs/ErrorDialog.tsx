@@ -1,10 +1,7 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { StyledDialog } from "./StyledDialog";
-import CancelIcon from "@mui/icons-material/Cancel";
-import CloseIcon from "@mui/icons-material/Close";
 import WarningAmberIcon from "@mui/icons-material/WarningAmber";
 import { COLORS } from "../../constants/colors";
-import { LargeLinkButton } from "../elements/LargeLinkButton/LargeLinkButton";
 import { SmallButton } from "../Buttons/SmallButton";
 
 interface Props {

@@ -28,6 +28,7 @@ export const DECODE_TOKEN = (): UserModel | null => {
       lastName: user.lastName,
       displayPicId: user.displayPicId,
       joinDate: user.joinDate,
+      imageUrl: user.imageUrl,
     };
   }
   return null;

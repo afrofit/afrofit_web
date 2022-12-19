@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { Box,Button,Grid, Stack, Typography } from '@mui/material'
+import { Box, Grid, Stack, Typography } from '@mui/material'
 import { PageLayout } from '../../components/layout/PageLayout/PageLayout'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -16,6 +16,7 @@ import { SmallButton } from '../../components/Buttons/SmallButton'
 import { useNavigate } from 'react-router-dom'
 
 import {
+  endSubcribtionDate,
   selectUser,
   selectUserIsSubscribed,
 } from '../../store/reducers/auth/auth.slice'
@@ -24,7 +25,7 @@ import { formatDate } from '../../utils/formatters'
 import { DisplayPicturePicker } from '../../components/elements/DisplayPicturePicker'
 import { finishedRequest, newRequest } from '../../store/reducers/ui/ui.slice'
 import { UpdateUserDp } from '../../store/reducers/auth/thunks/update-user-dp.thunk'
-import { CreateStripeSession } from '../../store/reducers/payments/thunks/create-stripe-session.thunk'
+// import { CreateStripeSession } from '../../store/reducers/payments/thunks/create-stripe-session.thunk'
 import { RetrieveUserSubscription } from '../../store/reducers/payments/thunks/retrieve-user-subscription.thunk'
 import { CancelUserSubscription } from '../../store/reducers/payments/thunks/cancel-user-subscription.thunk'
 
@@ -37,23 +38,27 @@ const ProfilePage: React.FC<Props> = () => {
   const currentUser = useSelector(selectUser)
   const userPerformance = useSelector(selectUserPerformance)
   const isSubscribed = useSelector(selectUserIsSubscribed)
+  const endDate = useSelector(endSubcribtionDate)
+  const [image, setImage] = React.useState('')
 
   const [showNotification, setShowNotification] = React.useState(false)
   const [showDpPicker, setShowDpPicker] = React.useState(false)
   const [selectedDp, setSelectedDp] = React.useState(
     currentUser?.displayPicId ?? 1,
   )
+  // const token = localStorage.getItem('STORAGE_TOKEN_KEY_standin')
 
-  const handleNavigate =() => {
+  
+  const handleNavigate = () => {
     navigate('/plan')
   }
 
-  const handleCreateCheckoutSession = () => {
-    if (currentUser) {
-      const { email, userId } = currentUser
-      dispatch(CreateStripeSession(userId, email))
-    }
-  }
+  // const handleCreateCheckoutSession = () => {
+  //   if (currentUser) {
+  //     const { email, userId } = currentUser
+  //     // dispatch(CreateStripeSession(userId, email))
+  //   }
+  // }
 
   const handleRetrieveUserSubscriptionInfo = React.useCallback(() => {
     currentUser && dispatch(RetrieveUserSubscription(currentUser.userId))
@@ -67,12 +72,26 @@ const ProfilePage: React.FC<Props> = () => {
     currentUser && handleRetrieveUserSubscriptionInfo()
   }, [currentUser, handleRetrieveUserSubscriptionInfo])
 
-  React.useEffect(() => {
-  }, [userPerformance])
+  React.useEffect(() => {}, [userPerformance])
 
-  const handleSelectDp = (dpId: number) => {
-    setSelectedDp(dpId)
-    currentUser && dispatch(UpdateUserDp(currentUser.userId, dpId))
+  const handleSelectDp = (dpId: any, type:boolean) => {
+    let formData = new FormData()
+    if (type) {
+      
+      setImage(dpId)
+      setShowDpPicker(false)
+      formData.append('image', dpId)
+    } else {
+      
+      formData.append('displayPicId', dpId as any)
+      setSelectedDp(dpId)
+      setShowDpPicker(false)
+    }
+    
+    
+    
+    // setSelectedDp(dpId)
+    currentUser && dispatch(UpdateUserDp(currentUser.userId, formData))
     setShowDpPicker(false)
     dispatch(newRequest())
     setTimeout(() => {
@@ -95,7 +114,11 @@ const ProfilePage: React.FC<Props> = () => {
         onClose={() => setShowDpPicker(false)}
         open={showDpPicker}
         selectedDp={selectedDp}
+        setImage={''}
+  setImage1={''}
+
       />
+
       <NotificationBackdrop
         open={showNotification}
         onClose={() => setShowNotification(false)}
@@ -110,16 +133,10 @@ const ProfilePage: React.FC<Props> = () => {
             columnGap={2}
             alignItems="center"
           >
-            <SmallButton
-                title={'Start Free Trial'}
-                onClick={handleNavigate}
-                color="purple_200"
-              />
-
             {!isSubscribed ? (
               <SmallButton
-                title={'Purchase Subscription'}
-                onClick={handleCreateCheckoutSession}
+                title={'Start Free Trial'}
+                onClick={handleNavigate}
                 color="purple_200"
               />
             ) : (
@@ -211,6 +228,34 @@ const ProfilePage: React.FC<Props> = () => {
               </Typography>
             </Box>
           </Card>
+          {Boolean(endDate) ? (
+            <Card justifyContent="center" alignItems="center" color="black">
+              <Box
+                sx={{
+                  width: '100%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  height: '50%',
+                }}
+              >
+                <Typography
+                  sx={{
+                    color: COLORS.white,
+                    fontSize: 25,
+                    fontWeight: 300,
+                    textAlign: 'center',
+                  }}
+                >
+                  {currentUser
+                    ? `Your subscription Will be ended  ${
+                        endDate ? formatDate(endDate) : '-'
+                      }`
+                    : "We can't tell when you were last active"}
+                </Typography>
+              </Box>
+            </Card>
+          ) : null}
         </Grid>
       </PageLayout>
     </>

@@ -11,7 +11,7 @@ import { COLORS } from '../../../constants/colors'
 import { Card } from '../../../components/Card/Card'
 import { useDispatch } from 'react-redux'
 import { StyledClearButton } from '../../../components/elements/StyledClearButton/StyledClearButton'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import { CreateUser } from '../../../store/reducers/auth/thunks/register.thunk'
 import { DisplayPictureClicker } from '../components/DisplayPictureClicker/DisplayPictureClicker'
 import { DisplayPicturePicker } from '../../../components/elements/DisplayPicturePicker'
@@ -32,12 +32,24 @@ interface RegisterProps {
 
 const schema = z
   .object({
-    firstName: z.string().min(1, { message: 'Required' }).regex(/^[A-Za-z]+$/i),
-    lastName: z.string().min(1, { message: 'Required' }).regex(/^[A-Za-z]+$/i),
+    firstName: z
+      .string()
+      .min(1, { message: 'Required' })
+      .regex(/^[A-Za-z]+$/i),
+    lastName: z
+      .string()
+      .min(1, { message: 'Required' })
+      .regex(/^[A-Za-z]+$/i),
     username: z.string().min(1, { message: 'Required' }),
     email: z.string({ required_error: 'Valid email required' }).email(),
-    password: z.string().min(1, { message: 'Required' }).regex(/[!@#$&*]/),
-    confirm_password: z.string().min(1, { message: 'Required' }).regex(/[!@#$&*]/),
+    password: z
+      .string()
+      .min(1, { message: 'Required' })
+      .regex(/[!@#$&*]/),
+    confirm_password: z
+      .string()
+      .min(1, { message: 'Required' })
+      .regex(/[!@#$&*]/),
   })
   .refine((data) => data.password === data.confirm_password, {
     message: 'Passwords must match',
@@ -49,12 +61,17 @@ const RegisterPage = () => {
   const navigate = useNavigate()
   const [showPassword, setShowPassword] = React.useState(false)
   const [cShowPassword, setCShowPassword] = React.useState(false)
+  const [image, setImage] = React.useState('')
+  const [image1, setImage1] = React.useState('')
+
   const memoDpId = React.useMemo(() => {
     return generateRandomNumber(1, 12)
   }, [])
 
   const [showDpPicker, setShowDpPicker] = React.useState(false)
   const [selectedDp, setSelectedDp] = React.useState(() => memoDpId)
+  const [searchParams] = useSearchParams()
+  const priceId = searchParams.get('plan')
 
   const { handleSubmit, control, reset } = useForm<RegisterProps>({
     resolver: zodResolver(schema),
@@ -63,33 +80,35 @@ const RegisterPage = () => {
     criteriaMode: 'firstError',
   })
 
-
-
-  
-  const onSubmit = (data: any) => {
-    console.log(data)
+  const onSubmit = async (data: any) => {
     const { username, password, lastName, firstName, email } = data
 
-    const registerData = {
-      username,
-      password,
-      lastName,
-      firstName,
-      email,
-      displayPicId: selectedDp,
-    }
+    let formData = new FormData()
+    formData.append('username', username)
+    formData.append('password', password)
+    formData.append('firstName', firstName)
+    formData.append('email', email)
+    formData.append('lastName', lastName)
+    if (!image) formData.append('displayPicId', selectedDp as any)
+    if (image)  formData.append('image', image)
 
-    // console.log('registerData', registerData)
     const handleNavigate = () => {
       navigate('/about')
     }
-    dispatch(CreateUser(registerData, handleNavigate))
+
+    dispatch(CreateUser(formData as any, handleNavigate, priceId))
     reset()
   }
 
-  const handleSelectDp = (dpId: number) => {
-    setSelectedDp(dpId)
-    setShowDpPicker(false)
+  const handleSelectDp = (dpId: any, type: boolean) => {
+    if (type) {
+      setImage(dpId)
+      setShowDpPicker(false)
+    } else {
+      setSelectedDp(dpId)
+      setShowDpPicker(false)
+    }
+
     dispatch(newRequest())
     setTimeout(() => {
       dispatch(finishedRequest())
@@ -103,6 +122,8 @@ const RegisterPage = () => {
         onClose={() => setShowDpPicker(false)}
         open={showDpPicker}
         selectedDp={selectedDp}
+        setImage={setImage}
+        setImage1={setImage1}
       />
       <Container maxWidth="md">
         <Stack display="flex" flexDirection="column" sx={{ width: '100%' }}>
@@ -132,6 +153,7 @@ const RegisterPage = () => {
               <DisplayPictureClicker
                 dpId={selectedDp}
                 onClick={() => setShowDpPicker(true)}
+                image1={image1}
               />
               <Stack
                 display={'flex'}
@@ -179,7 +201,7 @@ const RegisterPage = () => {
                   label="Email"
                   control={control}
                   type="email"
-                  icon="mail"   
+                  icon="mail"
                 />
               </Stack>
               <Stack
@@ -195,26 +217,23 @@ const RegisterPage = () => {
                   name="password"
                   label="Password"
                   control={control}
-                  type={showPassword ? "text" : "password"}
+                  type={showPassword ? 'text' : 'password'}
                   icon="lock"
                   showpassIcon="eye"
                   hidepassIcon="eyeOff"
                   showPassword={showPassword}
                   setShowPassword={setShowPassword}
-                 
-
                 />
                 <CustomInputElement
                   name="confirm_password"
                   label="Confirm Password"
                   control={control}
-                  type={cShowPassword ? "text" : "password"}
+                  type={cShowPassword ? 'text' : 'password'}
                   icon="lock"
                   showpassIcon="eye"
                   hidepassIcon="eyeOff"
                   cShowPassword={cShowPassword}
                   setCShowPassword={setCShowPassword}
-                  
                 />
               </Stack>
             </Stack>

@@ -120,27 +120,27 @@ export const CustomInputElement: React.FC<Props> = ({
               >
                 {name === 'password' &&
                   (!showPassword ? (
-                    <Eye
+                    <EyeOff
                       color={focused ? COLORS.gold : COLORS.whiteblue}
                       size={focused ? 30 : 25}
                     />
                   ) : (
-                    <EyeOff
+                    <Eye
                       color={focused ? COLORS.gold : COLORS.whiteblue}
                       size={focused ? 30 : 25}
                     />
                   ))}
                 {name === 'confirm_password' &&
                   (cShowPassword ? (
-                    <EyeOff
-                      color={focused ? COLORS.gold : COLORS.whiteblue}
-                      size={focused ? 30 : 25}
-                    />
-                  ) : (
                     <Eye
                       color={focused ? COLORS.gold : COLORS.whiteblue}
                       size={focused ? 30 : 25}
                     />
+                  ) : (
+                    <EyeOff
+                    color={focused ? COLORS.gold : COLORS.whiteblue}
+                    size={focused ? 30 : 25}
+                  />
                   ))}
               </IconWrapper>
             ) : null}
