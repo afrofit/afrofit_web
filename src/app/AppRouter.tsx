@@ -50,7 +50,8 @@ const PrivateRoute = ({ children }: any) => {
   if (currentUser) {
     return children
   } else {
-    return <Navigate to="/login" />
+    // return <Navigate to="/login" />
+    navigate('/login')
   }
 }
 

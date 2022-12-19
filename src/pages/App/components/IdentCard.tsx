@@ -34,7 +34,7 @@ export const IdentCard: React.FC<Props> = ({ currentUser, onChangeDp }) => {
 
     let url = ''
     if(currentUser.imageUrl){
-      url = `http://192.168.1.27:9090/`+ currentUser.imageUrl
+      url = `https://shark-app-y5ox6.ondigitalocean.app/`+ currentUser.imageUrl
     }
     if(typeof currentUser.displayPicId !== 'object' && !currentUser.imageUrl){
       url = require(`../../../assets/img/dp/${picId}.png`)
