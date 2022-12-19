@@ -1,39 +1,139 @@
-import { Typography } from "@mui/material";
-import { PageLayout } from "../../components/layout/PageLayout/PageLayout";
-import { COLORS } from "../../constants/colors";
+/* eslint-disable jsx-a11y/iframe-has-title */
+import { Box, Grid, Stack, Typography } from '@mui/material'
+import { PageLayout } from '../../components/layout/PageLayout/PageLayout'
+import { COLORS } from '../../constants/colors'
+import PlayStoreLogo from '../../assets/img/playstore.png'
+import AppStoreLogo from '../../assets/img/appstore.png'
+import { useSearchParams } from 'react-router-dom'
+import { useEffect } from 'react'
+import API_CLIENT from '../../api/client'
+import ForwardIcon from '@mui/icons-material/Forward'
 
 interface Props {}
 const MusicPage: React.FC<Props> = () => {
+  const [searchParams] = useSearchParams()
+  const sessionId = searchParams.get('id')
+  const uid = localStorage.getItem('userId')
+
+  const fsession = async (uid: string | null) => {
+    const responce = await API_CLIENT.post(
+      `payments/retrieve-stripe-session/${uid}`,
+      { sessionId },
+    )
+  }
+
+  useEffect(() => {
+    if (sessionId !== null) {
+      fsession(uid)
+    }
+  }, [sessionId])
+
   return (
-    <PageLayout title="About">
+    <PageLayout title="Welcome to the Afrofit Club">
       <Typography
         sx={{ color: COLORS.whiteblue, fontSize: 22, marginBottom: 5 }}
       >
-        The Afrofitapp is a value - add app for members of the AFROFIT FITNESS
-        CLUB to keep members active through dancing exercises. Users can record
-        their dance steps/movements while dancing or exercising by having their
-        phones on them.
+        The Afrofit app is a value - added app for members of the AFROFIT
+        FITNESS CLUB to keep members active through dancing exercises. You can
+        record Your dance steps/movements while dancing or exercising by having
+        your phones on them.
       </Typography>
+
       <Typography
         sx={{
           color: COLORS.hilite_purpink,
           fontWeight: 500,
           fontSize: 25,
-          marginBottom: 5,
+          marginBottom: 3,
         }}
       >
         HOW TO USE THE APP
       </Typography>
+
+      <Typography
+        sx={{ color: COLORS.whiteblue, fontSize: 22, marginBottom: 2 }}
+      >
+        Please follow the below steps to start your weight loss and calorie-burning journey! 
+      </Typography>
+
       <Typography
         sx={{
           color: COLORS.white,
           fontSize: 20,
           fontWeight: 300,
           marginBottom: 2,
+          display:'flex',
+
         }}
       >
-        <strong>STEP 1:</strong> The user logs into the app with a registered
-        email and a password.
+          <ForwardIcon sx={{ marginTop: '2px', marginRight: '10px' }} />
+          <strong style={{ width: '80px' }}>STEP 1:</strong> Download the
+          Afrofit App from the given link.
+      </Typography>
+
+      <Grid
+        container
+        spacing={2}
+        alignItems="stretch"
+        mt={1}
+        mb={3}
+        sx={{
+          display: { xs: 'flex' },
+          flexDirection: { xs: 'column', md: 'row' },
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <Box
+          sx={{
+            height: { xs: '70px', md: '100px' },
+            cursor: 'pointer',
+            marginBottom: { xs: 0, md: 2 },
+            marginTop: { xs: 1, md: 2 },
+            marginLeft: 2,
+            marginRight: 2,
+          }}
+        >
+          <a
+            href="https://play.google.com/store/apps/details?id=com.djminddgap.afrofit&gl=GB"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img src={PlayStoreLogo} alt="the Afrofit logo" height={'100%'} />
+          </a>
+        </Box>
+        <Box
+          sx={{
+            height: { xs: '70px', md: '100px' },
+            cursor: 'pointer',
+            marginBottom: { xs: 0, md: 2 },
+            marginTop: { xs: 1, md: 2 },
+            marginLeft: 2,
+            marginRight: 2,
+          }}
+        >
+          <a
+            href="https://apps.apple.com/us/app/afrofit-app/id1643761809"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img src={AppStoreLogo} alt="the Afrofit logo" height={'100%'} />
+          </a>
+        </Box>
+      </Grid>
+
+      <Typography
+        sx={{
+          color: COLORS.white,
+          fontSize: 20,
+          fontWeight: 300,
+          marginBottom: 2,
+          display:'flex',
+        }}
+      >
+          <ForwardIcon sx={{ marginTop: '2px', marginRight: '10px' }} />
+          <strong style={{ width: '80px' }}>STEP 2:</strong>
+          Log into the app with your username and password.
       </Typography>
       <Typography
         sx={{
@@ -41,12 +141,16 @@ const MusicPage: React.FC<Props> = () => {
           fontSize: 20,
           fontWeight: 300,
           marginBottom: 2,
+          display:'flex',
+
         }}
       >
-        <strong>STEP 2:</strong> The user can click on a story to start. After
-        listening to the story the user can click on ‘Continue story' to take
-        the user to the 'Stories chapters' (NOTE: The user has to finish the
-        chapters on a story before they can gain access to the next story)
+          <ForwardIcon sx={{ marginTop: '2px', marginRight: '10px' }} />
+          <strong style={{ width: '150px' }}>STEP 3:</strong> By clicking on the
+          story you can start your journey. After listening to the story you can
+          click on to ‘Continue story' then it takes you to 'Stories chapters'
+          (NOTE: you have to complete the chapters in a story before you can get
+          access to the next story)
       </Typography>
       <Typography
         sx={{
@@ -54,14 +158,17 @@ const MusicPage: React.FC<Props> = () => {
           fontSize: 20,
           fontWeight: 300,
           marginBottom: 2,
+          display:'flex',
+
         }}
       >
-        <strong>STEP 3:</strong> At the stories chapter page, the user will
-        select a chapter and start dancing the user can either select music on
-        their phone or use our suggested playlist. Once the user starts moving
-        or dancing the movements will be recorded and the user can see the
-        timing on the screen. (NOTE: App requires permission from the user to
-        record activity)
+          <ForwardIcon sx={{ marginTop: '2px', marginRight: '5px' }} />
+          <strong style={{ width: '200px' }}>STEP 4:</strong>In the stories
+          chapter, you will select a chapter and start dancing. you can
+          either select music on their phone or use our suggested playlist. Once
+          you starts moving or dancing the movements will be recorded and you
+          can see that on the screen. (NOTE: App requires permission from you to
+          record activity)
       </Typography>
       <Typography
         sx={{
@@ -72,7 +179,7 @@ const MusicPage: React.FC<Props> = () => {
         }}
       >
         <strong>RANKING PAGE:</strong> This is a leaderboard that shows the
-        User's rating or performance among other users.
+        your rating or performance among other users.
       </Typography>
       <Typography
         sx={{
@@ -82,7 +189,7 @@ const MusicPage: React.FC<Props> = () => {
           marginBottom: 2,
         }}
       >
-        <strong>PROFILE PAGE</strong> Shows the information and users'
+        <strong>PROFILE PAGE:</strong> Shows the information and your
         interaction with the app including Ranking.
       </Typography>
       <Typography
@@ -91,22 +198,25 @@ const MusicPage: React.FC<Props> = () => {
           fontSize: 20,
           fontWeight: 300,
           marginBottom: 2,
+          marginTop: 5,
         }}
       >
-        <a
-          href="https://youtu.be/pMC3ibZhvIc"
-          style={{
-            textDecoration: "none",
-            color: COLORS.gold,
-            fontWeight: 500,
-            fontSize: 20,
-          }}
-        >
-          Watch the app's instructional video
-        </a>
+        Watch the app's tutorial video
       </Typography>
+      <Stack
+      direction='row'
+        sx={{ alignItems: 'center', margin: 'auto', justifyContent: 'center' }}
+      >
+        <iframe
+          width="760"
+          height="415"
+          src="https://www.youtube.com/embed/pMC3ibZhvIc"
+          title="YouTube video player"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        ></iframe>
+      </Stack>
     </PageLayout>
-  );
-};
+  )
+}
 
-export default MusicPage;
+export default MusicPage

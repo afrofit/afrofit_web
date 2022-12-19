@@ -1,11 +1,12 @@
-import { Box, Grid, Stack, Typography } from "@mui/material";
-import * as React from "react";
-import { LinkButton } from "../../../components/Buttons/LinkButton";
-import { COLORS } from "../../../constants/colors";
-import { StatsCard } from "../../App/components/StatsCard";
-import { WelcomeCard } from "../components/WelcomeCard";
-import PlayStoreLogo from "../../../assets/img/playstore.png";
-import AppStoreLogo from "../../../assets/img/appstore.png";
+import { Box, Grid, Stack, Typography } from '@mui/material'
+import * as React from 'react'
+import { LinkButton } from '../../../components/Buttons/LinkButton'
+import { COLORS } from '../../../constants/colors'
+import { StatsCard } from '../../App/components/StatsCard'
+import { WelcomeCard } from '../components/WelcomeCard'
+import PlayStoreLogo from '../../../assets/img/playstore.png'
+import AppStoreLogo from '../../../assets/img/appstore.png'
+import { useNavigate } from 'react-router-dom'
 
 const titleFontStyles = {
   fontSize: { xs: 60, md: 90 },
@@ -14,28 +15,32 @@ const titleFontStyles = {
   color: COLORS.white,
   letterSpacing: 0.2,
   lineHeight: { xs: 1.4, md: 1.3 },
-  textAlign: "center",
+  textAlign: 'center',
   backgroundImage: `linear-gradient(45deg, ${COLORS.purple_100}, ${COLORS.orange_200})`,
-  WebkitBackgroundClip: "text",
-  WebkitTextFillColor: "transparent",
+  WebkitBackgroundClip: 'text',
+  WebkitTextFillColor: 'transparent',
   borderRadius: 2,
-};
+}
 
 const subtitleFontStyles = {
   fontSize: { xs: 25, md: 45 },
   fontWeight: { md: 400 },
-  textAlign: "center",
+  textAlign: 'center',
   color: COLORS.white,
-};
+}
 
 //xs, sm, md, lg, xl
 const WelcomePage: React.FC = () => {
+  const token = localStorage.getItem('STORAGE_TOKEN_KEY_standin')
+
+  const navigate = useNavigate()
+  
   return (
     <Box
       sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
       }}
     >
       <Box display="flex" flexDirection="column" mb={5}>
@@ -54,18 +59,38 @@ const WelcomePage: React.FC = () => {
       </Typography>
       <Stack
         sx={{
-          display: { xs: "flex", md: "none" },
-          width: "100%",
+          display: { xs: 'flex', md: 'none' },
+          width: '100%',
+        }}
+        flexDirection="column"
+        alignItems="center"
+        justifyContent="center"
+        columnGap={1}
+        mt={2}
+        // mb={5}
+      >
+        <LinkButton
+          color="purple_200"
+          textcolor="fuschia"
+          title="Start Free Trial"
+          route="/plan"
+          // mb={5}
+        />
+      </Stack>
+      <Stack
+        sx={{
+          display: { xs: 'flex', md: 'none' },
+          width: '100%',
         }}
         flexDirection="column"
         alignItems="center"
         justifyContent="center"
         columnGap={3}
-        mt={5}
+        mt={3}
         mb={5}
       >
         <LinkButton
-          color="purple_200"
+          color="hilite_purpink"
           textcolor="fuschia"
           title="Find out more"
           route="/join-us"
@@ -79,13 +104,38 @@ const WelcomePage: React.FC = () => {
           route="/login"
         />
       </Stack>
+
       <Stack
         sx={{
-          display: { xs: "none", md: "flex" },
+          display: { xs: 'none', md: 'flex' },
+          // marginBottom: 2,
+          marginTop: 2,
+        }}
+        display={'flex'}
+        flexDirection="row"
+        width="100%"
+        alignItems="center"
+        justifyContent="center"
+        columnGap={3}
+        // mt={5}
+        // mb={5}
+      >
+        <LinkButton
+          color="purple_200"
+          textcolor="fuschia"
+          title="Start Free Trial"
+          route="/plan"
+          // mb={5}
+        />
+      </Stack>
+
+      <Stack
+        sx={{
+          display: { xs: 'none', md: 'flex' },
           marginBottom: 5,
           marginTop: 5,
         }}
-        display={"flex"}
+        display={'flex'}
         flexDirection="row"
         width="100%"
         alignItems="center"
@@ -95,7 +145,7 @@ const WelcomePage: React.FC = () => {
         mb={5}
       >
         <LinkButton
-          color="purple_200"
+          color="hilite_purpink"
           textcolor="fuschia"
           title="Find out more"
           route="/join-us"
@@ -114,7 +164,7 @@ const WelcomePage: React.FC = () => {
           color: COLORS.whiteblue,
           marginBottom: 3,
           marginTop: 2,
-          textTransform: "uppercase",
+          textTransform: 'uppercase',
           letterSpacing: 2,
         }}
       >
@@ -124,10 +174,10 @@ const WelcomePage: React.FC = () => {
         container
         spacing={2}
         alignItems="stretch"
-        mb={0}
+        // mb={0}
         sx={{
-          display: { xs: "flex" },
-          flexDirection: { xs: "column", md: "row" },
+          display: { xs: 'flex' },
+          flexDirection: { xs: 'column', md: 'row' },
         }}
       >
         <WelcomeCard
@@ -156,9 +206,9 @@ const WelcomePage: React.FC = () => {
           color: COLORS.whiteblue,
           marginTop: 5,
           marginBottom: 2,
-          textTransform: "uppercase",
+          textTransform: 'uppercase',
           letterSpacing: 2,
-          textAlign: "center",
+          textAlign: 'center',
         }}
       >
         GET THE SUPER FUN APP!
@@ -169,43 +219,84 @@ const WelcomePage: React.FC = () => {
         alignItems="stretch"
         mb={0}
         sx={{
-          display: { xs: "flex" },
-          flexDirection: { xs: "column", md: "row" },
-          alignItems: "center",
-          justifyContent: "center",
+          display: { xs: 'flex' },
+          flexDirection: { xs: 'column', md: 'row' },
+          alignItems: 'center',
+          justifyContent: 'center',
         }}
       >
-        <Box
-          sx={{
-            height: { xs: "70px", md: "100px" },
-            cursor: "pointer",
-            marginBottom: { xs: 0, md: 2 },
-            marginTop: { xs: 1, md: 2 },
-            marginLeft: 2,
-            marginRight: 2,
-          }}
-        >
-          <a href="https://play.google.com/store/apps/details?id=com.djminddgap.afrofit&gl=GB">
-            <img src={PlayStoreLogo} alt="the Afrofit logo" height={"100%"} />
-          </a>
-        </Box>
-        <Box
-          sx={{
-            height: { xs: "70px", md: "100px" },
-            cursor: "pointer",
-            marginBottom: { xs: 0, md: 2 },
-            marginTop: { xs: 1, md: 2 },
-            marginLeft: 2,
-            marginRight: 2,
-          }}
-        >
-          <a href="https://apps.apple.com/us/app/afrofit-app/id1643761809">
-            <img src={AppStoreLogo} alt="the Afrofit logo" height={"100%"} />
-          </a>
-        </Box>
+        {!token ? (
+          <Box
+            onClick={() => navigate('/register')}
+            sx={{
+              height: { xs: '70px', md: '100px' },
+              cursor: 'pointer',
+              marginBottom: { xs: 0, md: 2 },
+              marginTop: { xs: 1, md: 2 },
+              marginLeft: 2,
+              marginRight: 2,
+            }}
+          >
+            <img src={PlayStoreLogo} alt="the Afrofit logo" height={'100%'} />
+          </Box>
+        ) : (
+          <Box
+            sx={{
+              height: { xs: '70px', md: '100px' },
+              cursor: 'pointer',
+              marginBottom: { xs: 0, md: 2 },
+              marginTop: { xs: 1, md: 2 },
+              marginLeft: 2,
+              marginRight: 2,
+            }}
+          >
+            <a
+              href="https://play.google.com/store/apps/details?id=com.djminddgap.afrofit&gl=GB"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img src={PlayStoreLogo} alt="the Afrofit logo" height={'100%'} />
+            </a>
+          </Box>
+        )}
+
+        {!token ? (
+          <Box
+            onClick={() => navigate('/register')}
+            sx={{
+              height: { xs: '70px', md: '100px' },
+              cursor: 'pointer',
+              marginBottom: { xs: 0, md: 2 },
+              marginTop: { xs: 1, md: 2 },
+              marginLeft: 2,
+              marginRight: 2,
+            }}
+          >
+            <img src={AppStoreLogo} alt="the Afrofit logo" height={'100%'} />
+          </Box>
+        ) : (
+          <Box
+            sx={{
+              height: { xs: '70px', md: '100px' },
+              cursor: 'pointer',
+              marginBottom: { xs: 0, md: 2 },
+              marginTop: { xs: 1, md: 2 },
+              marginLeft: 2,
+              marginRight: 2,
+            }}
+          >
+            <a
+              href="https://apps.apple.com/us/app/afrofit-app/id1643761809"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img src={AppStoreLogo} alt="the Afrofit logo" height={'100%'} />
+            </a>
+          </Box>
+        )}
       </Grid>
     </Box>
-  );
-};
+  )
+}
 
-export default WelcomePage;
+export default WelcomePage

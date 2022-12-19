@@ -1,95 +1,111 @@
-import * as React from "react";
+import * as React from 'react'
+
+import { Box, Grid, Stack, Typography } from '@mui/material'
+import { PageLayout } from '../../components/layout/PageLayout/PageLayout'
+import { useDispatch, useSelector } from 'react-redux'
+
+import { COLORS } from '../../constants/colors'
+import { StatsCard } from './components/StatsCard'
+import { IdentCard } from './components/IdentCard'
+import { RankCard } from './components/RankCard'
+import { Card } from '../../components/Card/Card'
+import { SubscriptionCard } from './components/SubscriptionCard'
+import { NotificationBackdrop } from '../../components/elements/NotificationBackdrop'
+import { selectUserPerformance } from '../../store/reducers/app/performance.slice'
+import { SmallButton } from '../../components/Buttons/SmallButton'
+import { useNavigate } from 'react-router-dom'
 
 import {
-  Box,
-  breadcrumbsClasses,
-  Grid,
-  Stack,
-  Typography,
-} from "@mui/material";
-import { PageLayout } from "../../components/layout/PageLayout/PageLayout";
-import { useDispatch, useSelector } from "react-redux";
-
-import { COLORS } from "../../constants/colors";
-import { StatsCard } from "./components/StatsCard";
-import { IdentCard } from "./components/IdentCard";
-import { RankCard } from "./components/RankCard";
-import { Card } from "../../components/Card/Card";
-import { SubscriptionCard } from "./components/SubscriptionCard";
-import { NotificationBackdrop } from "../../components/elements/NotificationBackdrop";
-import { selectUserPerformance } from "../../store/reducers/app/performance.slice";
-import { SmallButton } from "../../components/Buttons/SmallButton";
-import { useNavigate } from "react-router-dom";
-
-import {
+  endSubcribtionDate,
   selectUser,
   selectUserIsSubscribed,
-} from "../../store/reducers/auth/auth.slice";
-import { GetUserPerformanceData } from "../../store/reducers/app/thunks/get-user-performance.thunk";
-import { formatDate } from "../../utils/formatters";
-import { DisplayPicturePicker } from "../../components/elements/DisplayPicturePicker";
-import { finishedRequest, newRequest } from "../../store/reducers/ui/ui.slice";
-import { UpdateUserDp } from "../../store/reducers/auth/thunks/update-user-dp.thunk";
-import { CreateStripeSession } from "../../store/reducers/payments/thunks/create-stripe-session.thunk";
-import { RetrieveUserSubscription } from "../../store/reducers/payments/thunks/retrieve-user-subscription.thunk";
-import { CancelUserSubscription } from "../../store/reducers/payments/thunks/cancel-user-subscription.thunk";
+} from '../../store/reducers/auth/auth.slice'
+import { GetUserPerformanceData } from '../../store/reducers/app/thunks/get-user-performance.thunk'
+import { formatDate } from '../../utils/formatters'
+import { DisplayPicturePicker } from '../../components/elements/DisplayPicturePicker'
+import { finishedRequest, newRequest } from '../../store/reducers/ui/ui.slice'
+import { UpdateUserDp } from '../../store/reducers/auth/thunks/update-user-dp.thunk'
+// import { CreateStripeSession } from '../../store/reducers/payments/thunks/create-stripe-session.thunk'
+import { RetrieveUserSubscription } from '../../store/reducers/payments/thunks/retrieve-user-subscription.thunk'
+import { CancelUserSubscription } from '../../store/reducers/payments/thunks/cancel-user-subscription.thunk'
 
 interface Props {}
 
 const ProfilePage: React.FC<Props> = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
-  const currentUser = useSelector(selectUser);
-  const userPerformance = useSelector(selectUserPerformance);
-  const isSubscribed = useSelector(selectUserIsSubscribed);
+  const currentUser = useSelector(selectUser)
+  const userPerformance = useSelector(selectUserPerformance)
+  const isSubscribed = useSelector(selectUserIsSubscribed)
+  const endDate = useSelector(endSubcribtionDate)
+  const [image, setImage] = React.useState('')
 
-  const [showNotification, setShowNotification] = React.useState(false);
-  const [showDpPicker, setShowDpPicker] = React.useState(false);
+  const [showNotification, setShowNotification] = React.useState(false)
+  const [showDpPicker, setShowDpPicker] = React.useState(false)
   const [selectedDp, setSelectedDp] = React.useState(
-    currentUser?.displayPicId ?? 1
-  );
+    currentUser?.displayPicId ?? 1,
+  )
+  // const token = localStorage.getItem('STORAGE_TOKEN_KEY_standin')
 
-  const handleCreateCheckoutSession = () => {
-    if (currentUser) {
-      const { email, userId } = currentUser;
-      dispatch(CreateStripeSession(userId, email));
-    }
-  };
+  
+  const handleNavigate = () => {
+    navigate('/plan')
+  }
+
+  // const handleCreateCheckoutSession = () => {
+  //   if (currentUser) {
+  //     const { email, userId } = currentUser
+  //     // dispatch(CreateStripeSession(userId, email))
+  //   }
+  // }
 
   const handleRetrieveUserSubscriptionInfo = React.useCallback(() => {
-    currentUser && dispatch(RetrieveUserSubscription(currentUser.userId));
-  }, [currentUser, dispatch]);
+    currentUser && dispatch(RetrieveUserSubscription(currentUser.userId))
+  }, [currentUser, dispatch])
 
   React.useEffect(() => {
-    currentUser && dispatch(GetUserPerformanceData(currentUser.userId));
-  }, [currentUser, dispatch]);
+    currentUser && dispatch(GetUserPerformanceData(currentUser.userId))
+  }, [currentUser, dispatch])
 
   React.useEffect(() => {
-    currentUser && handleRetrieveUserSubscriptionInfo();
-  }, [currentUser, handleRetrieveUserSubscriptionInfo]);
+    currentUser && handleRetrieveUserSubscriptionInfo()
+  }, [currentUser, handleRetrieveUserSubscriptionInfo])
 
-  React.useEffect(() => {
-    console.log("userPerformance", userPerformance);
-  }, [userPerformance]);
+  React.useEffect(() => {}, [userPerformance])
 
-  const handleSelectDp = (dpId: number) => {
-    setSelectedDp(dpId);
-    currentUser && dispatch(UpdateUserDp(currentUser.userId, dpId));
-    setShowDpPicker(false);
-    dispatch(newRequest());
+  const handleSelectDp = (dpId: any, type:boolean) => {
+    let formData = new FormData()
+    if (type) {
+      
+      setImage(dpId)
+      setShowDpPicker(false)
+      formData.append('image', dpId)
+    } else {
+      
+      formData.append('displayPicId', dpId as any)
+      setSelectedDp(dpId)
+      setShowDpPicker(false)
+    }
+    
+    
+    
+    // setSelectedDp(dpId)
+    currentUser && dispatch(UpdateUserDp(currentUser.userId, formData))
+    setShowDpPicker(false)
+    dispatch(newRequest())
     setTimeout(() => {
-      dispatch(finishedRequest());
-    }, 200);
-  };
+      dispatch(finishedRequest())
+    }, 200)
+  }
 
   const handleCancelSubscription = () => {
     if (currentUser) {
-      return dispatch(CancelUserSubscription(currentUser.userId));
+      return dispatch(CancelUserSubscription(currentUser.userId))
     }
-  };
+  }
 
-  if (!userPerformance) return null;
+  if (!userPerformance) return null
 
   return (
     <>
@@ -98,7 +114,11 @@ const ProfilePage: React.FC<Props> = () => {
         onClose={() => setShowDpPicker(false)}
         open={showDpPicker}
         selectedDp={selectedDp}
+        setImage={''}
+  setImage1={''}
+
       />
+
       <NotificationBackdrop
         open={showNotification}
         onClose={() => setShowNotification(false)}
@@ -108,20 +128,20 @@ const ProfilePage: React.FC<Props> = () => {
         showButton={true}
         buttonComponent={
           <Stack
-            display={"flex"}
+            display={'flex'}
             flexDirection="row"
             columnGap={2}
             alignItems="center"
           >
             {!isSubscribed ? (
               <SmallButton
-                title={"Purchase Subscription"}
-                onClick={handleCreateCheckoutSession}
+                title={'Start Free Trial'}
+                onClick={handleNavigate}
                 color="purple_200"
               />
             ) : (
               <SmallButton
-                title={"Cancel Subscription"}
+                title={'Cancel Subscription'}
                 onClick={handleCancelSubscription}
                 color="dark_400"
               />
@@ -132,11 +152,11 @@ const ProfilePage: React.FC<Props> = () => {
         <Grid
           container
           spacing={2}
-          alignItems={"stretch"}
+          alignItems={'stretch'}
           mb={5}
           sx={{
-            display: { xs: "flex", md: "flex" },
-            flexDirection: { xs: "column", md: "row" },
+            display: { xs: 'flex', md: 'flex' },
+            flexDirection: { xs: 'column', md: 'row' },
           }}
         >
           <IdentCard
@@ -159,10 +179,10 @@ const ProfilePage: React.FC<Props> = () => {
           container
           spacing={2}
           sx={{
-            display: { xs: "flex", md: "flex" },
-            flexWrap: "wrap",
+            display: { xs: 'flex', md: 'flex' },
+            flexWrap: 'wrap',
           }}
-          alignItems={"stretch"}
+          alignItems={'stretch'}
           mb={5}
         >
           <StatsCard
@@ -183,15 +203,15 @@ const ProfilePage: React.FC<Props> = () => {
             value={isSubscribed}
           />
         </Grid>
-        <Grid container display="flex" alignItems={"stretch"}>
+        <Grid container display="flex" alignItems={'stretch'}>
           <Card justifyContent="center" alignItems="center" color="black">
             <Box
               sx={{
-                width: "100%",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                height: "100%",
+                width: '100%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                height: '100%',
               }}
             >
               <Typography
@@ -199,20 +219,47 @@ const ProfilePage: React.FC<Props> = () => {
                   color: COLORS.white,
                   fontSize: 25,
                   fontWeight: 300,
+                  textAlign: 'center',
                 }}
               >
                 {currentUser
-                  ? `Your last activity was logged on the ${formatDate(
-                      currentUser.joinDate
-                    )}`
+                  ? `Your Are logged in ${formatDate(currentUser.joinDate)}`
                   : "We can't tell when you were last active"}
               </Typography>
             </Box>
           </Card>
+          {Boolean(endDate) ? (
+            <Card justifyContent="center" alignItems="center" color="black">
+              <Box
+                sx={{
+                  width: '100%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  height: '50%',
+                }}
+              >
+                <Typography
+                  sx={{
+                    color: COLORS.white,
+                    fontSize: 25,
+                    fontWeight: 300,
+                    textAlign: 'center',
+                  }}
+                >
+                  {currentUser
+                    ? `Your subscription Will be ended  ${
+                        endDate ? formatDate(endDate) : '-'
+                      }`
+                    : "We can't tell when you were last active"}
+                </Typography>
+              </Box>
+            </Card>
+          ) : null}
         </Grid>
       </PageLayout>
     </>
-  );
-};
+  )
+}
 
-export default ProfilePage;
+export default ProfilePage
