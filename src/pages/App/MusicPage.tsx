@@ -37,24 +37,19 @@ const MusicPage: React.FC<Props> = () => {
       <Typography
         sx={{ color: COLORS.whiteblue, fontSize: 22, marginBottom: 2 }}
       >
-        The Afro t app is a value - added app for members of the 'AFROFIT
-        FITNESS CLUB' to help members lose weight and keep t through dancing
-        exercises.
+        The Afrofit app is a value - added app for members of the 'AFROFIT FITNESS CLUB' to help members lose weight and keep fit through dancing exercises.
       </Typography>
 
       <Typography
         sx={{ color: COLORS.whiteblue, fontSize: 22, marginBottom: 2 }}
       >
-        You can record Your dance steps/movements while dancing or exercising by
-        having your phone on you.
+       You can record Your dance steps/movements while dancing or exercising by having your phone on you.
       </Typography>
 
       <Typography
         sx={{ color: COLORS.whiteblue, fontSize: 22, marginBottom: 5 }}
       >
-        You can also select or download unlimited DJ workout mixes of di rent
-        Genre like AFROBEAT, AMAPIANO, DANCE HALL , SOCA, CLASSIC HIP HOP / R&B
-        + more on your devices.
+   You can also select or download unlimited DJ workout mixes of diffrent Genre like AFROBEAT, AMAPIANO, DANCE HALL , SOCA, CLASSIC HIP HOP / R&B + more on your devices.
       </Typography>
 
       <Stack
