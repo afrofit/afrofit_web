@@ -67,18 +67,17 @@ const MusicPage: React.FC<Props> = () => {
         <LinkButton
           color="hilite_purpink"
           textcolor="fuschia"
-          title="Find out more"
-          route="/join-us"
-          mb={20}
+          title="Start Free Trial"
+          route={token ? '/profile' : '/plan'}
+          mb={10}
         />
-
         <LinkButton
           color="pink_200"
           textcolor="fuschia"
-          title="existing member?"
-          route="/login"
+          title="DOWNLOAD DJ MIX"
+          route="/shop"
         />
-      </Stack>
+        </Stack>
 
       <Stack
         sx={{
