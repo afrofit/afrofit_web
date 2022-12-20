@@ -6,6 +6,7 @@ import { SmallButton } from '../../components/Buttons/SmallButton'
 import { selectUser } from '../../store/reducers/auth/auth.slice'
 import { CreateStripeSession } from '../../store/reducers/payments/thunks/create-stripe-session.thunk'
 import { PlanCard } from './components/PlanCard'
+import Scrollbar from './components/Scrollbar'
 
 const Plans = [
   {
@@ -67,6 +68,8 @@ function Plan() {
   const [showData, setShowData] = useState(false)
   const [priceId, setPriceId] = useState('')
 
+
+
   const handleSubmit = async () => {
     if (currentUser) {
       const { email, userId } = currentUser
@@ -92,19 +95,20 @@ function Plan() {
 
   return (
     <>
-      <Grid item xs={12} sm={12} md={4} lg={6}>
-        {PlanData.map((item, index) => {
-          return (
-            <PlanCard
-              key={index}
-              item={item}
-              onChangeSelectItem={(res: any) => {
-                changeSelectedValue(index, res)
-              }}
-              setPriceId={setPriceId}
-            />
-          )
-        })}
+
+      <Grid sx={{  height: '360px', marginBottom: '15px',overflow:'auto' }}>
+          {PlanData.map((item, index) => {
+            return (
+              <PlanCard
+                key={index}
+                item={item}
+                onChangeSelectItem={(res: any) => {
+                  changeSelectedValue(index, res)
+                }}
+                setPriceId={setPriceId}
+              />
+            )
+          })}
       </Grid>
       {showData === true ? (
         <Box sx={{ margin: 'auto', textAlign: 'center' }}>

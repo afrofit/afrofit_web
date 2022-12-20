@@ -19,7 +19,7 @@ export const PlanCard: React.FC<Props> = ({
 
   return (
     <>
-      <Grid item xs={12} sm={12} md={4} lg={6}>
+      <Grid item xs={12} sm={12} md={4} lg={6} >
         <Card
           onClick={changeStyle}
           sx={{
