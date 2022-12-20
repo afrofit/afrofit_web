@@ -8,12 +8,16 @@ import { useSearchParams } from 'react-router-dom'
 import { useEffect } from 'react'
 import API_CLIENT from '../../api/client'
 import ForwardIcon from '@mui/icons-material/Forward'
+import { LinkButton } from '../../components/Buttons/LinkButton'
 
 interface Props {}
 const MusicPage: React.FC<Props> = () => {
   const [searchParams] = useSearchParams()
   const sessionId = searchParams.get('id')
   const uid = localStorage.getItem('userId')
+
+  const token = localStorage.getItem('STORAGE_TOKEN_KEY_standin')
+
 
   const fsession = async (uid: string | null) => {
     const responce = await API_CLIENT.post(
@@ -29,16 +33,86 @@ const MusicPage: React.FC<Props> = () => {
   }, [sessionId])
 
   return (
-    <PageLayout title="Welcome to the Afrofit Club">
+    <PageLayout title="WELCOME TO THE AFROFIT CLUB">
+      <Typography
+        sx={{ color: COLORS.whiteblue, fontSize: 22, marginBottom: 2 }}
+      >
+        The Afro t app is a value - added app for members of the 'AFROFIT
+        FITNESS CLUB' to help members lose weight and keep t through dancing
+        exercises.
+      </Typography>
+
+      <Typography
+        sx={{ color: COLORS.whiteblue, fontSize: 22, marginBottom: 2 }}
+      >
+        You can record Your dance steps/movements while dancing or exercising by
+        having your phone on you.
+      </Typography>
+
       <Typography
         sx={{ color: COLORS.whiteblue, fontSize: 22, marginBottom: 5 }}
       >
-        The Afrofit app is a value - added app for members of the AFROFIT
-        FITNESS CLUB to keep members active through dancing exercises. You can
-        record Your dance steps/movements while dancing or exercising by having
-        your phones on them.
+        You can also select or download unlimited DJ workout mixes of di rent
+        Genre like AFROBEAT, AMAPIANO, DANCE HALL , SOCA, CLASSIC HIP HOP / R&B
+        + more on your devices.
       </Typography>
 
+      <Stack
+        sx={{
+          display: { xs: 'flex', md: 'none' },
+          width: '100%',
+        }}
+        flexDirection="column"
+        alignItems="center"
+        justifyContent="center"
+        columnGap={3}
+        mt={3}
+        mb={5}
+      >
+        <LinkButton
+          color="hilite_purpink"
+          textcolor="fuschia"
+          title="Find out more"
+          route="/join-us"
+          mb={20}
+        />
+
+        <LinkButton
+          color="pink_200"
+          textcolor="fuschia"
+          title="existing member?"
+          route="/login"
+        />
+      </Stack>
+
+      <Stack
+        sx={{
+          display: { xs: 'none', md: 'flex' },
+          marginBottom: 5,
+          marginTop: 5,
+        }}
+        display={'flex'}
+        flexDirection="row"
+        width="100%"
+        alignItems="center"
+        justifyContent="center"
+        columnGap={3}
+        mt={5}
+        mb={5}
+      >
+        <LinkButton
+          color="hilite_purpink"
+          textcolor="fuschia"
+          title="Start Free Trial"
+          route={token ? '/profile' : '/plan'}
+        />
+        <LinkButton
+          color="pink_200"
+          textcolor="fuschia"
+          title="DOWNLOAD DJ MIX"
+          route="/shop"
+        />
+      </Stack>
       <Typography
         sx={{
           color: COLORS.hilite_purpink,
@@ -53,7 +127,8 @@ const MusicPage: React.FC<Props> = () => {
       <Typography
         sx={{ color: COLORS.whiteblue, fontSize: 22, marginBottom: 2 }}
       >
-        Please follow the below steps to start your weight loss and calorie-burning journey! 
+        Please follow the below steps to start your weight loss and
+        calorie-burning journey!
       </Typography>
 
       <Typography
@@ -62,13 +137,12 @@ const MusicPage: React.FC<Props> = () => {
           fontSize: 20,
           fontWeight: 300,
           marginBottom: 2,
-          display:'flex',
-
+          display: 'flex',
         }}
       >
-          <ForwardIcon sx={{ marginTop: '2px', marginRight: '10px' }} />
-          <strong style={{ width: '80px' }}>STEP 1:</strong> Download the
-          Afrofit App from the given link.
+        <ForwardIcon sx={{ marginTop: '2px', marginRight: '10px' }} />
+        <strong style={{ width: '80px' }}>STEP 1:</strong> Download the Afrofit
+        App from the given link.
       </Typography>
 
       <Grid
@@ -128,12 +202,12 @@ const MusicPage: React.FC<Props> = () => {
           fontSize: 20,
           fontWeight: 300,
           marginBottom: 2,
-          display:'flex',
+          display: 'flex',
         }}
       >
-          <ForwardIcon sx={{ marginTop: '2px', marginRight: '10px' }} />
-          <strong style={{ width: '80px' }}>STEP 2:</strong>
-          Log into the app with your username and password.
+        <ForwardIcon sx={{ marginTop: '2px', marginRight: '10px' }} />
+        <strong style={{ width: '80px' }}>STEP 2:</strong>
+        Log into the app with your username and password.
       </Typography>
       <Typography
         sx={{
@@ -141,16 +215,15 @@ const MusicPage: React.FC<Props> = () => {
           fontSize: 20,
           fontWeight: 300,
           marginBottom: 2,
-          display:'flex',
-
+          display: 'flex',
         }}
       >
-          <ForwardIcon sx={{ marginTop: '2px', marginRight: '10px' }} />
-          <strong style={{ width: '150px' }}>STEP 3:</strong> By clicking on the
-          story you can start your journey. After listening to the story you can
-          click on to ‘Continue story' then it takes you to 'Stories chapters'
-          (NOTE: you have to complete the chapters in a story before you can get
-          access to the next story)
+        <ForwardIcon sx={{ marginTop: '2px', marginRight: '10px' }} />
+        <strong style={{ width: '150px' }}>STEP 3:</strong> By clicking on the
+        story you can start your journey. After listening to the story you can
+        click on to ‘Continue story' then it takes you to 'Stories chapters'
+        (NOTE: you have to complete the chapters in a story before you can get
+        access to the next story)
       </Typography>
       <Typography
         sx={{
@@ -158,17 +231,16 @@ const MusicPage: React.FC<Props> = () => {
           fontSize: 20,
           fontWeight: 300,
           marginBottom: 2,
-          display:'flex',
-
+          display: 'flex',
         }}
       >
-          <ForwardIcon sx={{ marginTop: '2px', marginRight: '5px' }} />
-          <strong style={{ width: '200px' }}>STEP 4:</strong>In the stories
-          chapter, you will select a chapter and start dancing. you can
-          either select music on their phone or use our suggested playlist. Once
-          you starts moving or dancing the movements will be recorded and you
-          can see that on the screen. (NOTE: App requires permission from you to
-          record activity)
+        <ForwardIcon sx={{ marginTop: '2px', marginRight: '5px' }} />
+        <strong style={{ width: '200px' }}>STEP 4:</strong>In the stories
+        chapter, you will select a chapter and start dancing. you can either
+        select music on their phone or use our suggested playlist. Once you
+        starts moving or dancing the movements will be recorded and you can see
+        that on the screen. (NOTE: App requires permission from you to record
+        activity)
       </Typography>
       <Typography
         sx={{
@@ -178,8 +250,8 @@ const MusicPage: React.FC<Props> = () => {
           marginBottom: 2,
         }}
       >
-        <strong>RANKING PAGE:</strong> This is a leaderboard that shows the
-        your rating or performance among other users.
+        <strong>RANKING PAGE:</strong> This is a leaderboard that shows the your
+        rating or performance among other users.
       </Typography>
       <Typography
         sx={{
@@ -204,7 +276,7 @@ const MusicPage: React.FC<Props> = () => {
         Watch the app's tutorial video
       </Typography>
       <Stack
-      direction='row'
+        direction="row"
         sx={{ alignItems: 'center', margin: 'auto', justifyContent: 'center' }}
       >
         <iframe
