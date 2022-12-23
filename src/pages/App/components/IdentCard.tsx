@@ -1,49 +1,46 @@
-import * as React from "react";
-import { Box, CircularProgress, Grid, Stack, Typography } from "@mui/material";
-import { Card } from "../../../components/Card/Card";
-import { StyledAvatar } from "../../../components/StyledAvatar/StyledAvatar";
-import { COLORS } from "../../../constants/colors";
+import * as React from 'react'
+import { Box, CircularProgress, Grid, Stack, Typography } from '@mui/material'
+import { Card } from '../../../components/Card/Card'
+import { StyledAvatar } from '../../../components/StyledAvatar/StyledAvatar'
+import { COLORS } from '../../../constants/colors'
 
-import { UserModel } from "../../../types/UserModel";
-import { formatDate } from "../../../utils/formatters";
+import { UserModel } from '../../../types/UserModel'
+import { formatDate } from '../../../utils/formatters'
 
 interface Props {
-  currentUser?: UserModel;
-  onChangeDp: () => void;
+  currentUser?: UserModel
+  onChangeDp: () => void
 }
 
 export const IdentCard: React.FC<Props> = ({ currentUser, onChangeDp }) => {
   React.useEffect(() => {
     // console.log("currentUser", currentUser);
-  }, [currentUser]);
+  }, [currentUser])
 
-  const picId = currentUser?.displayPicId ? currentUser.displayPicId : 1;
-
+  const picId = currentUser?.displayPicId ? currentUser.displayPicId : 1
 
   if (!currentUser)
-
-  
-  return (
-    <>
+    return (
+      <>
         <CircularProgress />
         <Typography sx={{ color: COLORS.white, fontSize: 20, fontWeight: 500 }}>
           No user information found!
         </Typography>
       </>
-    );
+    )
 
-    let url = ''
-    if(currentUser.imageUrl){
-      url = `http://192.168.1.27:9090/`+ currentUser.imageUrl
-    }
-    if(typeof currentUser.displayPicId !== 'object' && !currentUser.imageUrl){
-      url = require(`../../../assets/img/dp/${picId}.png`)
-    }
+  let url = ''
+  if (currentUser.imageUrl) {
+    url = `https://shark-app-y5ox6.ondigitalocean.app/` + currentUser.imageUrl
+    // url = `http://192.168.1.27:9090/`+ currentUser.imageUrl
+  }
+  if (typeof currentUser.displayPicId !== 'object' && !currentUser.imageUrl) {
+    url = require(`../../../assets/img/dp/${picId}.png`)
+  }
 
-     
   return (
     <Grid item xs={12} md={8}>
-      <Box sx={{ display: { xs: "none", md: "flex" } }}>
+      <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
         <Card
           height={300}
           padding={6}
@@ -60,10 +57,10 @@ export const IdentCard: React.FC<Props> = ({ currentUser, onChangeDp }) => {
 
           <Stack
             sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "flex-start",
-              justifyContent: "center",
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'flex-start',
+              justifyContent: 'center',
               flex: 1,
               color: COLORS.white,
             }}
@@ -97,7 +94,7 @@ export const IdentCard: React.FC<Props> = ({ currentUser, onChangeDp }) => {
                 fontWeight: 500,
                 letterSpacing: 3,
                 color: COLORS.whiteblue,
-                textTransform: "uppercase",
+                textTransform: 'uppercase',
               }}
             >
               Member since {formatDate(currentUser.joinDate)}
@@ -106,7 +103,7 @@ export const IdentCard: React.FC<Props> = ({ currentUser, onChangeDp }) => {
         </Card>
       </Box>
 
-      <Box sx={{ display: { xs: "flex", md: "none" } }}>
+      <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
         <Card
           height={400}
           padding={6}
@@ -115,9 +112,9 @@ export const IdentCard: React.FC<Props> = ({ currentUser, onChangeDp }) => {
         >
           <Box
             sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
             }}
           >
             <StyledAvatar
@@ -126,14 +123,14 @@ export const IdentCard: React.FC<Props> = ({ currentUser, onChangeDp }) => {
               mb={0}
               mr={0}
               onClick={onChangeDp}
-            /> 
+            />
 
             <Stack
               sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
                 flex: 1,
                 color: COLORS.white,
                 marginTop: 2,
@@ -170,8 +167,8 @@ export const IdentCard: React.FC<Props> = ({ currentUser, onChangeDp }) => {
                   fontWeight: 500,
                   letterSpacing: 3,
                   color: COLORS.whiteblue,
-                  textTransform: "uppercase",
-                  textAlign: "center",
+                  textTransform: 'uppercase',
+                  textAlign: 'center',
                 }}
               >
                 Member since {formatDate(currentUser.joinDate)}
@@ -181,5 +178,5 @@ export const IdentCard: React.FC<Props> = ({ currentUser, onChangeDp }) => {
         </Card>
       </Box>
     </Grid>
-  );
-};
+  )
+}

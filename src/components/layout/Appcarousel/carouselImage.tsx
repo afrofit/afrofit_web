@@ -106,7 +106,11 @@ function SwipeableImage() {
                       maxHeight: '400px',
                       objectFit: 'contain',
                     }}
-                    src={`http://192.168.1.27:9090/` + step?.imageUrl}
+                    src={
+                      `https://shark-app-y5ox6.ondigitalocean.app/` +
+                      step?.imageUrl
+                    }
+                    // src={`http://192.168.1.27:9090/` + step?.imageUrl}
                     alt={step?.title}
                   />
 
