@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { SmallButton } from '../../components/Buttons/SmallButton'
+import useScreenSizes from '../../hook/useScreenSizes'
 import { selectUser } from '../../store/reducers/auth/auth.slice'
 import { CreateStripeSession } from '../../store/reducers/payments/thunks/create-stripe-session.thunk'
 import { PlanCard } from './components/PlanCard'
@@ -68,6 +69,7 @@ function Plan() {
   const [showData, setShowData] = useState(false)
   const [priceId, setPriceId] = useState('')
 
+  const { isMobile, isMobileM, isMobileL ,isTablet,isLaptop} = useScreenSizes()
 
 
   const handleSubmit = async () => {
@@ -96,7 +98,7 @@ function Plan() {
   return (
     <>
 
-      <Grid sx={{  height: '360px', marginBottom: '15px',overflow:'auto' }}>
+      <Grid sx={isMobile || isMobileM || isMobileL || isTablet|| isLaptop? {  height: '360px', marginBottom: '15px',overflow:'auto' }: {}}>
           {PlanData.map((item, index) => {
             return (
               <PlanCard
