@@ -2,11 +2,12 @@ import { Box, Grid, Stack, Typography } from '@mui/material'
 import * as React from 'react'
 import { LinkButton } from '../../../components/Buttons/LinkButton'
 import { COLORS } from '../../../constants/colors'
-import { StatsCard } from '../../App/components/StatsCard'
 import { WelcomeCard } from '../components/WelcomeCard'
 import PlayStoreLogo from '../../../assets/img/playstore.png'
 import AppStoreLogo from '../../../assets/img/appstore.png'
 import { useNavigate } from 'react-router-dom'
+import SwipeableTextMobileStepper from '../../../components/layout/Appcarousel/carouselImage'
+import SwipeableText from '../../../components/layout/Appcarousel/carouselText'
 
 const titleFontStyles = {
   fontSize: { xs: 60, md: 90 },
@@ -29,12 +30,11 @@ const subtitleFontStyles = {
   color: COLORS.white,
 }
 
-//xs, sm, md, lg, xl
 const WelcomePage: React.FC = () => {
   const token = localStorage.getItem('STORAGE_TOKEN_KEY_standin')
 
   const navigate = useNavigate()
-  
+
   return (
     <Box
       sx={{
@@ -67,14 +67,12 @@ const WelcomePage: React.FC = () => {
         justifyContent="center"
         columnGap={1}
         mt={2}
-        // mb={5}
       >
         <LinkButton
           color="purple_200"
           textcolor="fuschia"
           title="Start Free Trial"
           route="/plan"
-          // mb={5}
         />
       </Stack>
       <Stack
@@ -108,7 +106,6 @@ const WelcomePage: React.FC = () => {
       <Stack
         sx={{
           display: { xs: 'none', md: 'flex' },
-          // marginBottom: 2,
           marginTop: 2,
         }}
         display={'flex'}
@@ -117,15 +114,12 @@ const WelcomePage: React.FC = () => {
         alignItems="center"
         justifyContent="center"
         columnGap={3}
-        // mt={5}
-        // mb={5}
       >
         <LinkButton
           color="purple_200"
           textcolor="fuschia"
           title="Start Free Trial"
           route="/plan"
-          // mb={5}
         />
       </Stack>
 
@@ -174,7 +168,6 @@ const WelcomePage: React.FC = () => {
         container
         spacing={2}
         alignItems="stretch"
-        // mb={0}
         sx={{
           display: { xs: 'flex' },
           flexDirection: { xs: 'column', md: 'row' },
@@ -295,6 +288,40 @@ const WelcomePage: React.FC = () => {
           </Box>
         )}
       </Grid>
+
+      <Typography
+        sx={{
+          fontSize: '40px',
+          color: COLORS.hilite_purpink,
+          marginTop: '25px',
+          fontWeight: 'bold',
+        }}
+      >
+        Testimonial
+      </Typography>
+      <hr style={{ width: '200px' }} />
+
+      <Box
+        sx={{
+          marginTop: '20px',
+          marginBottom: '20px',
+          height: 'auto',
+          width: '100%',
+        }}
+      >
+        <SwipeableTextMobileStepper />
+      </Box>
+
+      <Box
+        sx={{
+          marginTop: '20px',
+          marginBottom: '20px',
+          height: 'auto',
+          width: '100%',
+        }}
+      >
+        <SwipeableText />
+      </Box>
     </Box>
   )
 }

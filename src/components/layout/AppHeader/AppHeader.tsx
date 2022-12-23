@@ -37,7 +37,7 @@ export const AppHeader: React.FC<Props> = ({ authorized }) => {
     setOpen(false)
     EXPIRE_TOKEN()
     dispatch(storeUser(undefined))
-    navigate('/Afrofit')
+    navigate('/')
   }
   const handleClickOpen = () => {
     setOpen(true)

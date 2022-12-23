@@ -18,7 +18,6 @@ const MusicPage: React.FC<Props> = () => {
 
   const token = localStorage.getItem('STORAGE_TOKEN_KEY_standin')
 
-
   const fsession = async (uid: string | null) => {
     const responce = await API_CLIENT.post(
       `payments/retrieve-stripe-session/${uid}`,
@@ -37,21 +36,26 @@ const MusicPage: React.FC<Props> = () => {
       <Typography
         sx={{ color: COLORS.whiteblue, fontSize: 22, marginBottom: 2 }}
       >
-        The Afrofit app is a value - added app for members of the 'AFROFIT FITNESS CLUB' to help members lose weight and keep fit through dancing exercises.
+        The Afrofit app is a value - added app for members of the 'AFROFIT
+        FITNESS CLUB' to help members lose weight and keep fit through dancing
+        exercises.
       </Typography>
 
       <Typography
         sx={{ color: COLORS.whiteblue, fontSize: 22, marginBottom: 2 }}
       >
-       You can record Your dance steps/movements while dancing or exercising by having your phone on you.
+        You can record Your dance steps/movements while dancing or exercising by
+        having your phone on you.
       </Typography>
 
       <Typography
         sx={{ color: COLORS.whiteblue, fontSize: 22, marginBottom: 5 }}
       >
-   You can also select or download unlimited DJ workout mixes of diffrent Genre like AFROBEAT, AMAPIANO, DANCE HALL , SOCA, CLASSIC HIP HOP / R&B + more on your devices.
+        You can also select or download unlimited DJ workout mixes of diffrent
+        Genre like AFROBEAT, AMAPIANO, DANCE HALL , SOCA, CLASSIC HIP HOP / R&B
+        + more on your devices.
       </Typography>
-
+      {/* mobile button Start */}
       <Stack
         sx={{
           display: { xs: 'flex', md: 'none' },
@@ -77,8 +81,10 @@ const MusicPage: React.FC<Props> = () => {
           title="DOWNLOAD DJ MIX"
           route="/shop"
         />
-        </Stack>
+      </Stack>
+      {/* mobile button end */}
 
+      {/* web button start */}
       <Stack
         sx={{
           display: { xs: 'none', md: 'flex' },
@@ -107,6 +113,8 @@ const MusicPage: React.FC<Props> = () => {
           route="/shop"
         />
       </Stack>
+      {/* web button end */}
+
       <Typography
         sx={{
           color: COLORS.hilite_purpink,

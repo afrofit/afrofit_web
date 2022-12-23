@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { lazy, Suspense } from 'react'
-import { Route, Routes, Navigate, useNavigate } from 'react-router-dom'
+import { Route, Routes, Navigate } from 'react-router-dom'
 
 import { AppLayout } from '../components/layout/AppLayout/AppLayout'
 
@@ -43,17 +43,16 @@ const PaymentFailurePage = lazy(() =>
   import('../pages/Shared/PaymentFailurePage'),
 )
 
-
-
 const PrivateRoute = ({ children }: any) => {
-  const currentUser = useSelector(selectUserIsLoggedIn)
-  const navigate = useNavigate()
+  const token = localStorage.getItem('STORAGE_TOKEN_KEY_standin')
+  // const currentUser = useSelector(selectUserIsLoggedIn)
+  // const navigate = useNavigate()
 
-  if (currentUser) {
+  if (token) {
     return children
   } else {
-    // return <Navigate to="/login" />
-    navigate('/login')
+    return <Navigate to="/login" />
+    // navigate('/login')
   }
 }
 
@@ -101,7 +100,7 @@ export const AppRouter: React.FC = () => {
             <Route path="cancel" element={<PaymentFailurePage />} />
           </Route>
           <Route path="/profile" element={<Navigate to="profile" />} />
-          <Route path="Afrofit" element={<WelcomePage />} />
+          <Route path="/" element={<WelcomePage />} />
           {token ? '' : <Route path="login" element={<LoginPage />} />}
           <Route path="join-us" element={<JoinUsPage />} />
           {token ? '' : <Route path="register" element={<RegisterPage />} />}
