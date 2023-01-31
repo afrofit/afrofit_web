@@ -6,6 +6,8 @@ import { COLORS } from '../../../constants/colors'
 
 import { UserModel } from '../../../types/UserModel'
 import { formatDate } from '../../../utils/formatters'
+import settings from '../../../config/settings'
+
 
 interface Props {
   currentUser?: UserModel
@@ -31,8 +33,7 @@ export const IdentCard: React.FC<Props> = ({ currentUser, onChangeDp }) => {
 
   let url = ''
   if (currentUser.imageUrl) {
-    url = `https://shark-app-y5ox6.ondigitalocean.app/` + currentUser.imageUrl
-    // url = `http://192.168.1.27:9090/`+ currentUser.imageUrl
+    url = settings.imageUrl + currentUser.imageUrl
   }
   if (typeof currentUser.displayPicId !== 'object' && !currentUser.imageUrl) {
     url = require(`../../../assets/img/dp/${picId}.png`)
@@ -118,7 +119,7 @@ export const IdentCard: React.FC<Props> = ({ currentUser, onChangeDp }) => {
             }}
           >
             <StyledAvatar
-              src={require(`../../../assets/img/dp/${picId}.png`)}
+              src={url}
               size={150}
               mb={0}
               mr={0}

@@ -17,6 +17,7 @@ export const EXPIRE_TOKEN = () => {
 };
 
 export const DECODE_TOKEN = (): UserModel | null => {
+  // debugger
   const token = GET_TOKEN();
   if (token) {
     const user: UserModel = jwtDecode(token);

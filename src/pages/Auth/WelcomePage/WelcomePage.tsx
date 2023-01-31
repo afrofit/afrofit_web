@@ -1,13 +1,13 @@
-import { Box, Grid, Stack, Typography } from '@mui/material'
-import * as React from 'react'
-import { LinkButton } from '../../../components/Buttons/LinkButton'
-import { COLORS } from '../../../constants/colors'
-import { WelcomeCard } from '../components/WelcomeCard'
-import PlayStoreLogo from '../../../assets/img/playstore.png'
-import AppStoreLogo from '../../../assets/img/appstore.png'
-import { useNavigate } from 'react-router-dom'
-import SwipeableTextMobileStepper from '../../../components/layout/Appcarousel/carouselImage'
-import SwipeableText from '../../../components/layout/Appcarousel/carouselText'
+import { Box, Grid, Stack, Typography } from '@mui/material';
+import * as React from 'react';
+import { LinkButton } from '../../../components/Buttons/LinkButton';
+import { COLORS } from '../../../constants/colors';
+import { WelcomeCard } from '../components/WelcomeCard';
+import PlayStoreLogo from '../../../assets/img/playstore.png';
+import AppStoreLogo from '../../../assets/img/appstore.png';
+import { useNavigate } from 'react-router-dom';
+import SwipeableTextMobileStepper from '../../../components/layout/Appcarousel/carouselImage';
+import SwipeableText from '../../../components/layout/Appcarousel/carouselText';
 
 const titleFontStyles = {
   fontSize: { xs: 60, md: 90 },
@@ -21,19 +21,19 @@ const titleFontStyles = {
   WebkitBackgroundClip: 'text',
   WebkitTextFillColor: 'transparent',
   borderRadius: 2,
-}
+};
 
 const subtitleFontStyles = {
   fontSize: { xs: 25, md: 45 },
   fontWeight: { md: 400 },
   textAlign: 'center',
   color: COLORS.white,
-}
+};
 
 const WelcomePage: React.FC = () => {
-  const token = localStorage.getItem('STORAGE_TOKEN_KEY_standin')
+  const token = localStorage.getItem('STORAGE_TOKEN_KEY_standin');
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   return (
     <Box
@@ -43,7 +43,7 @@ const WelcomePage: React.FC = () => {
         alignItems: 'center',
       }}
     >
-      <Box display="flex" flexDirection="column" mb={5}>
+      <Box display='flex' flexDirection='column' mb={5}>
         <Typography sx={titleFontStyles}>
           Get <em>Fit.</em> Keep <em>Fit.</em>
         </Typography>
@@ -62,17 +62,17 @@ const WelcomePage: React.FC = () => {
           display: { xs: 'flex', md: 'none' },
           width: '100%',
         }}
-        flexDirection="column"
-        alignItems="center"
-        justifyContent="center"
+        flexDirection='column'
+        alignItems='center'
+        justifyContent='center'
         columnGap={1}
         mt={2}
       >
         <LinkButton
-          color="purple_200"
-          textcolor="fuschia"
-          title="Start Free Trial"
-          route="/plan"
+          color='purple_200'
+          textcolor='fuschia'
+          title='Start Free Trial'
+          route='/plan'
         />
       </Stack>
       <Stack
@@ -80,26 +80,26 @@ const WelcomePage: React.FC = () => {
           display: { xs: 'flex', md: 'none' },
           width: '100%',
         }}
-        flexDirection="column"
-        alignItems="center"
-        justifyContent="center"
+        flexDirection='column'
+        alignItems='center'
+        justifyContent='center'
         columnGap={3}
         mt={3}
         mb={5}
       >
         <LinkButton
-          color="hilite_purpink"
-          textcolor="fuschia"
-          title="Find out more"
-          route="/join-us"
+          color='hilite_purpink'
+          textcolor='fuschia'
+          title='Find out more'
+          route='/join-us'
           mb={20}
         />
 
         <LinkButton
-          color="pink_200"
-          textcolor="fuschia"
-          title="existing member?"
-          route="/login"
+          color='pink_200'
+          textcolor='fuschia'
+          title='existing member?'
+          route='/login'
         />
       </Stack>
 
@@ -109,17 +109,17 @@ const WelcomePage: React.FC = () => {
           marginTop: 2,
         }}
         display={'flex'}
-        flexDirection="row"
-        width="100%"
-        alignItems="center"
-        justifyContent="center"
+        flexDirection='row'
+        width='100%'
+        alignItems='center'
+        justifyContent='center'
         columnGap={3}
       >
         <LinkButton
-          color="purple_200"
-          textcolor="fuschia"
-          title="Start Free Trial"
-          route="/plan"
+          color='purple_200'
+          textcolor='fuschia'
+          title='Start Free Trial'
+          route='/plan'
         />
       </Stack>
 
@@ -130,25 +130,25 @@ const WelcomePage: React.FC = () => {
           marginTop: 5,
         }}
         display={'flex'}
-        flexDirection="row"
-        width="100%"
-        alignItems="center"
-        justifyContent="center"
+        flexDirection='row'
+        width='100%'
+        alignItems='center'
+        justifyContent='center'
         columnGap={3}
         mt={5}
         mb={5}
       >
         <LinkButton
-          color="hilite_purpink"
-          textcolor="fuschia"
-          title="Find out more"
-          route="/join-us"
+          color='hilite_purpink'
+          textcolor='fuschia'
+          title='Find out more'
+          route='/join-us'
         />
         <LinkButton
-          color="pink_200"
-          textcolor="fuschia"
-          title="existing member?"
-          route="/login"
+          color='pink_200'
+          textcolor='fuschia'
+          title='existing member?'
+          route='/login'
         />
       </Stack>
 
@@ -167,29 +167,29 @@ const WelcomePage: React.FC = () => {
       <Grid
         container
         spacing={2}
-        alignItems="stretch"
+        alignItems='stretch'
         sx={{
           display: { xs: 'flex' },
           flexDirection: { xs: 'column', md: 'row' },
         }}
       >
         <WelcomeCard
-          image="two"
-          color="orange_200"
-          title="Dance Exercise App"
-          subtitle="Dance and lose weight quickly with our free DAILY DANCE EXERCISE APP"
+          image='two'
+          color='orange_200'
+          title='Dance Exercise App'
+          subtitle='Dance and lose weight quickly with our free DAILY DANCE EXERCISE APP'
         />
         <WelcomeCard
-          image="one"
-          color="hilite_purpink"
-          title="Dance Fitness Programmes"
-          subtitle="FULL ACCESS TO WEEKLY ONLINE DANCE FITNESS PROGRAME CLASSES by highly qualified fitness instructors"
+          image='one'
+          color='hilite_purpink'
+          title='Dance Fitness Programmes'
+          subtitle='FULL ACCESS TO WEEKLY ONLINE DANCE FITNESS PROGRAME CLASSES by highly qualified fitness instructors'
         />
         <WelcomeCard
-          image="three"
-          color="pink_200"
-          title="Amazing DJ Mixes"
-          subtitle="ACCESS TO UNLIMITED WORKOUT/PARTY DJ MIXES by top DJs around the world"
+          image='three'
+          color='pink_200'
+          title='Amazing DJ Mixes'
+          subtitle='ACCESS TO UNLIMITED WORKOUT/PARTY DJ MIXES by top DJs around the world'
         />
       </Grid>
 
@@ -209,7 +209,7 @@ const WelcomePage: React.FC = () => {
       <Grid
         container
         spacing={2}
-        alignItems="stretch"
+        alignItems='stretch'
         mb={0}
         sx={{
           display: { xs: 'flex' },
@@ -230,7 +230,7 @@ const WelcomePage: React.FC = () => {
               marginRight: 2,
             }}
           >
-            <img src={PlayStoreLogo} alt="the Afrofit logo" height={'100%'} />
+            <img src={PlayStoreLogo} alt='the Afrofit logo' height={'100%'} />
           </Box>
         ) : (
           <Box
@@ -244,11 +244,11 @@ const WelcomePage: React.FC = () => {
             }}
           >
             <a
-              href="https://play.google.com/store/apps/details?id=com.djminddgap.afrofit&gl=GB"
-              target="_blank"
-              rel="noreferrer"
+              href='https://play.google.com/store/apps/details?id=com.djminddgap.afrofit&gl=GB'
+              target='_blank'
+              rel='noreferrer'
             >
-              <img src={PlayStoreLogo} alt="the Afrofit logo" height={'100%'} />
+              <img src={PlayStoreLogo} alt='the Afrofit logo' height={'100%'} />
             </a>
           </Box>
         )}
@@ -265,7 +265,7 @@ const WelcomePage: React.FC = () => {
               marginRight: 2,
             }}
           >
-            <img src={AppStoreLogo} alt="the Afrofit logo" height={'100%'} />
+            <img src={AppStoreLogo} alt='the Afrofit logo' height={'100%'} />
           </Box>
         ) : (
           <Box
@@ -279,11 +279,11 @@ const WelcomePage: React.FC = () => {
             }}
           >
             <a
-              href="https://apps.apple.com/us/app/afrofit-app/id1643761809"
-              target="_blank"
-              rel="noreferrer"
+              href='https://apps.apple.com/us/app/afrofit-app/id1643761809'
+              target='_blank'
+              rel='noreferrer'
             >
-              <img src={AppStoreLogo} alt="the Afrofit logo" height={'100%'} />
+              <img src={AppStoreLogo} alt='the Afrofit logo' height={'100%'} />
             </a>
           </Box>
         )}
@@ -323,7 +323,7 @@ const WelcomePage: React.FC = () => {
         <SwipeableText />
       </Box>
     </Box>
-  )
-}
+  );
+};
 
-export default WelcomePage
+export default WelcomePage;

@@ -6,6 +6,7 @@ import {
   hideGenericErrorDialog,
   newRequest,
   showGenericErrorDialog,
+  showGenericSuccessDialog,
 } from "../../ui/ui.slice";
 import { AppThunk } from "../../../store";
 
@@ -25,6 +26,7 @@ export function SendPasswordResetLink(email: string): AppThunk {
       const response = await sendPasswordResetLinkApi(email);
       if (response && response.data) {
         console.log("Response from reset password", response.data);
+        dispatch(showGenericSuccessDialog('Your Request send Successfully'))
         // dispatch(storeUserToken(response.data.token));
         // STORE_TOKEN(response.data.token);
       } else {

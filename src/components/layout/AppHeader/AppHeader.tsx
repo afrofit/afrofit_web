@@ -10,56 +10,57 @@ import {
   DialogTitle,
   Divider,
   Stack,
-} from '@mui/material'
-import { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
-import { EXPIRE_TOKEN } from '../../../api/storage'
+} from "@mui/material";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { EXPIRE_TOKEN } from "../../../api/storage";
 
-import AppLogo from '../../../assets/img/logofull_nobg.png'
-import { COLORS } from '../../../constants/colors'
-import { storeUser } from '../../../store/reducers/auth/auth.slice'
-import { StyledNavLink } from './StyledNavLink'
+import AppLogo from "../../../assets/img/logofull_nobg.png";
+import { COLORS } from "../../../constants/colors";
+import { storeUser } from "../../../store/reducers/auth/auth.slice";
+import { StyledNavLink } from "./StyledNavLink";
 
 interface Props {
-  authorized: boolean | null
+  authorized: boolean | null;
 }
 
 export const AppHeader: React.FC<Props> = ({ authorized }) => {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
 
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const token = localStorage.getItem('STORAGE_TOKEN_KEY_standin')
+  const token = localStorage.getItem("STORAGE_TOKEN_KEY_standin");
 
   const handleLogout = () => {
-    setOpen(false)
-    EXPIRE_TOKEN()
-    dispatch(storeUser(undefined))
-    navigate('/')
-  }
+    localStorage.clear();
+    setOpen(false);
+    EXPIRE_TOKEN();
+    dispatch(storeUser(undefined));
+    navigate("/");
+  };
   const handleClickOpen = () => {
-    setOpen(true)
-  }
+    setOpen(true);
+  };
 
   const handleClose = () => {
-    setOpen(false)
-  }
+    setOpen(false);
+  };
 
   if (authorized)
     return (
       <Box
         sx={{
-          display: 'flex',
-          height: 'auto',
-          justifyContent: 'center',
-          alignItems: 'center',
-          width: '100%',
-          position: 'sticky',
+          display: "flex",
+          height: "auto",
+          justifyContent: "center",
+          alignItems: "center",
+          width: "100%",
+          position: "sticky",
           top: 0,
           zIndex: 99999,
-          backgroundColor: '#242534',
+          backgroundColor: "#242534",
         }}
       >
         {/* mobile navbar start */}
@@ -67,33 +68,33 @@ export const AppHeader: React.FC<Props> = ({ authorized }) => {
         <Container
           maxWidth="md"
           sx={{
-            display: { xs: 'flex', md: 'none' },
+            display: { xs: "flex", md: "none" },
             paddingTop: 3,
             paddingBottom: 1,
-            justifyContent: 'center',
-            alignItems: 'center',
-            width: '100%',
-            flexDirection: 'column',
-            minHeight: '50px',
+            justifyContent: "center",
+            alignItems: "center",
+            width: "100%",
+            flexDirection: "column",
+            minHeight: "50px",
           }}
         >
           <Box
             sx={{
-              height: '50px',
-              cursor: 'pointer',
+              height: "50px",
+              cursor: "pointer",
             }}
-            onClick={() => navigate('/')}
+            onClick={() => navigate("/")}
           >
             <a title="Afrofit">
-              <img src={AppLogo} alt="the Afrofit logo" height={'100%'} />
+              <img src={AppLogo} alt="the Afrofit logo" height={"100%"} />
             </a>
           </Box>
           <Box
             sx={{
-              display: 'flex',
-              width: '70%',
-              flexWrap: 'wrap',
-              justifyContent: 'center',
+              display: "flex",
+              width: "70%",
+              flexWrap: "wrap",
+              justifyContent: "center",
             }}
           >
             <Box>
@@ -118,15 +119,15 @@ export const AppHeader: React.FC<Props> = ({ authorized }) => {
               {token ? (
                 <StyledNavLink title="My Profile" route="/profile" />
               ) : (
-                ''
+                ""
               )}
             </Box>
             <Box
               sx={{
                 marginBottom: 0,
-                display: 'block',
-                width: '100%',
-                textAlign: 'center',
+                display: "block",
+                width: "100%",
+                textAlign: "center",
               }}
             >
               {token ? (
@@ -143,7 +144,7 @@ export const AppHeader: React.FC<Props> = ({ authorized }) => {
                     fontWeight: 300,
                     marginBottom: 1,
                     marginTop: 1,
-                    '&:hover': {
+                    "&:hover": {
                       backgroundColor: COLORS.purple_200,
                     },
                   }}
@@ -163,11 +164,11 @@ export const AppHeader: React.FC<Props> = ({ authorized }) => {
                     letterSpacing: 2,
                     fontSize: 13,
                     fontWeight: 300,
-                    '&:hover': {
+                    "&:hover": {
                       backgroundColor: COLORS.purple_200,
                     },
                   }}
-                  onClick={() => navigate('/login')}
+                  onClick={() => navigate("/login")}
                 >
                   Sign in
                 </Button>
@@ -185,7 +186,7 @@ export const AppHeader: React.FC<Props> = ({ authorized }) => {
               aria-describedby="alert-dialog-description"
             >
               <DialogTitle id="alert-dialog-title">
-                {'Are You Sure?'}
+                {"Are You Sure?"}
               </DialogTitle>
               <DialogContent>
                 <DialogContentText id="alert-dialog-description">
@@ -193,13 +194,13 @@ export const AppHeader: React.FC<Props> = ({ authorized }) => {
                 </DialogContentText>
               </DialogContent>
               <DialogActions
-                sx={{ textAlign: 'center', margin: 'auto', padding: '15px' }}
+                sx={{ textAlign: "center", margin: "auto", padding: "15px" }}
               >
                 <Button
                   onClick={handleClose}
                   sx={{
                     backgroundColor: COLORS.dark_200,
-                    '&:hover': {
+                    "&:hover": {
                       backgroundColor: COLORS.dark_200,
                     },
                   }}
@@ -210,7 +211,7 @@ export const AppHeader: React.FC<Props> = ({ authorized }) => {
                   onClick={handleLogout}
                   sx={{
                     backgroundColor: COLORS.dark_200,
-                    '&:hover': {
+                    "&:hover": {
                       backgroundColor: COLORS.dark_200,
                     },
                   }}
@@ -229,20 +230,20 @@ export const AppHeader: React.FC<Props> = ({ authorized }) => {
         <Container
           maxWidth="xl"
           sx={{
-            display: { xs: 'none', md: 'block' },
+            display: { xs: "none", md: "block" },
             paddingTop: 2,
             paddingBottom: 2,
           }}
         >
           <Box
             sx={{
-              height: '85px',
-              cursor: 'pointer',
+              height: "85px",
+              cursor: "pointer",
             }}
-            onClick={() => navigate('/')}
+            onClick={() => navigate("/")}
           >
             <a title="Afrofit">
-              <img src={AppLogo} alt="the Afrofit logo" height={'100%'} />
+              <img src={AppLogo} alt="the Afrofit logo" height={"100%"} />
             </a>
           </Box>
           <Stack
@@ -255,8 +256,8 @@ export const AppHeader: React.FC<Props> = ({ authorized }) => {
             <Box
               width={400}
               sx={{
-                display: 'flex',
-                justifyContent: 'flex-start',
+                display: "flex",
+                justifyContent: "flex-start",
               }}
             >
               <Stack
@@ -269,7 +270,7 @@ export const AppHeader: React.FC<Props> = ({ authorized }) => {
                     sx={{
                       opacity: 0.2,
                       height: 0.3,
-                      alignSelf: 'center',
+                      alignSelf: "center",
                     }}
                     flexItem
                   />
@@ -287,16 +288,16 @@ export const AppHeader: React.FC<Props> = ({ authorized }) => {
             <Box
               width={400}
               sx={{
-                display: 'flex',
-                justifyContent: 'flex-end',
-                alignItems: 'center',
+                display: "flex",
+                justifyContent: "flex-end",
+                alignItems: "center",
               }}
             >
               <Box marginRight={3}>
                 {token ? (
                   <StyledNavLink title="My Profile" route="/profile" />
                 ) : (
-                  ''
+                  ""
                 )}
               </Box>
               {token ? (
@@ -311,7 +312,7 @@ export const AppHeader: React.FC<Props> = ({ authorized }) => {
                     letterSpacing: 2,
                     fontSize: 13,
                     fontWeight: 300,
-                    '&:hover': {
+                    "&:hover": {
                       backgroundColor: COLORS.purple_200,
                     },
                   }}
@@ -331,11 +332,11 @@ export const AppHeader: React.FC<Props> = ({ authorized }) => {
                     letterSpacing: 2,
                     fontSize: 13,
                     fontWeight: 300,
-                    '&:hover': {
+                    "&:hover": {
                       backgroundColor: COLORS.purple_200,
                     },
                   }}
-                  onClick={() => navigate('/login')}
+                  onClick={() => navigate("/login")}
                 >
                   Sign in
                 </Button>
@@ -353,7 +354,7 @@ export const AppHeader: React.FC<Props> = ({ authorized }) => {
               aria-describedby="alert-dialog-description"
             >
               <DialogTitle id="alert-dialog-title">
-                {'Are You Sure?'}
+                {"Are You Sure?"}
               </DialogTitle>
               <DialogContent>
                 <DialogContentText id="alert-dialog-description">
@@ -361,13 +362,13 @@ export const AppHeader: React.FC<Props> = ({ authorized }) => {
                 </DialogContentText>
               </DialogContent>
               <DialogActions
-                sx={{ textAlign: 'center', margin: 'auto', padding: '15px' }}
+                sx={{ textAlign: "center", margin: "auto", padding: "15px" }}
               >
                 <Button
                   onClick={handleClose}
                   sx={{
                     backgroundColor: COLORS.dark_200,
-                    '&:hover': {
+                    "&:hover": {
                       backgroundColor: COLORS.dark_200,
                     },
                   }}
@@ -378,7 +379,7 @@ export const AppHeader: React.FC<Props> = ({ authorized }) => {
                   onClick={handleLogout}
                   sx={{
                     backgroundColor: COLORS.dark_200,
-                    '&:hover': {
+                    "&:hover": {
                       backgroundColor: COLORS.dark_200,
                     },
                   }}
@@ -392,31 +393,31 @@ export const AppHeader: React.FC<Props> = ({ authorized }) => {
 
         {/* web navbar end */}
       </Box>
-    )
+    );
 
   return (
     <Box
       sx={{
-        display: 'flex',
-        height: '140px',
-        justifyContent: 'center',
-        alignItems: 'center',
+        display: "flex",
+        height: "140px",
+        justifyContent: "center",
+        alignItems: "center",
       }}
     >
       <Container maxWidth="xl" sx={{ paddingTop: 5, paddingBottom: 5 }}>
         <Stack sx={{}}>
           <Box
             sx={{
-              height: '85px',
-              width: '300px',
-              cursor: 'pointer',
+              height: "85px",
+              width: "300px",
+              cursor: "pointer",
             }}
-            onClick={() => navigate('/')}
+            onClick={() => navigate("/")}
           >
-            <img src={AppLogo} alt="the Afrofit logo" height={'100%'} />
+            <img src={AppLogo} alt="the Afrofit logo" height={"100%"} />
           </Box>
         </Stack>
       </Container>
     </Box>
-  )
-}
+  );
+};

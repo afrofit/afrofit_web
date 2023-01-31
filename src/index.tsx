@@ -7,16 +7,19 @@ import "./index.css";
 import App from "./app/App";
 import { Provider } from "react-redux";
 import STORE from "./store/store";
+import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 
 const root = ReactDOM.createRoot(
-	document.getElementById("root") as HTMLElement
+  document.getElementById("root") as HTMLElement
 );
 root.render(
-	<React.StrictMode>
-		<Provider store={STORE}>
-			<BrowserRouter>
-				<App />
-			</BrowserRouter>
-		</Provider>
-	</React.StrictMode>
+  <React.StrictMode>
+    <Provider store={STORE}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </Provider>
+  </React.StrictMode>
 );
+
+serviceWorkerRegistration.register();
