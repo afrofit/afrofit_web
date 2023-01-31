@@ -1,49 +1,51 @@
-import * as React from 'react'
-import { useTheme } from '@mui/material/styles'
-import Box from '@mui/material/Box'
-import Typography from '@mui/material/Typography'
-import Button from '@mui/material/Button'
+import * as React from 'react';
+import { useTheme } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
 
-import { COLORS } from '../../../constants/colors'
+import { COLORS } from '../../../constants/colors';
 
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew'
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
-import useScreenSizes from '../../../hook/useScreenSizes'
-import API_CLIENT from '../../../api/client'
-import SwipeableViews from 'react-swipeable-views'
-import { autoPlay } from 'react-swipeable-views-utils'
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import useScreenSizes from '../../../hook/useScreenSizes';
+import API_CLIENT from '../../../api/client';
+import SwipeableViews from 'react-swipeable-views';
+import { autoPlay } from 'react-swipeable-views-utils';
 
-const AutoPlaySwipeableViews = autoPlay(SwipeableViews)
+const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 function SwipeableText() {
-  const theme = useTheme()
-  const [activeStep, setActiveStep] = React.useState(0)
-  const [data, setData] = React.useState<any>()
+  const theme = useTheme();
+  const [activeStep, setActiveStep] = React.useState(0);
+  const [data, setData] = React.useState<any>();
+  // console.log("data123", data.length);
+  // const imgData = data?.filter(
+  //   (item: { imageUrl: string }) =>
+  //     item?.imageUrl === undefined || item?.imageUrl === ""
+  // );
 
-  const imgData = data?.filter(
-    (item: { imageUrl: string }) => item?.imageUrl === '',
-  )
-
-  const maxqSteps = imgData && imgData.length
+  const imgData = data?.filter((item: any) => !item.hasOwnProperty('imageUrl'));
+  const maxqSteps = imgData && imgData.length;
 
   React.useEffect(() => {
-    fsession()
-  }, [])
+    fsession();
+  }, []);
 
   const fsession = async () => {
-    const responce = await API_CLIENT.get(`feedbacks`)
-    setData(responce?.data)
-  }
+    const responce = await API_CLIENT.get(`feedbacks`);
+    setData(responce?.data);
+  };
 
-  const { isMobile, isMobileM, isMobileL, isTablet } = useScreenSizes()
+  const { isMobile, isMobileM, isMobileL, isTablet } = useScreenSizes();
 
   const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1)
-  }
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+  };
 
   const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1)
-  }
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  };
 
   // const handleStepChange = (step: number) => {
   //   setActiveStep(step)
@@ -78,9 +80,14 @@ function SwipeableText() {
       >
         {imgData &&
           imgData.map((step: any, index: number) => (
-            <div key={step.title} style={
-              isMobile || isMobileM || isMobileL || isTablet ? {padding:' 0 15px'} :
-              {padding:'0 60px'}}>
+            <div
+              key={step.title}
+              style={
+                isMobile || isMobileM || isMobileL || isTablet
+                  ? { padding: ' 0 15px' }
+                  : { padding: '0 60px' }
+              }
+            >
               {Math.abs(activeStep - index) <= 2 ? (
                 <>
                   <Typography
@@ -142,7 +149,7 @@ function SwipeableText() {
         />
       </Button>
     </Box>
-  )
+  );
 }
 
-export default SwipeableText
+export default SwipeableText;

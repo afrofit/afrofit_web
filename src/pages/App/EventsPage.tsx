@@ -11,6 +11,7 @@ import logo from '../../assets/img/logobg512.png';
 interface Props {}
 const EventsPage: React.FC<Props> = () => {
   const [EnentData, setEventData] = useState([]);
+  console.log('EnentData', EnentData);
   const [Data, setData] = useState('');
 
   const param = useParams();

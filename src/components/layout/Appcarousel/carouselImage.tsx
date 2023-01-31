@@ -18,9 +18,8 @@ function SwipeableImage() {
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
   const [data, setData] = React.useState<any>();
-  const imgData = data?.filter(
-    (item: { imageUrl: string }) => item?.imageUrl !== ''
-  );
+
+  const imgData = data?.filter((item: any) => item.hasOwnProperty('imageUrl'));
 
   const maxqSteps = imgData && imgData.length;
 
@@ -78,7 +77,7 @@ function SwipeableImage() {
       </Button>
       <AutoPlaySwipeableViews
         axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-        index={activeStep && activeStep}
+        index={activeStep}
         onChangeIndex={handleStepChange}
         enableMouseEvents
       >
