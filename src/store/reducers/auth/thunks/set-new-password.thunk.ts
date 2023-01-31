@@ -32,7 +32,7 @@ export function SetNewPassword(
       if (response && response.data) {
         console.log("Response from reset password", response.data);
         dispatch(storeUserToken(response.data.token));
-        STORE_TOKEN(response.data.token);
+        // STORE_TOKEN(response.data.token);
       } else {
         dispatch(finishedRequest());
         return showGenericErrorDialog(`An error occured logging in.`);

@@ -1,58 +1,52 @@
-import * as React from 'react'
-import { useTheme } from '@mui/material/styles'
-import Box from '@mui/material/Box'
-import Typography from '@mui/material/Typography'
-import Button from '@mui/material/Button'
-import SwipeableViews from 'react-swipeable-views'
-import { autoPlay } from 'react-swipeable-views-utils'
-import { COLORS } from '../../../constants/colors'
+import * as React from 'react';
+import { useTheme } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import { COLORS } from '../../../constants/colors';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import useScreenSizes from '../../../hook/useScreenSizes';
+import API_CLIENT from '../../../api/client';
+import SwipeableViews from 'react-swipeable-views';
+import { autoPlay } from 'react-swipeable-views-utils';
+import settings from '../../../config/settings';
 
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew'
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
-import useScreenSizes from '../../../hook/useScreenSizes'
-import API_CLIENT from '../../../api/client'
-
-const AutoPlaySwipeableViews = autoPlay(SwipeableViews)
+const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 function SwipeableImage() {
-  const theme = useTheme()
-  const [activeStep, setActiveStep] = React.useState(0)
-  const [data, setData] = React.useState<any>()
-
+  const theme = useTheme();
+  const [activeStep, setActiveStep] = React.useState(0);
+  const [data, setData] = React.useState<any>();
   const imgData = data?.filter(
-    (item: { imageUrl: string }) => item?.imageUrl !== '',
-  )
+    (item: { imageUrl: string }) => item?.imageUrl !== ''
+  );
 
-  const maxqSteps = imgData && imgData.length
+  const maxqSteps = imgData && imgData.length;
 
   React.useEffect(() => {
-    fsession()
-  }, [])
+    fsession();
+  }, []);
 
   const fsession = async () => {
-    const responce = await API_CLIENT.get(`feedbacks`)
-    setData(responce?.data)
-  }
+    const responce = await API_CLIENT.get(`feedbacks`);
+    setData(responce?.data);
+  };
 
-  const {
-    isMobile,
-    isMobileM,
-    isMobileL,
-    isTablet,
-    isLaptop,
-  } = useScreenSizes()
+  const { isMobile, isMobileM, isMobileL, isTablet, isLaptop } =
+    useScreenSizes();
 
   const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1)
-  }
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+  };
 
   const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1)
-  }
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  };
 
   const handleStepChange = (step: number) => {
-    setActiveStep(step)
-  }
+    setActiveStep(step);
+  };
 
   return (
     <Box sx={{ flexGrow: 1, margin: 'auto', position: 'relative' }}>
@@ -64,13 +58,13 @@ function SwipeableImage() {
                   position: 'absolute',
                   zIndex: '9',
                   top: '31%',
-                  left: '-25px',
+                  left: '0',
                 }
               : { left: '0px', top: '30%', position: 'absolute', zIndex: '9' }
             : {
                 top: '50%',
                 position: 'absolute',
-                left: '-60px',
+                left: '0',
                 zIndex: '9',
                 transform: 'translateY(-50%)',
               }
@@ -84,17 +78,24 @@ function SwipeableImage() {
       </Button>
       <AutoPlaySwipeableViews
         axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-        index={activeStep}
+        index={activeStep && activeStep}
         onChangeIndex={handleStepChange}
         enableMouseEvents
       >
         {imgData &&
           imgData.map((step: any, index: number) => (
-            <div key={index}>
+            <div
+              key={index}
+              style={
+                isMobile || isMobileM || isMobileL || isTablet
+                  ? { padding: ' 0 15px' }
+                  : { padding: '0 60px' }
+              }
+            >
               {Math.abs(activeStep - index) <= 2 ? (
                 <>
                   <Box
-                    component="img"
+                    component='img'
                     sx={{
                       height: '100%',
                       display: 'block',
@@ -106,11 +107,7 @@ function SwipeableImage() {
                       maxHeight: '400px',
                       objectFit: 'contain',
                     }}
-                    src={
-                      `https://shark-app-y5ox6.ondigitalocean.app/` +
-                      step?.imageUrl
-                    }
-                    // src={`http://192.168.1.27:9090/` + step?.imageUrl}
+                    src={settings.imageUrl + step?.imageUrl}
                     alt={step?.title}
                   />
 
@@ -162,13 +159,13 @@ function SwipeableImage() {
                   position: 'absolute',
                   zIndex: '9',
                   top: '31%',
-                  right: '-25px',
+                  right: '0',
                 }
               : { right: '0px', top: '30%', position: 'absolute', zIndex: '9' }
             : {
                 top: '50%',
                 position: 'absolute',
-                right: '-60px',
+                right: '0',
                 zIndex: '9',
                 transform: 'translateY(-50%)',
               }
@@ -181,7 +178,7 @@ function SwipeableImage() {
         />
       </Button>
     </Box>
-  )
+  );
 }
 
-export default SwipeableImage
+export default SwipeableImage;

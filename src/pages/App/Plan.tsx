@@ -1,13 +1,13 @@
-import { Grid, Box } from '@mui/material'
-import { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
-import { SmallButton } from '../../components/Buttons/SmallButton'
-import useScreenSizes from '../../hook/useScreenSizes'
-import { selectUser } from '../../store/reducers/auth/auth.slice'
-import { CreateStripeSession } from '../../store/reducers/payments/thunks/create-stripe-session.thunk'
-import { PlanCard } from './components/PlanCard'
-import Scrollbar from './components/Scrollbar'
+import { Grid, Box } from '@mui/material';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { SmallButton } from '../../components/Buttons/SmallButton';
+import useScreenSizes from '../../hook/useScreenSizes';
+import { selectUser } from '../../store/reducers/auth/auth.slice';
+import { CreateStripeSession } from '../../store/reducers/payments/thunks/create-stripe-session.thunk';
+import { PlanCard } from './components/PlanCard';
+import Scrollbar from './components/Scrollbar';
 
 const Plans = [
   {
@@ -58,73 +58,78 @@ const Plans = [
     priceId: 'price_1MGghnG7Ijvv33NLY0BTnTYU',
     subtitle1: 'You can cancel at anytime.',
   },
-]
+];
 
 function Plan() {
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
-  const currentUser = useSelector(selectUser)
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const currentUser = useSelector(selectUser);
 
-  const [PlanData, setPlanData] = useState(Plans)
-  const [showData, setShowData] = useState(false)
-  const [priceId, setPriceId] = useState('')
+  const [PlanData, setPlanData] = useState(Plans);
+  const [showData, setShowData] = useState(false);
+  const [priceId, setPriceId] = useState('');
 
-  const { isMobile, isMobileM, isMobileL ,isTablet,isLaptop} = useScreenSizes()
-
+  const { isMobile, isMobileM, isMobileL, isTablet, isLaptop } =
+    useScreenSizes();
 
   const handleSubmit = async () => {
     if (currentUser) {
-      const { email, userId } = currentUser
-      dispatch(CreateStripeSession(userId, email, priceId))
+      const { email, userId } = currentUser;
+      dispatch(CreateStripeSession(userId, email, priceId));
     } else {
-      navigate(`/register?plan=${priceId}`)
+      navigate(`/register?plan=${priceId}`);
     }
-  }
+  };
 
   const changeSelectedValue = (index: any, Value: any) => {
-    var data = [...PlanData]
+    var data = [...PlanData];
     var updateData = data.map((item, itemIndex) => {
       if (itemIndex === index) {
-        item.isSelected = true
-        setShowData(true)
+        item.isSelected = true;
+        setShowData(true);
       } else {
-        item.isSelected = false
+        item.isSelected = false;
       }
-      return item
-    })
-    setPlanData(updateData)
-  }
+      return item;
+    });
+    setPlanData(updateData);
+  };
 
   return (
     <>
-
-      <Grid sx={isMobile || isMobileM || isMobileL || isTablet|| isLaptop? {  height: '360px', marginBottom: '15px',overflow:'auto' }: {}}>
-          {PlanData.map((item, index) => {
-            return (
-              <PlanCard
-                key={index}
-                item={item}
-                onChangeSelectItem={(res: any) => {
-                  changeSelectedValue(index, res)
-                }}
-                setPriceId={setPriceId}
-              />
-            )
-          })}
+      <Grid
+        sx={
+          isMobile || isMobileM || isMobileL || isTablet || isLaptop
+            ? { height: '360px', marginBottom: '15px', overflow: 'auto' }
+            : {}
+        }
+      >
+        {PlanData.map((item, index) => {
+          return (
+            <PlanCard
+              key={index}
+              item={item}
+              onChangeSelectItem={(res: any) => {
+                changeSelectedValue(index, res);
+              }}
+              setPriceId={setPriceId}
+            />
+          );
+        })}
       </Grid>
       {showData === true ? (
         <Box sx={{ margin: 'auto', textAlign: 'center' }}>
           <SmallButton
             title={'Next'}
             onClick={handleSubmit}
-            color="purple_200"
+            color='purple_200'
           />
         </Box>
       ) : (
         ''
       )}
     </>
-  )
+  );
 }
 
-export default Plan
+export default Plan;

@@ -3,14 +3,15 @@ import { useTheme } from '@mui/material/styles'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
-import SwipeableViews from 'react-swipeable-views'
-import { autoPlay } from 'react-swipeable-views-utils'
+
 import { COLORS } from '../../../constants/colors'
 
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
 import useScreenSizes from '../../../hook/useScreenSizes'
 import API_CLIENT from '../../../api/client'
+import SwipeableViews from 'react-swipeable-views'
+import { autoPlay } from 'react-swipeable-views-utils'
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews)
 
@@ -53,11 +54,11 @@ function SwipeableText() {
       <Button
         sx={
           isMobile || isMobileM || isMobileL || isTablet
-            ? { left: '-30px', top: '2.5%', position: 'absolute', zIndex: '9' }
+            ? { left: '0px', top: '2.5%', position: 'absolute', zIndex: '9' }
             : {
                 top: '50%',
                 position: 'absolute',
-                left: '-55px',
+                left: '0',
                 zIndex: '9',
                 transform: 'translateY(-50%)',
               }
@@ -77,7 +78,9 @@ function SwipeableText() {
       >
         {imgData &&
           imgData.map((step: any, index: number) => (
-            <div key={step.title}>
+            <div key={step.title} style={
+              isMobile || isMobileM || isMobileL || isTablet ? {padding:' 0 15px'} :
+              {padding:'0 60px'}}>
               {Math.abs(activeStep - index) <= 2 ? (
                 <>
                   <Typography
@@ -122,11 +125,11 @@ function SwipeableText() {
       <Button
         sx={
           isMobile || isMobileM || isMobileL || isTablet
-            ? { right: '-30px', top: '2.5%', position: 'absolute', zIndex: '9' }
+            ? { right: '0px', top: '2.5%', position: 'absolute', zIndex: '9' }
             : {
                 top: '50%',
                 position: 'absolute',
-                right: '-55px',
+                right: '0',
                 zIndex: '9',
                 transform: 'translateY(-50%)',
               }

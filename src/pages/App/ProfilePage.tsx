@@ -25,7 +25,6 @@ import { formatDate } from '../../utils/formatters'
 import { DisplayPicturePicker } from '../../components/elements/DisplayPicturePicker'
 import { finishedRequest, newRequest } from '../../store/reducers/ui/ui.slice'
 import { UpdateUserDp } from '../../store/reducers/auth/thunks/update-user-dp.thunk'
-// import { CreateStripeSession } from '../../store/reducers/payments/thunks/create-stripe-session.thunk'
 import { RetrieveUserSubscription } from '../../store/reducers/payments/thunks/retrieve-user-subscription.thunk'
 import { CancelUserSubscription } from '../../store/reducers/payments/thunks/cancel-user-subscription.thunk'
 
@@ -46,19 +45,12 @@ const ProfilePage: React.FC<Props> = () => {
   const [selectedDp, setSelectedDp] = React.useState(
     currentUser?.displayPicId ?? 1,
   )
-  // const token = localStorage.getItem('STORAGE_TOKEN_KEY_standin')
 
   
   const handleNavigate = () => {
     navigate('/plan')
   }
 
-  // const handleCreateCheckoutSession = () => {
-  //   if (currentUser) {
-  //     const { email, userId } = currentUser
-  //     // dispatch(CreateStripeSession(userId, email))
-  //   }
-  // }
 
   const handleRetrieveUserSubscriptionInfo = React.useCallback(() => {
     currentUser && dispatch(RetrieveUserSubscription(currentUser.userId))
@@ -90,7 +82,6 @@ const ProfilePage: React.FC<Props> = () => {
     
     
     
-    // setSelectedDp(dpId)
     currentUser && dispatch(UpdateUserDp(currentUser.userId, formData))
     setShowDpPicker(false)
     dispatch(newRequest())
