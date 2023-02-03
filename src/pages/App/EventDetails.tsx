@@ -1,10 +1,10 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback } from "react";
 // @mui
-import { Box, Card, Container, Paper, Typography } from '@mui/material';
-import { Link, useParams } from 'react-router-dom';
-import API_CLIENT from '../../api/client';
-import BlogPostHero from './components/BlogPostHero';
-import settings from '../../config/settings';
+import { Box, Card, Container, Paper, Typography } from "@mui/material";
+import { Link, useParams } from "react-router-dom";
+import API_CLIENT from "../../api/client";
+import BlogPostHero from "./components/BlogPostHero";
+import settings from "../../config/settings";
 
 // ----------------------------------------------------------------------
 export type Post = {
@@ -20,18 +20,17 @@ export default function EventDetails() {
   const { id } = useParams();
 
   const [post, setPost] = useState<Post | null>(null);
-  console.log('post', post);
   const [error, setError] = useState(null);
 
   const getPost = useCallback(async () => {
     try {
       const accessToken: any = localStorage.getItem(
-        'STORAGE_TOKEN_KEY_standin'
+        "STORAGE_TOKEN_KEY_standin"
       );
       const response = await API_CLIENT.get(`/events/${id}`, {
         headers: {
-          'x-auth-token': accessToken,
-          'content-type': 'application/json',
+          "x-auth-token": accessToken,
+          "content-type": "application/json",
         },
       });
       const data = await response.data.data;
@@ -47,23 +46,23 @@ export default function EventDetails() {
   }, []);
 
   return (
-    <Paper title='Blog: Post Details'>
+    <Paper title="Blog: Post Details">
       {post && (
         <>
-          <Card sx={{ backgroundColor: '#242534', border: 'none' }}>
+          <Card sx={{ backgroundColor: "#242534", border: "none" }}>
             <BlogPostHero post={post} />
 
             <Box sx={{ p: { xs: 3, md: 5 } }}>
-              <Typography variant='h6' sx={{ mb: 5, color: 'white' }}>
+              <Typography variant="h6" sx={{ mb: 5, color: "white" }}>
                 {post?.description}
               </Typography>
             </Box>
             <Box sx={{ p: { xs: 3, md: 5 } }}>
-              <Typography variant='h6' color='white'>
+              <Typography variant="h6" color="white">
                 <a
                   href={post?.paymentLinks}
-                  target='_blank'
-                  style={{ color: 'white' }}
+                  target="_blank"
+                  style={{ color: "white" }}
                 >
                   {post?.paymentLinks}
                 </a>
@@ -71,28 +70,29 @@ export default function EventDetails() {
             </Box>
             {post?.videoUrl ? (
               <Box sx={{ p: { xs: 3, md: 5 } }}>
-                <Typography variant='h6' sx={{ color: 'white' }}>
+                <Typography variant="h6" sx={{ color: "white" }}>
                   Video
                 </Typography>
-
+                (
                 <iframe
                   style={{
-                    height: '350px',
-                    width: '80%',
-                    margin: 'auto',
-                    display: 'flex',
+                    height: "350px",
+                    width: "80%",
+                    margin: "auto",
+                    display: "flex",
                   }}
                   src={settings.imageUrl + post?.videoUrl}
-                  title='preview'
-                  allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;  picture-in-picture full; fullscreen;'
+                  title="preview"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;  picture-in-picture full; fullscreen;"
                 ></iframe>
+                )
               </Box>
             ) : null}
           </Card>
         </>
       )}
 
-      {error && <Typography variant='h6'>404 {error}!</Typography>}
+      {error && <Typography variant="h6">404 {error}!</Typography>}
     </Paper>
   );
 }
