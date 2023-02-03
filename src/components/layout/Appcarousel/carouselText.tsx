@@ -19,11 +19,6 @@ function SwipeableText() {
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
   const [data, setData] = React.useState<any>([]);
-  // console.log("data123", data.length);
-  // const imgData = data?.filter(
-  //   (item: { imageUrl: string }) =>
-  //     item?.imageUrl === undefined || item?.imageUrl === ""
-  // );
 
   const imgData = data?.filter((item: any) => !item.hasOwnProperty("imageUrl"));
   const maxqSteps = imgData && imgData.length;
@@ -40,11 +35,11 @@ function SwipeableText() {
   const { isMobile, isMobileM, isMobileL, isTablet } = useScreenSizes();
 
   const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
   const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
   // const handleStepChange = (step: number) => {
@@ -66,10 +61,10 @@ function SwipeableText() {
               }
         }
         onClick={handleNext}
-        disabled={activeStep === maxqSteps - 1}
+        disabled={activeStep === 0}
       >
         <ArrowBackIosNewIcon
-          sx={{ color: activeStep === maxqSteps - 1 ? "gray" : "white" }}
+          sx={{ color: activeStep === 0 ? "gray" : "white" }}
         />
       </Button>
       <AutoPlaySwipeableViews
@@ -142,10 +137,10 @@ function SwipeableText() {
               }
         }
         onClick={handleBack}
-        disabled={activeStep === 0}
+        disabled={activeStep === maxqSteps - 1}
       >
         <ArrowForwardIosIcon
-          sx={{ color: activeStep === 0 ? "gray" : "white" }}
+          sx={{ color: activeStep === maxqSteps - 1 ? "gray" : "white" }}
         />
       </Button>
     </Box>
