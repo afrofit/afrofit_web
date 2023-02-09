@@ -31,10 +31,10 @@ export const AppHeader: React.FC<Props> = ({ authorized }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const token = localStorage.getItem("STORAGE_TOKEN_KEY_standin");
+  const token = sessionStorage.getItem("STORAGE_TOKEN_KEY_standin");
 
   const handleLogout = () => {
-    localStorage.clear();
+    sessionStorage.clear();
     setOpen(false);
     EXPIRE_TOKEN();
     dispatch(storeUser(undefined));

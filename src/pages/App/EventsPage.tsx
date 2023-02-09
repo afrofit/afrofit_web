@@ -18,7 +18,9 @@ const EventsPage: React.FC<Props> = () => {
   const naivage = useNavigate();
 
   const events = async () => {
-    const accessToken: any = localStorage.getItem("STORAGE_TOKEN_KEY_standin");
+    const accessToken: any = sessionStorage.getItem(
+      "STORAGE_TOKEN_KEY_standin"
+    );
 
     const response = await API_CLIENT.get("/events", {
       headers: {

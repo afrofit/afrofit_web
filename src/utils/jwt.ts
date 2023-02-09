@@ -26,11 +26,11 @@ const handleTokenExpired = (exp: number) => {
   // Test token expires after 10s
   // const timeLeft = currentTime + 10000 - currentTime; // ~10s
   const timeLeft = exp * 1000 - currentTime;
-
+  console.log("timeLeft", timeLeft);
   clearTimeout(expiredTimer);
 
   expiredTimer = setTimeout(() => {
-    localStorage.clear();
+    sessionStorage.clear();
 
     window.location.href = "/";
   }, timeLeft);
@@ -38,7 +38,7 @@ const handleTokenExpired = (exp: number) => {
 
 const setSession = (accessToken: string | null) => {
   if (accessToken) {
-    localStorage.setItem("STORAGE_TOKEN_KEY_standin", accessToken);
+    sessionStorage.setItem("STORAGE_TOKEN_KEY_standin", accessToken);
     API_CLIENT.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
 
     // This function below will handle when token is expired
@@ -46,7 +46,7 @@ const setSession = (accessToken: string | null) => {
 
     handleTokenExpired(exp);
   } else {
-    localStorage.removeItem("STORAGE_TOKEN_KEY_standin");
+    sessionStorage.removeItem("STORAGE_TOKEN_KEY_standin");
     delete API_CLIENT.defaults.headers.common.Authorization;
   }
 };
