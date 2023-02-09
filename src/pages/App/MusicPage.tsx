@@ -1,35 +1,35 @@
 /* eslint-disable jsx-a11y/iframe-has-title */
-import { Box, Grid, Stack, Typography } from '@mui/material'
-import { PageLayout } from '../../components/layout/PageLayout/PageLayout'
-import { COLORS } from '../../constants/colors'
-import PlayStoreLogo from '../../assets/img/playstore.png'
-import AppStoreLogo from '../../assets/img/appstore.png'
-import { useSearchParams } from 'react-router-dom'
-import { useEffect } from 'react'
-import API_CLIENT from '../../api/client'
-import ForwardIcon from '@mui/icons-material/Forward'
-import { LinkButton } from '../../components/Buttons/LinkButton'
+import { Box, Grid, Stack, Typography } from "@mui/material";
+import { PageLayout } from "../../components/layout/PageLayout/PageLayout";
+import { COLORS } from "../../constants/colors";
+import PlayStoreLogo from "../../assets/img/playstore.png";
+import AppStoreLogo from "../../assets/img/appstore.png";
+import { useSearchParams } from "react-router-dom";
+import { useEffect } from "react";
+import API_CLIENT from "../../api/client";
+import ForwardIcon from "@mui/icons-material/Forward";
+import { LinkButton } from "../../components/Buttons/LinkButton";
 
 interface Props {}
 const MusicPage: React.FC<Props> = () => {
-  const [searchParams] = useSearchParams()
-  const sessionId = searchParams.get('id')
-  const uid = localStorage.getItem('userId')
+  const [searchParams] = useSearchParams();
+  const sessionId = searchParams.get("id");
+  const uid = sessionStorage.getItem("userId");
 
-  const token = localStorage.getItem('STORAGE_TOKEN_KEY_standin')
+  const token = sessionStorage.getItem("STORAGE_TOKEN_KEY_standin");
 
   const fsession = async (uid: string | null) => {
     const responce = await API_CLIENT.post(
       `payments/retrieve-stripe-session/${uid}`,
-      { sessionId },
-    )
-  }
+      { sessionId }
+    );
+  };
 
   useEffect(() => {
     if (sessionId !== null) {
-      fsession(uid)
+      fsession(uid);
     }
-  }, [sessionId])
+  }, [sessionId]);
 
   return (
     <PageLayout title="WELCOME TO THE AFROFIT CLUB">
@@ -58,8 +58,8 @@ const MusicPage: React.FC<Props> = () => {
       {/* mobile button Start */}
       <Stack
         sx={{
-          display: { xs: 'flex', md: 'none' },
-          width: '100%',
+          display: { xs: "flex", md: "none" },
+          width: "100%",
         }}
         flexDirection="column"
         alignItems="center"
@@ -72,7 +72,7 @@ const MusicPage: React.FC<Props> = () => {
           color="hilite_purpink"
           textcolor="fuschia"
           title="Start Free Trial"
-          route={token ? '/profile' : '/plan'}
+          route={token ? "/profile" : "/plan"}
           mb={10}
         />
         <LinkButton
@@ -87,11 +87,11 @@ const MusicPage: React.FC<Props> = () => {
       {/* web button start */}
       <Stack
         sx={{
-          display: { xs: 'none', md: 'flex' },
+          display: { xs: "none", md: "flex" },
           marginBottom: 5,
           marginTop: 5,
         }}
-        display={'flex'}
+        display={"flex"}
         flexDirection="row"
         width="100%"
         alignItems="center"
@@ -104,7 +104,7 @@ const MusicPage: React.FC<Props> = () => {
           color="hilite_purpink"
           textcolor="fuschia"
           title="Start Free Trial"
-          route={token ? '/profile' : '/plan'}
+          route={token ? "/profile" : "/plan"}
         />
         <LinkButton
           color="pink_200"
@@ -139,11 +139,11 @@ const MusicPage: React.FC<Props> = () => {
           fontSize: 20,
           fontWeight: 300,
           marginBottom: 2,
-          display: 'flex',
+          display: "flex",
         }}
       >
-        <ForwardIcon sx={{ marginTop: '2px', marginRight: '10px' }} />
-        <strong style={{ width: '80px' }}>STEP 1:</strong> Download the Afrofit
+        <ForwardIcon sx={{ marginTop: "2px", marginRight: "10px" }} />
+        <strong style={{ width: "80px" }}>STEP 1:</strong> Download the Afrofit
         App from the given link.
       </Typography>
 
@@ -154,16 +154,16 @@ const MusicPage: React.FC<Props> = () => {
         mt={1}
         mb={3}
         sx={{
-          display: { xs: 'flex' },
-          flexDirection: { xs: 'column', md: 'row' },
-          alignItems: 'center',
-          justifyContent: 'center',
+          display: { xs: "flex" },
+          flexDirection: { xs: "column", md: "row" },
+          alignItems: "center",
+          justifyContent: "center",
         }}
       >
         <Box
           sx={{
-            height: { xs: '70px', md: '100px' },
-            cursor: 'pointer',
+            height: { xs: "70px", md: "100px" },
+            cursor: "pointer",
             marginBottom: { xs: 0, md: 2 },
             marginTop: { xs: 1, md: 2 },
             marginLeft: 2,
@@ -175,13 +175,13 @@ const MusicPage: React.FC<Props> = () => {
             target="_blank"
             rel="noreferrer"
           >
-            <img src={PlayStoreLogo} alt="the Afrofit logo" height={'100%'} />
+            <img src={PlayStoreLogo} alt="the Afrofit logo" height={"100%"} />
           </a>
         </Box>
         <Box
           sx={{
-            height: { xs: '70px', md: '100px' },
-            cursor: 'pointer',
+            height: { xs: "70px", md: "100px" },
+            cursor: "pointer",
             marginBottom: { xs: 0, md: 2 },
             marginTop: { xs: 1, md: 2 },
             marginLeft: 2,
@@ -193,7 +193,7 @@ const MusicPage: React.FC<Props> = () => {
             target="_blank"
             rel="noreferrer"
           >
-            <img src={AppStoreLogo} alt="the Afrofit logo" height={'100%'} />
+            <img src={AppStoreLogo} alt="the Afrofit logo" height={"100%"} />
           </a>
         </Box>
       </Grid>
@@ -204,11 +204,11 @@ const MusicPage: React.FC<Props> = () => {
           fontSize: 20,
           fontWeight: 300,
           marginBottom: 2,
-          display: 'flex',
+          display: "flex",
         }}
       >
-        <ForwardIcon sx={{ marginTop: '2px', marginRight: '10px' }} />
-        <strong style={{ width: '80px' }}>STEP 2:</strong>
+        <ForwardIcon sx={{ marginTop: "2px", marginRight: "10px" }} />
+        <strong style={{ width: "80px" }}>STEP 2:</strong>
         Log into the app with your username and password.
       </Typography>
       <Typography
@@ -217,11 +217,11 @@ const MusicPage: React.FC<Props> = () => {
           fontSize: 20,
           fontWeight: 300,
           marginBottom: 2,
-          display: 'flex',
+          display: "flex",
         }}
       >
-        <ForwardIcon sx={{ marginTop: '2px', marginRight: '10px' }} />
-        <strong style={{ width: '150px' }}>STEP 3:</strong> By clicking on the
+        <ForwardIcon sx={{ marginTop: "2px", marginRight: "10px" }} />
+        <strong style={{ width: "150px" }}>STEP 3:</strong> By clicking on the
         story you can start your journey. After listening to the story you can
         click on to ‘Continue story' then it takes you to 'Stories chapters'
         (NOTE: you have to complete the chapters in a story before you can get
@@ -233,11 +233,11 @@ const MusicPage: React.FC<Props> = () => {
           fontSize: 20,
           fontWeight: 300,
           marginBottom: 2,
-          display: 'flex',
+          display: "flex",
         }}
       >
-        <ForwardIcon sx={{ marginTop: '2px', marginRight: '5px' }} />
-        <strong style={{ width: '200px' }}>STEP 4:</strong>In the stories
+        <ForwardIcon sx={{ marginTop: "2px", marginRight: "5px" }} />
+        <strong style={{ width: "200px" }}>STEP 4:</strong>In the stories
         chapter, you will select a chapter and start dancing. you can either
         select music on their phone or use our suggested playlist. Once you
         starts moving or dancing the movements will be recorded and you can see
@@ -279,7 +279,7 @@ const MusicPage: React.FC<Props> = () => {
       </Typography>
       <Stack
         direction="row"
-        sx={{ alignItems: 'center', margin: 'auto', justifyContent: 'center' }}
+        sx={{ alignItems: "center", margin: "auto", justifyContent: "center" }}
       >
         <iframe
           width="760"
@@ -290,7 +290,7 @@ const MusicPage: React.FC<Props> = () => {
         ></iframe>
       </Stack>
     </PageLayout>
-  )
-}
+  );
+};
 
-export default MusicPage
+export default MusicPage;

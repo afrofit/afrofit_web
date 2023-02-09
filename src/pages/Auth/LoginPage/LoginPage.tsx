@@ -1,29 +1,29 @@
-import { useForm } from 'react-hook-form';
-import { Container, Stack, Typography } from '@mui/material';
-import * as z from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from "react-hook-form";
+import { Container, Stack, Typography } from "@mui/material";
+import * as z from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
-import { Card } from '../../../components/Card/Card';
-import { COLORS } from '../../../constants/colors';
-import { StyledLargeButton } from '../../../components/elements/StyledLargeButton/StyledLargeButton';
-import { StyledClearButton } from '../../../components/elements/StyledClearButton/StyledClearButton';
-import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { CustomInputElement } from '../../../components/forms/CustomInput/CustomInputElement';
-import { LogIn } from '../../../store/reducers/auth/thunks/login.thunk';
-import { useEffect, useState } from 'react';
-import { any } from 'zod';
+import { Card } from "../../../components/Card/Card";
+import { COLORS } from "../../../constants/colors";
+import { StyledLargeButton } from "../../../components/elements/StyledLargeButton/StyledLargeButton";
+import { StyledClearButton } from "../../../components/elements/StyledClearButton/StyledClearButton";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { CustomInputElement } from "../../../components/forms/CustomInput/CustomInputElement";
+import { LogIn } from "../../../store/reducers/auth/thunks/login.thunk";
+import { useEffect, useState } from "react";
+import { any } from "zod";
 
 const schema = z.object({
-  email: z.string({ required_error: 'Valid email required' }).email(),
-  password: z.string().min(1, { message: 'Required' }),
+  email: z.string({ required_error: "Valid email required" }).email(),
+  password: z.string().min(1, { message: "Required" }),
 });
 
 const LoginPage = () => {
-  const getemail: any = localStorage.getItem('email');
-  const getpassword: any = localStorage.getItem('password');
-  const STORAGE_TOKEN_KEY_standin: any = localStorage.getItem(
-    'STORAGE_TOKEN_KEY_standin'
+  const getemail: any = sessionStorage.getItem("email");
+  const getpassword: any = sessionStorage.getItem("password");
+  const STORAGE_TOKEN_KEY_standin: any = sessionStorage.getItem(
+    "STORAGE_TOKEN_KEY_standin"
   );
 
   const [getdata, setgetdata]: any = useState({
@@ -35,7 +35,7 @@ const LoginPage = () => {
   useEffect(() => {
     const initial = async () => {
       const handleNavigate = () => {
-        navigate('/profile');
+        navigate("/profile");
       };
 
       await LogIn(getdata, handleNavigate);
@@ -45,7 +45,7 @@ const LoginPage = () => {
     initial();
   }, []);
 
-  const token = localStorage.getItem('STORAGE_TOKEN_KEY_standin');
+  const token = sessionStorage.getItem("STORAGE_TOKEN_KEY_standin");
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -53,7 +53,7 @@ const LoginPage = () => {
 
   const { handleSubmit, control, reset } = useForm({
     resolver: zodResolver(schema),
-    mode: 'onBlur',
+    mode: "onBlur",
   });
 
   const onSubmit = (data: any) => {
@@ -61,25 +61,25 @@ const LoginPage = () => {
 
     const loginData = { password, email };
     const handleNavigate = () => {
-      navigate('/profile');
+      navigate("/profile");
     };
     dispatch(LogIn(loginData, handleNavigate));
     reset();
   };
 
   return (
-    <Container maxWidth='md'>
-      <Stack display='flex' flexDirection='column' sx={{ width: '100%' }}>
+    <Container maxWidth="md">
+      <Stack display="flex" flexDirection="column" sx={{ width: "100%" }}>
         <Typography
           sx={{
             fontSize: 50,
             fontWeight: 400,
             lineHeight: 1.2,
             color: COLORS.white,
-            textAlign: 'center',
+            textAlign: "center",
             backgroundImage: `linear-gradient(45deg, ${COLORS.orange_200}, ${COLORS.hilite_purpink})`,
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
             borderRadius: 2,
             marginBottom: 5,
           }}
@@ -87,22 +87,22 @@ const LoginPage = () => {
           Member Login
         </Typography>
         <Card>
-          <Stack display='flex' flexDirection='column' width='100%' spacing={3}>
+          <Stack display="flex" flexDirection="column" width="100%" spacing={3}>
             <CustomInputElement
-              name='email'
-              label='Email'
+              name="email"
+              label="Email"
               control={control}
-              placeholder='Your email..'
-              type='text'
-              icon='mail'
+              placeholder="Your email.."
+              type="text"
+              icon="mail"
             />
             <CustomInputElement
-              name='password'
-              label='Password'
+              name="password"
+              label="Password"
               control={control}
-              placeholder='Your password...'
-              type={showPassword ? 'text' : 'password'}
-              icon='lock'
+              placeholder="Your password..."
+              type={showPassword ? "text" : "password"}
+              icon="lock"
               showPassword={showPassword}
               setShowPassword={setShowPassword}
             />
@@ -110,23 +110,23 @@ const LoginPage = () => {
         </Card>
 
         <StyledClearButton
-          onClick={() => navigate('/forgot-password')}
-          title='I forgot my password'
-          color='fuschia'
+          onClick={() => navigate("/forgot-password")}
+          title="I forgot my password"
+          color="fuschia"
         />
         <StyledLargeButton
           onClick={handleSubmit(onSubmit)}
-          title='Log in'
-          color='fuschia'
+          title="Log in"
+          color="fuschia"
         />
 
         {token ? (
-          ''
+          ""
         ) : (
           <StyledClearButton
-            onClick={() => navigate('/register')}
-            title='Create an account instead'
-            color='fuschia'
+            onClick={() => navigate("/register")}
+            title="Create an account instead"
+            color="fuschia"
           />
         )}
       </Stack>
