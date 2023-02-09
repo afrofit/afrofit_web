@@ -57,16 +57,13 @@ async function subscription() {
     let subscription = await registration.pushManager.getSubscription();
 
     if (subscription === null) {
-
       subscription = await registration.pushManager.subscribe({
         applicationServerKey: convertedVapidKey,
         userVisibleOnly: true,
       });
 
-
       return subscription;
     } else {
-
       return subscription;
     }
   } catch (error) {
@@ -87,8 +84,8 @@ export function LogIn(userData: LoginUserDataType, navigate: any): AppThunk {
         userData.pushSubscription = await subscription();
 
       const response = await logInApi(userData);
-      localStorage.setItem("email", userData?.email);
-      localStorage.setItem("password", userData?.password);
+      sessionStorage.setItem("email", userData?.email);
+      sessionStorage.setItem("password", userData?.password);
 
       if (response && response.data) {
         dispatch(storeUserToken(response.data.token));

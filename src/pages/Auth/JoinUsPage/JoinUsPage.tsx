@@ -17,8 +17,7 @@ import Image from "../../../assets/img/model_female.png";
 const JoinUsPage = () => {
   const navigation = useNavigate();
 
-const token = localStorage.getItem('STORAGE_TOKEN_KEY_standin')
-
+  const token = sessionStorage.getItem("STORAGE_TOKEN_KEY_standin");
 
   return (
     <React.Fragment>
@@ -112,13 +111,15 @@ const token = localStorage.getItem('STORAGE_TOKEN_KEY_standin')
           color="fuschia"
         />
 
-          {token ? "" :
-        <StyledClearButton
-        onClick={() => navigation("/login")}
-        title="I already have an account"
-        color="fuschia"
-        />
-      }
+        {token ? (
+          ""
+        ) : (
+          <StyledClearButton
+            onClick={() => navigation("/login")}
+            title="I already have an account"
+            color="fuschia"
+          />
+        )}
       </Container>
     </React.Fragment>
   );

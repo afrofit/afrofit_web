@@ -24,7 +24,7 @@ export default function EventDetails() {
 
   const getPost = useCallback(async () => {
     try {
-      const accessToken: any = localStorage.getItem(
+      const accessToken: any = sessionStorage.getItem(
         "STORAGE_TOKEN_KEY_standin"
       );
       const response = await API_CLIENT.get(`/events/${id}`, {
@@ -73,7 +73,7 @@ export default function EventDetails() {
                 <Typography variant="h6" sx={{ color: "white" }}>
                   Video
                 </Typography>
-                (
+
                 <iframe
                   style={{
                     height: "350px",
@@ -85,7 +85,6 @@ export default function EventDetails() {
                   title="preview"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;  picture-in-picture full; fullscreen;"
                 ></iframe>
-                )
               </Box>
             ) : null}
           </Card>
