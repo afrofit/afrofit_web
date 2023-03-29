@@ -8,7 +8,9 @@ import { FullPageLoadingSpinner } from "../components/elements/FullPageLoadingSp
 import { useSelector } from "react-redux";
 import { selectUserIsLoggedIn } from "../store/reducers/auth/auth.slice";
 import Plan from "../pages/App/Plan";
-import EventDetails from "../pages/App/EventDetails";
+import EventDetails from "../pages/App/components/EventPage/EventDetails";
+import ClassDetails from "../pages/App/components/ClassPage/ClassDetails";
+import ShopDetails from "../pages/App/components/ShopPage/ShopDetails";
 
 // No auth pages
 const WelcomePage = lazy(() => import("../pages/Auth/WelcomePage/WelcomePage"));
@@ -28,11 +30,17 @@ const NotFoundPage = lazy(
 );
 
 // App pages
-const EventsPage = lazy(() => import("../pages/App/EventsPage"));
+const EventsPage = lazy(
+  () => import("../pages/App/components/EventPage/EventsPage")
+);
 const MusicPage = lazy(() => import("../pages/App/MusicPage"));
 const ProfilePage = lazy(() => import("../pages/App/ProfilePage"));
-const ShopPage = lazy(() => import("../pages/App/ShopPage"));
-const ClassesPage = lazy(() => import("../pages/App/ClassesPage"));
+const ShopPage = lazy(
+  () => import("../pages/App/components/ShopPage/ShopPage")
+);
+const ClassesPage = lazy(
+  () => import("../pages/App/components/ClassPage/ClassesPage")
+);
 const PrivacyPage = lazy(() => import("../pages/App/PrivacyPage"));
 const BlogPage = lazy(() => import("../pages/App/BlogPage"));
 
@@ -66,10 +74,10 @@ export const AppRouter: React.FC = () => {
       <AppLayout authorized={currentUser}>
         <Routes>
           <Route path="blog" element={<BlogPage />} />
-          <Route path="shop" element={<ShopPage />} />
+
           <Route path="about" element={<MusicPage />} />
           <Route path="plan" element={<Plan />} />
-
+          {/* // =================================== classes ================================ \\ */}
           <Route
             path="classes"
             element={
@@ -78,6 +86,17 @@ export const AppRouter: React.FC = () => {
               </PrivateRoute>
             }
           />
+          <Route
+            path={`classes/classDetails/:id`}
+            element={
+              <PrivateRoute>
+                <ClassDetails />
+              </PrivateRoute>
+            }
+          />
+
+          {/* // =================================== events ================================ \\ */}
+
           <Route
             path="events"
             element={
@@ -94,6 +113,26 @@ export const AppRouter: React.FC = () => {
               </PrivateRoute>
             }
           />
+
+          {/* // =================================== shops ================================ \\ */}
+          {/* <Route path="shop" element={<ShopPage />} /> */}
+          <Route
+            path="shop"
+            element={
+              <PrivateRoute>
+                <ShopPage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path={`shops/shopDetails/:id`}
+            element={
+              <PrivateRoute>
+                <ShopDetails />
+              </PrivateRoute>
+            }
+          />
+
           <Route
             path="profile"
             element={

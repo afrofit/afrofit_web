@@ -1,10 +1,10 @@
 import { useEffect, useState, useCallback } from "react";
 // @mui
-import { Box, Card, Container, Paper, Typography } from "@mui/material";
-import { Link, useParams } from "react-router-dom";
-import API_CLIENT from "../../api/client";
-import BlogPostHero from "./components/BlogPostHero";
-import settings from "../../config/settings";
+import { Box, Card, Paper, Typography } from "@mui/material";
+import { useParams } from "react-router-dom";
+import API_CLIENT from "../../../../api/client";
+import BlogPostHero from "../BlogPostHero";
+import settings from "../../../../config/settings";
 
 // ----------------------------------------------------------------------
 export type Post = {
@@ -14,9 +14,10 @@ export type Post = {
   description: string;
   paymentLinks: string;
   videoUrl: string;
+  audioUrl: string;
 };
 
-export default function EventDetails() {
+export default function ShopDetails() {
   const { id } = useParams();
 
   const [post, setPost] = useState<Post | null>(null);
@@ -27,7 +28,7 @@ export default function EventDetails() {
       const accessToken: any = sessionStorage.getItem(
         "STORAGE_TOKEN_KEY_standin"
       );
-      const response = await API_CLIENT.get(`/events/${id}`, {
+      const response = await API_CLIENT.get(`/shops/${id}`, {
         headers: {
           "x-auth-token": accessToken,
           "content-type": "application/json",
@@ -68,25 +69,23 @@ export default function EventDetails() {
                 </a>
               </Typography>
             </Box>
-            {post?.videoUrl ? (
-              <Box sx={{ p: { xs: 3, md: 5 } }}>
-                <Typography variant="h6" sx={{ color: "white" }}>
-                  Video
-                </Typography>
 
-                <iframe
-                  style={{
-                    height: "350px",
-                    width: "80%",
-                    margin: "auto",
-                    display: "flex",
-                  }}
-                  src={settings.imageUrl + post?.videoUrl}
-                  title="preview"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;  picture-in-picture full; fullscreen;"
-                ></iframe>
-              </Box>
-            ) : null}
+            <Box sx={{ p: { xs: 3, md: 5 } }}>
+              <Typography variant="h6" sx={{ color: "white" }}>
+                Audio
+              </Typography>
+              <audio
+                controls
+                autoPlay
+                src={settings.imageUrl + post?.audioUrl}
+                style={{
+                  height: "100px",
+                  width: "80%",
+                  margin: "auto",
+                  display: "flex",
+                }}
+              ></audio>
+            </Box>
           </Card>
         </>
       )}

@@ -22,7 +22,6 @@ const handleTokenExpired = (exp: number) => {
   let expiredTimer;
 
   const currentTime = Date.now();
-
   // Test token expires after 10s
   // const timeLeft = currentTime + 10000 - currentTime; // ~10s
   const timeLeft = exp * 1000 - currentTime;
@@ -43,7 +42,6 @@ const setSession = (accessToken: string | null) => {
 
     // This function below will handle when token is expired
     const { exp } = jwtDecode<{ exp: number }>(accessToken); // ~2 hours by afrofit server
-
     handleTokenExpired(exp);
   } else {
     sessionStorage.removeItem("STORAGE_TOKEN_KEY_standin");
