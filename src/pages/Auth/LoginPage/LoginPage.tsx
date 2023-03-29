@@ -39,8 +39,6 @@ const LoginPage = () => {
       };
 
       await LogIn(getdata, handleNavigate);
-
-      // dispatch(LogIn(getdata, handleNavigate));
     };
     initial();
   }, []);
