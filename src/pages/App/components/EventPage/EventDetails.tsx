@@ -84,7 +84,7 @@ export default function EventDetails() {
                     margin: "auto",
                     display: "flex",
                   }}
-                  src={settings.imageUrl + post?.videoUrl}
+                  src={post?.videoUrl}
                   title="preview"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;  picture-in-picture full; fullscreen;"
                 ></iframe>
