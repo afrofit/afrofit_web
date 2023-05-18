@@ -1,6 +1,6 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 // @mui
-import { Box, Card, Paper, Typography } from "@mui/material";
+import { Box, Card, Paper, Stack, Typography } from "@mui/material";
 import { useParams } from "react-router-dom";
 import API_CLIENT from "../../../../api/client";
 import BlogPostHero from "../BlogPostHero";
@@ -13,7 +13,7 @@ export type Post = {
   imageUrl: string;
   description: string;
   paymentLinks: string;
-  videoUrl: string;
+  videoUrl: any;
 };
 
 export default function ClassDetails() {
@@ -57,36 +57,50 @@ export default function ClassDetails() {
                 {post?.description}
               </Typography>
             </Box>
-            <Box sx={{ p: { xs: 3, md: 5 } }}>
-              <Typography variant="h6" color="white">
-                <a
-                  href={post?.paymentLinks}
-                  target="_blank"
-                  style={{ color: "white" }}
-                >
-                  {post?.paymentLinks}
-                </a>
-              </Typography>
-            </Box>
-            {post?.videoUrl ? (
-              <Box sx={{ p: { xs: 3, md: 5 } }}>
-                <Typography variant="h6" sx={{ color: "white" }}>
-                  Video
-                </Typography>
 
-                <iframe
-                  style={{
-                    height: "350px",
-                    width: "80%",
-                    margin: "auto",
-                    display: "flex",
-                  }}
-                  src={/* settings.imageUrl +  */post?.videoUrl}
-                  title="preview"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;  picture-in-picture full; fullscreen;"
-                ></iframe>
-              </Box>
-            ) : null}
+            <Typography variant="h6" color="white">
+              <a
+                href={post?.paymentLinks}
+                target="_blank"
+                style={{ color: "white" }}
+                rel="noreferrer"
+              >
+                {post?.paymentLinks}
+              </a>
+            </Typography>
+            <Stack>
+              {post?.videoUrl.length
+                ? post?.videoUrl?.map((data: any, index: any) => {
+                    return (
+                      <Box sx={{ p: { xs: 3, md: 5 } }}>
+                        <Typography
+                          variant="h6"
+                          sx={{
+                            color: "white",
+                            marginLeft: "115px",
+                            marginBottom: "20px",
+                          }}
+                        >
+                          Step {index + 1}
+                        </Typography>
+                        <iframe
+                          style={{
+                            height: "350px",
+                            width: "80%",
+                            margin: "auto",
+                            display: "flex",
+                            borderRadius: "15px",
+                            border: "none",
+                          }}
+                          src={data.video}
+                          title="preview"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;  picture-in-picture full; fullscreen;"
+                        />
+                      </Box>
+                    );
+                  })
+                : null}
+            </Stack>
           </Card>
         </>
       )}
