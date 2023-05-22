@@ -69,37 +69,34 @@ export default function ClassDetails() {
               </a>
             </Typography>
             <Stack>
-              {post?.videoUrl.length
-                ? post?.videoUrl?.map((data: any, index: any) => {
-                    return (
-                      <Box sx={{ p: { xs: 3, md: 5 } }}>
-                        <Typography
-                          variant="h6"
-                          sx={{
-                            color: "white",
-                            marginLeft: "115px",
-                            marginBottom: "20px",
-                          }}
-                        >
-                          Step {index + 1}
-                        </Typography>
-                        <iframe
-                          style={{
-                            height: "350px",
-                            width: "80%",
-                            margin: "auto",
-                            display: "flex",
-                            borderRadius: "15px",
-                            border: "none",
-                          }}
-                          src={data.video}
-                          title="preview"
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;  picture-in-picture full; fullscreen;"
-                        />
-                      </Box>
-                    );
-                  })
-                : null}
+              {post?.videoUrl ? (
+                <Box sx={{ p: { xs: 3, md: 5 } }}>
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      color: "white",
+                      marginLeft: "115px",
+                      marginBottom: "20px",
+                    }}
+                  >
+                    Video
+                  </Typography>
+                  <iframe
+                    style={{
+                      height: "350px",
+                      width: "80%",
+                      margin: "auto",
+                      display: "flex",
+                      borderRadius: "15px",
+                      border: "none",
+                    }}
+                    src={`https://www.youtube.com/embed/${post?.videoUrl}`}
+                    // src={data.video}
+                    title="preview"
+                    allow="accelerometer; clipboard-write; encrypted-media; gyroscope;  picture-in-picture full; fullscreen;"
+                  />
+                </Box>
+              ) : null}
             </Stack>
           </Card>
         </>
