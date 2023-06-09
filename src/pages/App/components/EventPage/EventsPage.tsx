@@ -52,7 +52,7 @@ const EventsPage: React.FC<Props> = () => {
           marginTop: "20px",
         }}
       >
-        {EnentData && EnentData.length === 0 ? (
+        {EnentData && EnentData?.length === 0 ? (
           <h1
             style={{
               color: "white",
@@ -64,112 +64,118 @@ const EventsPage: React.FC<Props> = () => {
           </h1>
         ) : (
           <Grid container spacing={2}>
-            {EnentData.map((item: any, index: number) => {
-              return (
-                <Grid item xs={12} sm={6} md={4} lg={4} key={index}>
-                  <Stack
-                    direction="row"
-                    sx={{
-                      width: "100%",
-                      paddingLeft: "15px",
-                      paddingRight: "15px",
-                      marginBottom: "30px",
-                    }}
-                  >
-                    <Card
-                      onClick={(e) => HandleClick(e, item.id)}
-                      key={item.title}
-                      sx={{
-                        width: "85%",
-                        height: "auto",
-                        background: "#f26c68",
-                        borderRadius: "20px",
-                        flexDirection: "row",
-                        margin: "auto",
-                        cursor: "pointer",
-                      }}
-                    >
-                      <div>
-                        <Grid>
-                          <Box sx={{ height: "290px", width: "100%" }}>
-                            <img
-                              style={{
-                                height: "100%",
-                                width: "100%",
-                                objectFit: "fill",
-                                backgroundColor: "#191919",
-                              }}
-                              src={
-                                item.imageUrl
-                                  ? settings.imageUrl + item.imageUrl
-                                  : logo
-                              }
-                              alt="profile"
-                            />
-                          </Box>
-                          <Box
-                            sx={{
-                              height: "100%",
-                              minHeight: "120px",
-                              width: "100%",
-                              padding: "20px",
-                            }}
-                          >
-                            <Typography
-                              variant="h4"
-                              sx={{
-                                margin: "0px",
-                                fontWeight: "bold",
-                                textTransform: "capitalize",
-                              }}
-                            >
-                              {getEllipsisTxtName(item?.title, 10)}
-                            </Typography>
-                            <Box>
-                              <Typography
-                                variant="h6"
-                                sx={
-                                  {
-                                    // marginLeft: "20px",
-                                    // marginTop: "20px",
-                                  }
-                                }
-                              >
-                                {getEllipsisTxtName(item?.description, 20)}
-                              </Typography>
-                            </Box>
-                            <div
-                              style={{
-                                display: "flex",
-                                justifyContent: "space-between",
-                              }}
-                            >
-                              <p
+            {EnentData &&
+              EnentData.map((item: any, index: number) => {
+                return (
+                  item && (
+                    <Grid item xs={12} sm={6} md={4} lg={4} key={index}>
+                      <Stack
+                        direction="row"
+                        sx={{
+                          width: "100%",
+                          paddingLeft: "15px",
+                          paddingRight: "15px",
+                          marginBottom: "30px",
+                        }}
+                      >
+                        <Card
+                          onClick={(e) => HandleClick(e, item.id)}
+                          key={item.title}
+                          sx={{
+                            width: "85%",
+                            height: "auto",
+                            background: "#f26c68",
+                            borderRadius: "20px",
+                            flexDirection: "row",
+                            margin: "auto",
+                            cursor: "pointer",
+                          }}
+                        >
+                          <Grid>
+                            {item.imageUrl && (
+                              <img
                                 style={{
-                                  fontSize: "15px",
-                                  margin: "0",
+                                  height: "290px",
+                                  width: "320px",
+                                  objectFit: "fill",
+                                  backgroundColor: "#191919",
+                                  maxHeight: "100%",
+                                  maxWidth: "100%",
                                 }}
-                              >
-                                {moment(item.updatedAt).format("MMMM Do YYYY")}
-                              </p>
-                              <Button
-                                size="small"
+                                src={
+                                  item.imageUrl
+                                    ? settings?.imageUrl + item?.imageUrl
+                                    : logo
+                                }
+                                alt="profile"
+                              />
+                            )}
+
+                            <Box
+                              sx={{
+                                height: "100%",
+                                minHeight: "120px",
+                                width: "100%",
+                                padding: "20px",
+                              }}
+                            >
+                              <Typography
+                                variant="h4"
                                 sx={{
-                                  color: "black",
-                                  lineHeight: "1",
+                                  margin: "0px",
+                                  fontWeight: "bold",
+                                  textTransform: "capitalize",
                                 }}
                               >
-                                Learn More....
-                              </Button>
-                            </div>
-                          </Box>
-                        </Grid>
-                      </div>
-                    </Card>
-                  </Stack>
-                </Grid>
-              );
-            })}
+                                {getEllipsisTxtName(item?.title, 10)}
+                              </Typography>
+                              <Box>
+                                <Typography
+                                  variant="h6"
+                                  sx={
+                                    {
+                                      // marginLeft: "20px",
+                                      // marginTop: "20px",
+                                    }
+                                  }
+                                >
+                                  {getEllipsisTxtName(item?.description, 20)}
+                                </Typography>
+                              </Box>
+                              <div
+                                style={{
+                                  display: "flex",
+                                  justifyContent: "space-between",
+                                }}
+                              >
+                                <p
+                                  style={{
+                                    fontSize: "15px",
+                                    margin: "0",
+                                  }}
+                                >
+                                  {moment(item.updatedAt).format(
+                                    "MMMM Do YYYY"
+                                  )}
+                                </p>
+                                <Button
+                                  size="small"
+                                  sx={{
+                                    color: "black",
+                                    lineHeight: "1",
+                                  }}
+                                >
+                                  Learn More....
+                                </Button>
+                              </div>
+                            </Box>
+                          </Grid>
+                        </Card>
+                      </Stack>
+                    </Grid>
+                  )
+                );
+              })}
           </Grid>
         )}
       </Box>

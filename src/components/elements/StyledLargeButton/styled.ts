@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Button, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { COLORS, ColorType } from "../../../constants/colors";
 import { CHAMFER } from "../../../constants/globals";
 

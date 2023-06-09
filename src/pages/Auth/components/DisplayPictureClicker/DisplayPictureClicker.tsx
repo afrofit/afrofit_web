@@ -1,15 +1,15 @@
-import { Typography } from '@mui/material'
-import { Box } from '@mui/system'
-import { COLORS } from '../../../../constants/colors'
-import { CHAMFER } from '../../../../constants/globals'
+import { Typography } from "@mui/material";
+import { Box } from "@mui/system";
+import { COLORS } from "../../../../constants/colors";
+import { CHAMFER } from "../../../../constants/globals";
 
 interface Props {
-  onClick: () => void
-  dpId: number
-  size?: number | string
-  imageOnly?: boolean
-  selected?: boolean
-  image1: any
+  onClick: () => void;
+  dpId: number;
+  size?: number | string;
+  imageOnly?: boolean;
+  selected?: boolean;
+  image1: any;
 }
 
 export const DisplayPictureClicker: React.FC<Props> = ({
@@ -25,35 +25,35 @@ export const DisplayPictureClicker: React.FC<Props> = ({
       <Box
         onClick={onClick}
         sx={{
-          height: size,
-          width: size,
+          height: "180px",
+          width: "150px",
           backgroundColor: COLORS.whiteblue,
           borderRadius: CHAMFER,
-          cursor: 'pointer',
+          cursor: "pointer",
           borderWidth: selected ? 4 : 2,
-          borderStyle: 'solid',
+          borderStyle: "solid",
           borderColor: !selected ? COLORS.purple_100 : COLORS.hilite_purpink,
-          overflow: 'hidden',
+          overflow: "hidden",
         }}
       >
         <img
           src={
             image1 ? image1 : require(`../../../../assets/img/dp/${dpId}.png`)
           }
-          style={{ width: '100%', height: '100%' }}
+          style={{ width: "150px", height: "150px" }}
           alt="The current user's display"
         />
       </Box>
-    )
+    );
 
   return (
     <Box
-      width={'100%'}
+      width={"100%"}
       sx={{
-        display: { xs: 'flex' },
-        flexDirection: { xs: 'column', md: 'row' },
-        alignItems: 'center',
-        justifyContent: 'center',
+        display: { xs: "flex" },
+        flexDirection: { xs: "column", md: "row" },
+        alignItems: "center",
+        justifyContent: "center",
       }}
     >
       <Box
@@ -63,19 +63,19 @@ export const DisplayPictureClicker: React.FC<Props> = ({
           width: size,
           backgroundColor: COLORS.whiteblue,
           borderRadius: CHAMFER,
-          cursor: 'pointer',
+          cursor: "pointer",
           marginRight: 2,
           borderWidth: 2,
-          borderStyle: 'solid',
+          borderStyle: "solid",
           borderColor: COLORS.hilite_purpink,
-          overflow: 'hidden',
+          overflow: "hidden",
         }}
       >
         <img
           src={
             image1 ? image1 : require(`../../../../assets/img/dp/${dpId}.png`)
           }
-          style={{ width: '100%', height: '100%' }}
+          style={{ width: "100%", height: "100%" }}
           alt="The current user's display"
         />
       </Box>
@@ -83,15 +83,15 @@ export const DisplayPictureClicker: React.FC<Props> = ({
         sx={{
           color: COLORS.hilite_purpink,
           marginBottom: 1,
-          textTransform: 'uppercase',
+          textTransform: "uppercase",
           fontSize: 15,
           letterSpacing: 1,
-          textAlign: { xs: 'center', md: 'left' },
+          textAlign: { xs: "center", md: "left" },
           marginTop: { xs: 2, md: 0 },
         }}
       >
         Tap on the image to choose your display picture
       </Typography>
     </Box>
-  )
-}
+  );
+};

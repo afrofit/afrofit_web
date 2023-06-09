@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 import { Box } from "@mui/material";
 import { COLORS } from "../../../constants/colors";
-import { CHAMFER } from "../../../constants/globals";
 
 interface Props {
   focused: boolean;

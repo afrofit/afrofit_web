@@ -1,5 +1,4 @@
 import { Box } from "@mui/material";
-import { COLORS } from "../../constants/colors";
 
 interface Props {
   src: any;

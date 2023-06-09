@@ -1,7 +1,6 @@
-import { Backdrop, Box, Container, Stack, Typography } from "@mui/material";
+import { Backdrop, Box, Stack, Typography } from "@mui/material";
 import { COLORS } from "../../constants/colors";
 import { CHAMFER } from "../../constants/globals";
-import { LinkButton } from "../Buttons/LinkButton";
 import { SmallButton } from "../Buttons/SmallButton";
 
 interface Props {

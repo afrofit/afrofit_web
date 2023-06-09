@@ -1,4 +1,3 @@
-import * as React from "react";
 import ReactDOM from "react-dom/client";
 import type {} from "redux-thunk/extend-redux";
 import { BrowserRouter } from "react-router-dom";

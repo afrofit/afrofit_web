@@ -7,6 +7,7 @@ import { PageLayout } from "../../../../components/layout/PageLayout/PageLayout"
 import { getEllipsisTxtName } from "../../../../components/TitleShort";
 import settings from "../../../../config/settings";
 import logo from "../../../../assets/img/logobg512.png";
+import CardComponent from "../Card/Card";
 
 interface Props {}
 const ClassesPage: React.FC<Props> = () => {
@@ -63,6 +64,7 @@ const ClassesPage: React.FC<Props> = () => {
             No Data Found
           </h1>
         ) : (
+          // <CardComponent classData={classData} HandleClick={HandleClick} />
           <Grid container spacing={2}>
             {classData.map((item: any, index: number) => {
               return (

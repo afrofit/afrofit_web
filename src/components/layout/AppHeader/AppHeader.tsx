@@ -86,7 +86,14 @@ export const AppHeader: React.FC<Props> = ({ authorized }) => {
             onClick={() => navigate("/")}
           >
             <a title="Afrofit">
-              <img src={AppLogo} alt="the Afrofit logo" height={"100%"} />
+              {AppLogo && (
+                <img
+                  src={AppLogo}
+                  alt="the Afrofit logo"
+                  width={"100px"}
+                  height={"50px"}
+                />
+              )}
             </a>
           </Box>
           <Box
@@ -114,6 +121,9 @@ export const AppHeader: React.FC<Props> = ({ authorized }) => {
             </Box>
             <Box>
               <StyledNavLink title="Plans" route="/plan" />
+            </Box>
+            <Box>
+              <StyledNavLink title="Faqs" route="/faqs" />
             </Box>
             <Box>
               {token ? (
@@ -282,6 +292,7 @@ export const AppHeader: React.FC<Props> = ({ authorized }) => {
                 <StyledNavLink title="Shop" route="/shop" />
                 <StyledNavLink title="About" route="/about" />
                 <StyledNavLink title="Plans" route="/plan" />
+                <StyledNavLink title="FAQS" route="/faqs" />
               </Stack>
             </Box>
 
@@ -414,7 +425,7 @@ export const AppHeader: React.FC<Props> = ({ authorized }) => {
             }}
             onClick={() => navigate("/")}
           >
-            <img src={AppLogo} alt="the Afrofit logo" height={"100%"} />
+            <img src={AppLogo} alt="the Afrofit logo" height={"50px"} />
           </Box>
         </Stack>
       </Container>

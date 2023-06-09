@@ -1,4 +1,4 @@
-import { Button, Stack, Typography } from "@mui/material";
+import { Button, Stack } from "@mui/material";
 import * as React from "react";
 import { COLORS } from "../../../constants/colors";
 import { BannerWrapper } from "./styled";

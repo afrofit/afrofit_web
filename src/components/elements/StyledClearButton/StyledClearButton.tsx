@@ -1,7 +1,6 @@
 import { Button } from "@mui/material";
 import { COLORS, ColorType } from "../../../constants/colors";
-import { CHAMFER } from "../../../constants/globals";
-import { StyledButtonElement, ButtonText } from "./styled";
+import { ButtonText } from "./styled";
 
 interface Props {
   title: string;

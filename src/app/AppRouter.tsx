@@ -8,9 +8,6 @@ import { FullPageLoadingSpinner } from "../components/elements/FullPageLoadingSp
 import { useSelector } from "react-redux";
 import { selectUserIsLoggedIn } from "../store/reducers/auth/auth.slice";
 import Plan from "../pages/App/Plan";
-import EventDetails from "../pages/App/components/EventPage/EventDetails";
-import ClassDetails from "../pages/App/components/ClassPage/ClassDetails";
-import ShopDetails from "../pages/App/components/ShopPage/ShopDetails";
 
 // No auth pages
 const WelcomePage = lazy(() => import("../pages/Auth/WelcomePage/WelcomePage"));
@@ -34,12 +31,23 @@ const EventsPage = lazy(
   () => import("../pages/App/components/EventPage/EventsPage")
 );
 const MusicPage = lazy(() => import("../pages/App/MusicPage"));
+const Faqs = lazy(() => import("../pages/App/components/FaqPage/Faqs"));
+
 const ProfilePage = lazy(() => import("../pages/App/ProfilePage"));
 const ShopPage = lazy(
   () => import("../pages/App/components/ShopPage/ShopPage")
 );
+const ShopDetails = lazy(
+  () => import("../pages/App/components/ShopPage/ShopDetails")
+);
 const ClassesPage = lazy(
   () => import("../pages/App/components/ClassPage/ClassesPage")
+);
+const ClassDetails = lazy(
+  () => import("../pages/App/components/ClassPage/ClassDetails")
+);
+const EventDetails = lazy(
+  () => import("../pages/App/components/EventPage/EventDetails")
 );
 const PrivacyPage = lazy(() => import("../pages/App/PrivacyPage"));
 const BlogPage = lazy(() => import("../pages/App/BlogPage"));
@@ -76,6 +84,7 @@ export const AppRouter: React.FC = () => {
           <Route path="blog" element={<BlogPage />} />
 
           <Route path="about" element={<MusicPage />} />
+          <Route path="faqs" element={<Faqs />} />
           <Route path="plan" element={<Plan />} />
           {/* // =================================== classes ================================ \\ */}
           <Route
