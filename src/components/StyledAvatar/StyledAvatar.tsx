@@ -25,26 +25,28 @@ export const StyledAvatar: React.FC<Props> = ({
   onClick,
 }) => {
   return (
-    <Box
-      onClick={onClick}
-      sx={{
-        height: size,
-        width: size,
-        cursor: "pointer",
-        backgroundColor: COLORS[bgColor],
-        borderRadius: 100,
-        overflow: "hidden",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        marginBottom: mb,
-        marginLeft: ml,
-        marginRight: mr,
-        marginTop: mt,
-        margin: m,
-      }}
-    >
-      <img src={src} alt="the Afrofit logo" height={"100%"} />
-    </Box>
+    src && (
+      <Box
+        onClick={onClick}
+        sx={{
+          height: size,
+          width: size,
+          cursor: "pointer",
+          backgroundColor: COLORS[bgColor],
+          borderRadius: 100,
+          overflow: "hidden",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          marginBottom: mb,
+          marginLeft: ml,
+          marginRight: mr,
+          marginTop: mt,
+          margin: m,
+        }}
+      >
+        <img src={src} alt="the Afrofit logo" height={"100%"} width={"100%"} />
+      </Box>
+    )
   );
 };

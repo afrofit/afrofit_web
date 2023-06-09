@@ -1,12 +1,4 @@
-import {
-  Backdrop,
-  Box,
-  Divider,
-  Grid,
-  Stack,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Backdrop, Box, Divider, Grid, Stack, Typography } from "@mui/material";
 import { COLORS } from "../../constants/colors";
 import { CHAMFER } from "../../constants/globals";
 import { DISPLAY_PIC_MAPS } from "../../data/dp-maps";
@@ -14,7 +6,6 @@ import useScreenSizes from "../../hook/useScreenSizes";
 import { DisplayPictureClicker } from "../../pages/Auth/components/DisplayPictureClicker/DisplayPictureClicker";
 import { SmallButton } from "../Buttons/SmallButton";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
-import { useState } from "react";
 
 interface Props {
   open: boolean;

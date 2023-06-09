@@ -22,12 +22,11 @@ export function RetrieveUserSubscription(userId: string): AppThunk {
 
       const response = await retrieveUserSubscription(userId)
 
-   
       if (response && response.data) {
-        const { activeSubscription, endDate } = response.data
+        const { activesSubscription, endDate } = response.data
         dispatch(
           setIsSubscribed({
-            isSubscribed: activeSubscription,
+            isSubscribed: activesSubscription,
             endDate: endDate,
           }),
         )

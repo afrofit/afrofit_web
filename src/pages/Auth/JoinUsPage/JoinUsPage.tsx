@@ -7,12 +7,6 @@ import { BenefitsCard } from "./components/BenefitsCard";
 import { StyledLargeButton } from "../../../components/elements/StyledLargeButton/StyledLargeButton";
 import { StyledClearButton } from "../../../components/elements/StyledClearButton/StyledClearButton";
 import Image from "../../../assets/img/model_female.png";
-// import { RankCard } from "../../App/components/RankCard";
-// import { IdentCard } from "../../App/components/IdentCard";
-// import { UserModel } from "../../../types/UserModel";
-// import { SubscriptionCard } from "../../App/components/SubscriptionCard";
-// import { StatsCard } from "../../App/components/StatsCard";
-// import { StyledFont } from "../../../components/StyledFont/StyledFont";
 
 const JoinUsPage = () => {
   const navigation = useNavigate();

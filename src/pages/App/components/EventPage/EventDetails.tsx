@@ -4,7 +4,6 @@ import { Box, Card, Paper, Typography } from "@mui/material";
 import { useParams } from "react-router-dom";
 import API_CLIENT from "../../../../api/client";
 import BlogPostHero from "../BlogPostHero";
-import settings from "../../../../config/settings";
 
 // ----------------------------------------------------------------------
 export type Post = {

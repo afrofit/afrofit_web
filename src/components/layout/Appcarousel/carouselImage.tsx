@@ -81,6 +81,7 @@ function SwipeableImage() {
         />
       </Button>
       <AutoPlaySwipeableViews
+        interval={15000}
         axis={theme.direction === "rtl" ? "x-reverse" : "x"}
         index={activeStep}
         onChangeIndex={handleStepChange}

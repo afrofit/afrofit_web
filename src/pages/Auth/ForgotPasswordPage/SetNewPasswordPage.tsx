@@ -1,65 +1,65 @@
-import * as React from 'react'
-import * as Yup from 'yup'
-import { useForm } from 'react-hook-form'
-import { Stack, Typography } from '@mui/material'
-import { yupResolver } from '@hookform/resolvers/yup'
+import * as React from "react";
+import * as Yup from "yup";
+import { useForm } from "react-hook-form";
+import { Stack, Typography } from "@mui/material";
+import { yupResolver } from "@hookform/resolvers/yup";
 
-import { Card } from '../../../components/Card/Card'
-import { COLORS } from '../../../constants/colors'
-import { StyledLargeButton } from '../../../components/elements/StyledLargeButton/StyledLargeButton'
-import { StyledClearButton } from '../../../components/elements/StyledClearButton/StyledClearButton'
-import { Navigate, useNavigate, useParams } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
-import { CustomInputElement } from '../../../components/forms/CustomInput/CustomInputElement'
-import { SetNewPassword } from '../../../store/reducers/auth/thunks/set-new-password.thunk'
+import { Card } from "../../../components/Card/Card";
+import { COLORS } from "../../../constants/colors";
+import { StyledLargeButton } from "../../../components/elements/StyledLargeButton/StyledLargeButton";
+import { StyledClearButton } from "../../../components/elements/StyledClearButton/StyledClearButton";
+import { useNavigate, useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { CustomInputElement } from "../../../components/forms/CustomInput/CustomInputElement";
+import { SetNewPassword } from "../../../store/reducers/auth/thunks/set-new-password.thunk";
 
 const changePassword = Yup.object().shape({
   password: Yup.string().min(6).max(32).required(),
   confirmPassword: Yup.string().oneOf(
-    [Yup.ref('password'), null],
-    'Passwords must match',
+    [Yup.ref("password"), null],
+    "Passwords must match"
   ),
-})
+});
 
 const SetNewPasswordPage = () => {
-  const navigation = useNavigate()
-  const { hash, userId } = useParams()
-  const dispatch = useDispatch()
+  const navigation = useNavigate();
+  const { hash, userId } = useParams();
+  const dispatch = useDispatch();
 
-  const [showPassword, setShowPassword] = React.useState(false)
-  const [cShowPassword, setCShowPassword] = React.useState(false)
+  const [showPassword, setShowPassword] = React.useState(false);
+  const [cShowPassword, setCShowPassword] = React.useState(false);
 
-  console.log(hash, userId)
+  console.log(hash, userId);
 
   const { handleSubmit, control, reset } = useForm({
     resolver: yupResolver(changePassword),
-    mode: 'onBlur',
-  })
+    mode: "onBlur",
+  });
 
-  if (!hash || !userId) return null
+  if (!hash || !userId) return null;
 
   const onSubmit = (data: any) => {
     const expandedData = {
       password: data.password,
       hash,
-    }
-    dispatch(SetNewPassword(userId, expandedData))
-    navigation('/login')
-    return reset()
-  }
+    };
+    dispatch(SetNewPassword(userId, expandedData));
+    navigation("/login");
+    return reset();
+  };
 
   return (
-    <Stack display="flex" flexDirection="column" sx={{ width: '100%' }}>
+    <Stack display="flex" flexDirection="column" sx={{ width: "100%" }}>
       <Typography
         sx={{
           fontSize: 50,
           fontWeight: 400,
           lineHeight: 1.2,
           color: COLORS.white,
-          textAlign: 'center',
+          textAlign: "center",
           backgroundImage: `linear-gradient(45deg, ${COLORS.orange_200}, ${COLORS.hilite_purpink})`,
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
           borderRadius: 2,
           marginBottom: 5,
         }}
@@ -73,7 +73,7 @@ const SetNewPasswordPage = () => {
             label="Password"
             control={control}
             placeholder="Your password.."
-            type={showPassword ? 'text' : 'password'}
+            type={showPassword ? "text" : "password"}
             icon="lock"
             showpassIcon="eye"
             hidepassIcon="eyeOff"
@@ -81,18 +81,17 @@ const SetNewPasswordPage = () => {
             setShowPassword={setShowPassword}
           />
           <CustomInputElement
-                  name="confirm_password"
-                  label="Confirm Password"
+            name="confirm_password"
+            label="Confirm Password"
             placeholder="Your Confirm password.."
-                  
-                  control={control}
-                  type={cShowPassword ? 'text' : 'password'}
-                  icon="lock"
-                  showpassIcon="eye"
-                  hidepassIcon="eyeOff"
-                  cShowPassword={cShowPassword}
-                  setCShowPassword={setCShowPassword}
-                />
+            control={control}
+            type={cShowPassword ? "text" : "password"}
+            icon="lock"
+            showpassIcon="eye"
+            hidepassIcon="eyeOff"
+            cShowPassword={cShowPassword}
+            setCShowPassword={setCShowPassword}
+          />
         </Stack>
       </Card>
 
@@ -102,12 +101,12 @@ const SetNewPasswordPage = () => {
         color="fuschia"
       />
       <StyledClearButton
-        onClick={() => navigation('/login')}
+        onClick={() => navigation("/login")}
         title="Let me log in instead"
         color="fuschia"
       />
     </Stack>
-  )
-}
+  );
+};
 
-export default SetNewPasswordPage
+export default SetNewPasswordPage;
