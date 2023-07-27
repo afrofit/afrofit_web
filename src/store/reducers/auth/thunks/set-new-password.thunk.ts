@@ -30,7 +30,6 @@ export function SetNewPassword(
 
       const response = await setNewPasswordApi(userId, formData);
       if (response && response.data) {
-        console.log("Response from reset password", response.data);
         dispatch(storeUserToken(response.data.token));
         // STORE_TOKEN(response.data.token);
       } else {

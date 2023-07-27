@@ -76,7 +76,6 @@ function Plan() {
 
   const handleSubmit = async () => {
     if (currentUser) {
-      console.log("currentUser", currentUser);
       const { email, userId } = currentUser;
       dispatch(CreateStripeSession(userId, email, priceId));
     } else {

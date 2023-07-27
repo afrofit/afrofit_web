@@ -48,10 +48,8 @@ export function CreateStripeSession(
       dispatch(newRequest());
       dispatch(hideGenericErrorDialog());
       const response = await createStripeSessionApi(userId, email, priceId);
-      console.log("response", response);
 
       if (response && response.data) {
-        console.log(`response: ${JSON.stringify(response.data)}`);
         const { sessionId } = response.data;
 
         const redirectToCheckout = async () => {
@@ -63,11 +61,9 @@ export function CreateStripeSession(
               const result = stripe.redirectToCheckout({
                 sessionId: sessionId,
               });
-              console.log("result", result);
               return result;
             }
           } catch (error) {
-            console.log("error log", error);
             dispatch(showGenericErrorDialog("There was an error with Stripe"));
           }
         };
