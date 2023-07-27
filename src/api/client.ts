@@ -1,7 +1,7 @@
 import axios from "axios";
 import settings from "../config/settings";
 
-const API_CLIENT = axios.create({
+const API_CLIENT = axios.create({ 
   baseURL: settings.apiUrl,
   timeout: 5000,
   headers: {
