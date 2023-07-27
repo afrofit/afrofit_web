@@ -1,0 +1,114 @@
+
+
+
+.Topcontainer{
+margin-top: 0;
+}
+
+.contactcard{
+  background: linear-gradient(230deg, #a6437d -9%, rgb(0, 0, 0) 28%, rgb(0, 0, 0) 26%);  padding: 2rem;
+  border-radius: 1rem;
+}
+
+
+.contact-heading{
+  font-size: 40px;
+  font-weight: 400px;
+  line-height: 1.2;
+  text-align: center;
+  border-radius: 2rem;
+}
+
+.checkboxes{
+display: flex;
+flex-direction: column;
+gap: 0.9rem;
+}
+.checkboxheader{
+  color: #a6437d;
+  font-weight: 600;
+}
+
+.checkboxchild{
+display: flex;
+align-items: center;
+gap: 0.5rem;
+}
+.checkboxdiv{
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.checkboxsize{
+  width: 20px;
+  height: 20px;
+  margin-left: 0;
+}
+.checkboxlabel{
+  font-weight: bolder;
+  color: white;
+}
+.radiobtn_maindiv{
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 1rem;
+}
+
+.radiobtn_header
+{
+  
+  color: #a6437d;
+  font-weight: 600;
+  
+
+}
+
+.radiobtn_childdiv{
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.radiobtn{
+  height: 3rem;
+  width: 25px;
+  margin-left: 0;
+}
+
+.radiobtnlabel{
+  font-weight: bolder;
+  color: white;
+}
+
+.textarea{
+  font-size: 1.1rem;
+  color: white;
+  width: 100%;
+  height: 13rem;
+  background: none;
+  border-radius: 1rem;
+  padding: 1rem;
+  outline: none;
+  border: 2px solid #a6437d;
+}
+
+.errorMessageTextare{
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 5px;
+
+}
+
+.btnsubmit
+{
+  background: linear-gradient(45deg, #a6437d, #a6437d);
+  width: 100%;
+  margin-top: 1rem;
+}
+
+
+
+
+
+
+

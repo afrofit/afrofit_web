@@ -11,7 +11,7 @@ import {
   Divider,
   Stack,
 } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { EXPIRE_TOKEN } from "../../../api/storage";
@@ -23,10 +23,21 @@ import { StyledNavLink } from "./StyledNavLink";
 
 interface Props {
   authorized: boolean | null;
+  getheaderH: any | null;
+  setGetheaderH: any | null;
 }
 
-export const AppHeader: React.FC<Props> = ({ authorized }) => {
+export const AppHeader: React.FC<Props> = ({
+  authorized,
+  getheaderH,
+  setGetheaderH,
+}) => {
   const [open, setOpen] = useState(false);
+  var offsetHeight = document.getElementById("header")?.offsetHeight;
+  useEffect(() => {
+    setGetheaderH(offsetHeight);
+  }, [offsetHeight]);
+  // console.log("offsetHeight", offsetHeight);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -51,13 +62,15 @@ export const AppHeader: React.FC<Props> = ({ authorized }) => {
   if (authorized)
     return (
       <Box
+        id="header"
+        className="header"
         sx={{
           display: "flex",
           height: "auto",
           justifyContent: "center",
           alignItems: "center",
           width: "100%",
-          position: "sticky",
+          position: "fixed",
           top: 0,
           zIndex: 99999,
           backgroundColor: "#242534",
@@ -66,6 +79,7 @@ export const AppHeader: React.FC<Props> = ({ authorized }) => {
         {/* mobile navbar start */}
 
         <Container
+          className="header-nav-logo-main"
           maxWidth="md"
           sx={{
             display: { xs: "flex", md: "none" },
@@ -79,6 +93,7 @@ export const AppHeader: React.FC<Props> = ({ authorized }) => {
           }}
         >
           <Box
+            className="header-nav-logo"
             sx={{
               height: "50px",
               cursor: "pointer",
@@ -99,7 +114,7 @@ export const AppHeader: React.FC<Props> = ({ authorized }) => {
           <Box
             sx={{
               display: "flex",
-              width: "70%",
+              // width: "70%",
               flexWrap: "wrap",
               justifyContent: "center",
             }}
@@ -125,6 +140,13 @@ export const AppHeader: React.FC<Props> = ({ authorized }) => {
             <Box>
               <StyledNavLink title="Faqs" route="/faqs" />
             </Box>
+            <Box>
+              <StyledNavLink title="Contact-us" route="/contact-us" />
+            </Box>
+            <Box>
+              <StyledNavLink title="CHALLENGE" route="/challenge" />
+            </Box>
+
             <Box>
               {token ? (
                 <StyledNavLink title="My Profile" route="/profile" />
@@ -246,6 +268,7 @@ export const AppHeader: React.FC<Props> = ({ authorized }) => {
           }}
         >
           <Box
+            className="header-nav-logo"
             sx={{
               height: "85px",
               cursor: "pointer",
@@ -257,21 +280,25 @@ export const AppHeader: React.FC<Props> = ({ authorized }) => {
             </a>
           </Box>
           <Stack
+            className="header-nav"
             width="100%"
             display="flex"
             flexDirection="row"
             justifyContent="space-between"
             alignItems="center"
+            flexWrap={"wrap"}
           >
             <Box
-              width={400}
+              // width={400}
               sx={{
                 display: "flex",
                 justifyContent: "flex-start",
+                whiteSpace: "nowrap",
               }}
             >
               <Stack
                 direction="row"
+                sx={{ flexWrap: "wrap", justifyContent: "center" }}
                 spacing={2}
                 divider={
                   <Divider
@@ -281,6 +308,7 @@ export const AppHeader: React.FC<Props> = ({ authorized }) => {
                       opacity: 0.2,
                       height: 0.3,
                       alignSelf: "center",
+                      display: "inline-block",
                     }}
                     flexItem
                   />
@@ -293,12 +321,16 @@ export const AppHeader: React.FC<Props> = ({ authorized }) => {
                 <StyledNavLink title="About" route="/about" />
                 <StyledNavLink title="Plans" route="/plan" />
                 <StyledNavLink title="FAQS" route="/faqs" />
+                <StyledNavLink title="Contact-us" route="/contact-us" />
+                <StyledNavLink title="CHALLENGE" route="/challenge" />
               </Stack>
             </Box>
 
             <Box
-              width={400}
+              className="header-nav-btn"
+              // width={400}
               sx={{
+                // marginLeft: "px",
                 display: "flex",
                 justifyContent: "flex-end",
                 alignItems: "center",
@@ -334,6 +366,7 @@ export const AppHeader: React.FC<Props> = ({ authorized }) => {
               ) : (
                 <Button
                   sx={{
+                    textAlign: "center",
                     backgroundColor: COLORS.purple_100,
                     paddingLeft: 2,
                     paddingRight: 2,

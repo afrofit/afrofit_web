@@ -29,8 +29,6 @@ const SetNewPasswordPage = () => {
   const [showPassword, setShowPassword] = React.useState(false);
   const [cShowPassword, setCShowPassword] = React.useState(false);
 
-  console.log(hash, userId);
-
   const { handleSubmit, control, reset } = useForm({
     resolver: yupResolver(changePassword),
     mode: "onBlur",

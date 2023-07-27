@@ -12,22 +12,17 @@ interface Props {}
 const EventsPage: React.FC<Props> = () => {
   const [EnentData, setEventData] = useState([]);
   const [Data, setData] = useState("");
-  console.log(EnentData, "EnentData");
   const param = useParams();
 
   const naivage = useNavigate();
 
   const events = async () => {
+    console.log("events1");
     const accessToken: any = sessionStorage.getItem(
       "STORAGE_TOKEN_KEY_standin"
     );
 
-    const response = await API_CLIENT.get("/events", {
-      headers: {
-        "x-auth-token": accessToken,
-        "content-type": "application/json",
-      },
-    });
+    const response = await API_CLIENT.get("/events");
 
     const data = await response.data.data;
     setEventData(data);
@@ -82,7 +77,7 @@ const EventsPage: React.FC<Props> = () => {
                           onClick={(e) => HandleClick(e, item.id)}
                           key={item.title}
                           sx={{
-                            width: "85%",
+                            width: "78%",
                             height: "auto",
                             background: "#f26c68",
                             borderRadius: "20px",
@@ -96,7 +91,7 @@ const EventsPage: React.FC<Props> = () => {
                               <img
                                 style={{
                                   height: "290px",
-                                  width: "320px",
+                                  width: "4000px",
                                   objectFit: "fill",
                                   backgroundColor: "#191919",
                                   maxHeight: "100%",

@@ -1,46 +1,47 @@
-import { AppThunk } from '../../../store'
-import { AxiosError } from 'axios'
+import { AppThunk } from "../../../store";
+import { AxiosError } from "axios";
 
 import {
   finishedRequest,
   hideGenericErrorDialog,
   newRequest,
   showGenericErrorDialog,
-} from '../../ui/ui.slice'
-import API_CLIENT from '../../../../api/client'
-import { setIsSubscribed } from '../../auth/auth.slice'
+} from "../../ui/ui.slice";
+import API_CLIENT from "../../../../api/client";
+import { setIsSubscribed } from "../../auth/auth.slice";
 
 const retrieveUserSubscription = async (userId: string) => {
-  return await API_CLIENT.post(`payments/retrieve-user-subscription/${userId}`)
-}
+  return await API_CLIENT.post(`payments/retrieve-user-subscription/${userId}`);
+};
 
 export function RetrieveUserSubscription(userId: string): AppThunk {
   return async (dispatch) => {
     try {
-      dispatch(newRequest())
-      dispatch(hideGenericErrorDialog())
+      dispatch(newRequest());
+      dispatch(hideGenericErrorDialog());
 
-      const response = await retrieveUserSubscription(userId)
-
+      const response = await retrieveUserSubscription(userId);
+      console.log(response, "response");
       if (response && response.data) {
-        const { activesSubscription, endDate } = response.data
+        const { activeSubscription, endDate } = response.data;
+
         dispatch(
           setIsSubscribed({
-            isSubscribed: activesSubscription,
+            isSubscribed: activeSubscription,
             endDate: endDate,
-          }),
-        )
+          })
+        );
       } else {
       }
 
-      dispatch(finishedRequest())
+      dispatch(finishedRequest());
     } catch (error) {
-      const err = error as AxiosError
+      const err = error as AxiosError;
       const errorMessage =
         (err.response?.data as string) ??
-        'An error occured trying to retrieve your subscription.'
-      dispatch(showGenericErrorDialog(errorMessage))
-      dispatch(finishedRequest())
+        "An error occured trying to retrieve your subscription.";
+      dispatch(showGenericErrorDialog(errorMessage));
+      dispatch(finishedRequest());
     }
-  }
+  };
 }

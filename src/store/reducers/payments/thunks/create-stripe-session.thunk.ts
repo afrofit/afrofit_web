@@ -20,9 +20,15 @@ const createStripeSessionApi = async (
     priceId,
   });
 };
+// live ni Keys
 
 const STRIPE_PUBLISHABLE_KEY =
   "pk_live_51LND6dG7Ijvv33NL0x0geQt3CMvxFgb787YfgUUdrIueMOCh51eUfOGxCYmYS2XWkFZPmL98rb77PcTUhyirgCN9004jfaKgGU";
+
+//  normAL KEY
+
+// const STRIPE_PUBLISHABLE_KEY =
+//   "pk_test_51MC0LySDRiBpbKJAVFMhNmB8cbDYJNOUI77xWNbwrm8cxmGF3rhSushliKGSo68Vn6vREfWKKblr3Sjve0S8NTRG00Yq5xx3XI";
 
 let stripePromise: Promise<Stripe | null>;
 const getStripe = async () => {
@@ -47,6 +53,7 @@ export function CreateStripeSession(
       if (response && response.data) {
         console.log(`response: ${JSON.stringify(response.data)}`);
         const { sessionId } = response.data;
+
         const redirectToCheckout = async () => {
           try {
             sessionStorage.setItem("userId", userId);

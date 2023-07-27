@@ -22,12 +22,15 @@ const ShopPage: React.FC<Props> = () => {
       "STORAGE_TOKEN_KEY_standin"
     );
 
-    const response = await API_CLIENT.get("/shops", {
-      headers: {
-        "x-auth-token": accessToken,
-        "content-type": "application/json",
-      },
-    });
+    const response = await API_CLIENT.get(
+      "/shops"
+      // , {
+      //   headers: {
+      //     "x-auth-token": accessToken,
+      //     "content-type": "application/json",
+      //   },
+      // }
+    );
 
     const data = await response.data.data;
     setShopData(data);
@@ -80,7 +83,7 @@ const ShopPage: React.FC<Props> = () => {
                       onClick={(e) => HandleClick(e, item.id)}
                       key={item.title}
                       sx={{
-                        width: "85%",
+                        width: "81%",
                         height: "auto",
                         background: "#f26c68",
                         borderRadius: "20px",

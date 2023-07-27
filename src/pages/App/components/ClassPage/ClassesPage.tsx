@@ -82,7 +82,7 @@ const ClassesPage: React.FC<Props> = () => {
                       onClick={(e) => HandleClick(e, item.id)}
                       key={item.title}
                       sx={{
-                        width: "85%",
+                        width: "81%",
                         height: "auto",
                         background: "#f26c68",
                         borderRadius: "20px",

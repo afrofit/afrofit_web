@@ -25,7 +25,6 @@ const handleTokenExpired = (exp: number) => {
   // Test token expires after 10s
   // const timeLeft = currentTime + 10000 - currentTime; // ~10s
   const timeLeft = exp * 1000 - currentTime;
-  console.log("timeLeft", timeLeft);
   clearTimeout(expiredTimer);
 
   expiredTimer = setTimeout(() => {

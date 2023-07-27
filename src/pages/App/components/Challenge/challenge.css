@@ -1,0 +1,439 @@
+
+.top-div{
+  padding: 0px 15px 0px 15px;
+  max-width: 1350px;
+    margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  flex: 1
+  ;
+}
+.challenge-main{
+background: black;
+}
+
+.header-fit{
+  display: flex;
+  justify-content: center;
+  color: white;
+  padding: 0 1rem;
+  align-items: center;
+  flex-direction: column;
+  background: linear-gradient(334deg, rgb(152, 112, 215) 13%, rgb(0, 0, 0) 12%, rgb(0, 0, 0) -2%); 
+
+}
+
+.header-fit1{
+
+  font-size: 2.3rem;
+  background: none;
+  height: 0px;
+
+
+  /* ========= */
+flex: 1;
+max-width: 100%;
+padding: 0px ;
+}
+
+.header-fit2{
+  margin-top: 0;
+  font-size: 2.7rem;
+  background: none;
+}
+/* =============================================================================== */
+
+.paragraph{
+  color:black;
+  background: white;
+  padding: 3%;
+}
+.paragraph-arrow-list
+{
+  width: 2rem; height: 2rem 
+
+}
+.paragraph-list{
+  color: black;
+  font-size: 1.3rem;
+  margin: 0.2rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+
+.Challenge-fit{
+  background: linear-gradient(148deg, rgb(0, 0, 0) -20%, rgb(249, 107, 104) 28%, #000 26%);
+
+}
+
+.Challenge-fit-h1{
+    color: white;
+     font-size: 2.3rem;
+     padding-top: 30px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     margin-bottom: 0px;
+}
+
+.Challenge-fit2{
+  display: flex;
+ 
+}
+.benefits{
+  background: white;
+  color: black;
+  padding: 3%;
+}
+.benefits-list{
+ color: black; font-size: 1.4rem; font-weight: 600; 
+}
+
+.img2{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: linear-gradient(230deg, rgb(152, 112, 215) -20%, rgb(0, 0, 0) 28%, rgb(152, 112, 215) 26%);
+}
+.image-list{
+  width: 33.33%;
+  padding: 2rem 2rem 2rem 2rem; 
+  border-radius: 10%;
+  overflow: hidden;
+}
+.img2-imgrop{
+
+  height: 100%;
+  width: 100%;
+ 
+}
+.firstGrpImg-div{
+  gap: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 1rem;
+
+}
+
+.firstGrpImg-div-inner > div {
+  width: 33.333%;
+  padding: 1rem;
+}
+.firstGrpImg-div-inner {
+  width:100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+.firstGrpImg-div-inner .firstGrpImg-img {
+  max-width: 100%;
+  border-radius: 10px;
+} 
+
+.firstGrpImg-text{
+  font-size: 1.1rem; color: white; font-weight: 900;
+
+}
+.firstGrpIm g-img{
+border-radius: 10px;
+}
+
+.attention-div{
+  
+    background-color: rgb(242,108,104);
+    border-radius: 50px;
+    margin-top: 1rem;
+  
+}
+.attention-div-2{
+  
+    color: BLACK;
+    font-size: 1.4rem;
+    font-weight: 600;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+  
+}
+.attention-div-img{
+ 
+    padding: 1rem 0rem 0rem 0.5rem;
+    color: BLACK;
+    font-size: 1.5  rem;
+    width: 100%;
+    font-weight: 800;
+    background: none;
+    border-radius: 50px;
+
+}
+
+
+
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.blinking-svg {
+  animation: blink 1s infinite;
+}
+
+@media screen and (max-width: 1440px)  {
+  .attention-div-2{
+font-size: 1.1rem;
+  }
+ 
+  
+  .benefits-list{
+    font-size: 1.3rem;
+  }
+  .paragraph{
+    padding: 0;
+  }
+.header-fit1{
+  padding: 26px 0 0 0 ;
+  font-size: 1.8rem;
+}
+.header-fit2{
+ margin: 0;
+  padding: 0;
+  font-size: 2rem;}
+
+.Challenge-fit-h1{
+  font-size: 1.8rem;
+}
+.paragraph-list{
+  font-size: 1.2rem;
+}
+
+
+  .firstGrpImg-text{
+    max-width: fit-content;
+    font-size: 22px;
+  }
+  
+
+}
+.attention-div-text2 {
+  display: flex ;
+  justify-content: center;
+  align-items: center;
+    font-size: 1.3rem ;
+  font-weight: 800;
+  padding: 0 2rem 2rem 2rem;
+    /* padding: 1rem 2rem 2rem 5rem; */
+}
+
+.whatsapp-text{
+  font-size: 1.7rem;
+  display: flex;
+  justify-content: center;  
+}
+.whatsapp-text2{
+
+  color:   black;
+  font-size: 3rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items : center;
+
+}
+.whatsapp-logo{
+  height:100%;
+  width:100%;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  
+}
+.HERE{
+  color: white; font-size: 2.5rem; margin-left: 2.5rem;
+
+}
+
+@media screen and (max-width: 960px) {
+  .attention-div-2{
+    font-size: 1.25rem;
+  }
+  .top-div{
+    padding: 0px 15px 0px 15px;
+  }
+  .attention-div-2{
+    font-size: 1.1rem;
+  }
+  .attention-div-img{
+    width: 200%;
+  }
+  
+}
+
+@media screen and (max-width: 800px) {
+ 
+  .firstGrpImg-text{
+    font-size: 18px;
+    padding: 0 0 0 61px;
+  }
+  .HERE{
+    font-size: 2rem;
+  }
+  .top-div{
+    padding: 0px 15px 0px 15px; 
+    max-width: 1350px;
+    margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  flex: 1
+  }
+  
+  .firstGrpImg-div{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+  }
+  .img2{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+  }
+  .firstGrpImg-div-inner {
+    width: 100%;
+  }
+  .image-list {
+    width: 100%;
+    padding:1rem;
+  }
+  .firstGrpImg-div-inner > div {
+    width: 100%;
+  }
+  .attention-div-2 {
+    flex-direction: column;
+    text-align: center;
+  }
+.attention-div-text2 {
+  flex-direction: column;
+  text-align: center;
+  font-size: 1rem ;
+  font-weight: 800;
+  padding: 0 1rem 1rem 1rem;
+}
+
+.whatsapp-text{
+  padding: 0 10px 0 34px;
+              font-size: 1.5rem;
+              display: flex;
+              justify-content: left;  
+              align-items: center;
+}
+
+.whatsapp-text2{
+
+   
+    padding: 0 0px;
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;  
+    align-items: center;
+    gap: 10px;
+  
+}
+
+  .attention-div-img{
+    max-width: 154px;
+  }
+  .Challenge-fit-img1{
+    padding: 0px 0rem 1.5rem;
+  }
+}
+  
+.whatsapp-main-div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.whatsapp-div{
+    height: 10%;
+    width: 10%;
+    padding-bottom: 15px;
+
+}
+@media screen and (max-width: 700px) {
+  .firstGrpImg-text{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0;}}
+
+@media screen and (max-width: 449px) {
+  .firstGrpImg-text{
+    padding: 0;
+  }
+  .top-div{
+    padding-top: 0px;
+  }
+  .whatsapp-main-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .whatsapp-div{
+    height: 20%;
+    width: 20%;
+    padding-bottom: 15px;
+  }
+}
+
+@media screen and (max-width: 400px) and (min-width: 300px) {
+  .whatsapp-text2{
+    font-size: 1.5rem;
+  }
+  .Challenge-fit-h1{
+    display: flex;
+    padding: 0 0 0 50px;
+  }
+  .firstGrpImg-text{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0 0 0 22px;
+
+  }
+  .top-div{
+    padding-top: 0px;
+  }
+  .whatsapp-main-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .whatsapp-div{
+    height: 20%;
+    width: 20%;
+    padding-bottom: 15px;
+  }
+}
+  
+
+
+
+
