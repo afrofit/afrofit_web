@@ -26,7 +26,6 @@ const ForgotPasswordPage = () => {
   });
 
   const onSubmit = (data: any) => {
-    console.log(data);
     const { email } = data;
 
     dispatch(SendPasswordResetLink(email));

@@ -19,6 +19,8 @@ const Plans = [
     bestVale: "",
     isSelected: false,
     priceId: "price_1MGgcXG7Ijvv33NLui6mDhQ7",
+    // priceId: "price_1MEvHYSDRiBpbKJAcRIoBWEn",
+
     subtitle1: "You can cancel at anytime.",
   },
   {
@@ -34,27 +36,28 @@ const Plans = [
     subtitle1: "You can cancel at anytime.",
   },
   {
-    maintitle: "£3.33 PER MONTH",
-    title1: "39.98",
-    title: "£19.99 for 6 months subscription",
+    maintitle: "£2.49  PER MONTH",
+    title1: "29.99",
+    title: "£14.99 for 6 months subscription",
     subtitle:
       "At the end of your trial your subscription will automatically rollover to a £19.99 six months subscription unless cancelled prior.",
     trial: "7-Day Free Trial",
     bestVale: "",
     isSelected: false,
-    priceId: "price_1MGggxG7Ijvv33NLoxKZ9JE4",
+    priceId: "price_1NTJouG7Ijvv33NLRvz6l36P",
     subtitle1: "You can cancel at anytime.",
   },
   {
-    maintitle: "£3.25 PER MONTH",
-    title1: "79.98",
-    title: "£39.00 for annual subscription",
+    maintitle: "£2.00  PER MONTH",
+    title1: "49.99",
+    title: "£24.99  for annual subscription",
     subtitle:
       "At the end of your trial your subscription will automatically rollover to a £39.00 annually subscription unless cancelled prior.",
     trial: "7-Day Free Trial",
     bestVale: "Best Value",
     isSelected: false,
-    priceId: "price_1MGghnG7Ijvv33NLY0BTnTYU",
+    priceId: "price_1NTJqXG7Ijvv33NLqlAaUF0r",
+
     subtitle1: "You can cancel at anytime.",
   },
 ];
@@ -65,7 +68,7 @@ function Plan() {
   const currentUser = useSelector(selectUser);
 
   const [PlanData, setPlanData] = useState(Plans);
-  const [showData, setShowData] = useState(false);
+  // const [showData, setShowData] = useState(false);
   const [priceId, setPriceId] = useState("");
 
   const { isMobile, isMobileM, isMobileL, isTablet, isLaptop } =
@@ -73,6 +76,7 @@ function Plan() {
 
   const handleSubmit = async () => {
     if (currentUser) {
+      console.log("currentUser", currentUser);
       const { email, userId } = currentUser;
       dispatch(CreateStripeSession(userId, email, priceId));
     } else {
@@ -85,7 +89,7 @@ function Plan() {
     var updateData = data.map((item, itemIndex) => {
       if (itemIndex === index) {
         item.isSelected = true;
-        setShowData(true);
+        // setShowData(true);
       } else {
         item.isSelected = false;
         // setShowData(false);
@@ -100,8 +104,18 @@ function Plan() {
       <Grid
         sx={
           isMobile || isMobileM || isMobileL || isTablet || isLaptop
-            ? { height: "360px", marginBottom: "15px", overflow: "auto" }
-            : { height: "580px", marginBottom: "15px", overflow: "auto" }
+            ? {
+                height: "360px",
+                marginBottom: "0px",
+                overflow: "auto",
+                paddingTop: "0px",
+              }
+            : {
+                height: "580px",
+                marginBottom: "0px",
+                overflow: "auto",
+                paddingTop: "0px",
+              }
         }
       >
         {PlanData.map((item, index) => {
@@ -118,7 +132,7 @@ function Plan() {
         })}
       </Grid>
 
-      {showData === true ? (
+      {/* {showData === true ? (
         <Box sx={{ margin: "auto", textAlign: "center" }}>
           <SmallButton
             title={"Next"}
@@ -128,7 +142,7 @@ function Plan() {
         </Box>
       ) : (
         ""
-      )}
+      )} */}
     </>
   );
 }

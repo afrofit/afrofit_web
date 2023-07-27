@@ -11,7 +11,6 @@ import {
 import { AppThunk } from "../../../store";
 
 const sendPasswordResetLinkApi = async (email: string) => {
-  console.log('email==>', email)
   return await API_CLIENT.post("users/send-password-reset-link", {
     email,
   });
@@ -26,7 +25,7 @@ export function SendPasswordResetLink(email: string): AppThunk {
       const response = await sendPasswordResetLinkApi(email);
       if (response && response.data) {
         console.log("Response from reset password", response.data);
-        dispatch(showGenericSuccessDialog('Your Request send Successfully'))
+        dispatch(showGenericSuccessDialog("Your Request send Successfully"));
         // dispatch(storeUserToken(response.data.token));
         // STORE_TOKEN(response.data.token);
       } else {

@@ -109,7 +109,11 @@ const JoinUsPage = () => {
           ""
         ) : (
           <StyledClearButton
-            onClick={() => navigation("/login")}
+            onClick={() => {
+              {
+                token ? navigation("/about") : navigation("/login");
+              }
+            }}
             title="I already have an account"
             color="fuschia"
           />

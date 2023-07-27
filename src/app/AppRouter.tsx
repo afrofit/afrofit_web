@@ -8,6 +8,7 @@ import { FullPageLoadingSpinner } from "../components/elements/FullPageLoadingSp
 import { useSelector } from "react-redux";
 import { selectUserIsLoggedIn } from "../store/reducers/auth/auth.slice";
 import Plan from "../pages/App/Plan";
+import Challenge from "../pages/App/components/Challenge";
 
 // No auth pages
 const WelcomePage = lazy(() => import("../pages/Auth/WelcomePage/WelcomePage"));
@@ -32,6 +33,9 @@ const EventsPage = lazy(
 );
 const MusicPage = lazy(() => import("../pages/App/MusicPage"));
 const Faqs = lazy(() => import("../pages/App/components/FaqPage/Faqs"));
+const ContactUs = lazy(
+  () => import("../pages/App/components/Contactus/Contactus")
+);
 
 const ProfilePage = lazy(() => import("../pages/App/ProfilePage"));
 const ShopPage = lazy(
@@ -50,6 +54,7 @@ const EventDetails = lazy(
   () => import("../pages/App/components/EventPage/EventDetails")
 );
 const PrivacyPage = lazy(() => import("../pages/App/PrivacyPage"));
+const HomePage = lazy(() => import("../pages/App/HomePage"));
 const BlogPage = lazy(() => import("../pages/App/BlogPage"));
 
 // Payment Pages
@@ -72,6 +77,18 @@ const PrivateRoute = ({ children }: any) => {
     // navigate('/login')
   }
 };
+const PublicRoute = ({ children }: any) => {
+  const token = sessionStorage.getItem("STORAGE_TOKEN_KEY_standin");
+  // const currentUser = useSelector(selectUserIsLoggedIn)
+  // const navigate = useNavigate()
+
+  if (!token) {
+    return <Navigate to="/" />;
+  } else {
+    return children;
+    // navigate('/login')
+  }
+};
 
 export const AppRouter: React.FC = () => {
   const currentUser = useSelector(selectUserIsLoggedIn);
@@ -82,10 +99,11 @@ export const AppRouter: React.FC = () => {
       <AppLayout authorized={currentUser}>
         <Routes>
           <Route path="blog" element={<BlogPage />} />
-
           <Route path="about" element={<MusicPage />} />
           <Route path="faqs" element={<Faqs />} />
           <Route path="plan" element={<Plan />} />
+          <Route path="contact-us" element={<ContactUs name="Name" />} />
+
           {/* // =================================== classes ================================ \\ */}
           <Route
             path="classes"
@@ -104,44 +122,6 @@ export const AppRouter: React.FC = () => {
             }
           />
 
-          {/* // =================================== events ================================ \\ */}
-
-          <Route
-            path="events"
-            element={
-              <PrivateRoute>
-                <EventsPage />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path={`events/eventDetails/:id`}
-            element={
-              <PrivateRoute>
-                <EventDetails />
-              </PrivateRoute>
-            }
-          />
-
-          {/* // =================================== shops ================================ \\ */}
-          {/* <Route path="shop" element={<ShopPage />} /> */}
-          <Route
-            path="shop"
-            element={
-              <PrivateRoute>
-                <ShopPage />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path={`shops/shopDetails/:id`}
-            element={
-              <PrivateRoute>
-                <ShopDetails />
-              </PrivateRoute>
-            }
-          />
-
           <Route
             path="profile"
             element={
@@ -151,23 +131,56 @@ export const AppRouter: React.FC = () => {
             }
           />
           <Route path="privacy" element={<PrivacyPage />} />
-          <Route path="*/*" element={<NotFoundPage />} />
           <Route path="payments">
-            <Route path="success" element={<PaymentSuccessPage />} />
-            <Route path="cancel" element={<PaymentFailurePage />} />
+            <Route
+              path="success"
+              element={
+                <PrivateRoute>
+                  <PaymentSuccessPage />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="cancel"
+              element={
+                <PrivateRoute>
+                  <PaymentFailurePage />
+                </PrivateRoute>
+              }
+            />
           </Route>
-          <Route path="/profile" element={<Navigate to="profile" />} />
-          <Route path="/" element={<WelcomePage />} />
-          {token ? "" : <Route path="login" element={<LoginPage />} />}
-          <Route path="join-us" element={<JoinUsPage />} />
-          {token ? "" : <Route path="register" element={<RegisterPage />} />}
-          <Route path="privacy" element={<PrivacyPage />} />
-          <Route path="forgot-password" element={<ForgotPasswordPage />} />
+
           <Route
-            path="set-new-password/:userId/:hash"
-            element={<SetNewPasswordPage />}
+            path="/profile"
+            element={
+              <PrivateRoute>
+                <Navigate to="profile" />
+              </PrivateRoute>
+            }
           />
+          <Route path="/" element={<HomePage />} />
+          {!token && <Route path="login" element={<LoginPage />} />}
+          {!token && <Route path="register" element={<RegisterPage />} />}
+          <Route path="forgot-password" element={<ForgotPasswordPage />} />
+          {!token && (
+            <Route
+              path="set-new-password/:userId/:hash"
+              element={<SetNewPasswordPage />}
+            />
+          )}
+          {/* // =================================== events ================================ \\ */}
+          <Route path="events" element={<EventsPage />} />
+          <Route path={`events/eventDetails/:id`} element={<EventDetails />} />
+          {/* // =================================== shops ================================ \\ */}
+
+          <Route path="shop" element={<ShopPage />} />
+          <Route path={`shops/shopDetails/:id`} element={<ShopDetails />} />
+          <Route path="challenge" element={<Challenge />} />
+
+          <Route path="join-us" element={<JoinUsPage />} />
+          <Route path="privacy" element={<PrivacyPage />} />
           <Route path="/" element={<Navigate replace to="Afrofit" />} />
+          <Route path="/*/" element={<NotFoundPage />} />
         </Routes>
       </AppLayout>
     </Suspense>

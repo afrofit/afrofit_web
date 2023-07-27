@@ -42,108 +42,143 @@ function SwipeableText() {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
-  // const handleStepChange = (step: number) => {
-  //   setActiveStep(step)
-  // }
-
   return (
-    <Box sx={{ flexGrow: 1, margin: "auto", position: "relative" }}>
-      <Button
-        sx={
-          isMobile || isMobileM || isMobileL || isTablet
-            ? { left: "0px", top: "2.5%", position: "absolute", zIndex: "9" }
-            : {
-                top: "50%",
-                position: "absolute",
-                left: "0",
-                zIndex: "9",
-                transform: "translateY(-50%)",
-              }
-        }
-        onClick={handleNext}
-        disabled={activeStep === 0}
-      >
-        <ArrowBackIosNewIcon
-          sx={{ color: activeStep === 0 ? "gray" : "white" }}
-        />
-      </Button>
-      <AutoPlaySwipeableViews
-        axis={theme.direction === "rtl" ? "x-reverse" : "x"}
-        index={activeStep}
-        // onChangeIndex={handleStepChange}
-        enableMouseEvents
-      >
-        {imgData &&
-          imgData.map((step: any, index: number) => (
-            <div
-              key={step.title}
-              style={
-                isMobile || isMobileM || isMobileL || isTablet
-                  ? { padding: " 0 15px" }
-                  : { padding: "0 60px" }
-              }
-            >
-              {Math.abs(activeStep - index) <= 2 ? (
-                <>
-                  <Typography
-                    sx={{
-                      marginTop: "15px",
-                      fontWeight: "bold",
-                      fontSize: "20px",
-                      color: "#ffff",
-                      textAlign: "center",
-                    }}
-                  >
-                    {`"${step?.title}"`}
-                  </Typography>
+    <>
+      {imgData.length > 0 ? (
+        <Box
+          className="carousel-main-content"
+          style={{
+            flexGrow: 1,
+            position: "relative",
+            maxWidth: "1000px",
+            margin: "0 auto",
+          }}
+        >
+          <Button
+            className="left-btn-arrorw-text"
+            sx={
+              isMobile || isMobileM || isMobileL || isTablet
+                ? {
+                    left: "0px",
+                    top: "2.5%",
+                    position: "absolute",
+                    zIndex: "9",
+                  }
+                : {
+                    top: "50%",
+                    position: "absolute",
+                    left: "0",
+                    zIndex: "9",
+                    transform: "translateY(-50%)",
+                  }
+            }
+            onClick={handleNext}
+            disabled={activeStep === 0}
+          >
+            <ArrowBackIosNewIcon
+              sx={{ color: activeStep === 0 ? "gray" : "white" }}
+            />
+          </Button>
+          <AutoPlaySwipeableViews
+            className="div-for-carousel"
+            axis={theme.direction === "rtl" ? "x-reverse" : "x"}
+            index={activeStep}
+            // onChangeIndex={handleStepChange}
+            enableMouseEvents
+          >
+            {imgData &&
+              imgData.map((step: any, index: number) => (
+                <div
+                  key={step.title}
+                  style={
+                    isMobile || isMobileM || isMobileL || isTablet
+                      ? { padding: " 0 15px", height: "100%" }
+                      : { padding: "0 60px", height: "100%" }
+                  }
+                >
+                  {Math.abs(activeStep - index) <= 2 ? (
+                    <>
+                      <div
+                        className="step"
+                        style={{
+                          wordWrap: "break-word",
+                          width: "100%",
+                          marginTop: "-50px",
+                          overflow: "hidden",
+                          margin: "auto",
+                          backgroundColor: "#644998",
+                          borderRadius: "10px",
+                          border: "5px solid #fff",
+                          display: "flex",
+                          height: "100%",
 
-                  <Typography
-                    sx={{
-                      textAlign: "left",
-                      fontSize: "20px",
-                      color: COLORS.whiteblue,
-                      marginTop: "10px",
-                    }}
-                  >
-                    {`"${step?.description}"`}
-                  </Typography>
+                          alignItems: "center",
+                        }}
+                      >
+                        <div className="review">
+                          <Typography className="review-text-title">
+                            {`"${step?.title}"`}
+                          </Typography>
 
-                  <Typography
-                    sx={{
-                      marginTop: "15px",
-                      fontWeight: "bold",
-                      fontSize: "18px",
-                      textAlign: "center",
-                      color: COLORS.orange_200,
-                    }}
-                  >
-                    {step?.name}
-                  </Typography>
-                </>
-              ) : null}
-            </div>
-          ))}
-      </AutoPlaySwipeableViews>
-      <Button
-        sx={
-          isMobile || isMobileM || isMobileL || isTablet
-            ? { right: "0px", top: "2.5%", position: "absolute", zIndex: "9" }
-            : {
-                top: "50%",
-                position: "absolute",
-                right: "0",
-                zIndex: "9",
-                transform: "translateY(-50%)",
-              }
-        }
-        onClick={handleBack}
-        disabled={activeStep === maxqSteps - 1}
-      >
-        <ArrowForwardIosIcon
-          sx={{ color: activeStep === maxqSteps - 1 ? "gray" : "white" }}
-        />
-      </Button>
-    </Box>
+                          <Typography
+                            className="review-text-description"
+                            sx={{
+                              textAlign: "center",
+                              fontSize: "1rem",
+                              marginTop: "10px",
+                              paddingLeft: "0px",
+                              fontFamily: "'Montserrat', sans-serif",
+                              lineHeight: "1.4rem",
+                              color: COLORS.white,
+                            }}
+                          >
+                            {`"${step?.description}"`}
+                          </Typography>
+                          <Typography
+                            className="review-text-name"
+                            sx={{
+                              color: COLORS.orange_200,
+                            }}
+                          >
+                            {step?.name}
+                          </Typography>
+                        </div>
+                      </div>
+                    </>
+                  ) : null}
+                </div>
+              ))}
+          </AutoPlaySwipeableViews>
+          <Button
+            className="right-btn-arrorw-text"
+            sx={
+              isMobile || isMobileM || isMobileL || isTablet
+                ? {
+                    right: "0px",
+                    top: "2.5%",
+                    position: "absolute",
+                    zIndex: "9",
+                  }
+                : {
+                    top: "50%",
+                    position: "absolute",
+                    right: "0",
+                    zIndex: "9",
+                    transform: "translateY(-50%)",
+                  }
+            }
+            onClick={handleBack}
+            disabled={activeStep === maxqSteps - 1}
+          >
+            <ArrowForwardIosIcon
+              sx={{ color: activeStep === maxqSteps - 1 ? "gray" : "white" }}
+            />
+          </Button>
+        </Box>
+      ) : (
+        <></>
+      )}
+    </>
   );
 }
 

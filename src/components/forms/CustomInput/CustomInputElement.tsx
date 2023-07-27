@@ -1,89 +1,94 @@
-import * as React from 'react'
+import * as React from "react";
 import {
   IconWrapper,
   StyledInput,
   StyledInputWrapper,
   StyledWrapper,
-} from './styled'
-import { Mail, Lock, User, Eye, EyeOff } from 'react-feather'
-import { COLORS } from '../../../constants/colors'
-import { Typography } from '@mui/material'
-import { Controller } from 'react-hook-form'
+} from "./styled";
+import { Mail, Lock, User, Eye, EyeOff } from "react-feather";
+import { COLORS } from "../../../constants/colors";
+import { Typography } from "@mui/material";
+import { Controller } from "react-hook-form";
 
 interface Props {
-  name: string
-  type?: 'text' | 'email' | 'password'
-  label?: string
-  control: any
-  placeholder?: string
-  icon?: 'person' | 'mail' | 'lock' | 'user'
-  showpassIcon?: 'eye'
-  hidepassIcon?: 'eyeOff'
-  showPassword?: any
-  setShowPassword?: any
-  cShowPassword?: any
-  setCShowPassword?: any
+  name: string;
+  type?: "text" | "email" | "password" | "number";
+  label?: string;
+  control: any;
+  placeholder?: string;
+  icon?: "person" | "mail" | "lock" | "user";
+  showpassIcon?: "eye";
+  hidepassIcon?: "eyeOff";
+  showPassword?: any;
+  setShowPassword?: any;
+  cShowPassword?: any;
+  setCShowPassword?: any;
 }
 
 export const CustomInputElement: React.FC<Props> = ({
   name,
-  type = 'text',
+  type = "text",
   label,
   control,
   placeholder,
-  icon = 'user',
+  icon = "user",
   showPassword,
   setShowPassword,
   cShowPassword,
   setCShowPassword,
 }) => {
-  const [focused, setFocused] = React.useState(false)
+  const [focused, setFocused] = React.useState(false);
 
   const getIcon = React.useCallback(() => {
-    if (icon === 'user')
+    if (icon === "user")
       return (
         <User
           color={focused ? COLORS.gold : COLORS.whiteblue}
           size={focused ? 30 : 25}
         />
-      )
-    if (icon === 'mail')
+      );
+    if (icon === "mail")
       return (
         <Mail
           color={focused ? COLORS.gold : COLORS.whiteblue}
           size={focused ? 30 : 25}
         />
-      )
-    if (icon === 'lock')
+      );
+    if (icon === "lock")
       return (
         <Lock
           color={focused ? COLORS.gold : COLORS.whiteblue}
           size={focused ? 30 : 25}
         />
-      )
+      );
     return (
       <User
         color={focused ? COLORS.gold : COLORS.whiteblue}
         size={focused ? 30 : 25}
       />
-    )
-  }, [icon, focused])
-
+    );
+  }, [icon, focused]);
   return (
     <Controller
       name={name}
       control={control}
       render={({
-        field: { onBlur, onChange, value = '', name },
+        field: { onBlur, onChange, value = "", name },
         fieldState: { error },
       }) => (
-        <StyledWrapper>
+        <StyledWrapper
+          style={{
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+            overflowWrap: "break-word",
+          }}
+        >
           {label && (
             <Typography
               sx={{
                 color: COLORS.hilite_purpink,
                 marginBottom: 1,
-                textTransform: 'uppercase',
+                textTransform: "uppercase",
                 fontSize: 15,
                 letterSpacing: 1,
               }}
@@ -91,34 +96,101 @@ export const CustomInputElement: React.FC<Props> = ({
               {label}
             </Typography>
           )}
-          <StyledInputWrapper focused={focused}>
+          <StyledInputWrapper
+            focused={focused}
+            style={{
+              whiteSpace: "nowrap",
+              overflow: "hidden",
+              overflowWrap: "break-word",
+            }}
+          >
             <IconWrapper>{getIcon()}</IconWrapper>
-            <StyledInput
-              onFocus={() => setFocused(true)}
-              onBlur={() => {
-                setFocused(false)
-                return onBlur()
-              }}
-              type={type}
-              name={name}
-              placeholder={placeholder}
-              autoComplete="new-password"
-              value={value}
-              onChange={onChange}
-              autoFocus={false}
-            />
-            {name === 'password' || name === 'confirm_password' ? (
+            {name === "message" ? (
+              <StyledInput
+                onFocus={() => setFocused(true)}
+                onBlur={() => {
+                  setFocused(false);
+                  return onBlur();
+                }}
+                type="text"
+                // type={type}
+                name={name}
+                placeholder={placeholder}
+                value={value}
+                onChange={onChange}
+                autoFocus={false}
+                style={{
+                  width: "100%",
+                  height: "8rem",
+                  // overflow: "initial",
+                  // wordWrap: "break-word",
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  overflowWrap: "break-word",
+                }}
+              />
+            ) : name === "phoneNumber" ? (
+              <StyledInput
+                onFocus={() => setFocused(true)}
+                onBlur={() => {
+                  setFocused(false);
+                  return onBlur();
+                }}
+                // type={"number"}
+                name={name}
+                placeholder={placeholder}
+                autoComplete="new-password"
+                value={value}
+                onChange={onChange}
+                autoFocus={false}
+                type="number"
+                maxLength={14}
+              />
+            ) : name === "email" ? (
+              <StyledInput
+                onFocus={() => setFocused(true)}
+                onBlur={() => {
+                  setFocused(false);
+                  return onBlur();
+                }}
+                // type={"number"}
+                name={name}
+                placeholder={placeholder}
+                autoComplete="new-password"
+                value={value}
+                onChange={onChange}
+                autoFocus={false}
+                type="email"
+              />
+            ) : (
+              <StyledInput
+                onFocus={() => setFocused(true)}
+                onBlur={() => {
+                  setFocused(false);
+                  return onBlur();
+                }}
+                type={type}
+                name={name}
+                placeholder={placeholder}
+                autoComplete="new-password"
+                value={value}
+                onChange={onChange}
+                autoFocus={false}
+              />
+            )}
+
+            {name === "password" || name === "confirm_password" ? (
               <IconWrapper
                 onClick={(e) => {
-                  if (name === 'password') {
-                    setShowPassword(!showPassword)
+                  if (name === "password") {
+                    setShowPassword(!showPassword);
                   }
-                  if (name === 'confirm_password') {
-                    setCShowPassword(!cShowPassword)
+                  if (name === "confirm_password") {
+                    setCShowPassword(!cShowPassword);
                   }
                 }}
               >
-                {name === 'password' &&
+                {name === "password" &&
                   (!showPassword ? (
                     <EyeOff
                       color={focused ? COLORS.gold : COLORS.whiteblue}
@@ -130,7 +202,7 @@ export const CustomInputElement: React.FC<Props> = ({
                       size={focused ? 30 : 25}
                     />
                   ))}
-                {name === 'confirm_password' &&
+                {name === "confirm_password" &&
                   (cShowPassword ? (
                     <Eye
                       color={focused ? COLORS.gold : COLORS.whiteblue}
@@ -138,9 +210,9 @@ export const CustomInputElement: React.FC<Props> = ({
                     />
                   ) : (
                     <EyeOff
-                    color={focused ? COLORS.gold : COLORS.whiteblue}
-                    size={focused ? 30 : 25}
-                  />
+                      color={focused ? COLORS.gold : COLORS.whiteblue}
+                      size={focused ? 30 : 25}
+                    />
                   ))}
               </IconWrapper>
             ) : null}
@@ -148,9 +220,9 @@ export const CustomInputElement: React.FC<Props> = ({
           {error && (
             <Typography
               sx={{
-                fontSize: '14px',
+                fontSize: "14px",
                 fontWeight: 500,
-                marginTop: '5px',
+                marginTop: "5px",
                 color: COLORS.orange_200,
               }}
             >
@@ -160,5 +232,5 @@ export const CustomInputElement: React.FC<Props> = ({
         </StyledWrapper>
       )}
     />
-  )
-}
+  );
+};

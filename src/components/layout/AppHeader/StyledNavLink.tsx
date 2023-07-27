@@ -13,7 +13,7 @@ const activeLinkStyle = {
   color: COLORS.fuschia,
   padding: "8px 12px",
   textDecoration: `none`,
-  width: "100%",
+  // width: "100%",
   height: 30,
   display: "flex",
   alignItems: "center",
@@ -22,6 +22,7 @@ const activeLinkStyle = {
 export const StyledNavLink: React.FC<Props> = ({ title, onClick, route }) => {
   return (
     <NavLink
+      className="navlink1"
       to={`${route}`}
       onClick={onClick}
       style={({ isActive }) =>
@@ -30,8 +31,8 @@ export const StyledNavLink: React.FC<Props> = ({ title, onClick, route }) => {
           : {
               ...activeLinkStyle,
               color: COLORS.hilite_purpink,
-              width: "100%",
               textDecoration: "none",
+              display: "inline-block",
             }
       }
     >
