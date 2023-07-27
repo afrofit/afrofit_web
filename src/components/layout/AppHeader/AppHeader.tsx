@@ -37,7 +37,6 @@ export const AppHeader: React.FC<Props> = ({
   useEffect(() => {
     setGetheaderH(offsetHeight);
   }, [offsetHeight]);
-  // console.log("offsetHeight", offsetHeight);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();

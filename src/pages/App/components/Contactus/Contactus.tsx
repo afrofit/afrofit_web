@@ -1,16 +1,16 @@
-import { Button, Card, Container, Stack, Typography } from '@mui/material';
-import { useEffect, useState } from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import { CustomInputElement } from '../../../../components/forms/CustomInput/CustomInputElement';
-import { StyledInput } from '../../../../components/forms/CustomInput/styled';
-import { COLORS } from '../../../../constants/colors';
+import { Button, Card, Container, Stack, Typography } from "@mui/material";
+import { useEffect, useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { CustomInputElement } from "../../../../components/forms/CustomInput/CustomInputElement";
+import { StyledInput } from "../../../../components/forms/CustomInput/styled";
+import { COLORS } from "../../../../constants/colors";
 
-import { ButtonText } from '../../../../components/elements/StyledLargeButton/styled';
-import API_CLIENT from '../../../../api/client';
-import { Snackbar } from '@mui/material';
-import { makeStyles } from '@mui/styles';
-import '../Contactus/Contactus.css';
-import { Height } from '@mui/icons-material';
+import { ButtonText } from "../../../../components/elements/StyledLargeButton/styled";
+import API_CLIENT from "../../../../api/client";
+import { Snackbar } from "@mui/material";
+import { makeStyles } from "@mui/styles";
+import "../Contactus/Contactus.css";
+import { Height } from "@mui/icons-material";
 type FormData = {
   name: string;
   phoneNumber: number;
@@ -24,14 +24,14 @@ type FormData = {
 interface Props {
   name: string;
 
-  icon?: 'person' | 'mail' | 'lock' | 'user';
+  icon?: "person" | "mail" | "lock" | "user";
 }
-const ContactUs: React.FC<Props> = ({ icon = 'user', name }) => {
-  const [selectedOption, setSelectedOption] = useState('');
+const ContactUs: React.FC<Props> = ({ icon = "user", name }) => {
+  const [selectedOption, setSelectedOption] = useState("");
   const [checkboxes, setCheckboxes]: any = useState({
     checkbox1: false,
     checkbox2: false,
-    textarea: '',
+    textarea: "",
     ErrorTextarea: false,
     Snackbar: false,
   });
@@ -60,9 +60,7 @@ const ContactUs: React.FC<Props> = ({ icon = 'user', name }) => {
       return false;
     } else {
       // let formData = new FormData();
-      // console.log("data", data);
-      // console.log("checkboxes", checkboxes);
-      // console.log("selectedOption", selectedOption);
+
       // formData.append("name", data?.name);
       const response = await API_CLIENT.post(`/contact/create`, {
         name: data?.name,
@@ -78,11 +76,11 @@ const ContactUs: React.FC<Props> = ({ icon = 'user', name }) => {
       setCheckboxes({
         checkbox1: false,
         checkbox2: false,
-        textarea: '',
+        textarea: "",
         ErrorTextarea: false,
         Snackbar: true,
       });
-      setSelectedOption('');
+      setSelectedOption("");
     }
   };
 
@@ -110,9 +108,9 @@ const ContactUs: React.FC<Props> = ({ icon = 'user', name }) => {
   };
   const useStyles = makeStyles((theme) => ({
     root: {
-      '& .MuiSnackbarContent-root': {
+      "& .MuiSnackbarContent-root": {
         backgroundImage: `linear-gradient(45deg, ${COLORS.orange_200}, ${COLORS.hilite_purpink})`, // Replace with your desired background color
-        color: 'white', // Replace with your desired text color
+        color: "white", // Replace with your desired text color
       },
     },
   }));
@@ -127,15 +125,15 @@ const ContactUs: React.FC<Props> = ({ icon = 'user', name }) => {
           sx={{
             color: COLORS.white,
             backgroundImage: `linear-gradient(45deg, ${COLORS.orange_200}, ${COLORS.hilite_purpink})`,
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
           }}
         >
           Contact US
         </Typography>
-        <div style={{ marginBottom: '1rem' }}>
+        <div style={{ marginBottom: "1rem" }}>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <Card sx={{ background: 'none' }}>
+            <Card sx={{ background: "none" }}>
               <Stack
                 display="flex"
                 flexDirection="column"
@@ -148,7 +146,7 @@ const ContactUs: React.FC<Props> = ({ icon = 'user', name }) => {
                   placeholder="Your Name.."
                   type="text"
                   icon="user"
-                  {...register('name', { required: 'Name is required' })}
+                  {...register("name", { required: "Name is required" })}
                 />
                 <CustomInputElement
                   label="Email"
@@ -156,11 +154,11 @@ const ContactUs: React.FC<Props> = ({ icon = 'user', name }) => {
                   placeholder="Your Email.."
                   type="email"
                   icon="mail"
-                  {...register('email', {
-                    required: 'Email is required',
+                  {...register("email", {
+                    required: "Email is required",
                     pattern: {
                       value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                      message: 'Invalid email address',
+                      message: "Invalid email address",
                     },
                   })}
                 />
@@ -169,12 +167,12 @@ const ContactUs: React.FC<Props> = ({ icon = 'user', name }) => {
                   control={control}
                   placeholder="Your contact..."
                   icon="person"
-                  {...register('phoneNumber', {
-                    required: 'Phone number is required',
+                  {...register("phoneNumber", {
+                    required: "Phone number is required",
                     pattern: {
                       value: /^\d{1,14}$/,
                       message:
-                        'Invalid phone number (must be less than 14 digits)',
+                        "Invalid phone number (must be less than 14 digits)",
                     },
                   })}
                 />
@@ -185,10 +183,10 @@ const ContactUs: React.FC<Props> = ({ icon = 'user', name }) => {
                 <div className="checkboxdiv">
                   <StyledInput
                     style={{
-                      width: '20px',
-                      height: '20px',
+                      width: "20px",
+                      height: "20px",
 
-                      marginLeft: '0',
+                      marginLeft: "0",
                     }}
                     className="checkboxsize"
                     name="checkbox1"
@@ -202,16 +200,16 @@ const ContactUs: React.FC<Props> = ({ icon = 'user', name }) => {
                 </div>
                 <div
                   style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '0.5rem',
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.5rem",
                   }}
                 >
                   <StyledInput
                     style={{
-                      width: '20px',
-                      height: '20px',
-                      marginLeft: '0',
+                      width: "20px",
+                      height: "20px",
+                      marginLeft: "0",
                     }}
                     className="checkboxsize"
                     type="checkbox"
@@ -234,7 +232,7 @@ const ContactUs: React.FC<Props> = ({ icon = 'user', name }) => {
                     className="radiobtn"
                     type="radio"
                     value="For Afrofit App"
-                    checked={selectedOption === 'For Afrofit App'}
+                    checked={selectedOption === "For Afrofit App"}
                     onChange={handleOptionChange}
                   />
                   <label className="radiobtnlabel">For Afrofit App</label>
@@ -246,7 +244,7 @@ const ContactUs: React.FC<Props> = ({ icon = 'user', name }) => {
                     className="radiobtn"
                     type="radio"
                     value="For 30 days booth camp"
-                    checked={selectedOption === 'For 30 days booth camp'}
+                    checked={selectedOption === "For 30 days booth camp"}
                     onChange={handleOptionChange}
                   />
                   <label className="radiobtnlabel">30 days Challenge</label>
@@ -259,7 +257,7 @@ const ContactUs: React.FC<Props> = ({ icon = 'user', name }) => {
                     className="radiobtn"
                     type="radio"
                     value=" For General Enquiries"
-                    checked={selectedOption === ' For General Enquiries'}
+                    checked={selectedOption === " For General Enquiries"}
                     onChange={handleOptionChange}
                   />
                   <label className="radiobtnlabel">For General Enquiries</label>
@@ -292,8 +290,8 @@ const ContactUs: React.FC<Props> = ({ icon = 'user', name }) => {
                 }}
                 classes={{ root: classes.root }}
                 anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
+                  vertical: "top",
+                  horizontal: "right",
                 }}
                 open={checkboxes.Snackbar}
                 onClose={() =>

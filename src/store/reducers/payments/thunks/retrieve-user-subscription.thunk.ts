@@ -21,7 +21,6 @@ export function RetrieveUserSubscription(userId: string): AppThunk {
       dispatch(hideGenericErrorDialog());
 
       const response = await retrieveUserSubscription(userId);
-      console.log(response, "response");
       if (response && response.data) {
         const { activeSubscription, endDate } = response.data;
 

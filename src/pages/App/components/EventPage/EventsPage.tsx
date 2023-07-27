@@ -17,7 +17,6 @@ const EventsPage: React.FC<Props> = () => {
   const naivage = useNavigate();
 
   const events = async () => {
-    console.log("events1");
     const accessToken: any = sessionStorage.getItem(
       "STORAGE_TOKEN_KEY_standin"
     );

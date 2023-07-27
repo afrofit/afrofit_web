@@ -32,7 +32,6 @@ export const PlanCard: React.FC<Props> = ({
   const navigate = useNavigate();
 
   const handleSubmit = async (priceId: any) => {
-    console.log("currentUser-plan", currentUser);
     if (currentUser) {
       const { email, userId }: any = currentUser;
       dispatch(CreateStripeSession(userId, email, priceId));

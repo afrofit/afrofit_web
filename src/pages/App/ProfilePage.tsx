@@ -37,7 +37,6 @@ const ProfilePage: React.FC<Props> = () => {
   const currentUser = useSelector(selectUser);
   const userPerformance = useSelector(selectUserPerformance);
   const isSubscribed = useSelector(selectUserIsSubscribed);
-  console.log("isSubscribed", isSubscribed);
   const endDate = useSelector(endSubcribtionDate);
   const [image, setImage] = React.useState("");
 

@@ -23,7 +23,6 @@ function SwipeableImage() {
   //   (item: { imageUrl: string }) =>
   //     item?.imageUrl !== "" || item?.imageUrl !== undefined
   // );
-  // console.log("imgData", imgData);
   const imgData = data?.filter((item: any) => item.hasOwnProperty("imageUrl"));
 
   const maxqSteps = imgData && imgData.length;
