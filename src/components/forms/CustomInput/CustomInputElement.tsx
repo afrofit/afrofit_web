@@ -219,6 +219,7 @@ export const CustomInputElement: React.FC<Props> = ({
           </StyledInputWrapper>
           {error && (
             <Typography
+              className="error-register"
               sx={{
                 fontSize: "14px",
                 fontWeight: 500,
