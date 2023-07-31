@@ -50,6 +50,9 @@ input:-webkit-autofill::first-line {
 
 
 @media screen and (max-width: 390px) {
+    .css-1b402ef-MuiTypography-root.error-register{
+        font-size: 7px;
+    }
     
     .footericon.MuiBox-root.css-1najy0k {
         display: flex;
@@ -67,7 +70,9 @@ input:-webkit-autofill::first-line {
 
 }
 @media screen and (max-width: 375px) {
-    
+    .css-1b402ef-MuiTypography-root.error-register{
+        font-size: 3px;
+    }
     .footericon.css-13utstl {
         /* display: flex; */
         justify-content: center;
@@ -83,7 +88,9 @@ input:-webkit-autofill::first-line {
 }
 
 @media screen and (max-width: 426px) {
-    
+    .css-1b402ef-MuiTypography-root.error-register{
+        font-size: 11px;
+    }
     .footericon.css-13utstl {
         display: flex;
         justify-content: center;

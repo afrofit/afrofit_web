@@ -121,13 +121,25 @@ const Challenge = () => {
 
         <div className="img2">
           <div className="image-list">
-            <img src={img4} className="img2-imgrop" />
+            <img
+              src={img4}
+              className="img2-imgrop"
+              style={{ borderRadius: "10%" }}
+            />
           </div>
           <div className="image-list">
-            <img src={img1} className="img2-imgrop" />
+            <img
+              style={{ borderRadius: "10%" }}
+              src={img1}
+              className="img2-imgrop"
+            />
           </div>
           <div className="image-list">
-            <img src={img5} className="img2-imgrop" />
+            <img
+              style={{ borderRadius: "10%" }}
+              src={img5}
+              className="img2-imgrop"
+            />
           </div>
         </div>
 

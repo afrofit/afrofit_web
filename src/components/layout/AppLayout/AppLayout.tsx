@@ -12,6 +12,10 @@ interface Props {
 
 export const AppLayout: React.FC<Props> = ({ children, authorized }) => {
   const location = useLocation();
+
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
   const [getheaderH, setGetheaderH] = React.useState<any>("");
 
   const LandingPage = location?.pathname?.length == 1;
