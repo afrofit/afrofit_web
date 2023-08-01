@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { Box, Grid, Stack, Typography } from "@mui/material";
+import { Alert, Box, Grid, Stack, Typography } from "@mui/material";
 import { PageLayout } from "../../components/layout/PageLayout/PageLayout";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -149,6 +149,22 @@ const ProfilePage: React.FC<Props> = () => {
           />
           <RankCard rank={1} />
         </Grid>
+        {isSubscribed && (
+          <div
+            style={{
+              paddingBottom: "20px",
+            }}
+          >
+            <Alert
+              variant="filled"
+              severity="success"
+              style={{ width: "100%", justifyContent: "center" }}
+            >
+              " To begin visit the AFROFIT APP on your device now and log in
+              with your user name and password"
+            </Alert>
+          </div>
+        )}
         <Typography
           sx={{
             color: COLORS.white,
