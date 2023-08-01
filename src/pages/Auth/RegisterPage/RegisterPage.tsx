@@ -60,6 +60,12 @@ const schema = z
         /^(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~|\\\/])/,
         "At least one special letter required"
       )
+      // .regex(
+      //   /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~|\\\/])(?=.*\d)[A-Za-z\d!@#$%^&*()_+{}\[\]:;<br>,.?~|\\\/]{8,}$/,
+      //   "Password must contain at least one uppercase letter," +
+      //     <br /> +
+      //     "one lowercase letter, one special character, and \n one number. Minimum length is 8 characters."
+      // )
       .min(8, { message: "Atleast 8 characters required" })
       .max(16, { message: "Must be at most 16 characters" }),
     confirm_password: z.string().min(1, { message: "Required" }),

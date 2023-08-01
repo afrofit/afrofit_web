@@ -225,6 +225,9 @@ export const CustomInputElement: React.FC<Props> = ({
                 fontWeight: 500,
                 marginTop: "5px",
                 color: COLORS.orange_200,
+                // wordBreak: "normal",
+                // width: "100%",
+                // whiteSpace: "initial",
               }}
             >
               {error.message}
