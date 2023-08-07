@@ -272,8 +272,8 @@ const Challenge = () => {
             </div>
           </div>
           <h2 className="whatsapp-text">
-            TO RESERVE A PLACE. REPLY “YES” VIA OUR WHATSAPP NUMBER TO VIA OUR
-            WHATSAPP AND A MEMBER OF OUR WILL NOT WE CONTACT YOU
+            TO RESERVE A PLACE. REPLY “YES” TO VIA OUR WHATSAPP LINK BELOW AND A
+            MEMBER OF OUR TEAM WILL CONTACT YOU WITHIN 24HRS
           </h2>
           <div className="whatsapp-main-div">
             <h2 className="whatsapp-text2">CONTACT US ON WHATSAPP NOW -</h2>
