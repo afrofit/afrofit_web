@@ -27,9 +27,9 @@ interface Props {
   icon?: "person" | "mail" | "lock" | "user";
 }
 const ContactUs: React.FC<Props> = ({ icon = "user", name }) => {
-  const [selectedOption, setSelectedOption] = useState("");
+  const [selectedOption, setSelectedOption] = useState("For Afrofit App");
   const [checkboxes, setCheckboxes]: any = useState({
-    checkbox1: false,
+    checkbox1: true,
     checkbox2: false,
     textarea: "",
     ErrorTextarea: false,
