@@ -33,7 +33,7 @@ const Challenge = () => {
 
         <div className="Challenge-fit">
           <h1 className="Challenge-fit-h1">
-            The 30 Day Online Fit Body Challenge
+            The 30 Days Online Fit Body Challenge
           </h1>
           <div
             className="Challenge-fit-img1"
