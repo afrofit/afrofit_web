@@ -258,9 +258,7 @@ const Challenge = () => {
               coaching would normally cost you an average of £1000 but we
               believe an effective weight loss program that brings result should
               not cost you an arm and leg that is why we are making our winning
-              formula very affordable for you at just £99, and to say thank you
-              to you on behalf of your body we will also be giving you a cash
-              back reward for achieving your fitness goal.
+              formula very affordable for you at just £99.
             </div>
             <div className="attention-div-text2">
               The challenge begins Monday, the 8th of January 2024. Early Bird
