@@ -1,24 +1,24 @@
-import { Box, Button, Grid, List, ListItem, ListItemText } from "@mui/material";
-import React from "react";
-import "./challenge.css";
-import img1 from "../../../../assets/img/webp/PICTURE-6.webp";
-import img2 from "../../../../assets/img/webp/Challenge2.jpeg";
-import imggirl from "../../../../assets/img/webp/PICTURE-3.webp";
+import { Box, Button, Grid, List, ListItem, ListItemText } from '@mui/material';
+import React from 'react';
+import './challenge.css';
+import img1 from '../../../../assets/img/webp/PICTURE-6.webp';
+import img2 from '../../../../assets/img/webp/Challenge2.jpeg';
+import imggirl from '../../../../assets/img/webp/PICTURE-3.webp';
 
-import img3 from "../../../../assets/img/webp/PICTURE-1.webp";
-import img4 from "../../../../assets/img/webp/PICTURE-4.webp";
-import img5 from "../../../../assets/img/webp/PICTURE-5.webp";
-import img6 from "../../../../assets/img/webp/PICTURE-1.webp";
-import clickhere1 from "../../../../assets/img/webp/clickhere.png";
+import img3 from '../../../../assets/img/webp/PICTURE-1.webp';
+import img4 from '../../../../assets/img/webp/PICTURE-4.webp';
+import img5 from '../../../../assets/img/webp/PICTURE-5.webp';
+import img6 from '../../../../assets/img/webp/PICTURE-1.webp';
+import clickhere1 from '../../../../assets/img/webp/clickhere.png';
 
-import PlayStoreLogo from "../../../../assets/img/playstore.png";
-import AppStoreLogo from "../../../../assets/img/appstore.png";
+import PlayStoreLogo from '../../../../assets/img/playstore.png';
+import AppStoreLogo from '../../../../assets/img/appstore.png';
 
-import clickhere from "../../../../assets/img/webp/clickhere.gif";
-import whatsappLogo from "../../../../assets/img/webp/whatsapp.gif";
-import attention from "../../../../assets/img/webp/attention.jpg";
+import clickhere from '../../../../assets/img/webp/clickhere.gif';
+import whatsappLogo from '../../../../assets/img/webp/whatsapp.gif';
+import attention from '../../../../assets/img/webp/attention.jpg';
 
-import ArrowCircleRightOutlinedIcon from "@mui/icons-material/ArrowCircleRightOutlined";
+import ArrowCircleRightOutlinedIcon from '@mui/icons-material/ArrowCircleRightOutlined';
 
 const Challenge = () => {
   return (
@@ -37,11 +37,11 @@ const Challenge = () => {
           </h1>
           <div
             className="Challenge-fit-img1"
-            style={{ padding: "0 2rem 1.5rem 2rem " }}
+            style={{ padding: '0 2rem 1.5rem 2rem ' }}
           >
             <div className="firstGrpImg-div">
               <p className="firstGrpImg-text">
-                STARTS MONDAY 4th OF SEPTEMBER !
+                STARTS MONDAY 8th OF JANUARY 2024 !
               </p>
               <div className="firstGrpImg-div-inner">
                 <div>
@@ -51,7 +51,7 @@ const Challenge = () => {
                   <img
                     className="firstGrpImg-img"
                     src={img2}
-                    style={{ width: "100%", height: "100%" }}
+                    style={{ width: '100%', height: '100%' }}
                   />
                 </div>
                 <div>
@@ -70,7 +70,7 @@ const Challenge = () => {
             <ListItem>
               <div className="paragraph-list">
                 <ArrowCircleRightOutlinedIcon
-                  sx={{ width: "2rem", height: "2rem" }}
+                  sx={{ width: '2rem', height: '2rem' }}
                 />
                 Are you looking for a quick weight loss result without gym or
                 you don’t like or have time for the gym?
@@ -79,7 +79,7 @@ const Challenge = () => {
             <ListItem>
               <div className="paragraph-list">
                 <ArrowCircleRightOutlinedIcon
-                  sx={{ width: "2rem", height: "2rem" }}
+                  sx={{ width: '2rem', height: '2rem' }}
                 />
                 Are you a beginner or new to fitness and you have fitness goals
                 but don't know where to start?
@@ -88,7 +88,7 @@ const Challenge = () => {
             <ListItem>
               <div className="paragraph-list">
                 <ArrowCircleRightOutlinedIcon
-                  sx={{ width: "2rem", height: "2rem" }}
+                  sx={{ width: '2rem', height: '2rem' }}
                 />
                 Do you want to get fit but haven’t got a big budget for gym or a
                 personal trainer?
@@ -97,7 +97,7 @@ const Challenge = () => {
             <ListItem>
               <div className="paragraph-list">
                 <ArrowCircleRightOutlinedIcon
-                  sx={{ width: "2rem", height: "2rem" }}
+                  sx={{ width: '2rem', height: '2rem' }}
                 />
                 The Afrofit app 30-days result challenge, is an online weight
                 loss, nutrition and motivation program that can help you lose up
@@ -107,7 +107,7 @@ const Challenge = () => {
             <ListItem>
               <div className="paragraph-list">
                 <ArrowCircleRightOutlinedIcon
-                  sx={{ width: "2rem", height: "2rem" }}
+                  sx={{ width: '2rem', height: '2rem' }}
                 />
                 With our experience in helping many clients like yourself we
                 will guide you through a simple and effective workout routines,
@@ -124,19 +124,19 @@ const Challenge = () => {
             <img
               src={img4}
               className="img2-imgrop"
-              style={{ borderRadius: "10%" }}
+              style={{ borderRadius: '10%' }}
             />
           </div>
           <div className="image-list">
             <img
-              style={{ borderRadius: "10%" }}
+              style={{ borderRadius: '10%' }}
               src={img1}
               className="img2-imgrop"
             />
           </div>
           <div className="image-list">
             <img
-              style={{ borderRadius: "10%" }}
+              style={{ borderRadius: '10%' }}
               src={img5}
               className="img2-imgrop"
             />
@@ -164,9 +164,9 @@ const Challenge = () => {
                 keep you focused from Day 1.
                 <div
                   style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    paddingTop: "20px",
+                    display: 'flex',
+                    justifyContent: 'center',
+                    paddingTop: '20px',
                   }}
                 >
                   (Click here to download the app)
@@ -178,16 +178,16 @@ const Challenge = () => {
                   mt={1}
                   mb={3}
                   sx={{
-                    display: { xs: "flex" },
-                    flexDirection: { xs: "column", md: "row" },
-                    alignItems: "center",
-                    justifyContent: "center",
+                    display: { xs: 'flex' },
+                    flexDirection: { xs: 'column', md: 'row' },
+                    alignItems: 'center',
+                    justifyContent: 'center',
                   }}
                 >
                   <Box
                     sx={{
-                      height: { xs: "70px", md: "100px" },
-                      cursor: "pointer",
+                      height: { xs: '70px', md: '100px' },
+                      cursor: 'pointer',
                       marginBottom: { xs: 0, md: 2 },
                       marginTop: { xs: 1, md: 2 },
                       marginLeft: 2,
@@ -202,14 +202,14 @@ const Challenge = () => {
                       <img
                         src={PlayStoreLogo}
                         alt="the Afrofit logo"
-                        height={"100%"}
+                        height={'100%'}
                       />
                     </a>
                   </Box>
                   <Box
                     sx={{
-                      height: { xs: "70px", md: "100px" },
-                      cursor: "pointer",
+                      height: { xs: '70px', md: '100px' },
+                      cursor: 'pointer',
                       marginBottom: { xs: 0, md: 2 },
                       marginTop: { xs: 1, md: 2 },
                       marginLeft: 2,
@@ -224,7 +224,7 @@ const Challenge = () => {
                       <img
                         src={AppStoreLogo}
                         alt="the Afrofit logo"
-                        height={"100%"}
+                        height={'100%'}
                       />
                     </a>
                   </Box>
@@ -234,9 +234,6 @@ const Challenge = () => {
             <li className="benefits-list">
               Unlimited support and guidance from a fitness and weight loss
               expert so you know you are not alone in this weight loss journey.
-            </li>
-            <li className="benefits-list">
-              Cash back reward for achieving your fitness goal.
             </li>
             <li className="benefits-list">Guaranteed results!</li>
           </ol>
@@ -248,12 +245,12 @@ const Challenge = () => {
                   height="100%"
                   width="100%"
                   style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    cursor: "pointer",
-                    background: "none",
-                    borderRadius: "50%",
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: 'pointer',
+                    background: 'none',
+                    borderRadius: '50%',
                   }}
                 />
               </div>
@@ -266,9 +263,10 @@ const Challenge = () => {
               back reward for achieving your fitness goal.
             </div>
             <div className="attention-div-text2">
-              Challenge begins 4th September / Early Bird sale £59 (August 7th –
-              August 20th) / Regular Price £99 (August 21st – August 31st). Sign
-              up now! because of limited space.
+              The challenge begins Monday, the 8th of January 2024. Early Bird
+              sales is £49.99 from November 20th (2023) – January 2nd (2024).
+              Regular Price of £99.99 after. Sign up now! because of limited
+              space.
             </div>
           </div>
           <h2 className="whatsapp-text">
