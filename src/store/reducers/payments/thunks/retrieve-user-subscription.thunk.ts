@@ -30,6 +30,7 @@ export function RetrieveUserSubscription(userId: string): AppThunk {
             endDate: endDate,
           })
         );
+        sessionStorage.setItem("isSubscribed", activeSubscription)
       } else {
       }
 

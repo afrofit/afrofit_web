@@ -12,13 +12,17 @@ import {
   Stack,
 } from "@mui/material";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
 import { EXPIRE_TOKEN } from "../../../api/storage";
 
 import AppLogo from "../../../assets/img/logofull_nobg.png";
 import { COLORS } from "../../../constants/colors";
-import { storeUser } from "../../../store/reducers/auth/auth.slice";
+import {
+  selectUser,
+  selectUserIsSubscribed,
+  storeUser,
+} from "../../../store/reducers/auth/auth.slice";
 import { StyledNavLink } from "./StyledNavLink";
 
 interface Props {
@@ -32,16 +36,17 @@ export const AppHeader: React.FC<Props> = ({
   getheaderH,
   setGetheaderH,
 }) => {
+  const location = useLocation();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   var offsetHeight = document.getElementById("header")?.offsetHeight;
   useEffect(() => {
     setGetheaderH(offsetHeight);
   }, [offsetHeight]);
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
   const token = sessionStorage.getItem("STORAGE_TOKEN_KEY_standin");
+  const isSubscribed = sessionStorage.getItem("isSubscribed");
 
   const handleLogout = () => {
     sessionStorage.clear();
@@ -121,15 +126,19 @@ export const AppHeader: React.FC<Props> = ({
             <Box>
               <StyledNavLink title="Blog" route="/blog" />
             </Box>
-            <Box>
-              <StyledNavLink title="Classes" route="/classes" />
-            </Box>
-            <Box>
-              <StyledNavLink title="Events" route="/events" />
-            </Box>
-            <Box>
-              <StyledNavLink title="Shop" route="/shop" />
-            </Box>
+            {isSubscribed && (
+              <>
+                <Box>
+                  <StyledNavLink title="Classes" route="/classes" />
+                </Box>
+                <Box>
+                  <StyledNavLink title="Events" route="/events" />
+                </Box>
+                <Box>
+                  <StyledNavLink title="Shop" route="/shop" />
+                </Box>
+              </>
+            )}
             <Box>
               <StyledNavLink title="About" route="/about" />
             </Box>
@@ -314,9 +323,32 @@ export const AppHeader: React.FC<Props> = ({
                 }
               >
                 <StyledNavLink title="Blog" route="/blog" />
-                <StyledNavLink title="Classes" route="/classes" />
-                <StyledNavLink title="Events" route="/events" />
-                <StyledNavLink title="Shop" route="/shop" />
+                {isSubscribed && (
+                  <>
+                    <Stack
+                      direction="row"
+                      sx={{ flexWrap: "wrap", justifyContent: "center" }}
+                      spacing={2}
+                      divider={
+                        <Divider
+                          orientation="vertical"
+                          color={COLORS.white}
+                          sx={{
+                            opacity: 0.2,
+                            height: 0.3,
+                            alignSelf: "center",
+                            display: "inline-block",
+                          }}
+                          flexItem
+                        />
+                      }
+                    >
+                      <StyledNavLink title="Classes" route="/classes" />
+                      <StyledNavLink title="Events" route="/events" />
+                      <StyledNavLink title="Shop" route="/shop" />
+                    </Stack>
+                  </>
+                )}
                 <StyledNavLink title="About" route="/about" />
                 <StyledNavLink title="Plans" route="/plan" />
                 <StyledNavLink title="FAQS" route="/faqs" />
@@ -362,7 +394,7 @@ export const AppHeader: React.FC<Props> = ({
                 >
                   Sign out
                 </Button>
-              ) : (
+              ) : location?.pathname !== "/login" ? (
                 <Button
                   sx={{
                     textAlign: "center",
@@ -382,6 +414,27 @@ export const AppHeader: React.FC<Props> = ({
                   onClick={() => navigate("/login")}
                 >
                   Sign in
+                </Button>
+              ) : (
+                <Button
+                  sx={{
+                    textAlign: "center",
+                    backgroundColor: COLORS.purple_100,
+                    paddingLeft: 2,
+                    paddingRight: 2,
+                    paddingTop: 1.1,
+                    paddingBottom: 1.1,
+                    borderRadius: 10,
+                    letterSpacing: 2,
+                    fontSize: 13,
+                    fontWeight: 300,
+                    "&:hover": {
+                      backgroundColor: COLORS.purple_200,
+                    },
+                  }}
+                  onClick={() => navigate("/register")}
+                >
+                  Sign Up
                 </Button>
               )}
             </Box>

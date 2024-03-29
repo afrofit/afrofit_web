@@ -22,40 +22,40 @@ import ArrowCircleRightOutlinedIcon from '@mui/icons-material/ArrowCircleRightOu
 
 const Challenge = () => {
   return (
-    <div className="top-div">
-      <div className="challenge-main">
-        <div className="header-fit">
-          <h1 className="header-fit1">AFROFIT APP 30 DAYS RESULT CHALLENGE!</h1>
-          <h1 className="header-fit2">
+    <div className='top-div'>
+      <div className='challenge-main'>
+        <div className='header-fit'>
+          <h1 className='header-fit1'>AFROFIT APP 30 DAYS RESULT CHALLENGE!</h1>
+          <h1 className='header-fit2'>
             LOOK LEAN, LOOK FIT, LOOK SEXIER IN 30 DAYS
           </h1>
         </div>
 
-        <div className="Challenge-fit">
-          <h1 className="Challenge-fit-h1">
+        <div className='Challenge-fit'>
+          <h1 className='Challenge-fit-h1'>
             The 30 Days Online Fit Body Challenge
           </h1>
           <div
-            className="Challenge-fit-img1"
+            className='Challenge-fit-img1'
             style={{ padding: '0 2rem 1.5rem 2rem ' }}
           >
-            <div className="firstGrpImg-div">
-              <p className="firstGrpImg-text">
+            <div className='firstGrpImg-div'>
+              <p className='firstGrpImg-text'>
                 STARTS MONDAY 8th OF JANUARY 2024 !
               </p>
-              <div className="firstGrpImg-div-inner">
+              <div className='firstGrpImg-div-inner'>
                 <div>
-                  <img className="firstGrpImg-img" src={img3} />
+                  <img className='firstGrpImg-img' src={img3} />
                 </div>
                 <div>
                   <img
-                    className="firstGrpImg-img"
+                    className='firstGrpImg-img'
                     src={img2}
                     style={{ width: '100%', height: '100%' }}
                   />
                 </div>
                 <div>
-                  <img className="firstGrpImg-img" src={imggirl} />
+                  <img className='firstGrpImg-img' src={imggirl} />
                 </div>
               </div>
             </div>
@@ -65,10 +65,10 @@ const Challenge = () => {
           </div> */}
         </div>
         {/* paragraph========================= */}
-        <div className="paragraph">
+        <div className='paragraph'>
           <List>
             <ListItem>
-              <div className="paragraph-list">
+              <div className='paragraph-list'>
                 <ArrowCircleRightOutlinedIcon
                   sx={{ width: '2rem', height: '2rem' }}
                 />
@@ -77,7 +77,7 @@ const Challenge = () => {
               </div>
             </ListItem>
             <ListItem>
-              <div className="paragraph-list">
+              <div className='paragraph-list'>
                 <ArrowCircleRightOutlinedIcon
                   sx={{ width: '2rem', height: '2rem' }}
                 />
@@ -86,7 +86,7 @@ const Challenge = () => {
               </div>
             </ListItem>
             <ListItem>
-              <div className="paragraph-list">
+              <div className='paragraph-list'>
                 <ArrowCircleRightOutlinedIcon
                   sx={{ width: '2rem', height: '2rem' }}
                 />
@@ -95,7 +95,7 @@ const Challenge = () => {
               </div>
             </ListItem>
             <ListItem>
-              <div className="paragraph-list">
+              <div className='paragraph-list'>
                 <ArrowCircleRightOutlinedIcon
                   sx={{ width: '2rem', height: '2rem' }}
                 />
@@ -105,7 +105,7 @@ const Challenge = () => {
               </div>
             </ListItem>
             <ListItem>
-              <div className="paragraph-list">
+              <div className='paragraph-list'>
                 <ArrowCircleRightOutlinedIcon
                   sx={{ width: '2rem', height: '2rem' }}
                 />
@@ -119,47 +119,47 @@ const Challenge = () => {
         </div>
         {/* paragrapgh==================   end   ===================== */}
 
-        <div className="img2">
-          <div className="image-list">
+        <div className='img2'>
+          <div className='image-list'>
             <img
               src={img4}
-              className="img2-imgrop"
+              className='img2-imgrop'
               style={{ borderRadius: '10%' }}
             />
           </div>
-          <div className="image-list">
+          <div className='image-list'>
             <img
               style={{ borderRadius: '10%' }}
               src={img1}
-              className="img2-imgrop"
+              className='img2-imgrop'
             />
           </div>
-          <div className="image-list">
+          <div className='image-list'>
             <img
               style={{ borderRadius: '10%' }}
               src={img5}
-              className="img2-imgrop"
+              className='img2-imgrop'
             />
           </div>
         </div>
 
-        <h1 className="HERE">Here are the benefits you get...</h1>
-        <div className="benefits">
-          <ol type="1">
-            <li className="benefits-list">
+        <h1 className='HERE'>Here are the benefits you get...</h1>
+        <div className='benefits'>
+          <ol type='1'>
+            <li className='benefits-list'>
               A 1 to 1 free consultation that includes a free weight scanning
               and recommendation to guide you on your weight loss journey.
             </li>
-            <li className="benefits-list">
+            <li className='benefits-list'>
               A tested, trusted and personalised healthy meal plan to accelerate
               your weight loss goal sent directly to your phone daily.
             </li>
-            <li className="benefits-list">
+            <li className='benefits-list'>
               Daily workout videos to follow along for easy workout exercises
               sent directly to your phone.
             </li>
-            <li className="benefits-list">
-              <div className="benefits-list">
+            <li className='benefits-list'>
+              <div className='benefits-list'>
                 Daily motivation and advice videos all via the Afrofit app to
                 keep you focused from Day 1.
                 <div
@@ -174,7 +174,7 @@ const Challenge = () => {
                 <Grid
                   container
                   spacing={2}
-                  alignItems="stretch"
+                  alignItems='stretch'
                   mt={1}
                   mb={3}
                   sx={{
@@ -195,13 +195,13 @@ const Challenge = () => {
                     }}
                   >
                     <a
-                      href="https://play.google.com/store/apps/details?id=com.djminddgap.afrofit&gl=GB"
-                      target="_blank"
-                      rel="noreferrer"
+                      href='https://play.google.com/store/apps/details?id=com.djminddgap.afrofit&gl=GB'
+                      target='_blank'
+                      rel='noreferrer'
                     >
                       <img
                         src={PlayStoreLogo}
-                        alt="the Afrofit logo"
+                        alt='the Afrofit logo'
                         height={'100%'}
                       />
                     </a>
@@ -217,13 +217,13 @@ const Challenge = () => {
                     }}
                   >
                     <a
-                      href="https://apps.apple.com/us/app/afrofit-app/id1643761809"
-                      target="_blank"
-                      rel="noreferrer"
+                      href='https://apps.apple.com/us/app/afrofit-app/id1643761809'
+                      target='_blank'
+                      rel='noreferrer'
                     >
                       <img
                         src={AppStoreLogo}
-                        alt="the Afrofit logo"
+                        alt='the Afrofit logo'
                         height={'100%'}
                       />
                     </a>
@@ -231,19 +231,19 @@ const Challenge = () => {
                 </Grid>
               </div>
             </li>
-            <li className="benefits-list">
+            <li className='benefits-list'>
               Unlimited support and guidance from a fitness and weight loss
               expert so you know you are not alone in this weight loss journey.
             </li>
-            <li className="benefits-list">Guaranteed results!</li>
+            <li className='benefits-list'>Guaranteed results!</li>
           </ol>
-          <div className="attention-div">
-            <div className="attention-div-2">
-              <div className="attention-div-img">
+          <div className='attention-div'>
+            <div className='attention-div-2'>
+              <div className='attention-div-img'>
                 <img
                   src={attention}
-                  height="100%"
-                  width="100%"
+                  height='100%'
+                  width='100%'
                   style={{
                     display: 'flex',
                     alignItems: 'center',
@@ -260,29 +260,29 @@ const Challenge = () => {
               not cost you an arm and leg that is why we are making our winning
               formula very affordable for you at just £99.
             </div>
-            <div className="attention-div-text2">
+            <div className='attention-div-text2'>
               The challenge begins Monday, the 8th of January 2024. Early Bird
               sales is £49.99 from November 20th (2023) – January 2nd (2024).
               Regular Price of £99.99 after. Sign up now! because of limited
               space.
             </div>
           </div>
-          <h2 className="whatsapp-text">
+          <h2 className='whatsapp-text'>
             TO RESERVE A PLACE. REPLY “YES” TO VIA OUR WHATSAPP LINK BELOW AND A
             MEMBER OF OUR TEAM WILL CONTACT YOU WITHIN 24HRS
           </h2>
-          <div className="whatsapp-main-div">
-            <h2 className="whatsapp-text2">CONTACT US ON WHATSAPP NOW -</h2>
+          <div className='whatsapp-main-div'>
+            <h2 className='whatsapp-text2'>CONTACT US ON WHATSAPP NOW -</h2>
             <div
-              className="whatsapp-div"
+              className='whatsapp-div'
               // style={{
               //   height: "10%",
               //   width: "10%",
               //   paddingBottom: "15px",
               // }}
             >
-              <a target="_blank" href="https://wa.me/message/X5LKPFUJT6CYK1">
-                <img className="whatsapp-logo" src={whatsappLogo} />
+              <a target='_blank' href='https://wa.me/message/X5LKPFUJT6CYK1'>
+                <img className='whatsapp-logo' src={whatsappLogo} />
               </a>
             </div>
 
