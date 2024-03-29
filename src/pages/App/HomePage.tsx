@@ -8,14 +8,14 @@ import girlback from "../../assets/img/webp/girl back.webp";
 // import girlback from "../../assets/img/webp/girlback.webp";
 
 // import image1 from "../../assets/img/webp/single4.webp";
-import image1 from "../../assets/img/REPLACE 1.jpg";
+import REPLACE4 from "../../assets/img/REPLACE 4.jpeg";
 
 import bothside from "../../assets/img/webp/bothside.webp";
 import single2 from "../../assets/img/webp/single2.webp";
 // import single2 from "../../assets/img/webp/single2.webp";
 
 import jenny from "../../assets/img/jenny.webp";
-import single3 from "../../assets/img/single3.jpg";
+import REPLACE5 from "../../assets/img/REPLACE 5.jpeg";
 import REPLACE3 from "../../assets/img/REPLACE 3.jpg";
 import bothfront from "../../assets/img/webp/bothfront.webp";
 import bothfront2 from "../../assets/img/webp/bothfront2.webp";
@@ -223,7 +223,7 @@ const BlogPage: React.FC<Props> = () => {
             }}
           >
             <img
-              src={image1}
+              src={REPLACE4}
               style={{
                 width: "100%",
                 objectFit: "cover",
@@ -402,7 +402,7 @@ const BlogPage: React.FC<Props> = () => {
         <div className="parent2-div">
           <div className="child3">
             <img
-              src={single3}
+              src={REPLACE5}
               style={{
                 objectFit: "cover",
                 width: "100%",
