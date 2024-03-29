@@ -40,13 +40,19 @@ export const AppHeader: React.FC<Props> = ({
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
+
+  const isSubscribed =
+    typeof sessionStorage !== "undefined" &&
+    sessionStorage.getItem("isSubscribed")
+      ? sessionStorage.getItem("isSubscribed")
+      : undefined;
+
   var offsetHeight = document.getElementById("header")?.offsetHeight;
   useEffect(() => {
     setGetheaderH(offsetHeight);
   }, [offsetHeight]);
 
   const token = sessionStorage.getItem("STORAGE_TOKEN_KEY_standin");
-  const isSubscribed = sessionStorage.getItem("isSubscribed");
 
   const handleLogout = () => {
     sessionStorage.clear();
@@ -126,7 +132,7 @@ export const AppHeader: React.FC<Props> = ({
             <Box>
               <StyledNavLink title="Blog" route="/blog" />
             </Box>
-            {isSubscribed && (
+            {isSubscribed === "true" && (
               <>
                 <Box>
                   <StyledNavLink title="Classes" route="/classes" />
@@ -323,7 +329,7 @@ export const AppHeader: React.FC<Props> = ({
                 }
               >
                 <StyledNavLink title="Blog" route="/blog" />
-                {isSubscribed && (
+                {isSubscribed === "true" && (
                   <>
                     <Stack
                       direction="row"
