@@ -169,11 +169,32 @@ export const AppRouter: React.FC = () => {
             />
           )}
           {/* // =================================== events ================================ \\ */}
-          <Route path="events" element={<EventsPage />} />
-          <Route path={`events/eventDetails/:id`} element={<EventDetails />} />
+          <Route
+            path="events"
+            element={
+              <PrivateRoute>
+                <EventsPage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path={`events/eventDetails/:id`}
+            element={
+              <PrivateRoute>
+                <EventDetails />
+              </PrivateRoute>
+            }
+          />
           {/* // =================================== shops ================================ \\ */}
 
-          <Route path="shop" element={<ShopPage />} />
+          <Route
+            path="shop"
+            element={
+              <PrivateRoute>
+                <ShopPage />
+              </PrivateRoute>
+            }
+          />
           <Route path={`shops/shopDetails/:id`} element={<ShopDetails />} />
           <Route path="challenge" element={<Challenge />} />
 

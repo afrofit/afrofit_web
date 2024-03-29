@@ -7,7 +7,7 @@ import {
 } from "./styled";
 import { Mail, Lock, User, Eye, EyeOff } from "react-feather";
 import { COLORS } from "../../../constants/colors";
-import { Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import { Controller } from "react-hook-form";
 
 interface Props {
@@ -44,27 +44,27 @@ export const CustomInputElement: React.FC<Props> = ({
       return (
         <User
           color={focused ? COLORS.gold : COLORS.whiteblue}
-          size={focused ? 30 : 25}
+          size={focused ? 25 : 25}
         />
       );
     if (icon === "mail")
       return (
         <Mail
           color={focused ? COLORS.gold : COLORS.whiteblue}
-          size={focused ? 30 : 25}
+          size={focused ? 25 : 25}
         />
       );
     if (icon === "lock")
       return (
         <Lock
           color={focused ? COLORS.gold : COLORS.whiteblue}
-          size={focused ? 30 : 25}
+          size={focused ? 25 : 25}
         />
       );
     return (
       <User
         color={focused ? COLORS.gold : COLORS.whiteblue}
-        size={focused ? 30 : 25}
+        size={focused ? 25 : 25}
       />
     );
   }, [icon, focused]);
@@ -76,11 +76,13 @@ export const CustomInputElement: React.FC<Props> = ({
         field: { onBlur, onChange, value = "", name },
         fieldState: { error },
       }) => (
-        <StyledWrapper
+        <Grid
           style={{
             whiteSpace: "nowrap",
             overflow: "hidden",
             overflowWrap: "break-word",
+            width: "100%",
+            minHeight: "116px",
           }}
         >
           {label && (
@@ -102,6 +104,7 @@ export const CustomInputElement: React.FC<Props> = ({
               whiteSpace: "nowrap",
               overflow: "hidden",
               overflowWrap: "break-word",
+              flex: "unset",
             }}
           >
             <IconWrapper>{getIcon()}</IconWrapper>
@@ -139,7 +142,6 @@ export const CustomInputElement: React.FC<Props> = ({
                 // type={"number"}
                 name={name}
                 placeholder={placeholder}
-                autoComplete="new-password"
                 value={value}
                 onChange={onChange}
                 autoFocus={false}
@@ -156,7 +158,6 @@ export const CustomInputElement: React.FC<Props> = ({
                 // type={"number"}
                 name={name}
                 placeholder={placeholder}
-                autoComplete="new-password"
                 value={value}
                 onChange={onChange}
                 autoFocus={false}
@@ -172,7 +173,6 @@ export const CustomInputElement: React.FC<Props> = ({
                 type={type}
                 name={name}
                 placeholder={placeholder}
-                autoComplete="new-password"
                 value={value}
                 onChange={onChange}
                 autoFocus={false}
@@ -233,7 +233,7 @@ export const CustomInputElement: React.FC<Props> = ({
               {error.message}
             </Typography>
           )}
-        </StyledWrapper>
+        </Grid>
       )}
     />
   );

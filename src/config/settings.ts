@@ -12,8 +12,8 @@ const settings: SettingsType = {
     imageUrl: 'http://161.97.170.81:9090/',
   },
   test: {
-    apiUrl: 'http://192.168.1.42:9090/api/',
-    imageUrl: 'http://192.168.1.42:9090/',
+    apiUrl: 'http://192.168.1.55:9090/api/',
+    imageUrl: 'http://192.168.1.55:9090/',
   },
   production: {
     apiUrl: 'https://shark-app-y5ox6.ondigitalocean.app/api/',

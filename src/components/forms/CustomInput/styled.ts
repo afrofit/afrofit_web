@@ -28,9 +28,9 @@ export const StyledInput = styled.input`
 `;
 
 export const StyledInputWrapper = styled.div<Props>`
-  height: ${({ focused }) => (focused ? "65px" : "60px")};
+  height: ${({ focused }) => (focused ? "60px" : "60px")};
   border-radius: 10px;
-  border-width: ${({ focused }) => (focused ? "3px" : "2px")};
+  border-width: ${({ focused }) => (focused ? "2px" : "2px")};
   border-style: solid;
   border-color: ${COLORS.hilite_purpink};
   display: flex;

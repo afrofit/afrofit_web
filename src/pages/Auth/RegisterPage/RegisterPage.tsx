@@ -112,7 +112,7 @@ const RegisterPage = () => {
     if (image) formData.append("image", image);
 
     const handleNavigate = () => {
-      navigate("/about");
+      navigate("/plan");
     };
 
     dispatch(CreateUser(formData as any, handleNavigate, priceId));
@@ -179,6 +179,7 @@ const RegisterPage = () => {
                 sx={{
                   display: { xs: "flex" },
                   flexDirection: { xs: "column", md: "row" },
+                  alignItems: "flex-start",
                 }}
                 columnGap={2}
                 width="100%"
@@ -203,6 +204,8 @@ const RegisterPage = () => {
                 sx={{
                   display: { xs: "flex" },
                   flexDirection: { xs: "column", md: "row" },
+                  alignItems: "flex-start",
+                  marginTop: "10px!important",
                 }}
                 columnGap={2}
                 width="100%"
@@ -228,6 +231,8 @@ const RegisterPage = () => {
                 sx={{
                   display: { xs: "flex" },
                   flexDirection: { xs: "column", md: "row" },
+                  alignItems: "flex-start",
+                  marginTop: "10px!important",
                 }}
                 columnGap={2}
                 width="100%"
