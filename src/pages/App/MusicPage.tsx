@@ -20,6 +20,7 @@ const MusicPage: React.FC<Props> = () => {
   const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
   const [openDialog, setOpenDialog] = useState(false);
+  const [subscription, setSubcription] = useState("");
   const sessionId = searchParams.get("id");
   const uid = sessionStorage.getItem("userId");
 
@@ -30,15 +31,19 @@ const MusicPage: React.FC<Props> = () => {
       `payments/retrieve-stripe-session/${uid}`,
       { sessionId }
     );
+    setSubcription(responce?.data?.subscription);
   };
 
   useEffect(() => {
     if (sessionId !== null) {
       fsession(uid);
       setOpenDialog(true);
-      currentUser && dispatch(RetrieveUserSubscription(currentUser.userId));
     }
   }, [sessionId]);
+
+  useEffect(() => {
+    currentUser && dispatch(RetrieveUserSubscription(currentUser.userId));
+  }, [subscription]);
 
   const handleCloseDialog = () => {
     setOpenDialog(false);
