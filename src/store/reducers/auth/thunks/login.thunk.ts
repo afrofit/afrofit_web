@@ -8,8 +8,9 @@ import {
 import API_CLIENT from "../../../../api/client";
 import { STORE_TOKEN } from "../../../../api/storage";
 import { AxiosError } from "axios";
-import { storeUserToken, updateUserDisplayPic } from "../auth.slice";
+import { setIsSubscribed, storeUserToken, updateUserDisplayPic } from "../auth.slice";
 import { setSession } from "../../../../utils/jwt";
+import { RetrieveUserSubscription } from "../../payments/thunks/retrieve-user-subscription.thunk";
 
 type LoginUserDataType = {
   email: string;
@@ -24,6 +25,10 @@ const logInApi = async (userData: LoginUserDataType) => {
     password,
     pushSubscription,
   });
+};
+
+const retrieveUserSubscription = async (userId: string) => {
+  return await API_CLIENT.post(`payments/retrieve-user-subscription/${userId}`);
 };
 
 // ===============================
@@ -84,15 +89,30 @@ export function LogIn(userData: LoginUserDataType, navigate: any): AppThunk {
         userData.pushSubscription = await subscription();
 
       const response = await logInApi(userData);
+    
       sessionStorage.setItem("email", userData?.email);
       sessionStorage.setItem("password", userData?.password);
 
       if (response && response.data) {
+        // dispatch(RetrieveUserSubscription(response.data.data.id));
+        retrieveUserSubscription(response.data.data.id).then(res=>{
+          if(res?.data?.activeSubscription === true) {
+            dispatch(
+              setIsSubscribed({
+                isSubscribed: true,
+                endDate: res?.data?.endDate,
+              })
+            );
+            // const { activeSubscription } = res.data;
+            // dispatch(setIsSubscribed(activeSubscription));
+          sessionStorage.setItem("isSubscribed", res.data.activeSubscription)
+          // navigate(res.data.activeSubscription === true ? "/profile" : "/plan");
+          }
+        })
         dispatch(storeUserToken(response.data.token));
         dispatch(updateUserDisplayPic(response.data.data));
         // STORE_TOKEN(response.data.token);
         setSession(response.data.token);
-
         navigate();
       } else if (!response || !response.data) {
         dispatch(finishedRequest());

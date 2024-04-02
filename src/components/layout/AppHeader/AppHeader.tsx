@@ -129,11 +129,11 @@ export const AppHeader: React.FC<Props> = ({
               justifyContent: "center",
             }}
           >
-            <Box>
-              <StyledNavLink title="Blog" route="/blog" />
-            </Box>
-            {isSubscribed === "true" && (
+            {isSubscribed == "true" && (
               <>
+                <Box>
+                  <StyledNavLink title="Blog" route="/blog" />
+                </Box>
                 <Box>
                   <StyledNavLink title="Classes" route="/classes" />
                 </Box>
@@ -143,22 +143,22 @@ export const AppHeader: React.FC<Props> = ({
                 <Box>
                   <StyledNavLink title="Shop" route="/shop" />
                 </Box>
+                <Box>
+                  <StyledNavLink title="About" route="/about" />
+                </Box>
+                <Box>
+                  <StyledNavLink title="Faqs" route="/faqs" />
+                </Box>
+                <Box>
+                  <StyledNavLink title="Contact-us" route="/contact-us" />
+                </Box>
+                <Box>
+                  <StyledNavLink title="CHALLENGE" route="/challenge" />
+                </Box>
               </>
             )}
             <Box>
-              <StyledNavLink title="About" route="/about" />
-            </Box>
-            <Box>
               <StyledNavLink title="Plans" route="/plan" />
-            </Box>
-            <Box>
-              <StyledNavLink title="Faqs" route="/faqs" />
-            </Box>
-            <Box>
-              <StyledNavLink title="Contact-us" route="/contact-us" />
-            </Box>
-            <Box>
-              <StyledNavLink title="CHALLENGE" route="/challenge" />
             </Box>
 
             <Box>
@@ -328,8 +328,7 @@ export const AppHeader: React.FC<Props> = ({
                   />
                 }
               >
-                <StyledNavLink title="Blog" route="/blog" />
-                {isSubscribed === "true" && (
+                {isSubscribed == "true" && (
                   <>
                     <Stack
                       direction="row"
@@ -349,17 +348,18 @@ export const AppHeader: React.FC<Props> = ({
                         />
                       }
                     >
+                      <StyledNavLink title="Blog" route="/blog" />
                       <StyledNavLink title="Classes" route="/classes" />
                       <StyledNavLink title="Events" route="/events" />
                       <StyledNavLink title="Shop" route="/shop" />
+                      <StyledNavLink title="About" route="/about" />
+                      <StyledNavLink title="FAQS" route="/faqs" />
+                      <StyledNavLink title="Contact-us" route="/contact-us" />
+                      <StyledNavLink title="CHALLENGE" route="/challenge" />
                     </Stack>
                   </>
                 )}
-                <StyledNavLink title="About" route="/about" />
                 <StyledNavLink title="Plans" route="/plan" />
-                <StyledNavLink title="FAQS" route="/faqs" />
-                <StyledNavLink title="Contact-us" route="/contact-us" />
-                <StyledNavLink title="CHALLENGE" route="/challenge" />
               </Stack>
             </Box>
 
