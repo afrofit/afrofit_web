@@ -1,8 +1,6 @@
 import * as React from "react";
-import * as Yup from "yup";
 import { useForm } from "react-hook-form";
 import { Stack, Typography } from "@mui/material";
-import { yupResolver } from "@hookform/resolvers/yup";
 
 import { Card } from "../../../components/Card/Card";
 import { COLORS } from "../../../constants/colors";
@@ -12,14 +10,40 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { CustomInputElement } from "../../../components/forms/CustomInput/CustomInputElement";
 import { SetNewPassword } from "../../../store/reducers/auth/thunks/set-new-password.thunk";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 
-const changePassword = Yup.object().shape({
-  password: Yup.string().min(6).max(32).required(),
-  confirmPassword: Yup.string().oneOf(
-    [Yup.ref("password"), null],
-    "Passwords must match"
-  ),
-});
+interface NewPassword {
+  password?: string;
+  confirm_password?: string;
+}
+
+const schema = z
+  .object({
+    password: z
+      .string()
+      .min(1, { message: "Required" })
+      .regex(/^(?=.*[a-z])/, "At least one lowercase letter required")
+      .regex(/^(?=.*[A-Z])/, "At least one uppercase letter required")
+      .regex(/^(?=.*\d)/, "Atleast one Number character required")
+      .regex(
+        /^(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~|\\\/])/,
+        "At least one special letter required"
+      )
+      // .regex(
+      //   /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~|\\\/])(?=.*\d)[A-Za-z\d!@#$%^&*()_+{}\[\]:;<br>,.?~|\\\/]{8,}$/,
+      //   "Password must contain at least one uppercase letter," +
+      //     <br /> +
+      //     "one lowercase letter, one special character, and \n one number. Minimum length is 8 characters."
+      // )
+      .min(8, { message: "Atleast 8 characters required" })
+      .max(16, { message: "Must be at most 16 characters" }),
+    confirm_password: z.string().min(1, { message: "Required" }),
+  })
+  .refine((data) => data.password === data.confirm_password, {
+    message: "Passwords must match",
+    path: ["confirm_password"],
+  });
 
 const SetNewPasswordPage = () => {
   const navigation = useNavigate();
@@ -29,9 +53,11 @@ const SetNewPasswordPage = () => {
   const [showPassword, setShowPassword] = React.useState(false);
   const [cShowPassword, setCShowPassword] = React.useState(false);
 
-  const { handleSubmit, control, reset } = useForm({
-    resolver: yupResolver(changePassword),
-    mode: "onBlur",
+  const { handleSubmit, control, reset } = useForm<NewPassword>({
+    resolver: zodResolver(schema),
+    mode: "all",
+    reValidateMode: "onChange",
+    criteriaMode: "firstError",
   });
 
   if (!hash || !userId) return null;
