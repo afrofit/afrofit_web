@@ -198,9 +198,10 @@ export const AppHeader: React.FC<Props> = ({
                 >
                   Sign out
                 </Button>
-              ) : (
+              ) : location?.pathname !== "/login" ? (
                 <Button
                   sx={{
+                    textAlign: "center",
                     backgroundColor: COLORS.purple_100,
                     paddingLeft: 2,
                     paddingRight: 2,
@@ -217,6 +218,27 @@ export const AppHeader: React.FC<Props> = ({
                   onClick={() => navigate("/login")}
                 >
                   Sign in
+                </Button>
+              ) : (
+                <Button
+                  sx={{
+                    textAlign: "center",
+                    backgroundColor: COLORS.purple_100,
+                    paddingLeft: 2,
+                    paddingRight: 2,
+                    paddingTop: 1.1,
+                    paddingBottom: 1.1,
+                    borderRadius: 10,
+                    letterSpacing: 2,
+                    fontSize: 13,
+                    fontWeight: 300,
+                    "&:hover": {
+                      backgroundColor: COLORS.purple_200,
+                    },
+                  }}
+                  onClick={() => navigate("/register")}
+                >
+                  Sign Up
                 </Button>
               )}
             </Box>
