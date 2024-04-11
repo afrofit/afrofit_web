@@ -217,7 +217,7 @@ export const AppHeader: React.FC<Props> = ({
                   }}
                   onClick={() => navigate("/login")}
                 >
-                  Sign in
+                  NEW USER SIGN IN
                 </Button>
               ) : (
                 <Button
@@ -441,7 +441,7 @@ export const AppHeader: React.FC<Props> = ({
                   }}
                   onClick={() => navigate("/login")}
                 >
-                  Sign in
+                  NEW USER SIGN IN
                 </Button>
               ) : (
                 <Button
