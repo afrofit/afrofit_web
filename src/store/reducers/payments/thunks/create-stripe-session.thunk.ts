@@ -26,9 +26,12 @@ const createStripeSessionApi = async (
 //   "pk_live_51LND6dG7Ijvv33NL0x0geQt3CMvxFgb787YfgUUdrIueMOCh51eUfOGxCYmYS2XWkFZPmL98rb77PcTUhyirgCN9004jfaKgGU";
 
 //  normAL KEY
+// neel
+// const STRIPE_PUBLISHABLE_KEY =
+//   'pk_test_51MC0LySDRiBpbKJAVFMhNmB8cbDYJNOUI77xWNbwrm8cxmGF3rhSushliKGSo68Vn6vREfWKKblr3Sjve0S8NTRG00Yq5xx3XI';
 
 const STRIPE_PUBLISHABLE_KEY =
-  'pk_test_51MC0LySDRiBpbKJAVFMhNmB8cbDYJNOUI77xWNbwrm8cxmGF3rhSushliKGSo68Vn6vREfWKKblr3Sjve0S8NTRG00Yq5xx3XI';
+  'pk_test_51LND6dG7Ijvv33NL5ryIwdwRa4w79lsHpXG7hXrNWkEU1XERXdNv6bVfsILkmRAYkdwya4ff8pNh9g7jivTXrMH000me9poxmB';
 
 let stripePromise: Promise<Stripe | null>;
 const getStripe = async () => {
