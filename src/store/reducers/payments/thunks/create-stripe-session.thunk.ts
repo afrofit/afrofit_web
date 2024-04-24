@@ -1,14 +1,14 @@
-import { AppThunk } from "../../../store";
-import { AxiosError } from "axios";
-import { loadStripe, Stripe } from "@stripe/stripe-js";
+import { AppThunk } from '../../../store';
+import { AxiosError } from 'axios';
+import { loadStripe, Stripe } from '@stripe/stripe-js';
 
 import {
   finishedRequest,
   hideGenericErrorDialog,
   newRequest,
   showGenericErrorDialog,
-} from "../../ui/ui.slice";
-import API_CLIENT from "../../../../api/client";
+} from '../../ui/ui.slice';
+import API_CLIENT from '../../../../api/client';
 
 const createStripeSessionApi = async (
   userId: string,
@@ -22,13 +22,13 @@ const createStripeSessionApi = async (
 };
 // live ni Keys
 
-const STRIPE_PUBLISHABLE_KEY =
-  "pk_live_51LND6dG7Ijvv33NL0x0geQt3CMvxFgb787YfgUUdrIueMOCh51eUfOGxCYmYS2XWkFZPmL98rb77PcTUhyirgCN9004jfaKgGU";
+// const STRIPE_PUBLISHABLE_KEY =
+//   "pk_live_51LND6dG7Ijvv33NL0x0geQt3CMvxFgb787YfgUUdrIueMOCh51eUfOGxCYmYS2XWkFZPmL98rb77PcTUhyirgCN9004jfaKgGU";
 
 //  normAL KEY
 
-// const STRIPE_PUBLISHABLE_KEY =
-//   "pk_test_51MC0LySDRiBpbKJAVFMhNmB8cbDYJNOUI77xWNbwrm8cxmGF3rhSushliKGSo68Vn6vREfWKKblr3Sjve0S8NTRG00Yq5xx3XI";
+const STRIPE_PUBLISHABLE_KEY =
+  'pk_test_51MC0LySDRiBpbKJAVFMhNmB8cbDYJNOUI77xWNbwrm8cxmGF3rhSushliKGSo68Vn6vREfWKKblr3Sjve0S8NTRG00Yq5xx3XI';
 
 let stripePromise: Promise<Stripe | null>;
 const getStripe = async () => {
@@ -54,7 +54,7 @@ export function CreateStripeSession(
 
         const redirectToCheckout = async () => {
           try {
-            sessionStorage.setItem("userId", userId);
+            sessionStorage.setItem('userId', userId);
             const stripe = await getStripe();
 
             if (stripe) {
@@ -64,7 +64,7 @@ export function CreateStripeSession(
               return result;
             }
           } catch (error) {
-            dispatch(showGenericErrorDialog("There was an error with Stripe"));
+            dispatch(showGenericErrorDialog('There was an error with Stripe'));
           }
         };
         redirectToCheckout();
@@ -76,7 +76,7 @@ export function CreateStripeSession(
       const err = error as AxiosError;
       const errorMessage =
         (err.response?.data as string) ??
-        "An error occured trying to create a stripe session.";
+        'An error occured trying to create a stripe session.';
       dispatch(showGenericErrorDialog(errorMessage));
       dispatch(finishedRequest());
     }
