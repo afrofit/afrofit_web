@@ -48,7 +48,7 @@ export function CreateStripeSession(
       dispatch(newRequest());
       dispatch(hideGenericErrorDialog());
       const response = await createStripeSessionApi(userId, email, priceId);
-
+      console.log('response :>> ', response);
       if (response && response.data) {
         const { sessionId } = response.data;
 
@@ -56,7 +56,7 @@ export function CreateStripeSession(
           try {
             sessionStorage.setItem('userId', userId);
             const stripe = await getStripe();
-
+            console.log('stripe :>> ', stripe);
             if (stripe) {
               const result = stripe.redirectToCheckout({
                 sessionId: sessionId,
