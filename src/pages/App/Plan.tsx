@@ -18,8 +18,8 @@ const Plans = [
     trial: '7-Day Free Trial',
     bestVale: '',
     isSelected: false,
-    priceId: 'price_1MGgcXG7Ijvv33NLui6mDhQ7',
-    // test priceId: 'price_1MEvHYSDRiBpbKJAcRIoBWEn',
+    // priceId: 'price_1MGgcXG7Ijvv33NLui6mDhQ7',
+    priceId: 'price_1MEvHYSDRiBpbKJAcRIoBWEn',
     // priceId: 'price_1P96hcG7Ijvv33NLNB0MjM9G',
 
     subtitle1: 'You can cancel at anytime.',
