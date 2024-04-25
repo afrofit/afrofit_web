@@ -26,7 +26,7 @@ const MusicPage: React.FC<Props> = () => {
   console.log('uid :>> ', uid);
   const token = sessionStorage.getItem('STORAGE_TOKEN_KEY_standin');
 
-  const fsession = async (uid: string | null) => {
+  const fsession = async (uid: any) => {
     const responce = await API_CLIENT.post(
       `payments/retrieve-stripe-session/${uid}`,
       { sessionId }
