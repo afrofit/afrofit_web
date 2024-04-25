@@ -31,13 +31,17 @@ export function CreateUser(
       if (response && response.data) {
         dispatch(storeUserToken(response.data.token));
         STORE_TOKEN(response.data.token);
-        sessionStorage.setItem('userId', response?.data.id);
         dispatch(showGenericSuccessDialog('Your Registered Successfully'));
         if (!Boolean(priceId)) {
           navigate();
         } else {
+          sessionStorage.setItem('userId', response?.data?.id);
           dispatch(
-            CreateStripeSession(response.data.id, response.data.email, priceId)
+            CreateStripeSession(
+              response?.data?.id,
+              response?.data?.email,
+              priceId
+            )
           );
         }
       }
