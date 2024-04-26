@@ -35,7 +35,7 @@ export function CreateUser(
         if (!Boolean(priceId)) {
           navigate();
         } else {
-          sessionStorage.setItem('userId', response?.data?.id);
+          // sessionStorage.setItem('userId', response?.data?.id);
           dispatch(
             CreateStripeSession(
               response?.data?.id,
