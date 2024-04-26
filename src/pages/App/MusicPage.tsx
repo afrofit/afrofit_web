@@ -17,19 +17,19 @@ import { selectUser } from '../../store/reducers/auth/auth.slice';
 interface Props {}
 const MusicPage: React.FC<Props> = () => {
   const c_user: any = localStorage.getItem('userdata');
-  console.log('c_user :>> ', c_user);
+  // console.log('c_user :>> ', c_user);
   const c_data = JSON.parse(c_user);
-  console.log('c_data :>> ', c_data);
+  // console.log('c_data :>> ', c_data);
   // const currentUser = useSelector(selectUser);
   const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
   const uid: any = searchParams.get('user_id');
   const [openDialog, setOpenDialog] = useState(false);
   const [subscription, setSubcription] = useState('');
-  console.log('subscription :>> ', subscription);
+  // console.log('subscription :>> ', subscription);
   const sessionId = searchParams.get('id');
   // const uid = sessionStorage.getItem('userId');
-  console.log('uid :>> ', uid);
+  // console.log('uid :>> ', uid);
   const token = sessionStorage.getItem('STORAGE_TOKEN_KEY_standin');
 
   const fsession = async (uid: string | null) => {
@@ -37,11 +37,11 @@ const MusicPage: React.FC<Props> = () => {
       `payments/retrieve-stripe-session/${uid}`,
       { sessionId }
     );
-    console.log(
-      'responce.data.session.subscription :>> ',
-      responce.data.session.subscription,
-      responce
-    );
+    // console.log(
+    //   'responce.data.session.subscription :>> ',
+    //   responce.data.session.subscription,
+    //   responce
+    // );
     setSubcription(responce.data.session.subscription);
   };
 
