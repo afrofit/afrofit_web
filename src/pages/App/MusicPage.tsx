@@ -32,7 +32,7 @@ const MusicPage: React.FC<Props> = () => {
       `payments/retrieve-stripe-session/${uid}`,
       { sessionId }
     );
-    setSubcription(responce?.data?.subscription);
+    setSubcription(responce.data.session.subscription);
   };
 
   useEffect(() => {
