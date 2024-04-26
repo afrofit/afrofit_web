@@ -17,11 +17,13 @@ import { selectUser } from '../../store/reducers/auth/auth.slice';
 interface Props {}
 const MusicPage: React.FC<Props> = () => {
   const currentUser = useSelector(selectUser);
+  console.log('currentUser :>> ', currentUser);
   const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
   const uid = searchParams.get('user_id');
   const [openDialog, setOpenDialog] = useState(false);
   const [subscription, setSubcription] = useState('');
+  console.log('subscription :>> ', subscription);
   const sessionId = searchParams.get('id');
   // const uid = sessionStorage.getItem('userId');
   console.log('uid :>> ', uid);
@@ -31,6 +33,11 @@ const MusicPage: React.FC<Props> = () => {
     const responce = await API_CLIENT.post(
       `payments/retrieve-stripe-session/${uid}`,
       { sessionId }
+    );
+    console.log(
+      'responce.data.session.subscription :>> ',
+      responce.data.session.subscription,
+      responce
     );
     setSubcription(responce.data.session.subscription);
   };
