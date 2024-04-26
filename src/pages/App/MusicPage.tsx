@@ -23,7 +23,7 @@ const MusicPage: React.FC<Props> = () => {
   // const currentUser = useSelector(selectUser);
   const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
-  const uid = searchParams.get('user_id');
+  const uid: any = searchParams.get('user_id');
   const [openDialog, setOpenDialog] = useState(false);
   const [subscription, setSubcription] = useState('');
   console.log('subscription :>> ', subscription);
@@ -53,7 +53,7 @@ const MusicPage: React.FC<Props> = () => {
   }, [sessionId]);
 
   useEffect(() => {
-    c_data && dispatch(RetrieveUserSubscription(c_data.id));
+    c_data && dispatch(RetrieveUserSubscription(uid));
   }, [subscription]);
 
   const handleCloseDialog = () => {
