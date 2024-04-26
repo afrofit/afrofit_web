@@ -53,7 +53,7 @@ const MusicPage: React.FC<Props> = () => {
   }, [sessionId]);
 
   useEffect(() => {
-    c_data && dispatch(RetrieveUserSubscription(uid));
+    dispatch(RetrieveUserSubscription(uid));
   }, [subscription]);
 
   const handleCloseDialog = () => {
