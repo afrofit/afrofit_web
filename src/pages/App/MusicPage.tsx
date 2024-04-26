@@ -19,14 +19,15 @@ const MusicPage: React.FC<Props> = () => {
   const currentUser = useSelector(selectUser);
   const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
+  const uid = searchParams.get('user_id');
   const [openDialog, setOpenDialog] = useState(false);
   const [subscription, setSubcription] = useState('');
   const sessionId = searchParams.get('id');
-  const uid = sessionStorage.getItem('userId');
+  // const uid = sessionStorage.getItem('userId');
   console.log('uid :>> ', uid);
   const token = sessionStorage.getItem('STORAGE_TOKEN_KEY_standin');
 
-  const fsession = async (uid: any) => {
+  const fsession = async (uid: string | null) => {
     const responce = await API_CLIENT.post(
       `payments/retrieve-stripe-session/${uid}`,
       { sessionId }
