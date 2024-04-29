@@ -22,13 +22,13 @@ const createStripeSessionApi = async (
 };
 // live ni Keys
 
-// const STRIPE_PUBLISHABLE_KEY =
-//   'pk_live_51LND6dG7Ijvv33NL0x0geQt3CMvxFgb787YfgUUdrIueMOCh51eUfOGxCYmYS2XWkFZPmL98rb77PcTUhyirgCN9004jfaKgGU';
+const STRIPE_PUBLISHABLE_KEY =
+  'pk_live_51LND6dG7Ijvv33NL0x0geQt3CMvxFgb787YfgUUdrIueMOCh51eUfOGxCYmYS2XWkFZPmL98rb77PcTUhyirgCN9004jfaKgGU';
 
 //  normAL KEY
 // neel
-const STRIPE_PUBLISHABLE_KEY =
-  'pk_test_51MC0LySDRiBpbKJAVFMhNmB8cbDYJNOUI77xWNbwrm8cxmGF3rhSushliKGSo68Vn6vREfWKKblr3Sjve0S8NTRG00Yq5xx3XI';
+// const STRIPE_PUBLISHABLE_KEY =
+//   'pk_test_51MC0LySDRiBpbKJAVFMhNmB8cbDYJNOUI77xWNbwrm8cxmGF3rhSushliKGSo68Vn6vREfWKKblr3Sjve0S8NTRG00Yq5xx3XI';
 
 let stripePromise: Promise<Stripe | null>;
 const getStripe = async () => {
@@ -48,7 +48,6 @@ export function CreateStripeSession(
       dispatch(newRequest());
       dispatch(hideGenericErrorDialog());
       const response = await createStripeSessionApi(userId, email, priceId);
-      // console.log('response :>> ', response);
       if (response && response.data) {
         const { sessionId } = response.data;
 
@@ -56,7 +55,6 @@ export function CreateStripeSession(
           try {
             sessionStorage.setItem('userId', userId);
             const stripe = await getStripe();
-            // console.log('stripe :>> ', stripe);
             if (stripe) {
               const result = stripe.redirectToCheckout({
                 sessionId: sessionId,

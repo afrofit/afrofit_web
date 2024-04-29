@@ -29,9 +29,7 @@ const App: React.FC = () => {
   const successMessage = useSelector(selectedShowSuccessMessage);
 
   const userToken = useSelector(selectUserToken);
-  // console.log('userToken :>> ', userToken);
   const memoToken = React.useMemo(() => GET_TOKEN(), []);
-  // console.log('memoToken :>> ', memoToken);
   const putTokenInStore = React.useCallback(() => {
     memoToken && dispatch(storeUserToken(memoToken));
   }, [memoToken, dispatch]);
@@ -39,7 +37,6 @@ const App: React.FC = () => {
   React.useEffect(() => {
     putTokenInStore();
     const user = DECODE_TOKEN();
-    // console.log('user :>> ', user);
     if (user) {
       dispatch(storeUser(user));
     } else {
