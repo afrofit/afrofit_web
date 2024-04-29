@@ -28,8 +28,6 @@ export function CreateUser(
       dispatch(newRequest());
       dispatch(hideGenericErrorDialog());
       const response = await createUserApi(userData);
-      // let userString = JSON.stringify(response?.data);
-      // localStorage.setItem('userdata', userString);
       if (response && response.data) {
         dispatch(storeUserToken(response.data.token));
         STORE_TOKEN(response.data.token);
