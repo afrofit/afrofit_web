@@ -16,11 +16,11 @@ import { selectUser } from '../../store/reducers/auth/auth.slice';
 
 interface Props {}
 const MusicPage: React.FC<Props> = () => {
-  const c_user: any = localStorage.getItem('userdata');
   // console.log('c_user :>> ', c_user);
-  const c_data = JSON.parse(c_user);
+  // const c_user: any = localStorage.getItem('userdata');
+  // const c_data = JSON.parse(c_user);
   // console.log('c_data :>> ', c_data);
-  // const currentUser = useSelector(selectUser);
+  const currentUser = useSelector(selectUser);
   const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
   const uid: any = searchParams.get('user_id');
@@ -53,7 +53,7 @@ const MusicPage: React.FC<Props> = () => {
   }, [sessionId]);
 
   useEffect(() => {
-    dispatch(RetrieveUserSubscription(uid));
+    currentUser && dispatch(RetrieveUserSubscription(currentUser.userId));
   }, [subscription]);
 
   const handleCloseDialog = () => {
